@@ -76,7 +76,7 @@
                 android:textColor="@color/colorPrimary"
                 android:visibility="invisible"
                 tools:ignore="TouchTargetSizeCheck"
-                tools:visibility="invisible" />
+                tools:visibility="visible" />
 
             <Button
                 android:id="@+id/loginBt"
@@ -162,7 +162,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="115dp"
-        android:src="@drawable/phn"
+        android:src="@drawable/phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.434"
         app:layout_constraintStart_toEndOf="@+id/imgEmail"

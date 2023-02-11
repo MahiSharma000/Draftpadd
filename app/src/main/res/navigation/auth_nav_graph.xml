@@ -2,40 +2,48 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation">
-    <fragment
-        android:id="@+id/EPLoginFragment2"
-        android:name="com.example.draftpad.auth.EPLoginFragment"
-        android:label="fragment_e_p_login"
-        tools:layout="@layout/fragment_e_p_login" />
-    <fragment
-        android:id="@+id/googleFragment2"
-        android:name="com.example.draftpad.auth.GoogleFragment"
-        android:label="fragment_google"
-        tools:layout="@layout/fragment_google" />
-    <fragment
-        android:id="@+id/phoneLoginFragment2"
-        android:name="com.example.draftpad.auth.PhoneLoginFragment"
-        android:label="fragment_phone_login"
-        tools:layout="@layout/fragment_phone_login" />
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/authFragment">
     <fragment
         android:id="@+id/authFragment"
         android:name="com.example.draftpad.auth.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth" >
         <action
+            android:id="@+id/action_authFragment_to_EPLoginFragment2"
+            app:destination="@id/EPLoginFragment2" />
+        <action
             android:id="@+id/action_authFragment_to_phoneLoginFragment2"
             app:destination="@id/phoneLoginFragment2" />
         <action
-            android:id="@+id/action_authFragment_to_googleFragment2"
-            app:destination="@id/googleFragment2" />
+            android:id="@+id/action_authFragment_to_googleFragment"
+            app:destination="@id/googleFragment" />
         <action
-            android:id="@+id/action_authFragment_to_EPLoginFragment2"
-            app:destination="@id/EPLoginFragment2" />
+            android:id="@+id/action_authFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/EPLoginFragment2"
+        android:name="com.example.draftpad.auth.EPLoginFragment"
+        android:label="fragment_e_p_login"
+        tools:layout="@layout/fragment_e_p_login" />
+    <fragment
+        android:id="@+id/phoneLoginFragment2"
+        android:name="com.example.draftpad.auth.PhoneLoginFragment"
+        android:label="fragment_phone_login"
+        tools:layout="@layout/fragment_phone_login" />
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.draftpad.auth.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_authFragment"
+            app:destination="@id/authFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/googleFragment"
+        android:name="com.example.draftpad.auth.GoogleFragment"
+        android:label="fragment_google"
+        tools:layout="@layout/fragment_google" />
 </navigation>
