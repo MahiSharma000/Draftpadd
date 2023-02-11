@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "601831300070",
+    "project_id": "draftpad-21979",
+    "storage_bucket": "draftpad-21979.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:601831300070:android:cb4653aae48e1b40a59427",
+        "android_client_info": {
+          "package_name": "com.example.draftpad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "601831300070-rrjtaik0d5dhuossq55huo13vr9oo2ar.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0qd8X54Zo0fihk-69meQU2WXtIhiyt-w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "601831300070-6l6rg18ml2bcsae5ie7qcpurdnp8vco4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
