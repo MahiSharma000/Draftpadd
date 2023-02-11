@@ -74,8 +74,9 @@
                 android:hint="@string/enter_password"
                 android:inputType="textPassword"
                 android:textColor="@color/colorPrimary"
-                android:visibility="visible"
-                tools:ignore="TouchTargetSizeCheck" />
+                android:visibility="invisible"
+                tools:ignore="TouchTargetSizeCheck"
+                tools:visibility="invisible" />
 
             <Button
                 android:id="@+id/loginBt"
