@@ -2,12 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout7"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.notifications.NotificationsFragment">
+    tools:context=".ui.library.LibraryFragment">
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/notificationsSc"
+        android:id="@+id/librarysr"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,19 +17,23 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tbUpdate"
+            android:id="@+id/downloadtb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Updates" />
+            android:text="DOWNLOADS" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tbMessage"
+            android:id="@+id/archivetb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Message" />
+            android:text="ARCHIVE" />
 
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/readingListTb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="READING LIST" />
     </com.google.android.material.tabs.TabLayout>
-
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
@@ -36,6 +41,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notificationsSc"
+        app:layout_constraintTop_toBottomOf="@+id/librarysr"
         tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>
