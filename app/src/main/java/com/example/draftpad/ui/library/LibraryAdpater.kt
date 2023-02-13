@@ -10,7 +10,7 @@ import com.example.draftpad.ui.notifications.UpdateFragment
 class LibraryAdpater(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return 3
     }
 
     override fun createFragment(position: Int): Fragment {

@@ -54,7 +54,7 @@ class AuthFragment : Fragment() {
                 findNavController().navigate(R.id.action_authFragment_to_phoneLoginFragment2)
             }
             imgGoogle.setOnClickListener {
-                findNavController().navigate(R.id.action_authFragment_to_googleFragment2)
+                findNavController().navigate(R.id.action_authFragment_to_googleFragment)
             }
         }
 
