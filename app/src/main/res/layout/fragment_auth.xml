@@ -10,21 +10,7 @@
     tools:context=".auth.AuthFragment"
     tools:ignore="ExtraText">
 
-    <fragment
-        android:id="@+id/fragmentContainerView2"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="2dp"
-        app:defaultNavHost="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/auth_nav_graph"
-        tools:ignore="MissingConstraints" />
+
 
     <ImageView
         android:id="@+id/imageView6"
@@ -57,7 +43,8 @@
             <EditText
                 android:id="@+id/txtphone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_baseline_local_phone_24"
                 android:ems="10"
                 android:hint="@string/enter_your_phone_number"
@@ -68,13 +55,13 @@
             <EditText
                 android:id="@+id/txtPassword"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_baseline_password_24"
                 android:ems="10"
                 android:hint="@string/enter_password"
                 android:inputType="textPassword"
                 android:textColor="@color/colorPrimary"
-                android:visibility="invisible"
                 tools:ignore="TouchTargetSizeCheck"
                 tools:visibility="visible" />
 
@@ -82,7 +69,8 @@
                 android:id="@+id/loginBt"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:text="LOG IN"
                 app:cornerRadius="10dp" />
 
@@ -106,33 +94,32 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif"
-        android:text="__________________Or Continue With____________________"
+        android:text="Or Continue With"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/chip3" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/chip3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="81dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="90dp"
+        android:layout_marginTop="20dp"
         android:text="Don't Have an account yet? Sign up"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/fragmentContainerView2"
-        app:layout_constraintStart_toStartOf="@+id/fragmentContainerView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <ImageView
@@ -168,4 +155,14 @@
         app:layout_constraintStart_toEndOf="@+id/imgEmail"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
+<!--    2 dp gray line-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="16dp"
+        android:background="#CDC7C7"
+        app:layout_constraintBottom_toTopOf="@+id/imgEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 </androidx.constraintlayout.widget.ConstraintLayout>

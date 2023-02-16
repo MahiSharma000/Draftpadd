@@ -14,11 +14,10 @@ class NotificationAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle
     }
 
     override fun createFragment(position: Int): Fragment {
-        if(position == 1){
-            return MessageFragment()
-        }
-        else{
-            return UpdateFragment()
+        return if(position == 1){
+            MessageFragment()
+        } else{
+            UpdateFragment()
         }
 
     }

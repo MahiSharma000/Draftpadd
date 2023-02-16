@@ -46,4 +46,16 @@
         android:name="com.example.draftpad.auth.GoogleFragment"
         android:label="fragment_google"
         tools:layout="@layout/fragment_google" />
+    <fragment
+        android:id="@+id/authIntroFragment"
+        android:name="com.example.draftpad.auth.AuthIntroFragment"
+        android:label="fragment_auth_intro"
+        tools:layout="@layout/fragment_auth_intro" >
+        <action
+            android:id="@+id/action_authIntroFragment_to_authFragment"
+            app:destination="@id/authFragment" />
+        <action
+            android:id="@+id/action_authIntroFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
 </navigation>
