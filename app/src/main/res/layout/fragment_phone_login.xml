@@ -33,6 +33,8 @@
             android:id="@+id/editPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/custom_edit_text"
+            android:backgroundTint="@color/colorAccent"
             android:hint="Your Phone Number"
             android:inputType="phone" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -42,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="9dp"
+        android:background="@drawable/custom_bt"
         android:text="OTP"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout"
