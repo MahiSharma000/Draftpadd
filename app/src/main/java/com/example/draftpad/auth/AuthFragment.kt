@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.draftpad.R
 import android.content.Intent
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.navigation.fragment.findNavController
+import com.example.draftpad.AuthActivity
 import com.example.draftpad.MainActivity
 import com.example.draftpad.databinding.FragmentAuthBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -20,6 +22,7 @@ class AuthFragment : Fragment() {
     private var _binding: FragmentAuthBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
@@ -55,6 +58,12 @@ class AuthFragment : Fragment() {
             }
             imgGoogle.setOnClickListener {
                 findNavController().navigate(R.id.action_authFragment_to_googleFragment)
+            }
+            sLogInBt.setOnClickListener {
+                startActivity(Intent(activity, MainActivity::class.java))
+            }
+            txtSignUp.setOnClickListener {
+                findNavController().navigate(R.id.action_authFragment_to_signUpFragment)
             }
         }
 
