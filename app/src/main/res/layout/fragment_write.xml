@@ -7,7 +7,7 @@
     tools:context=".ui.write.WriteFragment">
 
     <TextView
-        android:id="@+id/txtAddNew"
+        android:id="@+id/txtCreateNewStory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -29,7 +29,7 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/txtEditStory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -43,8 +43,8 @@
         android:text="Edit Story"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/txtAddNew"
-        app:layout_constraintStart_toStartOf="@+id/txtAddNew"
-        app:layout_constraintTop_toBottomOf="@+id/txtAddNew"
+        app:layout_constraintEnd_toEndOf="@+id/txtCreateNewStory"
+        app:layout_constraintStart_toStartOf="@+id/txtCreateNewStory"
+        app:layout_constraintTop_toBottomOf="@+id/txtCreateNewStory"
         tools:ignore="TouchTargetSizeCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

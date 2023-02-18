@@ -16,23 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/downloadtb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="DOWNLOADS" />
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/archivetb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ARCHIVE" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/readingListTb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="READING LIST" />
     </com.google.android.material.tabs.TabLayout>
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"

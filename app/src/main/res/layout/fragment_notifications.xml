@@ -15,17 +15,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tbUpdate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Updates" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tbMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Message" />
 
     </com.google.android.material.tabs.TabLayout>
 

@@ -25,6 +25,6 @@ class ReadingListFragment : Fragment() {
     }
 
     companion object {
-
+        fun newInstance() = ReadingListFragment()
     }
 }

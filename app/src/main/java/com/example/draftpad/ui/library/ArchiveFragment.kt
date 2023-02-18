@@ -24,6 +24,6 @@ class ArchiveFragment : Fragment() {
     }
 
     companion object {
-
+        fun newInstance() = ArchiveFragment()
     }
 }

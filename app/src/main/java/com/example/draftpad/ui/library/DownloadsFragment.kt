@@ -9,6 +9,7 @@ import com.example.draftpad.R
 
 class DownloadsFragment : Fragment() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -23,6 +24,6 @@ class DownloadsFragment : Fragment() {
     }
 
     companion object {
-
+        fun newInstance() = DownloadsFragment()
     }
 }
