@@ -19,7 +19,11 @@
         android:id="@+id/navigation_search"
         android:name="com.example.draftpad.ui.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_navigation_search_to_searchNextFragment"
+            app:destination="@id/searchNextFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_library"
         android:name="com.example.draftpad.ui.library.LibraryFragment"
@@ -29,5 +33,36 @@
         android:id="@+id/navigation_write"
         android:name="com.example.draftpad.ui.write.WriteFragment"
         android:label="fragment_write"
-        tools:layout="@layout/fragment_write" />
+        tools:layout="@layout/fragment_write" >
+        <action
+            android:id="@+id/action_navigation_write_to_createNewStoryFragment"
+            app:destination="@id/createNewStoryFragment" />
+        <action
+            android:id="@+id/action_navigation_write_to_editStoryFragment"
+            app:destination="@id/editStoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchNextFragment"
+        android:name="com.example.draftpad.ui.search.SearchNextFragment"
+        android:label="fragment_search_next"
+        tools:layout="@layout/fragment_search_next" />
+    <fragment
+        android:id="@+id/createNewStoryFragment"
+        android:name="com.example.draftpad.ui.write.CreateNewStoryFragment"
+        android:label="fragment_create_new_story"
+        tools:layout="@layout/fragment_create_new_story" />
+    <fragment
+        android:id="@+id/editStoryFragment"
+        android:name="com.example.draftpad.ui.write.EditStoryFragment"
+        android:label="fragment_edit_story"
+        tools:layout="@layout/fragment_edit_story" >
+        <action
+            android:id="@+id/action_editStoryFragment_to_draftFragment"
+            app:destination="@id/draftFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/draftFragment"
+        android:name="com.example.draftpad.ui.write.DraftFragment"
+        android:label="fragment_draft"
+        tools:layout="@layout/fragment_draft" />
 </navigation>

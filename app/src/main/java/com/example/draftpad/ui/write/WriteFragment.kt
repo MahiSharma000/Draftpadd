@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentWriteBinding
 
 class WriteFragment : Fragment() {
@@ -34,10 +36,10 @@ class WriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             txtCreateNewStory.setOnClickListener {
-
+                findNavController().navigate(R.id.action_navigation_write_to_createNewStoryFragment)
             }
             txtEditStory.setOnClickListener {
-
+                findNavController().navigate(R.id.action_navigation_write_to_editStoryFragment)
             }
         }
     }

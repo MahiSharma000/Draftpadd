@@ -25,6 +25,6 @@ class DraftFragment : Fragment() {
     }
 
     companion object {
-
+            fun newInstance() = DraftFragment()
     }
 }

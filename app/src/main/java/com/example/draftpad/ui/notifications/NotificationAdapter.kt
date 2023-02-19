@@ -7,18 +7,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 
-class NotificationAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
-    FragmentStateAdapter(fragmentManager, lifecycle) {
-    override fun getItemCount(): Int {
-        return 2
-    }
+class NotificationAdapter{
 
-    override fun createFragment(position: Int): Fragment {
-        return if(position == 1){
-            MessageFragment()
-        } else{
-            UpdateFragment()
-        }
-
-    }
 }

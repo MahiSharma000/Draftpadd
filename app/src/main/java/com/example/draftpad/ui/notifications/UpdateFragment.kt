@@ -24,6 +24,7 @@ class UpdateFragment : Fragment() {
     }
 
     companion object {
+        fun newInstance() = UpdateFragment()
 
     }
 }

@@ -25,6 +25,7 @@ class MessageFragment : Fragment() {
     }
 
     companion object {
+        fun newInstance() = MessageFragment()
 
     }
 }

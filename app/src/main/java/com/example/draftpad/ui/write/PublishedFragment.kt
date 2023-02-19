@@ -5,10 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
+import com.example.draftpad.databinding.FragmentAuthBinding
+import com.example.draftpad.databinding.FragmentPublishedBinding
 
 
 class PublishedFragment : Fragment() {
+    private var _binding: FragmentPublishedBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,11 +24,20 @@ class PublishedFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_published, container, false)
+        _binding = FragmentPublishedBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.apply {
+            pbStory.setOnClickListener {
+                findNavController().navigate(R.id.action_editStoryFragment_to_draftFragment)
+            }
+        }
     }
 
     companion object {
-
+          fun newInstance() = PublishedFragment()
     }
 }
