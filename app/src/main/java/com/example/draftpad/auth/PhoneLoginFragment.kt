@@ -1,5 +1,6 @@
 package com.example.draftpad.auth
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -79,7 +80,14 @@ class PhoneLoginFragment : Fragment() {
                 showOtpLayout()
             }
         }
-        binding.btnGetOtp.setOnClickListener { getOtp() }
+        binding.btnGetOtp.setOnClickListener {
+            getOtp()
+            binding.progressBar.max = 10
+            val currentProgress = 6
+            ObjectAnimator.ofInt(binding.progressBar, "progress", currentProgress)
+                .setDuration(1000)
+                .start()
+        }
     }
 
     private fun showOtpLayout() {
