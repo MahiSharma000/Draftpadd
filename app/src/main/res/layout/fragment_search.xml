@@ -8,12 +8,23 @@
     android:background="#FFFFFF"
     tools:context=".ui.search.SearchFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="SEARCH"
+        app:titleTextColor="@color/white" />
+
     <EditText
         android:id="@+id/txtsearch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/custom_edit_text"
         android:backgroundTint="@color/colorAccent"
@@ -28,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:ignore="TouchTargetSizeCheck"
         tools:text="Search stories , peoples or reading list" />
 

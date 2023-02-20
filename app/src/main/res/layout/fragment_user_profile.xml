@@ -7,15 +7,27 @@
     android:layout_height="match_parent"
     tools:context=".ui.profile.UserProfileFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="@color/white"
+        app:menu="@menu/profile_menu"
+    />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgProfile"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:layout_marginTop="40dp"
         android:src="@drawable/profile"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
         android:id="@+id/txtName"

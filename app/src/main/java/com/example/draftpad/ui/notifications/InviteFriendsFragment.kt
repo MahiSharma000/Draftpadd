@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.draftpad.R
 
-
-class MessageFragment : Fragment() {
+class InviteFriendsFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,11 +20,7 @@ class MessageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_message, container, false)
+        return inflater.inflate(R.layout.fragment_invite_friends, container, false)
     }
 
-    companion object {
-        fun newInstance() = MessageFragment()
-
-    }
 }

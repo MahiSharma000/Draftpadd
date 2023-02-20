@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentLibraryBinding
 
 class LibraryFragment : Fragment() {
@@ -17,12 +19,15 @@ class LibraryFragment : Fragment() {
 
     private var _binding: FragmentLibraryBinding? = null
     private val binding get() = _binding!!
+    private var toolbar: Toolbar? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLibraryBinding.inflate(inflater, container, false)
+        toolbar = binding.toolbar
+        toolbar?.inflateMenu(R.menu.library_menu)
         return binding.root
     }
 

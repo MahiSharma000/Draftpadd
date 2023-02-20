@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/try_premium"
+        android:icon="@drawable/baseline_try_premium"
+        app:showAsAction="ifRoom"
+        android:title="Try Premium"
+        />
+
+    <item
+        android:id="@+id/content_preferences"
+        android:icon="@drawable/baseline_content_prefer"
+        app:showAsAction="ifRoom"
+        android:title="Content Preferences"
+        />
+
+    <item
+        android:id="@+id/user_profile"
+        android:icon="@drawable/profile"
+        app:showAsAction="ifRoom"
+        android:title="User Profile"
+        />
+
+
+
+</menu>

@@ -22,7 +22,7 @@ import com.google.android.material.navigation.NavigationView
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    lateinit var toggle : ActionBarDrawerToggle
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,37 +31,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val drawerLayout : DrawerLayout = findViewById(R.id.drawer_layout)
-        val navvView : NavigationView = findViewById(R.id.nav_view)
-        toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
-
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        navvView.setNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.nav_profile -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main, UserProfileFragment() ).commit()
-                    true
-                }
-                R.id.nav_premium -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main, PremiumFragment()).commit()
-                    true
-                }
-                R.id.nav_settings-> {
-                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main, SettingFragment()).commit()
-                    true
-                }
-                else -> false
-            }
-        }
-
-        fun onOptionsItemSelected(item: MenuItem): Boolean {
-            if(toggle.onOptionsItemSelected(item)){
-                return true
-            }
-            return super.onOptionsItemSelected(item)
-        }
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
