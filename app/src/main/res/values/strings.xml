@@ -11,4 +11,30 @@
     <string name="library">Library</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="brightness">Uncheck to manually change  brightness within the reader</string>
+    <string name="auto">Auto</string>
+    <string name="portrait">Portrait</string>
+    <string name="landscape">Landscape</string>
+    <string name="show_inline_comments">Show Inline Comments</string>
+    <string name="display">Display Status Bar</string>
+    <string name="volume_key">Turn pages and scroll using the volume keys</string>
+    <string name="paging">Paging</string>
+    <string name="scrolling">Scrolling</string>
+    <string name="orientation">Screen Orientation</string>
+    <string name="inline_comments">Inline Comments</string>
+    <string name="status_bar">Status Bar</string>
+    <string name="volume">Volume Key Navigation</string>
+    <string name="reading_mode">Reading Mode</string>
+    <string name="device_brightness">Use Device Brightness</string>
+    <string name="message">Message</string>
+    <string name="inbox">Inbox</string>
+    <string name="new_comments">New comments on my stories</string>
+    <string name="replies">Replies to my comments</string>
+    <string name="others">Others</string>
+    <string name="new_followers">New Followers</string>
+    <string name="votes_on_my_stories">Votes on my stories</string>
+    <string name="updates_from_profile">Updates from profiles I follow</string>
+    <string name="application_settings">Application Settings</string>
+    <string name="profile_and_account">Profile and Account Settings</string>
+
 </resources>

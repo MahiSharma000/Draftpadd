@@ -1,4 +1,4 @@
-package com.example.draftpad.ui.search
+package com.example.draftpad.setting
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.draftpad.R
 
 
-class BooksFragment : Fragment() {
+class BlockedAccountFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,8 +21,10 @@ class BooksFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_books, container, false)
+        return inflater.inflate(R.layout.fragment_blocked_account, container, false)
     }
 
+    companion object {
 
+    }
 }
