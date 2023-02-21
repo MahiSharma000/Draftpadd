@@ -5,22 +5,26 @@
     <item
         android:id="@+id/try_premium"
         android:icon="@drawable/baseline_try_premium"
-        app:showAsAction="ifRoom"
+        app:showAsAction="ifRoom|collapseActionView"
         android:title="Try Premium"
         />
 
     <item
         android:id="@+id/content_preferences"
-        android:icon="@drawable/baseline_content_prefer"
-        app:showAsAction="ifRoom"
         android:title="Content Preferences"
         />
 
     <item
         android:id="@+id/user_profile"
-        android:icon="@drawable/profile"
-        app:showAsAction="ifRoom"
         android:title="User Profile"
+        />
+    <item
+        android:id="@+id/settings"
+        android:title="Settings"
+        />
+    <item
+        android:id="@+id/log_out"
+        android:title="Log Out"
         />
 
 

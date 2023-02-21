@@ -16,7 +16,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:titleTextColor="@color/white"
-        app:menu="@menu/profile_menu"
     />
 
     <de.hdodenhof.circleimageview.CircleImageView

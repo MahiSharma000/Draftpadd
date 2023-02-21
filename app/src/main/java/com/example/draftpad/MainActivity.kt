@@ -11,7 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.draftpad.databinding.ActivityMainBinding
-import com.example.draftpad.setting.SettingFragment
+import com.example.draftpad.setting.SettingsFragment
 import com.example.draftpad.ui.home.HomeFragment
 import com.example.draftpad.ui.notifications.NotificationsFragment
 import com.example.draftpad.ui.premium.PremiumFragment

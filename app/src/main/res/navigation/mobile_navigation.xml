@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navigation_home_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_notifications"
@@ -64,7 +67,11 @@
         android:id="@+id/createNewStoryFragment"
         android:name="com.example.draftpad.ui.write.CreateNewStoryFragment"
         android:label="fragment_create_new_story"
-        tools:layout="@layout/fragment_create_new_story" />
+        tools:layout="@layout/fragment_create_new_story" >
+        <action
+            android:id="@+id/action_createNewStoryFragment_to_writeStoryFragment"
+            app:destination="@id/writeStoryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/editStoryFragment"
         android:name="com.example.draftpad.ui.write.EditStoryFragment"
@@ -78,7 +85,11 @@
         android:id="@+id/draftFragment"
         android:name="com.example.draftpad.ui.write.DraftFragment"
         android:label="fragment_draft"
-        tools:layout="@layout/fragment_draft" />
+        tools:layout="@layout/fragment_draft" >
+        <action
+            android:id="@+id/action_draftFragment_to_editStoryDetailFragment"
+            app:destination="@id/editStoryDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/premiumFragment"
         android:name="com.example.draftpad.ui.premium.PremiumFragment"
@@ -88,19 +99,77 @@
         android:id="@+id/userProfileFragment"
         android:name="com.example.draftpad.ui.profile.UserProfileFragment"
         android:label="fragment_user_profile"
-        tools:layout="@layout/fragment_user_profile" >
-        <action
-            android:id="@+id/action_userProfileFragment_to_profileSettingsFragment"
-            app:destination="@id/profileSettingsFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_user_profile" />
+    <fragment
+        android:id="@+id/inviteFriendsFragment"
+        android:name="com.example.draftpad.ui.notifications.InviteFriendsFragment"
+        android:label="fragment_invite_friends"
+        tools:layout="@layout/fragment_invite_friends" />
     <fragment
         android:id="@+id/profileSettingsFragment"
         android:name="com.example.draftpad.ui.profile.ProfileSettingsFragment"
         android:label="fragment_profile_settings"
         tools:layout="@layout/fragment_profile_settings" />
     <fragment
-        android:id="@+id/inviteFriendsFragment"
-        android:name="com.example.draftpad.ui.notifications.InviteFriendsFragment"
-        android:label="fragment_invite_friends"
-        tools:layout="@layout/fragment_invite_friends" />
+        android:id="@+id/notificationSettingFragment"
+        android:name="com.example.draftpad.setting.NotificationSettingFragment"
+        android:label="fragment_notification_setting"
+        tools:layout="@layout/fragment_notification_setting" />
+    <fragment
+        android:id="@+id/readingPreferencesFragment"
+        android:name="com.example.draftpad.setting.ReadingPreferencesFragment"
+        android:label="fragment_reading_preferences"
+        tools:layout="@layout/fragment_reading_preferences" />
+    <fragment
+        android:id="@+id/blockedAccountFragment"
+        android:name="com.example.draftpad.setting.BlockedAccountFragment"
+        android:label="fragment_blocked_account"
+        tools:layout="@layout/fragment_blocked_account" />
+    <fragment
+        android:id="@+id/mutedAccountFragment"
+        android:name="com.example.draftpad.setting.MutedAccountFragment"
+        android:label="fragment_muted_account"
+        tools:layout="@layout/fragment_muted_account" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.draftpad.setting.SettingsFragment"
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_profileSettingsFragment"
+            app:destination="@id/profileSettingsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_blockedAccountFragment"
+            app:destination="@id/blockedAccountFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_mutedAccountFragment"
+            app:destination="@id/mutedAccountFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_readingPreferencesFragment"
+            app:destination="@id/readingPreferencesFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_notificationSettingFragment"
+            app:destination="@id/notificationSettingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/writeStoryFragment"
+        android:name="com.example.draftpad.ui.write.WriteStoryFragment"
+        android:label="fragment_write_story"
+        tools:layout="@layout/fragment_write_story" />
+    <fragment
+        android:id="@+id/editStoryDetailFragment"
+        android:name="com.example.draftpad.ui.write.EditStoryDetailFragment"
+        android:label="fragment_edit_story_detail"
+        tools:layout="@layout/fragment_edit_story_detail" >
+        <action
+            android:id="@+id/action_editStoryDetailFragment_to_writeStoryFragment"
+            app:destination="@id/writeStoryFragment" />
+        <action
+            android:id="@+id/action_editStoryDetailFragment_to_editChaptersFragment"
+            app:destination="@id/editChaptersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editChaptersFragment"
+        android:name="com.example.draftpad.ui.write.EditChaptersFragment"
+        android:label="fragment_edit_chapters"
+        tools:layout="@layout/fragment_edit_chapters" />
 </navigation>

@@ -47,6 +47,10 @@ class HomeFragment : Fragment() {
 
                     true
                 }
+                R.id.settings -> {
+                    findNavController().navigate(R.id.action_navigation_home_to_settingsFragment)
+                    true
+                }
                 else -> false
             }
         }

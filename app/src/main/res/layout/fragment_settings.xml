@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".setting.SettingFragment" >
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/application_settings"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtProfileSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:text="@string/profile_and_account"
+            app:layout_constraintStart_toStartOf="@+id/textView7"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <TextView
+            android:id="@+id/txtNotificationSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:text="Notifications"
+            app:layout_constraintStart_toStartOf="@+id/txtProfileSetting"
+            app:layout_constraintTop_toBottomOf="@+id/txtProfileSetting" />
+        <!-- 2dp gray line-->
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="380dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="9dp"
+            android:background="#808080"
+            app:layout_constraintBottom_toTopOf="@+id/txtNotificationSetting"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtProfileSetting"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="380dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="9dp"
+            android:background="#808080"
+            app:layout_constraintBottom_toTopOf="@+id/txtReadingPreferences"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtNotificationSetting" />
+
+        <TextView
+            android:id="@+id/txtReadingPreferences"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:text="Reading Preferences"
+            app:layout_constraintStart_toStartOf="@+id/txtNotificationSetting"
+            app:layout_constraintTop_toBottomOf="@+id/txtNotificationSetting" />
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Dark Mode"
+            app:layout_constraintStart_toStartOf="@+id/txtReadingPreferences"
+            app:layout_constraintTop_toBottomOf="@+id/txtReadingPreferences" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toStartOf="@+id/textView33"
+            app:layout_constraintTop_toBottomOf="@+id/textView33">
+
+            <RadioButton
+                android:id="@+id/btnOn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ON" />
+
+            <RadioButton
+                android:id="@+id/btnOff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="OFF" />
+
+            <RadioButton
+                android:id="@+id/btnAuto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Auto" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Subscriptions"
+            app:layout_constraintStart_toStartOf="@+id/radioGroup2"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+
+        <TextView
+            android:id="@+id/btnPremiumSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:text="Premium Subscription"
+            app:layout_constraintStart_toStartOf="@+id/textView34"
+            app:layout_constraintTop_toBottomOf="@+id/textView34" />
+
+        <TextView
+            android:id="@+id/textView37"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Privacy And Safety"
+            app:layout_constraintStart_toStartOf="@+id/btnPremiumSetting"
+            app:layout_constraintTop_toBottomOf="@+id/btnPremiumSetting" />
+
+        <TextView
+            android:id="@+id/txtBlocked"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:text="Blocked Accounts"
+            app:layout_constraintStart_toStartOf="@+id/textView37"
+            app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
+        <TextView
+            android:id="@+id/txtMuted"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:text="Muted Accounts"
+            app:layout_constraintStart_toStartOf="@+id/txtBlocked"
+            app:layout_constraintTop_toBottomOf="@+id/txtBlocked" />
+
+        <TextView
+            android:id="@+id/textView40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Preferred Stories"
+            app:layout_constraintStart_toStartOf="@+id/txtMuted"
+            app:layout_constraintTop_toBottomOf="@+id/txtMuted" />
+
+        <TextView
+            android:id="@+id/txtLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:text="Language"
+            app:layout_constraintStart_toStartOf="@+id/textView40"
+            app:layout_constraintTop_toBottomOf="@+id/textView40" />
+
+        <TextView
+            android:id="@+id/textView42"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Others"
+            app:layout_constraintStart_toStartOf="@+id/txtLanguage"
+            app:layout_constraintTop_toBottomOf="@+id/txtLanguage" />
+
+        <TextView
+            android:id="@+id/txtHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:text="Help And Support"
+            app:layout_constraintStart_toStartOf="@+id/textView42"
+            app:layout_constraintTop_toBottomOf="@+id/textView42" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="380dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="9dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toTopOf="@+id/textView33"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtReadingPreferences" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="380dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="9dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toTopOf="@+id/textView34"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="380dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="9dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toTopOf="@+id/textView37"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnPremiumSetting" />
+
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="380dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="9dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toTopOf="@+id/txtMuted"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtBlocked" />
+
+        <View
+            android:id="@+id/divider6"
+            android:layout_width="380dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="9dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toTopOf="@+id/textView40"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtMuted" />
+
+        <View
+            android:id="@+id/divider7"
+            android:layout_width="380dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="9dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toTopOf="@+id/textView42"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtLanguage" />
+
+        <View
+            android:id="@+id/divider8"
+            android:layout_width="380dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="9dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtHelp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

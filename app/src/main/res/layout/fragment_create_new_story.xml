@@ -50,7 +50,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/aclonica"
-                android:gravity="center"
                 android:text="Add a Cover"
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorPrimaryDark"
@@ -90,17 +89,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorAccent"
-            android:hint="Story Description" />
+            android:hint="Story Description"
+            android:maxLines="10" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/nextBt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="86dp"
         android:text="NEXT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
