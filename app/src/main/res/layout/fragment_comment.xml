@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout22"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.read.CommentFragment" >
+
+   <de.hdodenhof.circleimageview.CircleImageView
+       android:id="@+id/imgProfile"
+       android:layout_width="62dp"
+       android:layout_height="64dp"
+       android:layout_marginStart="16dp"
+       android:layout_marginTop="16dp"
+       android:src="@drawable/profile"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
+
+   <TextView
+       android:id="@+id/txtComment"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginStart="12dp"
+       android:layout_marginTop="36dp"
+       android:maxLines="5"
+       app:layout_constraintStart_toEndOf="@+id/imgProfile"
+       app:layout_constraintTop_toTopOf="@+id/imgProfile"
+       tools:text="Post a comment..." />
+
+   <ImageView
+       android:id="@+id/imgSend"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="44dp"
+       android:layout_marginEnd="40dp"
+       android:src="@drawable/baseline_send_24"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
+
+   <View
+       android:id="@+id/divider17"
+       android:layout_width="380dp"
+       android:layout_height="1dp"
+       android:layout_marginTop="5dp"
+       android:background="?android:attr/listDivider"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/txtComment" />
+
+   <TextView
+       android:id="@+id/textView45"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="10dp"
+       android:text="@string/view_comments"
+       android:textStyle="bold"
+       app:layout_constraintStart_toStartOf="@+id/imgProfile"
+       app:layout_constraintTop_toBottomOf="@+id/divider17" />
+
+   <androidx.recyclerview.widget.RecyclerView
+       android:layout_width="409dp"
+       android:layout_height="622dp"
+       android:layout_marginStart="16dp"
+       android:layout_marginTop="10dp"
+       android:layout_marginEnd="16dp"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/textView45" />
+</androidx.constraintlayout.widget.ConstraintLayout>

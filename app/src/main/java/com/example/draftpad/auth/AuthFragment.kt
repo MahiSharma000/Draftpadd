@@ -31,7 +31,7 @@ class AuthFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if(auth.currentUser!=null){
+        if (auth.currentUser != null) {
             startActivity(Intent(activity, MainActivity::class.java))
             activity?.finish()
         }
@@ -50,9 +50,6 @@ class AuthFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            imgEmail.setOnClickListener {
-                findNavController().navigate(R.id.action_authFragment_to_EPLoginFragment2)
-            }
             imgPhone.setOnClickListener {
                 findNavController().navigate(R.id.action_authFragment_to_phoneLoginFragment2)
             }
