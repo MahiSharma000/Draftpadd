@@ -37,7 +37,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/imgEditCover"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:clickable="true"
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/aclonica"
-                android:text="Add a Cover"
+                android:text="@string/add_cover"
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp" />
@@ -69,10 +69,11 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView3">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/EditTxtStoryTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorAccent"
-            android:hint="Story Title" />
+            android:hint="@string/story_title" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -89,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorAccent"
-            android:hint="Story Description"
+            android:hint="@string/story_description"
             android:maxLines="10" />
     </com.google.android.material.textfield.TextInputLayout>
 

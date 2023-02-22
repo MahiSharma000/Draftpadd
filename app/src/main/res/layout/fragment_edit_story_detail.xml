@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/imgEditCover"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:clickable="true"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/aclonica"
-            android:text="Edit Book Cover"
+            android:text="@string/edit_book_cover"
             android:textAlignment="viewStart"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="20sp" />
@@ -79,30 +79,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Book Title"
+                android:text="@string/book_title"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView61"
+                android:id="@+id/txtEditBookTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Title of selected book" />
+                android:text="@string/title_of_selected_book" />
 
             <TextView
                 android:id="@+id/textView60"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Book Description"
+                android:text="@string/book_description"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView59"
+                android:id="@+id/txtEditBookDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -113,34 +113,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Tags"
+                android:text="@string/tags"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView57"
+                android:id="@+id/txtTags"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Adding tags helps reader find your book" />
+                android:text="@string/add_tags" />
 
             <TextView
                 android:id="@+id/textView22"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Story Category"
+                android:text="@string/story_category"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView50"
+                android:id="@+id/txtEditCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Tap here to select category" />
+                android:text="@string/edit_category" />
 
             <TextView
                 android:id="@+id/editChapter"
@@ -148,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/baseline_settings_24"
                 android:padding="10dp"
-                android:text="Table of contents"
+                android:text="@string/table_of_contents"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display2"
                 android:textColor="@color/black"
                 android:textSize="16sp"

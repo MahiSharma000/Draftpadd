@@ -47,5 +47,28 @@
     <string name="no_ads">No Ads</string>
     <string name="view_comments">View more comments...</string>
     <string name="user_name">User Name</string>
+    <string name="chapter_title">Title your Story Part</string>
+    <string name="start_writing">Tap here to start writing</string>
+    <string name="title_of_selected_book">Title of selected book</string>
+    <string name="book_description">Book Description</string>
+    <string name="tags">Tags</string>
+    <string name="add_tags">Adding tags helps reader find your book</string>
+    <string name="story_category">Story Category</string>
+    <string name="edit_category">Tap here to select category</string>
+    <string name="table_of_contents">Table of Contents</string>
+    <string name="edit_book_cover">Edit Book Cover</string>
+    <string name="welcome">WELCOME         TO         DRAFTPAD</string>
+    <string name="log_in">LOG IN</string>
+    <string name="sign_in">SIGN UP</string>
+    <string name="add_cover">Add a Cover</string>
+    <string name="story_title">Story Title</string>
+    <string name="story_description">Story Description</string>
+    <string name="published">PUBLISHED</string>
+    <string name="draft">DRAFT</string>
+    <string name="your_phone_number">Your Phone Number</string>
+    <string name="otp">OTP</string>
+    <string name="premium_1_month">1 Month              Rs.190.0/month</string>
+    <string name="premium_1_year">1 Year             Rs.1500.0/year</string>
+    <string name="premimum_6_month">6 Months       Rs.600.00/6 months </string>
 
 </resources>
