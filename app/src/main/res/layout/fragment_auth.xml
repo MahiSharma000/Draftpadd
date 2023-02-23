@@ -45,7 +45,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView6"
         tools:ignore="TouchTargetSizeCheck"
-        tools:text="Username" />
+        tools:text="@string/user_name" />
 
     <EditText
         android:id="@+id/txtPassword"

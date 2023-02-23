@@ -54,26 +54,26 @@
             android:id="@+id/btnPremiumOneMonth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1 Month              Rs.190.0/month" />
+            android:text="@string/premium_1_month" />
 
         <RadioButton
             android:id="@+id/btnPremiumOneYear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1 Year             Rs.1500.0/year" />
+            android:text="@string/premium_1_year" />
 
         <RadioButton
             android:id="@+id/btnPremiumSixMonth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="6 Months       Rs.600.00/6 months " />
+            android:text="@string/premimum_6_month" />
 
     </RadioGroup>
 
     <!--    2 dp gray line-->
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnGoPremium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="112dp"
@@ -91,7 +91,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/btnGoPremium" />
 
     <TextView
         android:id="@+id/textView30"
