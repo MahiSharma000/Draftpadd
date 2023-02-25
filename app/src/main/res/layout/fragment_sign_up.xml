@@ -7,9 +7,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/img_1"
     tools:context=".auth.SignUpFragment">
+    <data>
+        <variable
+            name="vm"
+            type="com.example.draftpad.auth.AuthSignUpViewModel"/>
+    </data>
 
-
-    <ImageView
+<ImageView
         android:id="@+id/imageView"
         android:layout_width="100dp"
         android:layout_height="100dp"

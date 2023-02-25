@@ -9,6 +9,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentAuthBinding
 import com.example.draftpad.databinding.FragmentSignUpBinding
+import com.example.draftpad.auth.AuthSignUpViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+
 
 
 class SignUpFragment : Fragment() {
@@ -33,6 +37,11 @@ class SignUpFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             txtSignIn.setOnClickListener {
+                findNavController().navigate(R.id.action_signUpFragment_to_authFragment)
+            }
+            sLogInBt.setOnClickListener {
+
+
                 findNavController().navigate(R.id.action_signUpFragment_to_authFragment)
             }
         }

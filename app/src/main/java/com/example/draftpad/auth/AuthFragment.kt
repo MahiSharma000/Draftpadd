@@ -60,6 +60,7 @@ class AuthFragment : Fragment() {
                 startActivity(Intent(activity, MainActivity::class.java))
             }
             txtSignUp.setOnClickListener {
+
                 findNavController().navigate(R.id.action_authFragment_to_signUpFragment)
             }
         }
