@@ -10,6 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentHomeBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment() {
 
@@ -19,6 +22,12 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     private var toolbar: Toolbar? = null
+    private lateinit var auth: FirebaseAuth
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        auth = Firebase.auth
+    }
 
     override fun onCreateView(
 
@@ -44,11 +53,16 @@ class HomeFragment : Fragment() {
                     true
                 }
                 R.id.content_preferences -> {
-
+                    findNavController().navigate(R.id.action_navigation_home_to_contentPreferenceFragment)
                     true
                 }
                 R.id.settings -> {
                     findNavController().navigate(R.id.action_navigation_home_to_settingsFragment)
+                    true
+                }
+                R.id.log_out -> {
+                    auth.signOut()
+                    findNavController().navigate(R.id.action_navigation_home_to_authIntroFragment2)
                     true
                 }
                 else -> false

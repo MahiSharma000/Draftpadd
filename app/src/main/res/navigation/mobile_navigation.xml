@@ -19,6 +19,12 @@
         <action
             android:id="@+id/action_navigation_home_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_contentPreferenceFragment"
+            app:destination="@id/contentPreferenceFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_authIntroFragment2"
+            app:destination="@id/authIntroFragment2" />
     </fragment>
     <fragment
         android:id="@+id/navigation_notifications"
@@ -149,6 +155,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_notificationSettingFragment"
             app:destination="@id/notificationSettingFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_premiumFragment"
+            app:destination="@id/premiumFragment" />
     </fragment>
     <fragment
         android:id="@+id/writeStoryFragment"
@@ -166,10 +175,44 @@
         <action
             android:id="@+id/action_editStoryDetailFragment_to_editChaptersFragment"
             app:destination="@id/editChaptersFragment" />
+        <action
+            android:id="@+id/action_editStoryDetailFragment_to_selectCategoryFragment"
+            app:destination="@id/selectCategoryFragment" />
+        <action
+            android:id="@+id/action_editStoryDetailFragment_to_bookDescriptionFragment"
+            app:destination="@id/bookDescriptionFragment" />
+        <action
+            android:id="@+id/action_editStoryDetailFragment_to_addTagFragment"
+            app:destination="@id/addTagFragment" />
     </fragment>
     <fragment
         android:id="@+id/editChaptersFragment"
         android:name="com.example.draftpad.ui.write.EditChaptersFragment"
         android:label="fragment_edit_chapters"
         tools:layout="@layout/fragment_edit_chapters" />
+    <fragment
+        android:id="@+id/contentPreferenceFragment"
+        android:name="com.example.draftpad.ui.home.ContentPreferenceFragment"
+        android:label="fragment_content_preference"
+        tools:layout="@layout/fragment_content_preference" />
+    <fragment
+        android:id="@+id/authIntroFragment2"
+        android:name="com.example.draftpad.auth.AuthIntroFragment"
+        android:label="fragment_auth_intro"
+        tools:layout="@layout/fragment_auth_intro" />
+    <fragment
+        android:id="@+id/selectCategoryFragment"
+        android:name="com.example.draftpad.ui.write.SelectCategoryFragment"
+        android:label="fragment_select_category"
+        tools:layout="@layout/fragment_select_category" />
+    <fragment
+        android:id="@+id/bookDescriptionFragment"
+        android:name="com.example.draftpad.ui.write.BookDescriptionFragment"
+        android:label="fragment_book_description"
+        tools:layout="@layout/fragment_book_description" />
+    <fragment
+        android:id="@+id/addTagFragment"
+        android:name="com.example.draftpad.ui.write.AddTagFragment"
+        android:label="fragment_add_tag"
+        tools:layout="@layout/fragment_add_tag" />
 </navigation>

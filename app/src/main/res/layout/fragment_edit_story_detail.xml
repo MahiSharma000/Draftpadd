@@ -84,12 +84,15 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/txtEditBookTitle"
+            <EditText
+                android:id="@+id/bookTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/book_title"
+                android:inputType="textPersonName"
                 android:padding="10dp"
-                android:text="@string/title_of_selected_book" />
+                tools:text="@string/book_title" />
 
             <TextView
                 android:id="@+id/textView60"

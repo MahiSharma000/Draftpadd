@@ -54,6 +54,15 @@ class EditStoryDetailFragment : Fragment() {
             editChapter.setOnClickListener {
                 findNavController().navigate(R.id.action_editStoryDetailFragment_to_editChaptersFragment)
             }
+            txtEditCategory.setOnClickListener {
+                findNavController().navigate(R.id.action_editStoryDetailFragment_to_selectCategoryFragment)
+            }
+            txtEditBookDescription.setOnClickListener {
+                findNavController().navigate(R.id.action_editStoryDetailFragment_to_bookDescriptionFragment)
+            }
+            txtTags.setOnClickListener {
+                findNavController().navigate(R.id.action_editStoryDetailFragment_to_addTagFragment)
+            }
         }
     }
 

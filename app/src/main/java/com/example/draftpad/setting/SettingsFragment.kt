@@ -44,6 +44,9 @@ class SettingsFragment : Fragment() {
             txtMuted.setOnClickListener {
                 findNavController().navigate(R.id.action_settingsFragment_to_mutedAccountFragment)
             }
+            btnPremiumSetting.setOnClickListener {
+                findNavController().navigate(R.id.action_settingsFragment_to_premiumFragment)
+            }
 
         }
     }
