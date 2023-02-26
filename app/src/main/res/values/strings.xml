@@ -70,5 +70,17 @@
     <string name="premium_1_month">1 Month              Rs.190.0/month</string>
     <string name="premium_1_year">1 Year             Rs.1500.0/year</string>
     <string name="premimum_6_month">6 Months       Rs.600.00/6 months </string>
-
+    <string name="why_are_you_reporting">Why are you reporting?</string>
+    <string name="inappropriate_content">Inappropriate Content</string>
+    <string name="copyright_infringement">Copyright Infringement</string>
+    <string name="why_is_this_inappropriate">Why is this inappropriate</string>
+    <string name="explicit_content">Explicit Content \nThis can create a negative experience</string>
+    <string name="hate_and_harassment">Hate and Harassment\nThis can include bullying, hate speech and more.</string>
+    <string name="violence">Violence\nThis can include the glorification of violence, media and more.</string>
+    <string name="release_of_personal_information">Release of Personal Information\nThis include the sharing of identifying information such as your\n address, your image or contact information.</string>
+    <string name="self_harm">Self-Harm\nThis can include texts, media and threats of self-harm and/or\n encouraging others to do the same</string>
+    <string name="spam">Spam\nThis can include spam messages, unauthorized advertisement\n for goods or services unrelated to Draftpad and more.</string>
+    <string name="original_owner">Are you original copyright owner of this work?</string>
+    <string name="i_am_original_owner">I am the original copyright owner\nI am owner or legally authorized on behalf of the owner.</string>
+    <string name="i_am_not_original_owner">I am not the original copyright owner\nI did not write this work and do not have authorization from the\ncopyright holder.</string>
 </resources>

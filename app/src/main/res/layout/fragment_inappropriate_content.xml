@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout29"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    tools:context=".ui.report.InappropriateContentFragment">
+
+    <TextView
+        android:id="@+id/textView50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/why_is_this_inappropriate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtExplicitContent"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:text="@string/explicit_content"
+        app:layout_constraintStart_toStartOf="@+id/textView50"
+        app:layout_constraintTop_toBottomOf="@+id/textView50" />
+
+    <TextView
+        android:id="@+id/txtHate"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:text="@string/hate_and_harassment"
+        app:layout_constraintStart_toStartOf="@+id/txtExplicitContent"
+        app:layout_constraintTop_toBottomOf="@+id/txtExplicitContent" />
+
+    <TextView
+        android:id="@+id/txtViolence"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:text="@string/violence"
+        app:layout_constraintStart_toStartOf="@+id/txtHate"
+        app:layout_constraintTop_toBottomOf="@+id/txtHate" />
+
+    <TextView
+        android:id="@+id/txtPersonalContent"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/release_of_personal_information"
+        app:layout_constraintStart_toStartOf="@+id/txtViolence"
+        app:layout_constraintTop_toBottomOf="@+id/txtViolence" />
+
+    <TextView
+        android:id="@+id/txtSelfHarm"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:text="@string/self_harm"
+        app:layout_constraintStart_toStartOf="@+id/txtPersonalContent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPersonalContent" />
+
+    <TextView
+        android:id="@+id/txtSpam"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/spam"
+        app:layout_constraintStart_toStartOf="@+id/txtSelfHarm"
+        app:layout_constraintTop_toBottomOf="@+id/txtSelfHarm" />
+</androidx.constraintlayout.widget.ConstraintLayout>
