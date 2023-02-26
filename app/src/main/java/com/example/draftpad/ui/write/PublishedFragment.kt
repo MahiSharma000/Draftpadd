@@ -31,9 +31,7 @@ class PublishedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            pbStory.setOnClickListener {
-                findNavController().navigate(R.id.action_editStoryFragment_to_draftFragment)
-            }
+
         }
     }
 

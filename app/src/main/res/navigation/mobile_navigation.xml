@@ -84,16 +84,7 @@
         android:label="fragment_edit_story"
         tools:layout="@layout/fragment_edit_story" >
         <action
-            android:id="@+id/action_editStoryFragment_to_draftFragment"
-            app:destination="@id/draftFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/draftFragment"
-        android:name="com.example.draftpad.ui.write.DraftFragment"
-        android:label="fragment_draft"
-        tools:layout="@layout/fragment_draft" >
-        <action
-            android:id="@+id/action_draftFragment_to_editStoryDetailFragment"
+            android:id="@+id/action_editStoryFragment_to_editStoryDetailFragment"
             app:destination="@id/editStoryDetailFragment" />
     </fragment>
     <fragment

@@ -30,6 +30,7 @@
         android:hint="@string/add_tags"
         android:inputType="textPersonName"
         android:maxLines="10"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

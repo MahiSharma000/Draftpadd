@@ -32,7 +32,7 @@ _binding = FragmentDraftBinding.inflate(inflater, container, false)
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             draftstxt.setOnClickListener {
-                findNavController().navigate(R.id.action_draftFragment_to_editStoryDetailFragment)
+                findNavController().navigate(R.id.action_editStoryFragment_to_editStoryDetailFragment )
             }
         }
     }
