@@ -4,9 +4,12 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Headers
+import retrofit2.http.POST
 
-private const val BASE_URL = ""
+private const val BASE_URL = "http://192.168.18.228:5000/api/v1/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -19,32 +22,24 @@ private val retrofit = Retrofit.Builder()
 
 interface ApiService {
 
-    //post to /api/v1/login the username and password as form objects
-    @GET("login")
-    suspend fun login(): List<User>
+    @POST("login")
+    suspend fun login(@Body user: User): Any
 
-    // logout the user by passing id
     @GET("logout")
     suspend fun logout(): List<User>
 
-    //get user by id /api/v1/user/{id}
     @GET("user/{id}")
     suspend fun getUser(): List<User>
 
-    // get profile by id /api/v1/profile/{id}
     @GET("profile/{id}")
     suspend fun getProfile(): List<User>
 
-    // get all categories /api/v1/categories
     @GET("categories")
     suspend fun getCategories(): List<Category>
 
-    @GET("register")
-    abstract fun createUser(user: User): Any?
-
-
-
-
+    @Headers("Content-Type: application/json")
+    @POST("register")
+    suspend fun register(@Body user: User): Any
 }
 
 object ApiClient {

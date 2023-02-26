@@ -23,7 +23,7 @@ class AuthSignUpViewModel : ViewModel() {
         viewModelScope.launch {
             _status.value = AuthApiStatus.LOADING
             try {
-                _response.value = ApiClient.retrofitService.createUser(user)?.toString()
+                _response.value = ApiClient.retrofitService.register(user).toString()
                 _status.value = AuthApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = AuthApiStatus.ERROR
@@ -32,7 +32,7 @@ class AuthSignUpViewModel : ViewModel() {
         }
     }
 
-    fun signUpUser(userName: String, userEmail: String, userPassword: String) {
+    fun signUpUser(userName: String?, userEmail: String?, userPassword: String?) {
         val currDateTime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             LocalDateTime.now()
         } else {
@@ -40,10 +40,10 @@ class AuthSignUpViewModel : ViewModel() {
         }
         val user = User(
             id = null,
-            userName = userName,
-            userEmail = userEmail,
+            userName = userName!!,
+            userEmail = userEmail!!,
             lastSeen = currDateTime.toString(),
-            userPassword = userPassword
+            userPassword = userPassword!!
         )
         createUser(user)
     }
