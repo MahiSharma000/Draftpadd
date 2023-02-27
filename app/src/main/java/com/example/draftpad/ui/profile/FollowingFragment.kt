@@ -1,17 +1,14 @@
-package com.example.draftpad.ui.search
+package com.example.draftpad.ui.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
- import com.example.draftpad.R
-import com.example.draftpad.databinding.FragmentSearchBinding
+import com.example.draftpad.R
 
 
-class SearchFragment : Fragment() {
-    private var _binding: FragmentSearchBinding? = null
-    private val binding get() = _binding!!
+class FollowingFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,10 +21,10 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        return inflater.inflate(R.layout.fragment_following, container, false)
     }
 
     companion object {
-
+        fun newInstance()= FollowingFragment()
     }
 }
