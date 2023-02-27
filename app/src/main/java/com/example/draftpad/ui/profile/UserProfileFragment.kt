@@ -38,7 +38,7 @@ class UserProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val pagerAdapter = LibraryFragment.PagerAdapter(childFragmentManager)
+        val pagerAdapter = UserProfileFragment.PagerAdapter(childFragmentManager)
         binding.apply {
             viewPager.adapter = pagerAdapter
             tabLayout.setupWithViewPager(viewPager)

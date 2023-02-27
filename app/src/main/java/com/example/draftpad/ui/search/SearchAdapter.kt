@@ -12,38 +12,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.draftpad.databinding.CategoryBinding
 import com.example.draftpad.network.Category
 import com.example.draftpad.ui.library.ReadingListFragment
-
-class SearchAdapter: ListAdapter<Category, SearchAdapter.CategoryViewHolder>(DiffCallback) {
-    class CategoryViewHolder(private val binding: CategoryBinding):
-        RecyclerView.ViewHolder(binding.root){
-        fun bind (category: Category){
-            binding.category = category
-            binding.executePendingBindings()
-        }
-
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchAdapter.CategoryViewHolder {
-        return SearchAdapter.CategoryViewHolder(
-            CategoryBinding.inflate(
-                LayoutInflater.from(parent.context)
-            )
-        )
-    }
-
-    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        val category = getItem(position)
-        holder.bind(category)
-    }
-    companion object DiffCallback : DiffUtil.ItemCallback<Category>() {
-        override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean {
-            return oldItem.name==newItem.name
-        }
-
-    }
+class SearchAdapter {
 
 }

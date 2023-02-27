@@ -31,13 +31,14 @@
             android:layout_marginStart="50dp"
             android:layout_marginEnd="337dp"
             android:fontFamily="@font/aclonica"
-            android:text="@{category.name}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.055"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            />
+            app:text="@{category.name}"
+            tools:text="@string/edit_category" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
 </layout>
