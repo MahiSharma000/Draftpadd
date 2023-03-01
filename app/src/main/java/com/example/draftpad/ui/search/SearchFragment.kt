@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentSearchBinding
 
@@ -13,7 +15,7 @@ import com.example.draftpad.databinding.FragmentSearchBinding
 class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: SearchViewModel by viewModels()
+    private val viewModel: SearchViewModel by activityViewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,16 +26,23 @@ class SearchFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-         _binding = FragmentSearchBinding.inflate(inflater)
-
-        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
-        binding.lifecycleOwner = this
-
-        // Giving the binding access to the OverviewViewModel
+    ): View {
+        _binding = FragmentSearchBinding.inflate(inflater)
         binding.searchViewModel = viewModel
-
+        binding.lifecycleOwner = this
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.apply {
+            viewModel.categories.observe(viewLifecycleOwner) {
+                this.rvCategory.adapter = CategoryAdapter() {
+                    findNavController().navigate(R.id.action_navigation_search_to_searchNextFragment)
+                }
+                (binding.rvCategory.adapter as CategoryAdapter).submitList(it)
+            }
+        }
     }
 
     companion object {
