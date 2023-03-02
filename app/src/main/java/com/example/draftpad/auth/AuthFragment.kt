@@ -53,9 +53,6 @@ class AuthFragment : Fragment() {
             imgPhone.setOnClickListener {
                 findNavController().navigate(R.id.action_authFragment_to_phoneLoginFragment2)
             }
-            imgGoogle.setOnClickListener {
-                findNavController().navigate(R.id.action_authFragment_to_googleFragment)
-            }
             sLogInBt.setOnClickListener {
                 startActivity(Intent(activity, MainActivity::class.java))
             }

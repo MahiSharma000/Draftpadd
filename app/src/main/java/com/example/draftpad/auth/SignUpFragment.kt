@@ -69,13 +69,6 @@ class SignUpFragment : Fragment() {
                     }
                     AuthApiStatus.ERROR -> {
                         binding.sLogInBt.isEnabled = true
-                        AlertDialog.Builder(requireContext())
-                            .setTitle("Error")
-                            .setMessage(vm.response.value.toString())
-                            .setPositiveButton("OK") { dialog, which ->
-                                dialog.dismiss()
-                            }
-                            .show()
                     }
                     else -> {
                         binding.sLogInBt.isEnabled = true
@@ -94,13 +87,6 @@ class SignUpFragment : Fragment() {
                 }
                 AuthApiStatus.ERROR -> {
                     binding.sLogInBt.isEnabled = true
-                    AlertDialog.Builder(requireContext())
-                        .setTitle("Error")
-                        .setMessage(vm.response.value.toString())
-                        .setPositiveButton("OK") { dialog, which ->
-                            dialog.dismiss()
-                        }
-                        .show()
                 }
                 else -> {
                     binding.sLogInBt.isEnabled = true
@@ -119,17 +105,8 @@ class SignUpFragment : Fragment() {
                             }
                             .show()
                     }
-                    "Error" -> {
-                        AlertDialog.Builder(requireContext())
-                            .setTitle("Error")
-                            .setMessage(it.msg)
-                            .setPositiveButton("OK") { dialog, which ->
-                                dialog.dismiss()
-                            }
-                            .show()
                     }
                 }
             }
         }
     }
-}

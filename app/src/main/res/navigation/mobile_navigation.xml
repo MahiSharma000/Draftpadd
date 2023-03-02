@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_navigation_search_to_searchNextFragment"
             app:destination="@id/searchNextFragment" />
+        <action
+            android:id="@+id/action_navigation_search_to_booksFragment"
+            app:destination="@id/booksFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_library"
@@ -206,4 +209,9 @@
         android:name="com.example.draftpad.ui.write.AddTagFragment"
         android:label="fragment_add_tag"
         tools:layout="@layout/fragment_add_tag" />
+    <fragment
+        android:id="@+id/booksFragment"
+        android:name="com.example.draftpad.ui.search.BooksFragment"
+        android:label="fragment_books"
+        tools:layout="@layout/fragment_books" />
 </navigation>

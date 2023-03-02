@@ -39,7 +39,7 @@ class SearchFragment : Fragment() {
             viewModel.categories.observe(viewLifecycleOwner) { categories ->
                 this.rvCategory.adapter = CategoryAdapter() { category->
                     viewModel.setCategory(category)
-                    findNavController().navigate(R.id.action_navigation_search_to_searchNextFragment)
+                    findNavController().navigate(R.id.action_navigation_search_to_booksFragment)
                 }
                 (binding.rvCategory.adapter as CategoryAdapter).submitList(categories)
             }

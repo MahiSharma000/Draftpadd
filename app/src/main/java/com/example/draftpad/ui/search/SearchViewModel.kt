@@ -28,6 +28,7 @@ class SearchViewModel : ViewModel() {
 
     init {
         _status.value = SearchApiStatus.LOADING
+        _selectedCategory.value = Category(0, "Paranomal")
         getCategories()
     }
 
