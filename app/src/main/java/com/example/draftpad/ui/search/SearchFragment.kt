@@ -36,11 +36,12 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            viewModel.categories.observe(viewLifecycleOwner) {
-                this.rvCategory.adapter = CategoryAdapter() {
+            viewModel.categories.observe(viewLifecycleOwner) { categories ->
+                this.rvCategory.adapter = CategoryAdapter() { category->
+                    viewModel.setCategory(category)
                     findNavController().navigate(R.id.action_navigation_search_to_searchNextFragment)
                 }
-                (binding.rvCategory.adapter as CategoryAdapter).submitList(it)
+                (binding.rvCategory.adapter as CategoryAdapter).submitList(categories)
             }
         }
     }

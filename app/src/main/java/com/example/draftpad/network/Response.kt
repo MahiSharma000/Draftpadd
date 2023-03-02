@@ -20,3 +20,8 @@ data class CategoryAllResponse(
     val status: String,
     val categories: List<Category>
 )
+
+data class BooksByCategoryResponse(
+    val status: String,
+    val books: List<Book>
+)

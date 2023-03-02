@@ -7,17 +7,24 @@ import androidx.lifecycle.ViewModel
 import com.example.draftpad.network.ApiClient
 import com.example.draftpad.network.Category
 import androidx.lifecycle.viewModelScope
+import com.example.draftpad.network.Book
 import kotlinx.coroutines.launch
 
 
 enum class SearchApiStatus { LOADING, ERROR, DONE }
 class SearchViewModel : ViewModel() {
 
+    private val _selectedCategory = MutableLiveData<Category>()
+    val selectedCategory: LiveData<Category> = _selectedCategory
+
     private val _status = MutableLiveData<SearchApiStatus>()
     val status: LiveData<SearchApiStatus> = _status
 
     private val _categories = MutableLiveData<List<Category>>()
     val categories: LiveData<List<Category>> = _categories
+
+    private val _books = MutableLiveData<List<Book>>()
+    val books: LiveData<List<Book>> = _books
 
     init {
         _status.value = SearchApiStatus.LOADING
@@ -41,6 +48,33 @@ class SearchViewModel : ViewModel() {
                 Log.e("SearchViewModel", e.toString())
                 _status.value = SearchApiStatus.ERROR
                 _categories.value = listOf()
+            }
+        }
+    }
+
+    fun setCategory(category: Category) {
+        _selectedCategory.value = category
+    }
+
+    fun getSelectedCategoryBooks() {
+        _selectedCategory.value?.let {
+            viewModelScope.launch {
+                _status.value = SearchApiStatus.LOADING
+                try {
+                    ApiClient.retrofitService.getCategoryBooks(it.id).let {
+                        Log.d("SearchViewModel", it.toString())
+                        _books.value = it.books
+                        if (it.books.isNotEmpty()) {
+                            _status.value = SearchApiStatus.DONE
+                        } else {
+                            _status.value = SearchApiStatus.ERROR
+                        }
+                    }
+                } catch (e: Exception) {
+                    Log.e("SearchViewModel", e.toString())
+                    _status.value = SearchApiStatus.ERROR
+                    _books.value = listOf()
+                }
             }
         }
     }

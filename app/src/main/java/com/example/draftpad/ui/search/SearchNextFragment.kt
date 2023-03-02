@@ -1,13 +1,11 @@
 package com.example.draftpad.ui.search
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.draftpad.R
-import com.example.draftpad.databinding.FragmentSearchBinding
 import com.example.draftpad.databinding.FragmentSearchNextBinding
 
 class SearchNextFragment : Fragment() {
@@ -26,10 +24,17 @@ class SearchNextFragment : Fragment() {
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
-        binding.lifecycleOwner = this
-
-
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.apply {
+            viewModel.selectedCategory.observe(viewLifecycleOwner) { category ->
+                // display category name
+            }
+        }
     }
 
 }

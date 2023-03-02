@@ -52,6 +52,9 @@ interface ApiService {
     // get all categories
     @GET("api/v1/categories")
     suspend fun getCategories(): CategoryAllResponse
+
+    @GET("api/v1/categories/{id}")
+    fun getCategoryBooks(id: Int): BooksByCategoryResponse
 }
 
 object ApiClient {

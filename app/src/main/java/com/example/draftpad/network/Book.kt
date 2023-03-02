@@ -1,6 +1,6 @@
 package com.example.draftpad.network
 
-data class Books(
+data class Book(
     val id: String? = null,
     val title: String,
     val user_id: String,

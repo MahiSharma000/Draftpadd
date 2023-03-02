@@ -34,6 +34,9 @@ class CategoryAdapter(
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category = getItem(position)
         holder.bind(category)
+        holder.itemView.setOnClickListener {
+            listener(category)
+        }
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<com.example.draftpad.network.Category>() {
