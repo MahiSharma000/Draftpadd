@@ -23,20 +23,11 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface ApiService {
-    @POST("login")
-    suspend fun login(@Body user: User): Any
-
-    @GET("logout")
-    suspend fun logout(): List<User>
-
     @GET("user/{id}")
     suspend fun getUser(): List<User>
 
     @GET("profile/{id}")
     suspend fun getProfile(): List<User>
-
-    @GET("categories")
-    suspend fun getCategories(): List<Category>
 
     // post user form data to api/v1/register and return register response
     @FormUrlEncoded
@@ -47,6 +38,20 @@ interface ApiService {
         @Field("password") password: String,
         @Field("last_seen") lastSeen: String
     ): RegisterResponse
+
+    @FormUrlEncoded
+    @POST("api/v1/login")
+    suspend fun login(
+        @Field("username") email: String,
+        @Field("password") password: String
+    ): LoginResponse
+
+    @GET("api/v1/logout")
+    suspend fun logout(): LogoutResponse
+
+    // get all categories
+    @GET("api/v1/category")
+    suspend fun getCategories(): List<Category>
 }
 
 object ApiClient {

@@ -4,3 +4,14 @@ data class RegisterResponse(
     val status: String,
     val msg: String
 )
+
+data class LoginResponse(
+    val status: String,
+    val username: String,
+    val email: String,
+    val id: String
+)
+
+data class LogoutResponse(
+    val status: String
+)
