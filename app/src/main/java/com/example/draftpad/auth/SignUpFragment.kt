@@ -76,23 +76,6 @@ class SignUpFragment : Fragment() {
                 }
             }
         }
-        vm.status.observe(viewLifecycleOwner) {
-            when (it) {
-                AuthApiStatus.LOADING -> {
-                    binding.sLogInBt.isEnabled = false
-                }
-                AuthApiStatus.DONE -> {
-                    binding.sLogInBt.isEnabled = true
-                    findNavController().navigate(R.id.action_signUpFragment_to_authFragment)
-                }
-                AuthApiStatus.ERROR -> {
-                    binding.sLogInBt.isEnabled = true
-                }
-                else -> {
-                    binding.sLogInBt.isEnabled = true
-                }
-            }
-        }
         vm.response.observe(viewLifecycleOwner) {
             if (it != null) {
                 when (it.status) {
@@ -105,8 +88,8 @@ class SignUpFragment : Fragment() {
                             }
                             .show()
                     }
-                    }
                 }
             }
         }
     }
+}

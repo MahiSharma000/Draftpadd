@@ -12,43 +12,41 @@ import com.example.draftpad.network.User
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
+enum class LoginApiStatus { LOADING, ERROR, OK, NONE }
+class LoginViewModel : ViewModel() {
+    private val _status = MutableLiveData<LoginApiStatus>()
+    val status: LiveData<LoginApiStatus> = _status
 
-enum class AuthApiStatus { LOADING, ERROR, DONE, NONE }
-class AuthSignUpViewModel : ViewModel() {
-    private val _status = MutableLiveData<AuthApiStatus>()
-    val status: LiveData<AuthApiStatus> = _status
-
-    private val _response = MutableLiveData<RegisterResponse>()
-    val response: LiveData<RegisterResponse> = _response
+    private val _response = MutableLiveData<LoginResponse>()
+    val response: LiveData<LoginResponse> = _response
 
     init {
-        _status.value = AuthApiStatus.NONE
+        _status.value = LoginApiStatus.NONE
     }
 
-    private fun createUser(user: User) {
+    private fun checkUser(user: User) {
         viewModelScope.launch {
-            _status.value = AuthApiStatus.LOADING
+            _status.value = LoginApiStatus.LOADING
             try {
-                _response.value = ApiClient.retrofitService.register(
+                _response.value = ApiClient.retrofitService.login(
                     user.userName,
-                    user.email,
-                    user.password,
-                    user.lastSeen
+                    user.password
                 )
-                _status.value = AuthApiStatus.DONE
+                _status.value = LoginApiStatus.OK
             } catch (e: Exception) {
-                _status.value = AuthApiStatus.ERROR
-                _response.value = RegisterResponse("Error", e.message.toString())
+                _status.value = LoginApiStatus.ERROR
+                _response.value = user.id?.let { LoginResponse("Error", username = user.userName, email = user.email, id = it) }
             }
         }
     }
 
-    fun signUpUser(userName: String?, userEmail: String?, userPassword: String?) {
+    fun LoginUser(userName: String?, userPassword: String?) {
         val currDateTime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             LocalDateTime.now()
         } else {
             System.currentTimeMillis()
         }
+        val  userEmail = ""
         val user = User(
             id = null,
             userName = userName!!,
@@ -56,6 +54,7 @@ class AuthSignUpViewModel : ViewModel() {
             lastSeen = currDateTime.toString(),
             password = userPassword!!
         )
-        createUser(user)
+        checkUser(user)
     }
+
 }
