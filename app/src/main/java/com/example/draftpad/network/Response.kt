@@ -15,3 +15,8 @@ data class LoginResponse(
 data class LogoutResponse(
     val status: String
 )
+
+data class CategoryAllResponse(
+    val status: String,
+    val categories: List<Category>
+)

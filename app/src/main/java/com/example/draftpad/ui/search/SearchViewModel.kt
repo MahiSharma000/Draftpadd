@@ -1,5 +1,6 @@
 package com.example.draftpad.ui.search
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,9 +28,17 @@ class SearchViewModel : ViewModel() {
         viewModelScope.launch {
             _status.value = SearchApiStatus.LOADING
             try {
-                _categories.value = ApiClient.retrofitService.getCategories()
-                _status.value = SearchApiStatus.DONE
+                ApiClient.retrofitService.getCategories().let {
+                    Log.d("SearchViewModel", it.toString())
+                    _categories.value = it.categories
+                    if (it.categories.isNotEmpty()) {
+                        _status.value = SearchApiStatus.DONE
+                    } else {
+                        _status.value = SearchApiStatus.ERROR
+                    }
+                }
             } catch (e: Exception) {
+                Log.e("SearchViewModel", e.toString())
                 _status.value = SearchApiStatus.ERROR
                 _categories.value = listOf()
             }

@@ -50,8 +50,8 @@ interface ApiService {
     suspend fun logout(): LogoutResponse
 
     // get all categories
-    @GET("api/v1/category")
-    suspend fun getCategories(): List<Category>
+    @GET("api/v1/categories")
+    suspend fun getCategories(): CategoryAllResponse
 }
 
 object ApiClient {
