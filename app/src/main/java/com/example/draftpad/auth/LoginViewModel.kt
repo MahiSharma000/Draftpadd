@@ -12,7 +12,7 @@ import com.example.draftpad.network.User
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
-enum class LoginApiStatus { LOADING, ERROR, OK, NONE }
+enum class LoginApiStatus { LOADING, ERROR, DONE, NONE }
 class LoginViewModel : ViewModel() {
     private val _status = MutableLiveData<LoginApiStatus>()
     val status: LiveData<LoginApiStatus> = _status
@@ -32,10 +32,10 @@ class LoginViewModel : ViewModel() {
                     user.userName,
                     user.password
                 )
-                _status.value = LoginApiStatus.OK
+                _status.value = LoginApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = LoginApiStatus.ERROR
-                _response.value = user.id?.let { LoginResponse("Error", username = user.userName, email = user.email, id = it) }
+                _response.value =  LoginResponse("Error", username = "", email = "", id = "")
             }
         }
     }

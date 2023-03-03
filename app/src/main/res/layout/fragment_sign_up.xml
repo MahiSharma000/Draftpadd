@@ -58,14 +58,14 @@
             android:paddingBottom="10dp"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/txtName"
-            app:layout_constraintStart_toStartOf="@+id/txtName"
-            app:layout_constraintTop_toBottomOf="@+id/txtName"
+            app:layout_constraintEnd_toEndOf="@+id/edittxtName"
+            app:layout_constraintStart_toStartOf="@+id/edittxtName"
+            app:layout_constraintTop_toBottomOf="@+id/edittxtName"
             tools:ignore="TouchTargetSizeCheck"
             tools:text="Enter email" />
 
         <EditText
-            android:id="@+id/txtName"
+            android:id="@+id/edittxtName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -89,7 +89,7 @@
             tools:text="Enter full name" />
 
         <EditText
-            android:id="@+id/txtPassword"
+            android:id="@+id/edittxtPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -127,10 +127,10 @@
             android:paddingBottom="10dp"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/txtPassword"
+            app:layout_constraintEnd_toEndOf="@+id/edittxtPassword"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/txtPassword"
-            app:layout_constraintTop_toBottomOf="@+id/txtPassword"
+            app:layout_constraintStart_toStartOf="@+id/edittxtPassword"
+            app:layout_constraintTop_toBottomOf="@+id/edittxtPassword"
             tools:ignore="TouchTargetSizeCheck"
             tools:text="Confirm Password" />
 

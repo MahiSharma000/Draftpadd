@@ -8,14 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
-import com.example.draftpad.databinding.FragmentAuthBinding
 import com.example.draftpad.databinding.FragmentSignUpBinding
-import com.example.draftpad.auth.AuthSignUpViewModel
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -47,14 +42,14 @@ class SignUpFragment : Fragment() {
                 findNavController().navigate(R.id.action_signUpFragment_to_authFragment)
             }
             sLogInBt.setOnClickListener {
-                if (R.id.txtName.toString() == "" || R.id.txtEmail.toString() == "" || R.id.txtPassword.toString() == "") {
+                if (R.id.txtName.toString() == "" || R.id.txtEmail.toString() == "" || R.id.edittxtPassword.toString() == "") {
                     Snackbar.make(binding.root, "Fill All Details", Snackbar.LENGTH_SHORT)
                         .show()
                 } else {
                     vm.signUpUser(
-                        txtName.text.toString(),
+                        edittxtName.text.toString(),
                         txtEmail.text.toString(),
-                        txtPassword.text.toString()
+                        edittxtPassword.text.toString()
                     )
                 }
             }
