@@ -103,25 +103,26 @@ class AuthFragment : Fragment() {
                     }
                 }
             }
-            vm.response.observe(viewLifecycleOwner) {
-                if (it != null) {
-                    when (it.status) {
-                        "Success" -> {
-                            AlertDialog.Builder(requireContext())
-                                .setTitle("Success")
-                                .setPositiveButton("OK") { dialog, which ->
-                                    dialog.dismiss()
-                                }
-                                .show()
-                        }
-                        "Error" -> {
-                            AlertDialog.Builder(requireContext())
-                                .setTitle("Error")
-                                .setPositiveButton("OK") { dialog, which ->
-                                    dialog.dismiss()
-                                }
-                                .show()
-                        }
+        }
+
+        vm.response.observe(viewLifecycleOwner) {
+            if (it != null) {
+                when (it.status) {
+                    "Success" -> {
+                        AlertDialog.Builder(requireContext())
+                            .setTitle("Success")
+                            .setPositiveButton("OK") { dialog, which ->
+                                dialog.dismiss()
+                            }
+                            .show()
+                    }
+                    "Error" -> {
+                        AlertDialog.Builder(requireContext())
+                            .setTitle("Error")
+                            .setPositiveButton("OK") { dialog, which ->
+                                dialog.dismiss()
+                            }
+                            .show()
                     }
                 }
             }
