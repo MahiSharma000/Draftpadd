@@ -1,11 +1,14 @@
 package com.example.draftpad.ui.search
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentBooksBinding
 import com.example.draftpad.databinding.FragmentSearchNextBinding
@@ -26,9 +29,7 @@ class BooksFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentBooksBinding.inflate(inflater)
-        // Giving the binding access to the OverviewViewModel
         binding.bookvm = vm
-        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
@@ -36,7 +37,14 @@ class BooksFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            vm.selectedCategory.observe(viewLifecycleOwner) { category ->
+            vm.categories.observe(viewLifecycleOwner) { categories ->
+                this.rvBook.layoutManager = LinearLayoutManager(context)
+                this.rvBook.adapter = CategoryAdapter() { category ->
+//                    vm.setBook(book)
+                    findNavController().navigate(R.id.action_navigation_search_to_booksFragment)
+                }
+                Log.e("BookFragment", categories.toString())
+                (binding.rvBook.adapter as CategoryAdapter).submitList(categories)
             }
         }
 

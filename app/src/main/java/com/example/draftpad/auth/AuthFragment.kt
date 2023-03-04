@@ -61,8 +61,8 @@ class AuthFragment : Fragment() {
             imgPhone.setOnClickListener {
                 findNavController().navigate(R.id.action_authFragment_to_phoneLoginFragment2)
             }
-            sLogInBt.setOnClickListener {
-                if (R.id.txtName.toString() == "" || R.id.txtPassword.toString() == "") {
+            loginbt.setOnClickListener {
+                if (txtName.text.toString().isEmpty() || txtPassword.text.toString().isEmpty()) {
                     Snackbar.make(binding.root, "Fill All Details", Snackbar.LENGTH_SHORT)
                         .show()
                 } else {
@@ -71,25 +71,34 @@ class AuthFragment : Fragment() {
                         txtPassword.text.toString()
                     )
                 }
-
-                //startActivity(Intent(activity, MainActivity::class.java))
-
                 vm.status.observe(viewLifecycleOwner) {
                     when (it) {
                         LoginApiStatus.LOADING -> {
-                            binding.sLogInBt.isEnabled = false
+                            binding.loginbt.isEnabled = false
                         }
                         LoginApiStatus.DONE -> {
-                            binding.sLogInBt.isEnabled = true
-                            startActivity(Intent(activity, MainActivity::class.java))
-                            activity?.finish()
-                            //findNavController().navigate(R.id.action_authFragment_to_fragment_home)
+                            binding.loginbt.isEnabled = true
+                            when(vm.response.value?.status){
+                                "OK" -> {
+                                    startActivity(Intent(activity, MainActivity::class.java))
+                                    activity?.finish()
+                                }
+                                "ERROR" -> {
+                                    AlertDialog.Builder(requireContext())
+                                        .setTitle("Error")
+                                        .setMessage("invalid credentials, please try again")
+                                        .setPositiveButton("OK") { dialog, which ->
+                                            dialog.dismiss()
+                                        }
+                                        .show()
+                                }
+                            }
                         }
                         LoginApiStatus.ERROR -> {
-                            binding.sLogInBt.isEnabled = true
+                            binding.loginbt.isEnabled = true
                         }
                         else -> {
-                            binding.sLogInBt.isEnabled = true
+                            binding.loginbt.isEnabled = true
                         }
                     }
                 }

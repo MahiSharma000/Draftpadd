@@ -1,6 +1,7 @@
 package com.example.draftpad.ui.search
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentSearchBinding
 
@@ -37,10 +39,13 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             viewModel.categories.observe(viewLifecycleOwner) { categories ->
-                this.rvCategory.adapter = CategoryAdapter() { category->
+                this.rvCategory.layoutManager = LinearLayoutManager(context)
+                this.rvCategory.adapter = CategoryAdapter() { category ->
                     viewModel.setCategory(category)
-                    findNavController().navigate(R.id.action_navigation_search_to_booksFragment)
+//                    val dir = SearchFragmentDirections.actionNavigationSearchToBooksFragment(category)
+//                    findNavController().navigate(dir)
                 }
+                Log.e("SearchFragment", categories.toString())
                 (binding.rvCategory.adapter as CategoryAdapter).submitList(categories)
             }
         }

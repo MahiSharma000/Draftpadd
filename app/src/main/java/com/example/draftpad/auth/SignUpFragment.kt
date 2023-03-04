@@ -1,6 +1,7 @@
 package com.example.draftpad.auth
 
 import android.app.AlertDialog
+import android.app.ProgressDialog.show
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -41,8 +42,8 @@ class SignUpFragment : Fragment() {
             txtSignIn.setOnClickListener {
                 findNavController().navigate(R.id.action_signUpFragment_to_authFragment)
             }
-            sLogInBt.setOnClickListener {
-                if (R.id.txtName.toString() == "" || R.id.txtEmail.toString() == "" || R.id.edittxtPassword.toString() == "") {
+            signUpbt.setOnClickListener {
+                if (edittxtName.text.toString().isEmpty() || txtEmail.text.toString().isEmpty() || edittxtPassword.text.toString().isEmpty()) {
                     Snackbar.make(binding.root, "Fill All Details", Snackbar.LENGTH_SHORT)
                         .show()
                 } else {
@@ -56,17 +57,17 @@ class SignUpFragment : Fragment() {
             vm.status.observe(viewLifecycleOwner) {
                 when (it) {
                     AuthApiStatus.LOADING -> {
-                        binding.sLogInBt.isEnabled = false
+                        binding.signUpbt.isEnabled = false
                     }
                     AuthApiStatus.DONE -> {
-                        binding.sLogInBt.isEnabled = true
+                        binding.signUpbt.isEnabled = true
                         findNavController().navigate(R.id.action_signUpFragment_to_authFragment)
                     }
                     AuthApiStatus.ERROR -> {
-                        binding.sLogInBt.isEnabled = true
+                        binding.signUpbt.isEnabled = true
                     }
                     else -> {
-                        binding.sLogInBt.isEnabled = true
+                        binding.signUpbt.isEnabled = true
                     }
                 }
             }

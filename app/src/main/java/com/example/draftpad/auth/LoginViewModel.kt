@@ -24,37 +24,24 @@ class LoginViewModel : ViewModel() {
         _status.value = LoginApiStatus.NONE
     }
 
-    private fun checkUser(user: User) {
+    private fun checkUser(username: String?, password: String?) {
         viewModelScope.launch {
             _status.value = LoginApiStatus.LOADING
             try {
                 _response.value = ApiClient.retrofitService.login(
-                    user.userName,
-                    user.password
+                    username!!,
+                    password!!
                 )
                 _status.value = LoginApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = LoginApiStatus.ERROR
-                _response.value =  LoginResponse("Error", username = "", email = "", id = "")
+                _response.value = LoginResponse("Error", username = "", email = "", id = "")
             }
         }
     }
 
     fun LoginUser(userName: String?, userPassword: String?) {
-        val currDateTime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            LocalDateTime.now()
-        } else {
-            System.currentTimeMillis()
-        }
-        val  userEmail = ""
-        val user = User(
-            id = null,
-            userName = userName!!,
-            email = userEmail!!,
-            lastSeen = currDateTime.toString(),
-            password = userPassword!!
-        )
-        checkUser(user)
+        checkUser(userName, userPassword)
     }
 
 }

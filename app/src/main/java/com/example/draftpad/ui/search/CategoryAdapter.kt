@@ -1,5 +1,6 @@
 package com.example.draftpad.ui.search
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -44,6 +45,7 @@ class CategoryAdapter(
             oldItem: com.example.draftpad.network.Category,
             newItem: com.example.draftpad.network.Category
         ): Boolean {
+            Log.d("CategoryAdapter", "areItemsTheSame: ${oldItem.id} ${newItem.id}")
             return oldItem.id == newItem.id
         }
 
@@ -51,6 +53,7 @@ class CategoryAdapter(
             oldItem: com.example.draftpad.network.Category,
             newItem: com.example.draftpad.network.Category
         ): Boolean {
+            Log.d("CategoryAdapter", "areContentsTheSame: ${oldItem.name} ${newItem.name}")
             return oldItem.name == newItem.name
         }
 

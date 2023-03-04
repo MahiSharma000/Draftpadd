@@ -26,6 +26,7 @@ class BookViewModel :ViewModel(){
 
     init {
         _status.value = BookApiStatus.LOADING
+        _books.value = listOf()
         getSelectedCategoryBooks()
     }
 
@@ -36,7 +37,7 @@ class BookViewModel :ViewModel(){
                 _status.value = BookApiStatus.LOADING
                 try {
                     ApiClient.retrofitService.getCategoryBooks(it.id).let {
-                        Log.d("SearchViewModel", it.toString())
+                        Log.d("BookViewModel", it.toString())
                         _books.value = it.books
                         if (it.books.isNotEmpty()) {
                             _status.value = BookApiStatus.DONE
@@ -50,6 +51,9 @@ class BookViewModel :ViewModel(){
                     _books.value = listOf()
                 }
             }
+        }
+        fun setBook(book: Book) {
+            _books.value = listOf(book)
         }
     }
 }

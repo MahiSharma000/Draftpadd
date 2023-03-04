@@ -1,5 +1,6 @@
 package com.example.draftpad.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
@@ -8,6 +9,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.draftpad.AuthActivity
+import com.example.draftpad.MainActivity
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -62,7 +65,8 @@ class HomeFragment : Fragment() {
                 }
                 R.id.log_out -> {
                     auth.signOut()
-                    findNavController().navigate(R.id.action_navigation_home_to_authIntroFragment2)
+                    startActivity(Intent(activity, AuthActivity::class.java))
+                    activity?.finish()
                     true
                 }
                 else -> false

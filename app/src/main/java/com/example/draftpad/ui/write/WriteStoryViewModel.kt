@@ -24,21 +24,22 @@ class WriteStoryViewModel :ViewModel() {
         _status.value = WriteStoryApiStatus.NONE
     }
 
-    private fun createBook(user: User) {
+    /*private fun createBook(user: User) {
         viewModelScope.launch {
             _status.value = WriteStoryApiStatus.LOADING
             try {
                 _response.value = ApiClient.retrofitService.createBook(
                     user.userName,
                     user.email,
+
                 )
                 _status.value = WriteStoryApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = WriteStoryApiStatus.ERROR
-               // _response.value = CreateBookResponse("Error")
+                _response.value = CreateBookResponse("Error", e.message.toString())
             }
         }
-    }
+    }*/
 
 
 }
