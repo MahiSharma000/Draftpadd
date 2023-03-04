@@ -40,6 +40,16 @@ interface ApiService {
     ): RegisterResponse
 
     @FormUrlEncoded
+    @POST("api/v1/book")
+    suspend fun createBook(
+        @Field("title") title: String,
+        @Field("description") description: String,
+        @Field("category_id") category_id: Int,
+        @Field("user_id") user_id: Int,
+        @Field("status") status: String
+    ): CreateBookResponse
+
+    @FormUrlEncoded
     @POST("api/v1/login")
     suspend fun login(
         @Field("username") username: String,

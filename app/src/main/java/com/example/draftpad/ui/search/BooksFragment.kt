@@ -13,7 +13,7 @@ import com.example.draftpad.databinding.FragmentSearchNextBinding
 
 class BooksFragment : Fragment() {
 
-    private val vm: SearchViewModel by activityViewModels()
+    private val vm: BookViewModel by activityViewModels()
     private var _binding: FragmentBooksBinding? = null
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +27,7 @@ class BooksFragment : Fragment() {
     ): View? {
         _binding = FragmentBooksBinding.inflate(inflater)
         // Giving the binding access to the OverviewViewModel
-        binding.viewModel = vm
+        binding.bookvm = vm
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root

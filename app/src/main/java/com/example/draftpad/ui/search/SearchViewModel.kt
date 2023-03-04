@@ -57,27 +57,6 @@ class SearchViewModel : ViewModel() {
         _selectedCategory.value = category
     }
 
-    fun getSelectedCategoryBooks() {
-        _selectedCategory.value?.let {
-            viewModelScope.launch {
-                _status.value = SearchApiStatus.LOADING
-                try {
-                    ApiClient.retrofitService.getCategoryBooks(it.id).let {
-                        Log.d("SearchViewModel", it.toString())
-                        _books.value = it.books
-                        if (it.books.isNotEmpty()) {
-                            _status.value = SearchApiStatus.DONE
-                        } else {
-                            _status.value = SearchApiStatus.ERROR
-                        }
-                    }
-                } catch (e: Exception) {
-                    Log.e("SearchViewModel", e.toString())
-                    _status.value = SearchApiStatus.ERROR
-                    _books.value = listOf()
-                }
-            }
-        }
-    }
+
 
 }

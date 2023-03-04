@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="viewModel"
-            type="com.example.draftpad.ui.search.SearchViewModel" />
+            name="bookvm"
+            type="com.example.draftpad.ui.search.BookViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/frameLayout14"
@@ -25,6 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/book_list_item" />
+        tools:listitem="@layout/book_list_item"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
