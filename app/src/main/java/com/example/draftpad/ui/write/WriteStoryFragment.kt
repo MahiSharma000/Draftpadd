@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
+import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentWriteStoryBinding
 
@@ -28,12 +29,14 @@ class WriteStoryFragment : Fragment() {
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_save -> {
+
                     true
                 }
                 R.id.action_publish -> {
                     true
                 }
                 R.id.action_preview -> {
+                    findNavController().navigate(R.id.action_createNewStoryFragment_to_readStoryFragment)
                     true
                 }
                 R.id.action_delete -> {

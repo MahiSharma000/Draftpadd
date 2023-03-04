@@ -27,7 +27,9 @@
             android:layout_height="150dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/cover" />
+            android:src="@drawable/cover"
+            app:Image="@{book.cover}"
+            />
 
         <TextView
             android:id="@+id/txtTitle"
@@ -37,10 +39,12 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/aclonica"
             android:padding="8dp"
-            android:text="Title"
+            app:text="@{book.title}"
+            tools:text="@string/book_title"
             android:textColor="?android:textColorSecondary"
             app:layout_constraintStart_toEndOf="@+id/imgBookCover"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <TextView
             android:id="@+id/txtAuthor"
@@ -50,7 +54,8 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/aclonica"
             android:padding="8dp"
-            android:text="Author"
+            app:text="@{book.user_id}"
+            tools:text="@string/author"
             android:textColor="?android:textColorSecondary"
             app:layout_constraintStart_toEndOf="@+id/imgBookCover"
             app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
@@ -63,7 +68,8 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/aclonica"
             android:padding="8dp"
-            android:text="Description"
+            app:text="@{book.description}"
+            tools:text="@string/book_description"
             android:textColor="?android:textColorSecondary"
             app:layout_constraintStart_toEndOf="@+id/imgBookCover"
             app:layout_constraintTop_toBottomOf="@+id/txtAuthor" />
