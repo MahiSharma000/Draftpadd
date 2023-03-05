@@ -15,7 +15,7 @@ class BookViewModel :ViewModel(){
     private val _status = MutableLiveData<BookApiStatus>()
     val status: LiveData<BookApiStatus> = _status
 
-    private val _selectedCategory = MutableLiveData<Category>()
+    private var _selectedCategory = MutableLiveData<Category>()
     val selectedCategory: LiveData<Category> = _selectedCategory
 
     private val _categories = MutableLiveData<List<Category>>()
@@ -52,8 +52,9 @@ class BookViewModel :ViewModel(){
                 }
             }
         }
-        fun setBook(book: Book) {
-            _books.value = listOf(book)
-        }
+
+    }
+    fun setBook(category: Category) {
+        _selectedCategory.value = category
     }
 }

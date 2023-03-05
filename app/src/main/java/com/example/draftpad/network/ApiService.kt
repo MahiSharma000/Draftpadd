@@ -11,7 +11,7 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
-private const val BASE_URL = "http://192.168.1.41:5000/"
+private const val BASE_URL = "http://192.168.125.124:5000/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -29,7 +29,7 @@ interface ApiService {
     @GET("profile/{id}")
     suspend fun getProfile(): List<User>
 
-    // post user form data to api/v1/register and return register response
+
     @FormUrlEncoded
     @POST("api/v1/register")
     suspend fun register(
@@ -59,7 +59,6 @@ interface ApiService {
     @GET("api/v1/logout")
     suspend fun logout(): LogoutResponse
 
-    // get all categories
     @GET("api/v1/categories")
     suspend fun getCategories(): CategoryAllResponse
 

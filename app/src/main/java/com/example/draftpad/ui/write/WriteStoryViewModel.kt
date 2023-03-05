@@ -1,5 +1,6 @@
 package com.example.draftpad.ui.write
 
+import android.os.Build
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +11,7 @@ import com.example.draftpad.network.CreateBookResponse
 import com.example.draftpad.network.RegisterResponse
 import com.example.draftpad.network.User
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
 
 enum class WriteStoryApiStatus { LOADING, ERROR, DONE, NONE }
 
@@ -23,6 +25,21 @@ class WriteStoryViewModel :ViewModel() {
     init {
         _status.value = WriteStoryApiStatus.NONE
     }
+    /*fun addBook(userName: String?, userEmail: String?, userPassword: String?) {
+        val currDateTime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            LocalDateTime.now()
+        } else {
+            System.currentTimeMillis()
+        }
+        val user = User(
+            id = null,
+            userName = userName!!,
+            email = userEmail!!,
+            lastSeen = currDateTime.toString(),
+            password = userPassword!!
+        )
+        createUser(user)
+    }*/
 
     /*private fun createBook(user: User) {
         viewModelScope.launch {

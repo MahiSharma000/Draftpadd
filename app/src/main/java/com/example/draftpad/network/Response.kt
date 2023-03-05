@@ -28,5 +28,5 @@ data class BooksByCategoryResponse(
 
 data class CreateBookResponse(
     val status: String,
-    val book: Book
+    val msg: String
 )

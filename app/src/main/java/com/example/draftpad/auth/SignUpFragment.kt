@@ -1,7 +1,6 @@
 package com.example.draftpad.auth
 
 import android.app.AlertDialog
-import android.app.ProgressDialog.show
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentSignUpBinding
 import com.google.android.material.snackbar.Snackbar
+import kotlin.math.sign
 
 
 class SignUpFragment : Fragment() {
@@ -43,7 +43,7 @@ class SignUpFragment : Fragment() {
                 findNavController().navigate(R.id.action_signUpFragment_to_authFragment)
             }
             signUpbt.setOnClickListener {
-                if (edittxtName.text.toString().isEmpty() || txtEmail.text.toString().isEmpty() || edittxtPassword.text.toString().isEmpty()) {
+                if (R.id.txtName.toString() == "" || R.id.txtEmail.toString() == "" || R.id.edittxtPassword.toString() == "") {
                     Snackbar.make(binding.root, "Fill All Details", Snackbar.LENGTH_SHORT)
                         .show()
                 } else {
