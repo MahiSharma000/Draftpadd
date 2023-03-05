@@ -44,8 +44,8 @@ class SearchFragment : Fragment() {
                 this.rvCategory.adapter = CategoryAdapter() { category ->
                     viewModel.setCategory(category)
                     val category = viewModel.selectedCategory.toString()
-                    val dir = SearchFragmentDirections.actionNavigationSearchToBooksFragment(category)
-                    findNavController().navigate(dir)
+                    val action = SearchFragmentDirections.actionNavigationSearchToBooksFragment(category)
+                     findNavController().navigate(action)
                 }
                 Log.e("SearchFragment", categories.toString())
                 (binding.rvCategory.adapter as CategoryAdapter).submitList(categories)
