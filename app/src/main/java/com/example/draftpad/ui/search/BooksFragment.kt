@@ -41,15 +41,14 @@ class BooksFragment : Fragment() {
 
 
         val bundle = BooksFragmentArgs.fromBundle(requireArguments())
-        //val bundle=arguments
+
         /*if(bundle == null){
             Log.d("BookFragment", "Bundle is null")
             return
         }*/
 
         val category = bundle.category
-        //val args=BooksFragmentArgs.fromBundle(bundle)
-       // val category=args.category
+
         Log.d("BookFragment", "Category is $category")
 
         binding.apply {
