@@ -36,12 +36,21 @@ class BooksFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val bundle=arguments
+        if(bundle==null){
+            Log.d("BookFragment", "Bundle is null")
+            return
+        }
+        val args=BooksFragmentArgs.fromBundle(bundle)
+        val category=args.category
+        Log.d("BookFragment", "Category is $category")
+
         binding.apply {
             vm.categories.observe(viewLifecycleOwner) { categories ->
                 this.rvBook.layoutManager = LinearLayoutManager(context)
                 this.rvBook.adapter = CategoryAdapter() { category ->
-//                    vm.setBook(book)
-                    findNavController().navigate(R.id.action_navigation_search_to_booksFragment)
+                   // vm.setBooks(category)
                 }
                 Log.e("BookFragment", categories.toString())
                 (binding.rvBook.adapter as CategoryAdapter).submitList(categories)
