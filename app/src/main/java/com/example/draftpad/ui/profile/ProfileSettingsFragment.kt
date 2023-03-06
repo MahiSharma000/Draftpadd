@@ -10,14 +10,16 @@ import android.view.ViewGroup
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.example.draftpad.R
+import com.example.draftpad.databinding.FragmentProfileSettingsBinding
 import androidx.compose.runtime.remember as remember
 
 class ProfileSettingsFragment : Fragment() {
 
-    private var _binding: ProfileSettingsFragment? = null
+    private var _binding: FragmentProfileSettingsBinding? = null
     private val binding get() = _binding!!
 
 
@@ -30,26 +32,30 @@ class ProfileSettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = ProfileSettingsFragment.inflate(inflater, R.layout.fragment_auth, container, false)
+        _binding = FragmentProfileSettingsBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun startActivityForResult(data: Intent, requestCode: Int) {
+        super.startActivityForResult(data, requestCode)
+        if (requestCode == 1) {
+            binding.imgProfile.setImageURI(data?.data)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.apply {
             imgProfile.setOnClickListener {
-                //image picker
-                val intent = Intent(Intent.ACTION_PICK)
+                val intent = Intent(Intent.ACTION_GET_CONTENT)
                 intent.type = "image/*"
-                startActivityForResult(intent, 0)
-
-                //show image in imgProfile
-                imgProfile.setImageURI(data?.data)
+                startActivityForResult(intent, 1)
             }
-
         }
 
-        //isme abhi or code krna hai image pic krne k loiye
+
+    }
+
+
 
 }

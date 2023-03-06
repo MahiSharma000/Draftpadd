@@ -107,11 +107,6 @@
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" />
     <fragment
-        android:id="@+id/inviteFriendsFragment"
-        android:name="com.example.draftpad.ui.notifications.InviteFriendsFragment"
-        android:label="fragment_invite_friends"
-        tools:layout="@layout/fragment_invite_friends" />
-    <fragment
         android:id="@+id/profileSettingsFragment"
         android:name="com.example.draftpad.ui.profile.ProfileSettingsFragment"
         android:label="fragment_profile_settings"
@@ -271,4 +266,9 @@
         android:name="com.example.draftpad.ui.report.InappropriateContentFragment"
         android:label="fragment_inappropriate_content"
         tools:layout="@layout/fragment_inappropriate_content" />
+    <fragment
+        android:id="@+id/inviteFriendsFragment"
+        android:name="com.example.draftpad.ui.notifications.InviteFriendsFragment"
+        android:label="fragment_invite_friends"
+        tools:layout="@layout/fragment_invite_friends" />
 </navigation>
