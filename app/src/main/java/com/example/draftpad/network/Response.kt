@@ -29,4 +29,10 @@ data class BooksByCategoryResponse(
 data class CreateBookResponse(
     val status: String,
     val msg: String
+
+)
+
+data class BooksAllResponse(
+    val status: String,
+    val books: List<Book>
 )

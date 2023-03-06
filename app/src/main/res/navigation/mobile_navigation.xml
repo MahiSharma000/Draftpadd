@@ -86,9 +86,6 @@
         <action
             android:id="@+id/action_createNewStoryFragment_to_writeStoryFragment"
             app:destination="@id/writeStoryFragment" />
-        <action
-            android:id="@+id/action_createNewStoryFragment_to_readStoryFragment"
-            app:destination="@id/readStoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/editStoryFragment"
@@ -166,7 +163,11 @@
         android:id="@+id/writeStoryFragment"
         android:name="com.example.draftpad.ui.write.WriteStoryFragment"
         android:label="fragment_write_story"
-        tools:layout="@layout/fragment_write_story" />
+        tools:layout="@layout/fragment_write_story" >
+        <action
+            android:id="@+id/action_writeStoryFragment_to_readStoryFragment"
+            app:destination="@id/readStoryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/editStoryDetailFragment"
         android:name="com.example.draftpad.ui.write.EditStoryDetailFragment"

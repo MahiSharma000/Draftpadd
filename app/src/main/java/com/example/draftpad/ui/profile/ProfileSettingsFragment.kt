@@ -1,19 +1,24 @@
 package com.example.draftpad.ui.profile
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import com.example.draftpad.R
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
+import androidx.compose.runtime.remember as remember
 
 class ProfileSettingsFragment : Fragment() {
+
+    private var _binding: ProfileSettingsFragment? = null
+    private val binding get() = _binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,8 +30,26 @@ class ProfileSettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_settings, container, false)
+        _binding = ProfileSettingsFragment.inflate(inflater, R.layout.fragment_auth, container, false)
+        return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.apply {
+            imgProfile.setOnClickListener {
+                //image picker
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.type = "image/*"
+                startActivityForResult(intent, 0)
+
+                //show image in imgProfile
+                imgProfile.setImageURI(data?.data)
+            }
+
+        }
+
+        //isme abhi or code krna hai image pic krne k loiye
 
 }

@@ -43,9 +43,10 @@ class SearchFragment : Fragment() {
                 this.rvCategory.layoutManager = LinearLayoutManager(context)
                 this.rvCategory.adapter = CategoryAdapter() { category ->
                     viewModel.setCategory(category)
-                    val category = viewModel.selectedCategory.toString()
-                    val action = SearchFragmentDirections.actionNavigationSearchToBooksFragment(category)
-                     findNavController().navigate(action)
+                    //val category = viewModel.selectedCategory.toString()
+                    //val action = SearchFragmentDirections.actionNavigationSearchToBooksFragment(category)
+                     //findNavController().navigate(action)
+                    findNavController().navigate(R.id.action_navigation_search_to_booksFragment)
                 }
                 Log.e("SearchFragment", categories.toString())
                 (binding.rvCategory.adapter as CategoryAdapter).submitList(categories)

@@ -40,18 +40,18 @@ class BooksFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val bundle = BooksFragmentArgs.fromBundle(requireArguments())
+       // val bundle = BooksFragmentArgs.fromBundle(requireArguments())
 
         /*if(bundle == null){
             Log.d("BookFragment", "Bundle is null")
             return
         }*/
 
-        val category = bundle.category
+       // val category = bundle.category
 
-        Log.d("BookFragment", "Category is $category")
+       // Log.d("BookFragment", "Category is $category")
 
-        binding.apply {
+       /* binding.apply {
             vm.categories.observe(viewLifecycleOwner) { categories ->
                 this.rvBook.layoutManager = LinearLayoutManager(context)
                 this.rvBook.adapter = CategoryAdapter() { category ->
@@ -60,7 +60,20 @@ class BooksFragment : Fragment() {
                 Log.e("BookFragment", categories.toString())
                 (binding.rvBook.adapter as CategoryAdapter).submitList(categories)
             }
+        }*/
+
+
+        binding.apply {
+            vm.books.observe(viewLifecycleOwner) { books ->
+                this.rvBook.layoutManager = LinearLayoutManager(context)
+                this.rvBook.adapter = BookAdapter() { book ->
+                    vm.setBooks(book)
+                }
+                Log.e("BookFragment", books.toString())
+                (binding.rvBook.adapter as BookAdapter).submitList(books)
+            }
         }
+
 
     }
 

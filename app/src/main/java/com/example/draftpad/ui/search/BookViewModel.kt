@@ -27,34 +27,33 @@ class BookViewModel :ViewModel(){
     init {
         _status.value = BookApiStatus.LOADING
         _books.value = listOf()
-        getSelectedCategoryBooks()
+        getBooks()
     }
 
 
-    fun getSelectedCategoryBooks() {
-        _selectedCategory.value?.let {
-            viewModelScope.launch {
-                _status.value = BookApiStatus.LOADING
-                try {
-                    ApiClient.retrofitService.getCategoryBooks(it.id).let {
-                        Log.d("BookViewModel", it.toString())
-                        _books.value = it.books
-                        if (it.books.isNotEmpty()) {
-                            _status.value = BookApiStatus.DONE
-                        } else {
-                            _status.value = BookApiStatus.ERROR
-                        }
+    private fun getBooks() {
+        viewModelScope.launch {
+            _status.value = BookApiStatus.LOADING
+            try {
+                ApiClient.retrofitService.getBooks().let {
+                    Log.d("BookViewModel", it.toString())
+                    _books.value = it.books
+                    if (it.books.isNotEmpty()) {
+                        _status.value = BookApiStatus.DONE
+                    } else {
+                        _status.value = BookApiStatus.ERROR
                     }
-                } catch (e: Exception) {
-                    Log.e("BookViewModel", e.toString())
-                    _status.value = BookApiStatus.ERROR
-                    _books.value = listOf()
                 }
+            } catch (e: Exception) {
+                Log.e("BookViewModel", e.toString())
+                _status.value = BookApiStatus.ERROR
+                _categories.value = listOf()
             }
         }
+    }
 
+    fun setBooks(book: Book) {
+        _books.value = listOf(book)
     }
-    fun setBook(category: Category) {
-        _selectedCategory.value = category
-    }
+
 }
