@@ -43,6 +43,7 @@ class SearchFragment : Fragment() {
                 this.rvCategory.layoutManager = LinearLayoutManager(context)
                 this.rvCategory.adapter = CategoryAdapter() { category ->
                     viewModel.setCategory(category)
+
                     //val category = viewModel.selectedCategory.toString()
                     //val action = SearchFragmentDirections.actionNavigationSearchToBooksFragment(category)
                      //findNavController().navigate(action)

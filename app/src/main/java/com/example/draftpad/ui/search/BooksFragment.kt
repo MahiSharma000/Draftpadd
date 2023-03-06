@@ -63,6 +63,9 @@ class BooksFragment : Fragment() {
         }*/
 
 
+
+
+
         binding.apply {
             vm.books.observe(viewLifecycleOwner) { books ->
                 this.rvBook.layoutManager = LinearLayoutManager(context)

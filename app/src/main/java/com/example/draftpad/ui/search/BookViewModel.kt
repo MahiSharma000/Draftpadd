@@ -30,6 +30,33 @@ class BookViewModel :ViewModel(){
         getBooks()
     }
 
+    // get books of selected category
+   /* fun getBooksOfCategory(category: Category) {
+        _selectedCategory.value = category
+        viewModelScope.launch {
+            _status.value = BookApiStatus.LOADING
+            try {
+                ApiClient.retrofitService.getBooksOfCategory(category.id).let {
+                    Log.d("BookViewModel", it.toString())
+                    _books.value = it.books
+                    if (it.books.isNotEmpty()) {
+                        _status.value = BookApiStatus.DONE
+                    } else {
+                        _status.value = BookApiStatus.ERROR
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("BookViewModel", e.toString())
+                _status.value = BookApiStatus.ERROR
+                _categories.value = listOf()
+            }
+        }
+    }
+
+    //set books of selected category
+    fun setBooksOfCategory(book: Book) {
+        _books.value = listOf(book)
+    }*/
 
     private fun getBooks() {
         viewModelScope.launch {
