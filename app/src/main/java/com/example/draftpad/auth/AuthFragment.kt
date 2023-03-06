@@ -78,7 +78,7 @@ class AuthFragment : Fragment() {
                         }
                         LoginApiStatus.DONE -> {
                             binding.loginbt.isEnabled = true
-                            when(vm.response.value?.status){
+                            when (vm.response.value?.status) {
                                 "OK" -> {
                                     startActivity(Intent(activity, MainActivity::class.java))
                                     activity?.finish()
@@ -102,6 +102,9 @@ class AuthFragment : Fragment() {
                         }
                     }
                 }
+            }
+
+            txtForgotPwd.setOnClickListener {
             }
         }
 

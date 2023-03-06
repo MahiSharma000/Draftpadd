@@ -243,7 +243,14 @@
     <fragment
         android:id="@+id/readStoryFragment"
         android:name="com.example.draftpad.ui.read.ReadStoryFragment"
-        android:label="ReadStoryFragment" />
+        android:label="ReadStoryFragment" >
+        <action
+            android:id="@+id/action_readStoryFragment_to_commentFragment"
+            app:destination="@id/commentFragment" />
+        <action
+            android:id="@+id/action_readStoryFragment_to_premiumFragment"
+            app:destination="@id/premiumFragment" />
+    </fragment>
     <fragment
         android:id="@+id/reportFragment"
         android:name="com.example.draftpad.ui.report.ReportFragment"
@@ -271,4 +278,9 @@
         android:name="com.example.draftpad.ui.notifications.InviteFriendsFragment"
         android:label="fragment_invite_friends"
         tools:layout="@layout/fragment_invite_friends" />
+    <fragment
+        android:id="@+id/commentFragment"
+        android:name="com.example.draftpad.ui.read.CommentFragment"
+        android:label="fragment_comment"
+        tools:layout="@layout/fragment_comment" />
 </navigation>
