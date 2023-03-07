@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="profileViewModel"
+            name="viewModel"
             type="com.example.draftpad.ui.profile.ProfileSettingsViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout

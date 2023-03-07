@@ -14,7 +14,7 @@ class CategoryAdapter(
 ) : ListAdapter<Category, CategoryAdapter.CategoryViewHolder>(DiffCallback) {
     class CategoryViewHolder(private val binding: CategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(category: com.example.draftpad.network.Category) {
+        fun bind(category: Category) {
             binding.category = category
             binding.executePendingBindings()
         }
@@ -40,18 +40,18 @@ class CategoryAdapter(
         }
     }
 
-    companion object DiffCallback : DiffUtil.ItemCallback<com.example.draftpad.network.Category>() {
+    companion object DiffCallback : DiffUtil.ItemCallback<Category>() {
         override fun areItemsTheSame(
-            oldItem: com.example.draftpad.network.Category,
-            newItem: com.example.draftpad.network.Category
+            oldItem: Category,
+            newItem: Category
         ): Boolean {
             Log.d("CategoryAdapter", "areItemsTheSame: ${oldItem.id} ${newItem.id}")
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: com.example.draftpad.network.Category,
-            newItem: com.example.draftpad.network.Category
+            oldItem: Category,
+            newItem: Category
         ): Boolean {
             Log.d("CategoryAdapter", "areContentsTheSame: ${oldItem.name} ${newItem.name}")
             return oldItem.name == newItem.name

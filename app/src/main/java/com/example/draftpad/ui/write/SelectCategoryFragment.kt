@@ -42,7 +42,7 @@ class SelectCategoryFragment : Fragment() {
             viewModel.categories.observe(viewLifecycleOwner) { categories ->
                 this.rveditcategory.layoutManager = LinearLayoutManager(context)
                 this.rveditcategory.adapter = CategoryAdapter() { category ->
-                    viewModel.setCategory(category)
+
                 }
                 Log.e("SearchFragment", categories.toString())
                 (binding.rveditcategory.adapter as CategoryAdapter).submitList(categories)

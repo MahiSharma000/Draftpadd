@@ -82,6 +82,7 @@ dependencies {
 
     implementation 'androidx.activity:activity-compose:1.6.1'
     implementation "io.coil-kt:coil-compose:2.1.0"
+    implementation 'com.vmadalin:easypermissions-ktx:1.0.0'
 
 
 }

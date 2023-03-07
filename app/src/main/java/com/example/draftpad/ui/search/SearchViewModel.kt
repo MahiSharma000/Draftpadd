@@ -14,21 +14,16 @@ import kotlinx.coroutines.launch
 enum class SearchApiStatus { LOADING, ERROR, DONE }
 class SearchViewModel : ViewModel() {
 
-    private val _selectedCategory = MutableLiveData<Category>()
-    val selectedCategory: LiveData<Category> = _selectedCategory
-
     private val _status = MutableLiveData<SearchApiStatus>()
     val status: LiveData<SearchApiStatus> = _status
 
     private val _categories = MutableLiveData<List<Category>>()
     val categories: LiveData<List<Category>> = _categories
 
-    private val _books = MutableLiveData<List<Book>>()
-    val books: LiveData<List<Book>> = _books
+
 
     init {
         _status.value = SearchApiStatus.LOADING
-        _selectedCategory.value = Category(0, "Paranomal")
         getCategories()
     }
 
@@ -51,10 +46,6 @@ class SearchViewModel : ViewModel() {
                 _categories.value = listOf()
             }
         }
-    }
-
-    fun setCategory(category: Category) {
-        _selectedCategory.value = category
     }
 
 

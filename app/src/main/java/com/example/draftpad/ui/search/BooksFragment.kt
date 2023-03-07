@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentBooksBinding
 import com.example.draftpad.databinding.FragmentSearchNextBinding
+import com.example.draftpad.network.Category
 
 
 class BooksFragment : Fragment() {
@@ -38,45 +39,17 @@ class BooksFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-       // val bundle = BooksFragmentArgs.fromBundle(requireArguments())
-
-        /*if(bundle == null){
-            Log.d("BookFragment", "Bundle is null")
-            return
-        }*/
-
-       // val category = bundle.category
-
-       // Log.d("BookFragment", "Category is $category")
-
-       /* binding.apply {
-            vm.categories.observe(viewLifecycleOwner) { categories ->
-                this.rvBook.layoutManager = LinearLayoutManager(context)
-                this.rvBook.adapter = CategoryAdapter() { category ->
-                   vm.setBook(category)
-                }
-                Log.e("BookFragment", categories.toString())
-                (binding.rvBook.adapter as CategoryAdapter).submitList(categories)
+        vm.setCategoryId(arguments?.getInt("category") ?: 1)
+        vm.getBooksOfCategory()
+        vm.books.observe(viewLifecycleOwner) { books ->
+            binding.rvBook.layoutManager = LinearLayoutManager(context)
+            binding.rvBook.adapter = BookAdapter() { book ->
+//                val dir = BooksFragmentDirections.actionBooksFragmentToBookDetailsFragment(book.id)
+//                findNavController().navigate(dir)
             }
-        }*/
-
-
-
-
-
-        binding.apply {
-            vm.books.observe(viewLifecycleOwner) { books ->
-                this.rvBook.layoutManager = LinearLayoutManager(context)
-                this.rvBook.adapter = BookAdapter() { book ->
-                    vm.setBooks(book)
-                }
-                Log.e("BookFragment", books.toString())
-                (binding.rvBook.adapter as BookAdapter).submitList(books)
-            }
+            Log.e("BooksFragment", books.toString())
+            (binding.rvBook.adapter as BookAdapter).submitList(books)
         }
-
 
     }
 
