@@ -1,5 +1,6 @@
 package com.example.draftpad.auth
 
+import android.animation.ObjectAnimator
 import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -62,6 +63,11 @@ class AuthFragment : Fragment() {
                 findNavController().navigate(R.id.action_authFragment_to_phoneLoginFragment2)
             }
             loginbt.setOnClickListener {
+                binding.loginProgress.max = 10
+                val currentProgress = 6
+                ObjectAnimator.ofInt(binding.loginProgress, "progress", currentProgress)
+                    .setDuration(1000)
+                    .start()
                 if (txtName.text.toString().isEmpty() || txtPassword.text.toString().isEmpty()) {
                     Snackbar.make(binding.root, "Fill All Details", Snackbar.LENGTH_SHORT)
                         .show()
