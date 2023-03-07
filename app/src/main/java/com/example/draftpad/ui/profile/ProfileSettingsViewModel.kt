@@ -42,6 +42,7 @@ class ProfileSettingsViewModel : ViewModel() {
                     userProfile.dob,
                     userProfile.phone
                 )
+
                 _status.value = ProfileApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = ProfileApiStatus.ERROR
