@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.draftpad.network.ApiClient
-import com.example.draftpad.network.UserDataResponse
 import com.example.draftpad.network.UserProfile
 import kotlinx.coroutines.launch
 
@@ -17,8 +16,8 @@ class ProfileSettingsViewModel : ViewModel() {
     private val _status = MutableLiveData<ProfileApiStatus>()
     val status: LiveData<ProfileApiStatus> = _status
 
-    private val _response = MutableLiveData<UserDataResponse>()
-    val response: LiveData<UserDataResponse> = _response
+    private val _response = MutableLiveData<UserProfile>()
+    val response: LiveData<UserProfile> = _response
 
     init {
         _status.value = ProfileApiStatus.NONE
@@ -45,7 +44,7 @@ class ProfileSettingsViewModel : ViewModel() {
                 _status.value = ProfileApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = ProfileApiStatus.ERROR
-               _response.value = UserDataResponse("Error", "")
+               // _response.value =UserDataResponse("Error", e.message.toString())
             }
         }
     }
