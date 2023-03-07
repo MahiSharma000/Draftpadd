@@ -46,15 +46,27 @@ class ProfileSettingsViewModel : ViewModel() {
                 _status.value = ProfileApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = ProfileApiStatus.ERROR
-               _response.value = UserDataResponse("Error", "")
+                _response.value = UserDataResponse("Error", "")
             }
         }
     }
 
-    fun getUserProfileData(user_id: String?,first_name:String?,last_name:String?,about:String?,
-                           profile_pic:String?, book_written:String?,followers:Int?,following:Int?,created_at:String?,updated_at:String?,dob:String?,phone:String?) {
+    fun getUserProfileData(
+        user_id: String?,
+        first_name: String?,
+        last_name: String?,
+        about: String?,
+        profile_pic: String?,
+        book_written: String?,
+        followers: Int?,
+        following: Int?,
+        created_at: String?,
+        updated_at: String?,
+        dob: String?,
+        phone: String?
+    ) {
         val userProfile = UserProfile(
-            id=null,
+            id = null,
             user_id = user_id!!,
             first_name = first_name!!,
             last_name = last_name!!,
