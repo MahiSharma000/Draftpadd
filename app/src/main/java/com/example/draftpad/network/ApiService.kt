@@ -52,8 +52,7 @@ interface ApiService {
         @Field("updated_at") updated_at: String,
         @Field("books_read") bookRead: String,
         @Field("dob") dob: String,
-        @Field("phone") phone: String,
-
+        @Field("phone") phone: String
         ): UserDataResponse
     @FormUrlEncoded
     @POST("api/v1/book")
