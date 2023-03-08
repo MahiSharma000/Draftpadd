@@ -7,15 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+
 import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentProfileSettingsBinding
-import androidx.compose.runtime.remember as remember
+
 
 class ProfileSettingsFragment : Fragment() {
 
