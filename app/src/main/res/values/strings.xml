@@ -83,4 +83,5 @@
     <string name="original_owner">Are you original copyright owner of this work?</string>
     <string name="i_am_original_owner">I am the original copyright owner\nI am owner or legally authorized on behalf of the owner.</string>
     <string name="i_am_not_original_owner">I am not the original copyright owner\nI did not write this work and do not have authorization from the\ncopyright holder.</string>
+    <string name="permission_required">Please provide permission</string>
 </resources>

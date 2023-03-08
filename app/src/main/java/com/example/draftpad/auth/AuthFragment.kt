@@ -13,7 +13,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.draftpad.MainActivity
+import com.example.draftpad.Utils
 import com.example.draftpad.databinding.FragmentAuthBinding
+import com.example.draftpad.models.LoggedUser
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -86,6 +88,13 @@ class AuthFragment : Fragment() {
                             binding.loginbt.isEnabled = true
                             when (vm.response.value?.status) {
                                 "OK" -> {
+                                    Utils(requireContext()).saveLoggedUser(
+                                        LoggedUser(
+                                            vm.response.value?.username!!,
+                                            vm.response.value?.email!!,
+                                            vm.response.value?.id!!
+                                        )
+                                    )
                                     startActivity(Intent(activity, MainActivity::class.java))
                                     activity?.finish()
                                 }

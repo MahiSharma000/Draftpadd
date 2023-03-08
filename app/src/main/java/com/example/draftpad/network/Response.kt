@@ -6,9 +6,8 @@ data class RegisterResponse(
 )
 
 data class UserDataResponse(
-    val status: String,
-    val msg: String
-    )
+    val status: String
+)
 
 data class LoginResponse(
     val status: String,

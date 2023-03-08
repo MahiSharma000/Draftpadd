@@ -2,6 +2,7 @@ package com.example.draftpad
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import coil.load
 import com.example.draftpad.ui.search.BookApiStatus
@@ -44,5 +45,22 @@ fun bindStatus(statusImageView: ImageView, status: BookApiStatus?) {
         else -> {
 
         }
+    }
+}
+
+@BindingAdapter("summary_text")
+fun bindSummaryText(textView: TextView, text: String?) {
+    if (text != null) {
+        textView.text = summary(text, 50)
+    }else{
+        textView.text = "no description"
+    }
+}
+
+fun summary(text: String, max: Int): String {
+    return if (text.length > max) {
+        text.substring(0, max) + "..."
+    } else {
+        text
     }
 }

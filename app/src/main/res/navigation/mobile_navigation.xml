@@ -46,11 +46,6 @@
         <action
             android:id="@+id/action_navigation_search_to_booksFragment"
             app:destination="@id/booksFragment">
-        <argument
-            android:name="category"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="@null" />
         </action>
     </fragment>
     <fragment
@@ -224,9 +219,8 @@
             app:destination="@id/readFragment" />
         <argument
             android:name="category"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:argType="integer"
+            android:defaultValue="1" />
     </fragment>
     <fragment
         android:id="@+id/readFragment"

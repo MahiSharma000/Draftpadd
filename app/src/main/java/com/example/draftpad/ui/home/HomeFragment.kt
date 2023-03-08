@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.draftpad.AuthActivity
 import com.example.draftpad.MainActivity
 import com.example.draftpad.R
+import com.example.draftpad.Utils
 import com.example.draftpad.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -64,7 +65,7 @@ class HomeFragment : Fragment() {
                     true
                 }
                 R.id.log_out -> {
-                    auth.signOut()
+                    Utils(requireContext()).logout()
                     startActivity(Intent(activity, AuthActivity::class.java))
                     activity?.finish()
                     true

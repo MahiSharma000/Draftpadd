@@ -2,14 +2,12 @@ package com.example.draftpad.network
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import okhttp3.MultipartBody
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
-private const val BASE_URL = "http://192.168.125.124:5000/"
+private const val BASE_URL = "http://192.168.18.91:5000/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -37,23 +35,22 @@ interface ApiService {
         @Field("last_seen") lastSeen: String
     ): RegisterResponse
 
-    @FormUrlEncoded
+    @Multipart
     @POST("api/v1/profile")
     suspend fun createProfile(
-        @Field("user_id") user_id: String,
-        @Field("first_name") first_name: String,
-        @Field("last_name") last_name: String,
-        @Field("about") about: String,
-        @Field("profile_pic") profile_pic: String,
-        @Field("book_written") book_written: String,
-        @Field("followers") followers: Int,
-        @Field("following") following: Int,
-        @Field("created_at") created_at: String,
-        @Field("updated_at") updated_at: String,
-        @Field("books_read") bookRead: String,
-        @Field("dob") dob: String,
-        @Field("phone") phone: String
-        ): UserDataResponse
+        @Part("user_id") user_id: String,
+        @Part("first_name") first_name: String,
+        @Part("last_name") last_name: String,
+        @Part("about") about: String,
+        @Part("book_written") book_written: Int = 0,
+        @Part("followers") followers: Int = 0,
+        @Part("following") following: Int = 0,
+        @Part("books_read") bookRead: Int = 0,
+        @Part("dob") dob: String,
+        @Part("phone") phone: String,
+        @Part profile_pic: MultipartBody. Part?
+    ): UserDataResponse
+
     @FormUrlEncoded
     @POST("api/v1/book")
     suspend fun createBook(
@@ -77,8 +74,11 @@ interface ApiService {
     @GET("api/v1/categories")
     suspend fun getCategories(): CategoryAllResponse
 
-    @GET("api/v1/categories/{id}")
-    fun getCategoryBooks(id: Int): BooksByCategoryResponse
+    @GET("api/v1/category/{id}")
+    suspend fun getCategoryBooks(@Path("id") id: Int): BooksByCategoryResponse
+
+    @GET("api/v1/book/{id}")
+    suspend fun getBook(@Path("id") id: Int): Book
 
     @GET("api/v1/books")
     suspend fun getBooks(): BooksAllResponse
