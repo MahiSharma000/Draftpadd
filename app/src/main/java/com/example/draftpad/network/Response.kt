@@ -40,3 +40,8 @@ data class BooksAllResponse(
     val status: String,
     val books: List<Book>
 )
+
+data class SelectedBookResponse(
+    val status: String,
+    val book: Book
+)

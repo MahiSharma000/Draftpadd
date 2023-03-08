@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="readVm"
+            type="com.example.draftpad.ui.read.ReadViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/txtDescription"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/book_title"
+        app:text="@{readVm.book.title}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,6 +43,7 @@
         android:layout_marginTop="10dp"
         android:clickable="true"
         android:text="@string/author"
+        app:text="@{readVm.book.username}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtBookName" />
@@ -58,6 +65,7 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="10dp"
         android:text="@string/read"
+        app:text="@{readVm.book.views}"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toBottomOf="@+id/txtAuthorProfile" />
 
@@ -97,6 +105,7 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="10dp"
         android:text="@string/parts"
+        app:text="@{readVm.book.chapters}"
         app:layout_constraintStart_toEndOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/txtAuthorProfile" />
 
@@ -121,14 +130,16 @@
         app:layout_constraintTop_toBottomOf="@+id/txtVotes" />
 
     <TextView
-        android:id="@+id/textView51"
+        android:id="@+id/txtDes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:maxLines="10"
         android:text="TextView"
+        app:text="@{readVm.book.description}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnRead" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

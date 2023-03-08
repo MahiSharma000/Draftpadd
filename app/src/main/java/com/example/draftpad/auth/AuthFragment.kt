@@ -56,6 +56,7 @@ class AuthFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.loginProgress.setVisibility(View.INVISIBLE)
 
         binding.apply {
             txtSignUp.setOnClickListener {
@@ -67,6 +68,7 @@ class AuthFragment : Fragment() {
             loginbt.setOnClickListener {
                 binding.loginProgress.max = 10
                 val currentProgress = 6
+                loginProgress.setVisibility(View.VISIBLE)
                 ObjectAnimator.ofInt(binding.loginProgress, "progress", currentProgress)
                     .setDuration(1000)
                     .start()
@@ -95,8 +97,10 @@ class AuthFragment : Fragment() {
                                             vm.response.value?.id!!
                                         )
                                     )
+                                    loginProgress.setVisibility(View.INVISIBLE)
                                     startActivity(Intent(activity, MainActivity::class.java))
                                     activity?.finish()
+
                                 }
                                 "ERROR" -> {
                                     AlertDialog.Builder(requireContext())

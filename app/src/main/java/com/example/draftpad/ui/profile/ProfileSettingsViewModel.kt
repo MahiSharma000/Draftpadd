@@ -116,7 +116,7 @@ class ProfileSettingsViewModel : ViewModel() {
             val body = requestFile?.let {
                 MultipartBody.Part.createFormData(
                     "profile_pic",
-                    file.name,
+                    file?.name,
                     it
                 )
             }

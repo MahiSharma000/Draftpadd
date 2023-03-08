@@ -44,8 +44,8 @@ class BooksFragment : Fragment() {
         vm.books.observe(viewLifecycleOwner) { books ->
             binding.rvBook.layoutManager = LinearLayoutManager(context)
             binding.rvBook.adapter = BookAdapter() { book ->
-//                val dir = BooksFragmentDirections.actionBooksFragmentToBookDetailsFragment(book.id)
-//                findNavController().navigate(dir)
+                val dir = BooksFragmentDirections.actionBooksFragmentToReadFragment(book.id)
+                findNavController().navigate(dir)
             }
             Log.e("BooksFragment", books.toString())
             (binding.rvBook.adapter as BookAdapter).submitList(books)

@@ -1,7 +1,7 @@
 package com.example.draftpad.network
 
 data class Book(
-    val id: String? = null,
+    val id: Int=0,
     val title: String,
     val user_id: String,
     val username: String,
