@@ -238,8 +238,8 @@
             app:argType="integer"
             android:defaultValue="1" />
         <action
-            android:id="@+id/action_readFragment_to_userProfileFragment"
-            app:destination="@id/userProfileFragment" />
+            android:id="@+id/action_readFragment_to_authorProfileFragment"
+            app:destination="@id/authorProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/readStoryFragment"
@@ -284,4 +284,13 @@
         android:name="com.example.draftpad.ui.read.CommentFragment"
         android:label="fragment_comment"
         tools:layout="@layout/fragment_comment" />
+    <fragment
+        android:id="@+id/authorProfileFragment"
+        android:name="com.example.draftpad.ui.profile.AuthorProfileFragment"
+        android:label="fragment_author_profile"
+        tools:layout="@layout/fragment_author_profile" >
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </fragment>
 </navigation>
