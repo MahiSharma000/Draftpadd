@@ -237,6 +237,9 @@
             android:name="bookId"
             app:argType="integer"
             android:defaultValue="1" />
+        <action
+            android:id="@+id/action_readFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/readStoryFragment"
