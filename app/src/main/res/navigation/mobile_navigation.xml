@@ -228,9 +228,6 @@
         android:label="fragment_read"
         tools:layout="@layout/fragment_read" >
         <action
-            android:id="@+id/action_readFragment_to_readStoryFragment"
-            app:destination="@id/readStoryFragment" />
-        <action
             android:id="@+id/action_readFragment_to_reportFragment"
             app:destination="@id/reportFragment" />
         <argument
@@ -240,6 +237,9 @@
         <action
             android:id="@+id/action_readFragment_to_authorProfileFragment"
             app:destination="@id/authorProfileFragment" />
+        <action
+            android:id="@+id/action_readFragment_to_chapterFragment"
+            app:destination="@id/chapterFragment" />
     </fragment>
     <fragment
         android:id="@+id/readStoryFragment"
@@ -292,5 +292,13 @@
         <argument
             android:name="userId"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/chapterFragment"
+        android:name="com.example.draftpad.ui.read.ChapterFragment"
+        android:label="ChapterFragment" >
+        <action
+            android:id="@+id/action_chapterFragment_to_readStoryFragment"
+            app:destination="@id/readStoryFragment" />
     </fragment>
 </navigation>
