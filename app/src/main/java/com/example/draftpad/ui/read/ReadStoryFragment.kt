@@ -12,6 +12,8 @@ import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentAuthBinding
 import com.example.draftpad.databinding.FragmentAuthIntroBinding
 import com.example.draftpad.databinding.FragmentReadStoryBinding
+import com.example.draftpad.databinding.FragmentSearchBinding
+import com.example.draftpad.ui.search.SearchFragmentDirections
 
 
 class ReadStoryFragment : Fragment() {
@@ -26,15 +28,17 @@ class ReadStoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentReadStoryBinding.inflate(inflater, container, false)
+        _binding = FragmentReadStoryBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            imgComments.setOnClickListener {
-                findNavController().navigate(R.id.action_readStoryFragment_to_commentFragment)
+            imgComments.setOnClickListener { chapter ->
+                val dir =
+                    ReadStoryFragmentDirections.actionReadStoryFragmentToCommentFragment(chapter.id)
+                findNavController().navigate(dir)
             }
             imgNoAd.setOnClickListener {
                 findNavController().navigate(R.id.action_readStoryFragment_to_premiumFragment)
@@ -43,7 +47,10 @@ class ReadStoryFragment : Fragment() {
                 val sendIntent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(Intent.EXTRA_SUBJECT, "Check out this cool application")
-                    putExtra(Intent.EXTRA_TEXT, "Your friend has sent you this interesting story Read it on Draftpad!")
+                    putExtra(
+                        Intent.EXTRA_TEXT,
+                        "Your friend has sent you this interesting story Read it on Draftpad!"
+                    )
                     type = "text/plain"
                 }
                 val shareIntent = Intent.createChooser(sendIntent, null)

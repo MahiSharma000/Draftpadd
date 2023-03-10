@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-//import com.example.draftpad.databinding.CommentListItemBinding
+import com.example.draftpad.databinding.CommentBinding
 import com.example.draftpad.network.Comment
 
 
-/*class CommentAdapter (
+class CommentAdapter(
     val listener: (Comment) -> Unit
 ) : ListAdapter<Comment, CommentAdapter.CommentViewHolder>(DiffCallback) {
-    class CommentViewHolder(private val binding: CommentListItemBinding):
+    class CommentViewHolder(private val binding: CommentBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(comment:Comment) {
+        fun bind(comment: Comment) {
             binding.comment = comment
             binding.executePendingBindings()
         }
@@ -26,7 +26,7 @@ import com.example.draftpad.network.Comment
         viewType: Int
     ): CommentAdapter.CommentViewHolder {
         return CommentAdapter.CommentViewHolder(
-            CommentListItemBinding.inflate(
+            CommentBinding.inflate(
                 LayoutInflater.from(parent.context)
             )
         )
@@ -56,4 +56,4 @@ import com.example.draftpad.network.Comment
         }
 
     }
-}*/
+}

@@ -2,12 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-<data>
-    <variable
-        name="comment"
-        type="com.example.draftpad.network.Comment" />
-</data>
+    <data>
+        <variable
+            name="comment"
+            type="com.example.draftpad.network.Comment" />
+    </data>
 <com.google.android.material.card.MaterialCardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -46,6 +45,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:text="@string/comment"
+            app:text="@{comment.content}"
             app:layout_constraintStart_toEndOf="@+id/imgProfile"
             app:layout_constraintTop_toBottomOf="@+id/txtAuthorName" />
 
@@ -56,6 +56,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:text="1:21 am"
+            app:text = "@{comment.created_at}"
             app:layout_constraintStart_toEndOf="@+id/imgProfile"
             app:layout_constraintTop_toBottomOf="@+id/txtComments" />
 
