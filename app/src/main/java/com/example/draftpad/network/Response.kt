@@ -45,3 +45,9 @@ data class SelectedBookResponse(
     val status: String,
     val book: Book
 )
+
+//comments response
+data class CommentsResponse(
+    val status: String,
+    val comments: List<Comment>
+)

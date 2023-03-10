@@ -105,7 +105,6 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="10dp"
         android:text="@string/parts"
-        app:text="@{readVm.book.chapters}"
         app:layout_constraintStart_toEndOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/txtAuthorProfile" />
 

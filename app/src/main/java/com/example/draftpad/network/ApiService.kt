@@ -82,6 +82,9 @@ interface ApiService {
 
     @GET("api/v1/books")
     suspend fun getBooks(): BooksAllResponse
+
+    @GET("api/v1/comments/{id}")
+    suspend fun getComments(@Path("id") id: Int): CommentsResponse
 }
 
 object ApiClient {

@@ -283,7 +283,12 @@
         android:id="@+id/commentFragment"
         android:name="com.example.draftpad.ui.read.CommentFragment"
         android:label="fragment_comment"
-        tools:layout="@layout/fragment_comment" />
+        tools:layout="@layout/fragment_comment" >
+        <argument
+            android:name="chapterId"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
     <fragment
         android:id="@+id/authorProfileFragment"
         android:name="com.example.draftpad.ui.profile.AuthorProfileFragment"
