@@ -35,6 +35,7 @@ class ReadViewModel : ViewModel() {
                     ApiClient.retrofitService.getBook(it).let { response ->
                         _book.value = response.book
                         _status.value = ReadApiStatus.DONE
+                        Log.d("ReadViewModel",_book.value.toString())
                     }
                 }
             } catch (e: Exception) {

@@ -40,14 +40,6 @@ class ReadFragment : Fragment() {
         vm.bookId.observe(viewLifecycleOwner) {
             vm.getSelectedBook()
         }
-        vm.book.observe(viewLifecycleOwner) {
-            if (it != null) {
-                Toast.makeText(context, "l${it}", Toast.LENGTH_SHORT).show()
-            }
-            else{
-                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
-            }
-        }
 
         binding.btnRead.setOnClickListener {
             val action =

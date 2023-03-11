@@ -53,3 +53,9 @@ data class ChaptersResponse(
     val status: String,
     val chapters: List<Chapter>
 )
+
+//chapter response
+data class ChapterResponse(
+    val status: String,
+    val chapter: Chapter
+)

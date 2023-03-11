@@ -18,6 +18,9 @@ class BookViewModel : ViewModel() {
     private val _books = MutableLiveData<List<Book>>()
     val books: LiveData<List<Book>> = _books
 
+    private val _book = MutableLiveData<Book>()
+    val book: LiveData<Book> = _book
+
     private val _catId = MutableLiveData<Int>()
     val catId: LiveData<Int> = _catId
 

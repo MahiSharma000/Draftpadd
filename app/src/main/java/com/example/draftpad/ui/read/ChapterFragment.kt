@@ -13,7 +13,7 @@ import com.example.draftpad.databinding.FragmentChapterBinding
 
 
 class ChapterFragment : Fragment() {
-   /* private val vm: ChapterViewModel by activityViewModels()
+    private val vm: ChapterViewModel by activityViewModels()
     private var _binding: FragmentChapterBinding? = null
     private val binding get() = _binding!!
 
@@ -34,9 +34,12 @@ class ChapterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        super.onViewCreated(view, savedInstanceState)
-        vm.setBookId(arguments?.getInt("book") ?: 1)
-        vm.getChapterOfBook()
+        ChapterFragmentArgs.fromBundle(requireArguments()).storyId.let{
+            vm.setBookId(it)
+        }
+        vm.bookId.observe(viewLifecycleOwner) {
+            vm.getChapterOfBook()
+        }
         vm.chapter.observe(viewLifecycleOwner) { chapters ->
             binding.rvChapter.layoutManager = LinearLayoutManager(context)
             binding.rvChapter.adapter = ChapterAdapter() { chapter ->
@@ -47,5 +50,5 @@ class ChapterFragment : Fragment() {
             Log.e("ChapterFragment", chapters.toString())
             (binding.rvChapter.adapter as ChapterAdapter).submitList(chapters)
         }
-    }*/
+    }
 }

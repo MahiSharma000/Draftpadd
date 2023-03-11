@@ -40,11 +40,21 @@ class CommentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        vm.setCommentId(arguments?.getInt("comments") ?: 1)
-        vm.getAllComments()
+        CommentFragmentArgs.fromBundle(requireArguments()).chapterId.let{
+            vm.setCommentId(it)
+        }
+        vm.comId.observe(viewLifecycleOwner) {
+            vm.getAllComments()
+        }
+
+        vm.comments.observe(viewLifecycleOwner) { comments ->
+            binding.rvComment.layoutManager = LinearLayoutManager(context)
+            binding.rvComment.adapter = CommentAdapter() {}
+            Log.e("CommentFragment", comments.toString())
+            (binding.rvComment.adapter as CommentAdapter).submitList(comments)
+        }
+
 
     }
-    companion object {
 
-    }
 }

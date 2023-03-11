@@ -39,6 +39,7 @@
                 android:fontFamily="@font/akaya_telivigala"
                 android:padding="5dp"
                 android:text="Chapter Title"
+                app:text= "@{chapter.title}"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
@@ -56,6 +57,7 @@
                     android:fontFamily="@font/akaya_telivigala"
                     android:padding="5dp"
                     android:text="Likes"
+                    app:text="@{String.valueOf(chapter.total_likes)}"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -68,6 +70,7 @@
                     android:fontFamily="@font/akaya_telivigala"
                     android:padding="5dp"
                     android:text="Comments"
+                    app:text="@{String.valueOf(chapter.total_comments)}"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 

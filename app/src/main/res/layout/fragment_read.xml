@@ -38,15 +38,15 @@
 
     <TextView
         android:id="@+id/txtAuthorProfile"
-        android:layout_width="48dp"
+        android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
         android:clickable="true"
         android:text="@string/author"
-        app:text="@{readVm.book.username}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtBookName" />
+        app:layout_constraintTop_toBottomOf="@+id/txtBookName"
+        app:text="@{readVm.book.username}" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -105,6 +105,7 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="10dp"
         android:text="@string/parts"
+        app:text = "@{String.valueOf(readVm.book.chapters)}"
         app:layout_constraintStart_toEndOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/txtAuthorProfile" />
 
@@ -133,13 +134,15 @@
         android:id="@+id/txtDes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="2dp"
         android:maxLines="10"
         android:text="TextView"
-        app:text="@{readVm.book.description}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRead" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRead"
+        app:text="@{readVm.book.description}" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

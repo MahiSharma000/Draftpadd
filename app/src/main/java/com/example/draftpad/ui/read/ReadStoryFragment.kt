@@ -7,16 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
-import com.example.draftpad.databinding.FragmentAuthBinding
-import com.example.draftpad.databinding.FragmentAuthIntroBinding
-import com.example.draftpad.databinding.FragmentReadStoryBinding
-import com.example.draftpad.databinding.FragmentSearchBinding
+import com.example.draftpad.databinding.*
 import com.example.draftpad.ui.search.SearchFragmentDirections
 
 
 class ReadStoryFragment : Fragment() {
+    private val vm: ReadStoryViewModel by activityViewModels()
     private var _binding: FragmentReadStoryBinding? = null
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,11 +28,19 @@ class ReadStoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentReadStoryBinding.inflate(inflater)
+        binding.viewModel = vm
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        ReadStoryFragmentArgs.fromBundle(requireArguments()).chapterId.let{
+            vm.setChapterId(it)
+        }
+        vm.chapterId.observe(viewLifecycleOwner) {
+            vm.getChapterById()
+        }
         binding.apply {
             imgComments.setOnClickListener { chapter ->
                 val dir =

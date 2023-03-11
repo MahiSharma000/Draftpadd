@@ -3,13 +3,14 @@ package com.example.draftpad.ui.read
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.draftpad.network.ApiClient
 import com.example.draftpad.network.Chapter
 import kotlinx.coroutines.launch
 
 enum class ChapterApiStatus { LOADING, ERROR, DONE }
-class ChapterViewModel {
+class ChapterViewModel:ViewModel() {
 
     private val _status = MutableLiveData<ChapterApiStatus>()
     val status: LiveData<ChapterApiStatus> = _status
@@ -25,7 +26,7 @@ class ChapterViewModel {
     }
 
     fun getChapterOfBook() {
-       /* viewModelScope.launch {
+        viewModelScope.launch {
             _status.value = ChapterApiStatus.LOADING
             try {
                 _bookId.value?.let {
@@ -40,11 +41,11 @@ class ChapterViewModel {
                     }
                 }
             } catch (e: Exception) {
-                Log.e("BookViewModel", e.toString())
+                Log.e("ChapterViewModel", e.toString())
                 _status.value = ChapterApiStatus.ERROR
                 _chapters.value = listOf()
             }
-        }*/
+        }
     }
 
     fun setBookId(id: Int) {

@@ -34,6 +34,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:text="@string/user_name"
+            app:text = "@{comment.userName}"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/imgProfile"
             app:layout_constraintTop_toTopOf="parent" />
@@ -59,16 +60,6 @@
             app:text = "@{comment.created_at}"
             app:layout_constraintStart_toEndOf="@+id/imgProfile"
             app:layout_constraintTop_toBottomOf="@+id/txtComments" />
-
-        <ImageView
-            android:id="@+id/imgLike"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="25dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/baseline_like" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
