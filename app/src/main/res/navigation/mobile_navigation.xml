@@ -305,5 +305,12 @@
         <action
             android:id="@+id/action_chapterFragment_to_readStoryFragment"
             app:destination="@id/readStoryFragment" />
+        <argument
+            android:name="storyId"
+            app:argType="integer"
+            android:defaultValue="1" />
+        <action
+            android:id="@+id/action_chapterFragment_to_commentFragment"
+            app:destination="@id/commentFragment" />
     </fragment>
 </navigation>
