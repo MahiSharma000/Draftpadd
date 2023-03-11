@@ -251,6 +251,9 @@
         <action
             android:id="@+id/action_readStoryFragment_to_premiumFragment"
             app:destination="@id/premiumFragment" />
+        <argument
+            android:name="chapterId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/reportFragment"

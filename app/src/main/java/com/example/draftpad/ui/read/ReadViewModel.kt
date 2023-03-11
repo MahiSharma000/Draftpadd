@@ -19,27 +19,22 @@ class ReadViewModel : ViewModel() {
     private val _book = MutableLiveData<Book?>()
     val book: LiveData<Book?> = _book
 
-    private val _bookId = MutableLiveData<Int>()
+    private val _bookId = MutableLiveData<Int>(10)
     val bookId: LiveData<Int> = _bookId
 
     init {
         _status.value = ReadApiStatus.LOADING
     }
 
-    // get book of selected id
     fun getSelectedBook() {
+        Log.d("ReadViewModel",_bookId.value.toString())
         viewModelScope.launch {
             _status.value = ReadApiStatus.LOADING
             try {
                 _bookId.value?.let {
                     ApiClient.retrofitService.getBook(it).let { response ->
-                        Log.d("ReadViewModel", response.toString())
                         _book.value = response.book
-                        if (response.book != null){
-                            _status.value = ReadApiStatus.DONE
-                        } else {
-                            _status.value = ReadApiStatus.ERROR
-                        }
+                        _status.value = ReadApiStatus.DONE
                     }
                 }
             } catch (e: Exception) {
@@ -50,10 +45,10 @@ class ReadViewModel : ViewModel() {
         }
     }
 
-    //set book of selected id
 
     fun setBookId(id: Int) {
         _bookId.value = id
+        Log.d("ReadViewModel",_bookId.value.toString())
     }
 
 }

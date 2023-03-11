@@ -1,14 +1,21 @@
 package com.example.draftpad.ui.read
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.draftpad.R
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.draftpad.databinding.FragmentChapterBinding
 
 
 class ChapterFragment : Fragment() {
+   /* private val vm: ChapterViewModel by activityViewModels()
+    private var _binding: FragmentChapterBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,10 +26,26 @@ class ChapterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chapter, container, false)
+        _binding = FragmentChapterBinding.inflate(inflater)
+        binding.chaptervm = vm
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
-    companion object {
-    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        super.onViewCreated(view, savedInstanceState)
+        vm.setBookId(arguments?.getInt("book") ?: 1)
+        vm.getChapterOfBook()
+        vm.chapter.observe(viewLifecycleOwner) { chapters ->
+            binding.rvChapter.layoutManager = LinearLayoutManager(context)
+            binding.rvChapter.adapter = ChapterAdapter() { chapter ->
+                val dir =
+                    ChapterFragmentDirections.actionChapterFragmentToReadStoryFragment(chapter.id)
+                findNavController().navigate(dir)
+            }
+            Log.e("ChapterFragment", chapters.toString())
+            (binding.rvChapter.adapter as ChapterAdapter).submitList(chapters)
+        }
+    }*/
 }

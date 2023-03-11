@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
-private const val BASE_URL = "http://192.168.125.124:5000/"
+private const val BASE_URL = "http://192.168.18.91:5000/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -48,7 +48,7 @@ interface ApiService {
         @Part("books_read") bookRead: Int = 0,
         @Part("dob") dob: String,
         @Part("phone") phone: String,
-        @Part profile_pic: MultipartBody. Part?
+        @Part profile_pic: MultipartBody.Part?
     ): UserDataResponse
 
     @FormUrlEncoded
@@ -85,6 +85,10 @@ interface ApiService {
 
     @GET("api/v1/comments/{id}")
     suspend fun getComments(@Path("id") id: Int): CommentsResponse
+
+    @GET("api/v1/chapters/{id}")
+    suspend fun getChapters(@Path("id") id: Int): ChaptersResponse
+
 }
 
 object ApiClient {

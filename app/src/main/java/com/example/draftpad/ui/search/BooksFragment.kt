@@ -6,15 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia.ImageAndVideo.equals
-import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia.ImageOnly.equals
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentBooksBinding
-import com.example.draftpad.databinding.FragmentSearchNextBinding
-import com.example.draftpad.network.Category
 
 
 class BooksFragment : Fragment() {
@@ -44,6 +39,8 @@ class BooksFragment : Fragment() {
         vm.books.observe(viewLifecycleOwner) { books ->
             binding.rvBook.layoutManager = LinearLayoutManager(context)
             binding.rvBook.adapter = BookAdapter() { book ->
+                Log.e("BooksFragment", book.toString())
+                (binding.rvBook.adapter as BookAdapter).notifyDataSetChanged()
                 val dir = BooksFragmentDirections.actionBooksFragmentToReadFragment(book.id)
                 findNavController().navigate(dir)
             }
