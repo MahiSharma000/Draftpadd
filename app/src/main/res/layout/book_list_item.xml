@@ -19,16 +19,22 @@
         app:strokeColor="@android:color/background_light"
         app:strokeWidth="1dp">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/imgBookCover"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="123dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="122dp"
+                android:layout_marginBottom="13dp"
                 android:src="@drawable/cover"
+                app:layout_constraintBottom_toTopOf="@+id/txtTitle"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,15 +42,12 @@
                 android:id="@+id/txtTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="16dp"
                 android:fontFamily="@font/aclonica"
                 android:padding="8dp"
                 android:textColor="?android:textColorSecondary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/imgBookCover"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/txtAuthor"
+                app:layout_constraintEnd_toEndOf="@+id/imgBookCover"
+                app:layout_constraintStart_toStartOf="@+id/imgBookCover"
                 app:text="@{book.title}"
                 tools:text="@string/book_title" />
 
@@ -52,24 +55,21 @@
                 android:id="@+id/txtAuthor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
                 android:fontFamily="@font/aclonica"
                 android:padding="8dp"
                 android:textColor="?android:textColorSecondary"
-
                 app:layout_constraintEnd_toEndOf="@+id/txtTitle"
-                app:layout_constraintStart_toEndOf="@+id/imgBookCover"
+                app:layout_constraintStart_toStartOf="@+id/txtTitle"
                 app:layout_constraintTop_toBottomOf="@+id/txtTitle"
                 app:text="@{book.username}"
                 tools:text="@string/author" />
 
             <TextView
                 android:id="@+id/txtDescripton"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="152dp"
+                android:layout_marginEnd="134dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/aclonica"
                 android:padding="8dp"
@@ -77,12 +77,11 @@
                 android:textSize="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/imgBookCover"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtAuthor"
-                app:layout_constraintVertical_bias="0.0"
                 app:summary_text="@{book.description}"
                 tools:text="@string/book_description" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

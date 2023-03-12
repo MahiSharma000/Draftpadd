@@ -7,178 +7,206 @@
             name="viewModel"
             type="com.example.draftpad.ui.read.ReadStoryViewModel" />
     </data>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<androidx.constraintlayout.widget.ConstraintLayout
 
-    android:id="@+id/frameLayout21"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.read.ReadStoryFragment" >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="188dp"
-        android:layout_height="155dp"
-        android:layout_marginTop="1dp"
-        android:src="@drawable/cover"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            android:background="@color/colorPrimary"
+            android:titleTextColor="@color/white"/>
 
-    <TextView
-        android:id="@+id/txtBookTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/book_title"
-        app:text = "@{viewModel.chapter.book_title}"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-    <TextView
-        android:id="@+id/txtRead"
-        android:layout_width="31dp"
-        android:layout_height="15dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/read"
-        app:text = "@{String.valueOf(viewModel.chapter.book_views)}"
-        app:layout_constraintStart_toEndOf="@+id/imageView12"
-        app:layout_constraintTop_toBottomOf="@+id/txtBookTitle" />
+            <androidx.constraintlayout.widget.ConstraintLayout
 
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/baseline_star"
-        app:layout_constraintStart_toEndOf="@+id/txtRead"
-        app:layout_constraintTop_toBottomOf="@+id/txtBookTitle" />
+                android:id="@+id/frameLayout21"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".ui.read.ReadStoryFragment">
 
-    <TextView
-        android:id="@+id/txtVotes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/votes"
-        app:text = "@{String.valueOf(viewModel.chapter.total_likes)}"
-        app:layout_constraintStart_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/txtBookTitle" />
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="188dp"
+                    android:layout_height="155dp"
+                    android:layout_marginTop="1dp"
+                    android:src="@drawable/cover"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/baseline_eye"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtBookTitle" />
+                <TextView
+                    android:id="@+id/txtBookTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/book_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView7"
+                    app:text="@{viewModel.chapter.book_title}" />
 
-    <TextView
-        android:id="@+id/txtChapterName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="@string/chapter"
-        app:text = "@{viewModel.chapter.title}"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtVotes" />
+                <TextView
+                    android:id="@+id/txtRead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/read"
+                    app:layout_constraintStart_toEndOf="@+id/imageView12"
+                    app:layout_constraintTop_toBottomOf="@+id/txtBookTitle"
+                    app:text="@{String.valueOf(viewModel.chapter.book_views)}" />
 
-    <TextView
-        android:id="@+id/txtChapter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:maxLines="100"
-        android:text="TextView"
-        app:text = "@{viewModel.chapter.content}"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtChapterName" />
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/baseline_star"
+                    app:layout_constraintStart_toEndOf="@+id/txtRead"
+                    app:layout_constraintTop_toBottomOf="@+id/txtBookTitle" />
 
-    <ImageView
-        android:id="@+id/imgVote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="75dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/baseline_vote"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtChapter" />
+                <TextView
+                    android:id="@+id/txtVotes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/votes"
+                    app:layout_constraintStart_toEndOf="@+id/imageView9"
+                    app:layout_constraintTop_toBottomOf="@+id/txtBookTitle"
+                    app:text="@{String.valueOf(viewModel.chapter.total_likes)}" />
 
-    <TextView
-        android:id="@+id/textView48"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="@string/votes"
-        app:layout_constraintStart_toStartOf="@+id/imgVote"
-        app:layout_constraintTop_toBottomOf="@+id/imgVote" />
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="150dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/baseline_eye"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtBookTitle" />
 
-    <ImageView
-        android:id="@+id/imgComments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/baseline_comment"
-        app:layout_constraintStart_toEndOf="@+id/imgVote"
-        app:layout_constraintTop_toBottomOf="@+id/txtChapter" />
+                <TextView
+                    android:id="@+id/txtChapterName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/chapter"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtVotes"
+                    app:text="@{viewModel.chapter.title}" />
 
-    <TextView
-        android:id="@+id/textView49"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="@string/comment"
-        app:layout_constraintStart_toStartOf="@+id/imgComments"
-        app:layout_constraintTop_toBottomOf="@+id/imgComments" />
+                <TextView
+                    android:id="@+id/txtChapter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:maxLines="100"
+                    android:padding="15dp"
+                    android:text="TextView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtChapterName"
+                    app:text="@{viewModel.chapter.content}" />
 
-    <ImageView
-        android:id="@+id/imgShare"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/baseline_share"
-        app:layout_constraintStart_toEndOf="@+id/imgComments"
-        app:layout_constraintTop_toBottomOf="@+id/txtChapter" />
+                <ImageView
+                    android:id="@+id/imgVote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="75dp"
+                    android:layout_marginTop="40dp"
+                    android:src="@drawable/baseline_vote"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtChapter" />
 
-    <TextView
-        android:id="@+id/textView52"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="@string/share"
-        app:layout_constraintStart_toStartOf="@+id/imgShare"
-        app:layout_constraintTop_toBottomOf="@+id/imgShare" />
+                <TextView
+                    android:id="@+id/textView48"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/votes"
+                    app:layout_constraintStart_toStartOf="@+id/imgVote"
+                    app:layout_constraintTop_toBottomOf="@+id/imgVote" />
 
-    <ImageView
-        android:id="@+id/imgNoAd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/baseline_noads"
-        app:layout_constraintStart_toEndOf="@+id/imgShare"
-        app:layout_constraintTop_toBottomOf="@+id/txtChapter" />
+                <ImageView
+                    android:id="@+id/imgComments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="40dp"
+                    android:src="@drawable/baseline_comment"
+                    app:layout_constraintStart_toEndOf="@+id/imgVote"
+                    app:layout_constraintTop_toBottomOf="@+id/txtChapter" />
 
-    <TextView
-        android:id="@+id/textView53"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="@string/no_ads"
-        app:layout_constraintStart_toStartOf="@+id/imgNoAd"
-        app:layout_constraintTop_toBottomOf="@+id/imgNoAd" />
-    />
-</androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+                <TextView
+                    android:id="@+id/textView49"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/comment"
+                    app:layout_constraintStart_toStartOf="@+id/imgComments"
+                    app:layout_constraintTop_toBottomOf="@+id/imgComments" />
+
+                <ImageView
+                    android:id="@+id/imgShare"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="40dp"
+                    android:src="@drawable/baseline_share"
+                    app:layout_constraintStart_toEndOf="@+id/imgComments"
+                    app:layout_constraintTop_toBottomOf="@+id/txtChapter" />
+
+                <TextView
+                    android:id="@+id/textView52"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/share"
+                    app:layout_constraintStart_toStartOf="@+id/imgShare"
+                    app:layout_constraintTop_toBottomOf="@+id/imgShare" />
+
+                <ImageView
+                    android:id="@+id/imgNoAd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="40dp"
+                    android:src="@drawable/baseline_noads"
+                    app:layout_constraintStart_toEndOf="@+id/imgShare"
+                    app:layout_constraintTop_toBottomOf="@+id/txtChapter" />
+
+                <TextView
+                    android:id="@+id/textView53"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/no_ads"
+                    app:layout_constraintStart_toStartOf="@+id/imgNoAd"
+                    app:layout_constraintTop_toBottomOf="@+id/imgNoAd" />
+                />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
