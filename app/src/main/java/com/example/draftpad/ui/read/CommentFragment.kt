@@ -85,6 +85,21 @@ class CommentFragment : Fragment() {
                 }
             }
         }
+        vm.postResponse.observe(viewLifecycleOwner) {
+            if (it != null) {
+                when (it.status) {
+                    "Success" -> {
+                        AlertDialog.Builder(requireContext())
+                            .setTitle("Success")
+                            .setMessage(it.msg)
+                            .setPositiveButton("OK") { dialog, which ->
+                                dialog.dismiss()
+                            }
+                            .show()
+                    }
+                }
+            }
+        }
 
 
 

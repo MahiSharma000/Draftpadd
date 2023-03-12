@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
-private const val BASE_URL = "http://192.168.18.196:5000/"
+private const val BASE_URL = "http://192.168.1.41:5000/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -45,10 +45,10 @@ interface ApiService {
         @Field("followers") followers: Int = 0,
         @Field("following") following: Int = 0,
         @Field("books_read") bookRead: Int = 0,
+        @Field("is_premium") is_premium: Boolean = false,
         @Field("dob") dob: String,
         @Field("phone") phone: String,
         @Field("profile_pic") profile_pic: String,
-        is_premium: Boolean
     ): UserDataResponse
 
     @FormUrlEncoded
@@ -68,15 +68,7 @@ interface ApiService {
         @Field("password") password: String
     ): LoginResponse
 
-    @FormUrlEncoded
-    @POST("api/v1/comment")
-    suspend fun addComment(
-        @Field("content") content: String,
-        @Field("user_id") user_id: Int,
-        @Field("chapter_id") chapter_id: Int,
-        createdAt: String,
-        updatedAt: String
-    ): CommentsResponse
+
 
     @GET("api/v1/logout")
     suspend fun logout(): LogoutResponse
@@ -94,7 +86,17 @@ interface ApiService {
     suspend fun getBooks(): BooksAllResponse
 
     @GET("api/v1/comments/{id}")
-    suspend fun getComments(@Path("id") id: Int): CommentsResponse
+    suspend fun getComments(@Path("id") id: Int): GetCommentsResponse
+
+    @FormUrlEncoded
+    @POST("api/v1/comment")
+    suspend fun addComment(
+        @Field("content") content: String,
+        @Field("user_id") user_id: Int,
+        @Field("chapter_id") chapter_id: Int,
+        createdAt: String,
+        updatedAt: String
+    ): PostCommentResponse
 
     @GET("api/v1/chapters/{id}")
     suspend fun getChapters(@Path("id") id: Int): ChaptersResponse

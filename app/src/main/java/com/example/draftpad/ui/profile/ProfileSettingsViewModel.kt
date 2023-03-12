@@ -42,7 +42,7 @@ class ProfileSettingsViewModel : ViewModel() {
         _downloadUri.value = null
     }
 
-    private fun getUserProfile(userProfile: UserProfile) {
+  /* private fun getUserProfile(userProfile: UserProfile) {
         viewModelScope.launch {
 //            _status.value = ProfileApiStatus.LOADING
 //            try {
@@ -84,6 +84,7 @@ class ProfileSettingsViewModel : ViewModel() {
         dob: String?,
         phone: String?,
         profile_pic: String?,
+        is_premium: Boolean?,
     ) {
         val userProfile = UserProfile(
             id = null,
@@ -95,6 +96,7 @@ class ProfileSettingsViewModel : ViewModel() {
             book_written = book_written!!,
             followers = followers!!,
             following = following!!,
+            is_premium = is_premium!!,
             created_at = created_at!!,
             updated_at = updated_at!!,
             booksRead = booksRead!!,
@@ -103,7 +105,7 @@ class ProfileSettingsViewModel : ViewModel() {
         )
         getUserProfile(userProfile)
 
-    }
+    }*/
 
     fun createOrUpdateProfile(
         context: Context,

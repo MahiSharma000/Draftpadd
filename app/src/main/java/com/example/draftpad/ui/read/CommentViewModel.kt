@@ -6,10 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.draftpad.network.ApiClient
-import com.example.draftpad.network.Comment
-import com.example.draftpad.network.CommentResponse
-import com.example.draftpad.network.CommentsResponse
+import com.example.draftpad.network.*
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
@@ -19,11 +16,11 @@ class CommentViewModel : ViewModel() {
     private val _status = MutableLiveData<CommentApiStatus>()
     val status: LiveData<CommentApiStatus> = _status
 
-    private val _response = MutableLiveData<CommentsResponse>()
-    val response: LiveData<CommentsResponse> = _response
+    private val _getresponse = MutableLiveData<GetCommentsResponse>()
+    val getresponse: LiveData<GetCommentsResponse> = _getresponse
 
-    private val _postRespose = MutableLiveData<CommentResponse>()
-    val postResponse: LiveData<CommentResponse> = _postRespose
+    private val _postRespose = MutableLiveData<PostCommentResponse>()
+    val postResponse: LiveData<PostCommentResponse> = _postRespose
 
     private val _comments = MutableLiveData<List<Comment>>()
     val comments: LiveData<List<Comment>> = _comments
@@ -68,7 +65,7 @@ class CommentViewModel : ViewModel() {
         viewModelScope.launch {
             _status.value = CommentApiStatus.LOADING
             try {
-                _response.value = ApiClient.retrofitService.addComment(
+                _postRespose.value = ApiClient.retrofitService.addComment(
                     comment.content,
                     comment.chapter_id,
                     comment.user_id,
