@@ -1,7 +1,12 @@
 package com.example.draftpad.ui.profile
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Bitmap
 import android.net.Uri
+import android.provider.MediaStore
+import android.util.Base64
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,9 +15,7 @@ import com.example.draftpad.network.ApiClient
 import com.example.draftpad.network.UserDataResponse
 import com.example.draftpad.network.UserProfile
 import kotlinx.coroutines.launch
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.ByteArrayOutputStream
 import java.io.File
 
 
@@ -112,14 +115,6 @@ class ProfileSettingsViewModel : ViewModel() {
     ) {
         try {
             val file = getFileFromUri(context, downloadUri.value!!)
-            val requestFile = file?.asRequestBody("image/*".toMediaTypeOrNull())
-            val body = requestFile?.let {
-                MultipartBody.Part.createFormData(
-                    "profile_pic",
-                    file?.name,
-                    it
-                )
-            }
             viewModelScope.launch {
                 _status.value = ProfileApiStatus.LOADING
 
@@ -132,9 +127,10 @@ class ProfileSettingsViewModel : ViewModel() {
                     followers = 0,
                     following = 0,
                     bookRead = 0,
+                    is_premium = false,
                     dob = dob,
                     phone = "",
-                    profile_pic = body
+                    profile_pic = file!!
                 )
                 _status.value = ProfileApiStatus.DONE
 
@@ -144,15 +140,24 @@ class ProfileSettingsViewModel : ViewModel() {
         }
     }
 
+    private fun convertToString(file: File): String {
+        Log.d("File", "convertToString: ${file.absolutePath}")
+        val bytes = file.readBytes()
+        return Base64.encodeToString(bytes, Base64.DEFAULT)
+    }
 
-    fun getFileFromUri(context: Context, uri: Uri): File? {
-        val filePathColumn = arrayOf(android.provider.MediaStore.Images.Media.DATA)
-        val cursor = context.contentResolver.query(uri, filePathColumn, null, null, null)
-        cursor?.moveToFirst()
-        val columnIndex = cursor?.getColumnIndex(filePathColumn[0])
-        val filePath = columnIndex?.let { cursor.getString(it) }
-        cursor?.close()
-        return filePath?.let { File(it) }
+
+    @SuppressLint("Recycle")
+    private fun getFileFromUri(context: Context, uri: Uri): String? {
+        // get the file path from the URI using the content resolver
+        val bitmap = MediaStore.Images.Media.getBitmap(context.contentResolver, uri)
+        val file = File(context.cacheDir, "profile_pic")
+        file.createNewFile()
+        val bos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 0, bos)
+        val bitmapData = bos.toByteArray()
+        return Base64.encodeToString(bitmapData, Base64.DEFAULT)
+
     }
 
     fun setImageUri(uri: Uri?, selected: Boolean) {

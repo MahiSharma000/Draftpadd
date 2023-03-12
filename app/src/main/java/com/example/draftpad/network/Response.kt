@@ -49,6 +49,7 @@ data class CommentsResponse(
     val status: String,
     val comments: List<Comment>
 )
+
 data class ChaptersResponse(
     val status: String,
     val chapters: List<Chapter>
@@ -58,4 +59,9 @@ data class ChaptersResponse(
 data class ChapterResponse(
     val status: String,
     val chapter: Chapter
+)
+
+data class CommentResponse(
+    val status: String,
+    val msg: String
 )

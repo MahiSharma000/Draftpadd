@@ -14,6 +14,7 @@ data class UserProfile(
     @Json(name = "following") val following:Int,
     @Json(name = "created_at") val created_at:String,
     @Json(name = "updated_at") val updated_at:String,
+    @Json(name="is_premium") val is_premium:Boolean=false,
     @Json(name = "booksRead") val booksRead:String,
     @Json(name = "dob") val dob:String,
     @Json(name = "phone") val phone:String,

@@ -2,12 +2,11 @@ package com.example.draftpad.network
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import okhttp3.MultipartBody
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
-private const val BASE_URL = "http://192.168.1.41:5000/"
+private const val BASE_URL = "http://192.168.18.196:5000/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -35,20 +34,21 @@ interface ApiService {
         @Field("last_seen") lastSeen: String
     ): RegisterResponse
 
-    @Multipart
+    @FormUrlEncoded
     @POST("api/v1/profile")
     suspend fun createProfile(
-        @Part("user_id") user_id: String,
-        @Part("first_name") first_name: String,
-        @Part("last_name") last_name: String,
-        @Part("about") about: String,
-        @Part("book_written") book_written: Int = 0,
-        @Part("followers") followers: Int = 0,
-        @Part("following") following: Int = 0,
-        @Part("books_read") bookRead: Int = 0,
-        @Part("dob") dob: String,
-        @Part("phone") phone: String,
-        @Part profile_pic: MultipartBody.Part?
+        @Field("user_id") user_id: String,
+        @Field("first_name") first_name: String,
+        @Field("last_name") last_name: String,
+        @Field("about") about: String,
+        @Field("book_written") book_written: Int = 0,
+        @Field("followers") followers: Int = 0,
+        @Field("following") following: Int = 0,
+        @Field("books_read") bookRead: Int = 0,
+        @Field("dob") dob: String,
+        @Field("phone") phone: String,
+        @Field("profile_pic") profile_pic: String,
+        is_premium: Boolean
     ): UserDataResponse
 
     @FormUrlEncoded
@@ -67,6 +67,16 @@ interface ApiService {
         @Field("username") username: String,
         @Field("password") password: String
     ): LoginResponse
+
+    @FormUrlEncoded
+    @POST("api/v1/comment")
+    suspend fun addComment(
+        @Field("content") content: String,
+        @Field("user_id") user_id: Int,
+        @Field("chapter_id") chapter_id: Int,
+        createdAt: String,
+        updatedAt: String
+    ): CommentsResponse
 
     @GET("api/v1/logout")
     suspend fun logout(): LogoutResponse
