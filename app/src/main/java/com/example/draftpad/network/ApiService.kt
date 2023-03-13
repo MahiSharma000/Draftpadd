@@ -21,10 +21,6 @@ interface ApiService {
     @GET("user/{id}")
     suspend fun getUser(): List<User>
 
-    @GET("profile/{id}")
-    suspend fun getProfile(): List<User>
-
-
     @FormUrlEncoded
     @POST("api/v1/register")
     suspend fun register(
@@ -55,11 +51,15 @@ interface ApiService {
     @POST("api/v1/book")
     suspend fun createBook(
         @Field("title") title: String,
+        @Field("cover") cover: String,
+        @Field("lang") lang: String,
         @Field("description") description: String,
         @Field("category_id") category_id: Int,
         @Field("user_id") user_id: Int,
-        @Field("status") status: String
-    ): CreateBookResponse
+        @Field("status") status: String,
+        @Field("created_at") created_at: String,
+        @Field("views") views: Int = 0
+    ): PostBookResponse
 
     @FormUrlEncoded
     @POST("api/v1/login")
@@ -67,8 +67,6 @@ interface ApiService {
         @Field("username") username: String,
         @Field("password") password: String
     ): LoginResponse
-
-
 
     @GET("api/v1/logout")
     suspend fun logout(): LogoutResponse
@@ -103,6 +101,9 @@ interface ApiService {
     //get a chapter by chapter id
     @GET("api/v1/chapter/{id}")
     suspend fun getChapter(@Path("id") id: Int): ChapterResponse
+
+    @GET("api/v1/get_profile/{id}")
+    suspend fun getProfile(@Path("id") id: Int): AuthorResponse
 
 }
 

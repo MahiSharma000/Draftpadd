@@ -30,15 +30,15 @@ data class BooksByCategoryResponse(
     val books: List<Book>
 )
 
-data class CreateBookResponse(
-    val status: String,
-    val msg: String
-
-)
 
 data class BooksAllResponse(
     val status: String,
     val books: List<Book>
+)
+
+data class PostBookResponse(
+    val status: String,
+    val msg: String
 )
 
 data class SelectedBookResponse(
@@ -59,6 +59,11 @@ data class ChaptersResponse(
 data class ChapterResponse(
     val status: String,
     val chapter: Chapter
+)
+
+data class AuthorResponse(
+    val status: String,
+    val author: UserProfile
 )
 
 data class PostCommentResponse(

@@ -41,10 +41,16 @@ class ReadFragment : Fragment() {
             vm.getSelectedBook()
         }
 
-        binding.btnRead.setOnClickListener {
-            val action =
-                ReadFragmentDirections.actionReadFragmentToChapterFragment(vm.book.value?.id ?: 1)
-            findNavController().navigate(action)
+        binding.apply {
+            btnRead.setOnClickListener {
+                val action =
+                    ReadFragmentDirections.actionReadFragmentToChapterFragment((vm.book.value?.id ?: 1) as Int)
+                findNavController().navigate(action)
+            }
+            txtAuthorProfile.setOnClickListener {
+                val dir =ReadFragmentDirections.actionReadFragmentToAuthorProfileFragment(vm.book.value!!.user_id )
+                findNavController().navigate(dir)
+            }
         }
 
     }

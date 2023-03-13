@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="authorProfileVm"
+            type="com.example.draftpad.ui.profile.AuthorProfileViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="TextView"
+        app:text="@{authorProfileVm.author.user_id}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgProfile" />
@@ -54,6 +62,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="10dp"
         android:text="0"
+        app:text="@{authorProfileVm.author.book_written}"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnfollow" />
 
@@ -67,12 +76,13 @@
         app:layout_constraintTop_toBottomOf="@+id/txtwork" />
 
     <TextView
-        android:id="@+id/textView55"
+        android:id="@+id/txtReadingList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
         android:text="0"
+        app:text="@{authorProfileVm.author.booksRead}"
         app:layout_constraintStart_toEndOf="@+id/textView51"
         app:layout_constraintTop_toBottomOf="@+id/btnfollow" />
 
@@ -82,8 +92,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:text="@string/reading_list"
-        app:layout_constraintStart_toStartOf="@+id/textView55"
-        app:layout_constraintTop_toBottomOf="@+id/textView55" />
+        app:layout_constraintStart_toStartOf="@+id/txtReadingList"
+        app:layout_constraintTop_toBottomOf="@+id/txtReadingList" />
 
     <TextView
         android:id="@+id/textView57"
@@ -92,6 +102,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
         android:text="0"
+        app:text="@{authorProfileVm.author.followers}"
         app:layout_constraintStart_toEndOf="@+id/textView56"
         app:layout_constraintTop_toBottomOf="@+id/btnfollow" />
 
@@ -104,3 +115,4 @@
         app:layout_constraintStart_toStartOf="@+id/textView57"
         app:layout_constraintTop_toBottomOf="@+id/textView57" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -114,6 +114,7 @@ class ProfileSettingsViewModel : ViewModel() {
         lastName: String,
         dob: String,
         about: String,
+        phone:String,
     ) {
         try {
             val file = getFileFromUri(context, downloadUri.value!!)
@@ -131,7 +132,7 @@ class ProfileSettingsViewModel : ViewModel() {
                     bookRead = 0,
                     is_premium = false,
                     dob = dob,
-                    phone = "",
+                    phone = phone,
                     profile_pic = file!!
                 )
                 _status.value = ProfileApiStatus.DONE

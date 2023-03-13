@@ -5,10 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.runtime.snapshots.Snapshot.Companion.observe
+import androidx.fragment.app.activityViewModels
 import com.example.draftpad.R
+import com.example.draftpad.databinding.FragmentAuthorProfileBinding
 
 
 class AuthorProfileFragment : Fragment() {
+    private val vm: AuthorProfileViewModel by activityViewModels()
+    private var _binding: FragmentAuthorProfileBinding? = null
+    private val binding get() = _binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,8 +26,20 @@ class AuthorProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_author_profile, container, false)
+        _binding = FragmentAuthorProfileBinding.inflate(inflater)
+        binding.authorProfileVm = vm
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        AuthorProfileFragmentArgs.fromBundle(requireArguments()).userId.let {
+            vm.setAuthorId(it)
+        }
+        vm.userId.observe(viewLifecycleOwner) {
+            vm.getAuthorId()
+        }
     }
 
     companion object {
