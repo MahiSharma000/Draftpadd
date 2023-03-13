@@ -15,15 +15,16 @@ import androidx.lifecycle.viewModelScope
 import com.example.draftpad.network.ApiClient
 import com.example.draftpad.network.Book
 import com.example.draftpad.network.PostBookResponse
-import com.example.draftpad.ui.profile.ProfileApiStatus
+
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.time.LocalDateTime
 
-enum class NewStoryApiStatus { LOADING, ERROR, DONE, NONE}
 
-class NewStoryViewModel: ViewModel() {
+enum class NewStoryApiStatus { LOADING, ERROR, DONE, NONE }
+
+class NewStoryViewModel : ViewModel() {
 
     private val _status = MutableLiveData<NewStoryApiStatus>()
     val status: MutableLiveData<NewStoryApiStatus> = _status
@@ -68,7 +69,7 @@ class NewStoryViewModel: ViewModel() {
         _isImgSelected.value = selected
     }
 
-    fun postBook(book: Book){
+    fun postBook(book: Book) {
         viewModelScope.launch {
             _status.value = NewStoryApiStatus.LOADING
             _response.value = ApiClient.retrofitService.createBook(
@@ -80,36 +81,44 @@ class NewStoryViewModel: ViewModel() {
                 views = book.views,
                 lang = book.lang,
                 created_at = book.created_at,
-                cover=book.cover.toString()
+                cover = book.cover.toString()
             )
             _status.value = NewStoryApiStatus.DONE
         }
     }
 
     fun createnewBook(
+        context: Context,
         title: String,
         description: String,
-        cover: String,){
-        val file = getFileFromUri(context, downloadUri.value!!)
-        val currDateTime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            LocalDateTime.now()
-        } else {
-            System.currentTimeMillis()
+        cover: String,
+    ) {
+        try {
+            val file = getFileFromUri(context, downloadUri.value!!)
+            val currDateTime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                LocalDateTime.now()
+            } else {
+                System.currentTimeMillis()
+            }
+            val book = Book(
+                id = 1,
+                title = title!!,
+                description = description!!,
+                cover = file!!,
+                category_id = 1,
+                user_id = 1,
+                username = "",
+                chapters = 0,
+                status = 0,
+                views = 0,
+                lang = "English",
+                created_at = currDateTime.toString(),
+                updated_at = currDateTime.toString(),
+            )
+            postBook(book)
+        } catch (e: Exception) {
+            Log.d("Error", "createnewBook: ${e.message}")
         }
-        val book=Book(
-            id = null,
-            title = title!!,
-            description = description!!,
-            cover = file!!,
-            category_id = 1,
-            user_id = 1,
-            status = "draft",
-            views= 0,
-            lang = "English",
-            created_at = currDateTime.toString(),
-            updated_at = currDateTime.toString(),
-        )
-        postBook(book)
     }
 
 }

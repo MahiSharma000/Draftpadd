@@ -30,8 +30,8 @@ class CreateNewStoryFragment : Fragment() {
 
     private lateinit var utils: Utils
 
-    companion object{
-        const val REQUEST_IMAGE_SET=122
+    companion object {
+        const val REQUEST_IMAGE_SET = 122
     }
 
 
@@ -64,12 +64,13 @@ class CreateNewStoryFragment : Fragment() {
         binding.apply {
             nextBt.setOnClickListener {
                 viewModel.createnewBook(
+                    requireContext(),
                     imgCover.toString(),
                     txtStoryTitle.toString(),
                     txtStoryDescription.toString()
                 )
             }
-            vm.status.observe(viewLifecycleOwner) {
+            vm?.status?.observe(viewLifecycleOwner) {
                 when (it) {
                     NewStoryApiStatus.LOADING -> {
                         binding.nextBt.isEnabled = false
@@ -104,6 +105,7 @@ class CreateNewStoryFragment : Fragment() {
         }
 
     }
+
     private fun hasPermission(): Boolean {
         return EasyPermissions.hasPermissions(
             context,
@@ -111,6 +113,7 @@ class CreateNewStoryFragment : Fragment() {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
     }
+
     private fun getPermission() {
         EasyPermissions.requestPermissions(
             this,
@@ -120,6 +123,7 @@ class CreateNewStoryFragment : Fragment() {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
     }
+
     @AfterPermissionGranted(ProfileSettingsFragment.REQUEST_IMAGE_GET)
     private fun selectImage() {
         if (EasyPermissions.hasPermissions(
@@ -140,7 +144,7 @@ class CreateNewStoryFragment : Fragment() {
         }
     }
 
-    override fun onPermissionsDenied(requestCode: Int, perms: List<String>) {
+    fun onPermissionsDenied(requestCode: Int, perms: List<String>) {
         val dialog = AlertDialog.Builder(requireContext())
         dialog.setTitle("Permission Required")
         dialog.setMessage("This permission is required to upload image")
@@ -154,7 +158,7 @@ class CreateNewStoryFragment : Fragment() {
 
     }
 
-    override  fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
+    fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
         showSnackBar("Permission Granted")
     }
 
@@ -174,11 +178,11 @@ class CreateNewStoryFragment : Fragment() {
 
             }.create().show()
     }
+
     private val getImage =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             viewModel.setImageUri(uri, true)
         }
-
 
 
 }

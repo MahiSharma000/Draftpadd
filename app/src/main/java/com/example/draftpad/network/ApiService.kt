@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
-private const val BASE_URL = "http://192.168.1.41:5000/"
+private const val BASE_URL = "http://192.168.125.124:5000/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -56,7 +56,7 @@ interface ApiService {
         @Field("description") description: String,
         @Field("category_id") category_id: Int,
         @Field("user_id") user_id: Int,
-        @Field("status") status: String,
+        @Field("status") status: Int,
         @Field("created_at") created_at: String,
         @Field("views") views: Int = 0
     ): PostBookResponse

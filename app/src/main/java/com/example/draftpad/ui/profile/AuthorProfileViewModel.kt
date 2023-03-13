@@ -34,13 +34,11 @@ class AuthorProfileViewModel : ViewModel() {
             try {
                 _userId.value?.let {
                     ApiClient.retrofitService.getProfile(it).let { response ->
-                       // Log.d("ReadStoryViewModel", response.toString())
                         _author.value = response.author
                         _status.value = AuthorApiStatus.DONE
                     }
                 }
             } catch (e: Exception) {
-               // Log.e("ReadStoryViewModel", e.toString())
                 _status.value = AuthorApiStatus.ERROR
                 _author.value = null
             }
