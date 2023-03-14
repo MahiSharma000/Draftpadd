@@ -45,6 +45,7 @@ data class SelectedBookResponse(
     val status: String,
     val book: Book
 )
+
 data class GetCommentsResponse(
     val status: String,
     val comments: List<Comment>
@@ -55,7 +56,6 @@ data class ChaptersResponse(
     val chapters: List<Chapter>
 )
 
-//chapter response
 data class ChapterResponse(
     val status: String,
     val chapter: Chapter
@@ -69,4 +69,9 @@ data class AuthorResponse(
 data class PostCommentResponse(
     val status: String,
     val msg: String
+)
+
+data class FollowerResponse(
+    val status: String,
+    val followers: List<Follower>
 )

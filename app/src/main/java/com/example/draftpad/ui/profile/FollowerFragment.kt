@@ -1,14 +1,27 @@
 package com.example.draftpad.ui.profile
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.draftpad.R
+import com.example.draftpad.databinding.FragmentBooksBinding
+import com.example.draftpad.databinding.FragmentFollowerBinding
+import com.example.draftpad.ui.search.BookAdapter
+import com.example.draftpad.ui.search.BookViewModel
+import com.example.draftpad.ui.search.BooksFragmentDirections
 
 
 class FollowerFragment : Fragment() {
+
+    private val vm: FollowerViewModel by activityViewModels()
+    private var _binding: FragmentFollowerBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,11 +32,28 @@ class FollowerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_follower, container, false)
+        _binding = FragmentFollowerBinding.inflate(inflater)
+        binding.followervm = vm
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
-    companion object {
-        fun newInstance()= FollowerFragment()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        super.onViewCreated(view, savedInstanceState)
+        vm.setUserId(arguments?.getInt("user") ?: 1)
+        vm.getFollowers()
+        vm.followers.observe(viewLifecycleOwner) { followers ->
+            binding.rvFollowers.layoutManager = LinearLayoutManager(context)
+            binding.rvFollowers.adapter = FollowerAdapter() { follower ->
+                Log.e("FollowerFragment", follower.toString())
+                (binding.rvFollowers.adapter as FollowerAdapter).notifyDataSetChanged()
+
+            }
+            Log.e("BooksFragment", followers.toString())
+            (binding.rvFollowers.adapter as FollowerAdapter).submitList(followers)
+        }
+
     }
 }
+

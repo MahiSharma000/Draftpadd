@@ -11,7 +11,7 @@
         <!-- Customize your theme here. -->
     </style>
 <!--    no action bar-->
-    <style name="Theme.DraftPad.NoActionBar" parent="Theme.DraftPad">
+    <style name="Theme.DraftPadLight.NoActionBar" parent="Theme.DraftPadLight">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

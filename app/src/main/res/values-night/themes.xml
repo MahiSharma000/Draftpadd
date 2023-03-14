@@ -13,7 +13,5 @@
         <item name="android:statusBarColor">?attr/colorAccent</item>
         <!-- Customize your theme here. -->
     </style>
-    <background>
-        <item name="background">@color/black</item>
-    </background>
+    
 </resources>
