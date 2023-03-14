@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat.recreate
 import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentSettingsBinding
@@ -44,11 +45,13 @@ class SettingsFragment : Fragment() {
             btnPremiumSetting.setOnClickListener {
                 findNavController().navigate(R.id.action_settingsFragment_to_premiumFragment)
             }
-            btnOn.setOnClickListener {
-             //set theme to dark
+            btnOn.setOnClickListener{
+                //setTheme(R.style.Theme_DraftPadDark)
+                //recreate()
             }
             btnOff.setOnClickListener {
-                //set theme to light
+                //setTheme(R.style.Theme_DraftPadLight)
+                //recreate()
             }
         }
     }
