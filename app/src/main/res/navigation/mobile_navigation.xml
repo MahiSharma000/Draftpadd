@@ -112,11 +112,6 @@
         android:label="fragment_notification_setting"
         tools:layout="@layout/fragment_notification_setting" />
     <fragment
-        android:id="@+id/readingPreferencesFragment"
-        android:name="com.example.draftpad.setting.ReadingPreferencesFragment"
-        android:label="fragment_reading_preferences"
-        tools:layout="@layout/fragment_reading_preferences" />
-    <fragment
         android:id="@+id/blockedAccountFragment"
         android:name="com.example.draftpad.setting.BlockedAccountFragment"
         android:label="fragment_blocked_account"
@@ -139,9 +134,6 @@
         <action
             android:id="@+id/action_settingsFragment_to_mutedAccountFragment"
             app:destination="@id/mutedAccountFragment" />
-        <action
-            android:id="@+id/action_settingsFragment_to_readingPreferencesFragment"
-            app:destination="@id/readingPreferencesFragment" />
         <action
             android:id="@+id/action_settingsFragment_to_notificationSettingFragment"
             app:destination="@id/notificationSettingFragment" />

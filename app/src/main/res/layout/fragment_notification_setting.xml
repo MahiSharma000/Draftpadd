@@ -17,25 +17,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <CheckBox
-        android:id="@+id/cbInbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/inbox"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView27" />
-
 
     <CheckBox
         android:id="@+id/cbNewComments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="16dp"
         android:text="@string/new_comments"
-        app:layout_constraintStart_toStartOf="@+id/cbInbox"
-        app:layout_constraintTop_toBottomOf="@+id/cbInbox" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
     <CheckBox
         android:id="@+id/checkBox4"
@@ -90,18 +81,6 @@
         android:text="@string/updates_from_profile"
         app:layout_constraintStart_toStartOf="@+id/checkBox8"
         app:layout_constraintTop_toBottomOf="@+id/checkBox8" />
-
-    <View
-        android:id="@+id/divider5"
-        android:layout_width="380dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginBottom="7dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/cbNewComments"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cbInbox" />
 
     <View
         android:id="@+id/divider10"

@@ -35,9 +35,6 @@ class SettingsFragment : Fragment() {
             txtNotificationSetting.setOnClickListener {
                 findNavController().navigate(R.id.action_settingsFragment_to_notificationSettingFragment)
             }
-            txtReadingPreferences.setOnClickListener {
-                findNavController().navigate(R.id.action_settingsFragment_to_readingPreferencesFragment)
-            }
             txtBlocked.setOnClickListener {
                 findNavController().navigate(R.id.action_settingsFragment_to_blockedAccountFragment)
             }
@@ -47,7 +44,12 @@ class SettingsFragment : Fragment() {
             btnPremiumSetting.setOnClickListener {
                 findNavController().navigate(R.id.action_settingsFragment_to_premiumFragment)
             }
-
+            btnOn.setOnClickListener {
+             //set theme to dark
+            }
+            btnOff.setOnClickListener {
+                //set theme to light
+            }
         }
     }
 

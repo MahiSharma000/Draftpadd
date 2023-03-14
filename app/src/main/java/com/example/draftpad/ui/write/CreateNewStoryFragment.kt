@@ -46,8 +46,7 @@ class CreateNewStoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_profile_settings, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile_settings, container, false)
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
