@@ -1,5 +1,6 @@
 package com.example.draftpad
 
+import android.util.Base64
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -52,7 +53,7 @@ fun bindStatus(statusImageView: ImageView, status: BookApiStatus?) {
 fun bindSummaryText(textView: TextView, text: String?) {
     if (text != null) {
         textView.text = summary(text, 50)
-    }else{
+    } else {
         textView.text = "no description"
     }
 }
@@ -62,5 +63,19 @@ fun summary(text: String, max: Int): String {
         text.substring(0, max) + "..."
     } else {
         text
+    }
+}
+
+@BindingAdapter("author_img")
+fun bindAuthorImage(imageView: ImageView, data: String?) {
+    if (data != null) {
+        // if data is url then load
+        if (data.contains("http")) {
+            imageView.load(data)
+        } else {
+            // convert base64 to bitmap
+            val decodedString: ByteArray = Base64.decode(data, Base64.DEFAULT)
+            imageView.load(decodedString)
+        }
     }
 }

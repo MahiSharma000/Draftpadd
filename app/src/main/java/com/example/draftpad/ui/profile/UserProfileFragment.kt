@@ -51,9 +51,9 @@ class UserProfileFragment : Fragment() {
                 0 -> {
                     AboutFragment.newInstance()
                 }
-                1 -> {
-                    FollowerFragment.newInstance()
-                }
+//                1 -> {
+//                   // FollowerFragment.newInstance()
+//                }
                 else -> {
                     FollowingFragment.newInstance()
                 }

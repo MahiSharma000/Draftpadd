@@ -161,18 +161,6 @@
                 app:layout_constraintStart_toStartOf="@+id/editTextEmail"
                 app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
-            <EditText
-                android:id="@+id/txtDob"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
-                android:ems="10"
-                android:hint="01-01-2000"
-                android:inputType="date"
-                app:layout_constraintStart_toStartOf="@+id/textView20"
-                app:layout_constraintTop_toBottomOf="@+id/textView20"
-                tools:ignore="TouchTargetSizeCheck" />
-
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
@@ -236,6 +224,17 @@
                 app:layout_constraintStart_toStartOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/textView4"
                 tools:text="Phone Number" />
+
+            <EditText
+                android:id="@+id/txtDob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:hint="01-01-2000"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="@+id/textView20"
+                app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

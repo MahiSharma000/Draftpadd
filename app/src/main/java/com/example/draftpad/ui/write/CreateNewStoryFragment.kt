@@ -46,7 +46,7 @@ class CreateNewStoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile_settings, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_new_story, container, false)
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
@@ -61,6 +61,9 @@ class CreateNewStoryFragment : Fragment() {
             }
         }
         binding.apply {
+            imgCover.setOnClickListener {
+               selectImage()
+            }
             nextBt.setOnClickListener {
                 viewModel.createnewBook(
                     requireContext(),

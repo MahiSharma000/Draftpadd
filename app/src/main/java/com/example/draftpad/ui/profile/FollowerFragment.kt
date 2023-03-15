@@ -2,19 +2,13 @@ package com.example.draftpad.ui.profile
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.draftpad.R
-import com.example.draftpad.databinding.FragmentBooksBinding
 import com.example.draftpad.databinding.FragmentFollowerBinding
-import com.example.draftpad.ui.search.BookAdapter
-import com.example.draftpad.ui.search.BookViewModel
-import com.example.draftpad.ui.search.BooksFragmentDirections
 
 
 class FollowerFragment : Fragment() {
@@ -55,5 +49,6 @@ class FollowerFragment : Fragment() {
         }
 
     }
+
 }
 
