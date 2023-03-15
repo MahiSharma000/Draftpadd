@@ -40,6 +40,7 @@ class WriteStoryFragment : Fragment() {
             toolbar.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.action_save -> {
+
                         true
                     }
                     R.id.action_publish -> {
