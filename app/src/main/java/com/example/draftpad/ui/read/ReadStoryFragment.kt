@@ -42,9 +42,10 @@ class ReadStoryFragment : Fragment() {
             vm.getChapterById()
         }
         binding.apply {
-            imgComments.setOnClickListener { chapter ->
+            imgComments.setOnClickListener {
+                val chapter_id = vm.chapterId.value!!
                 val dir =
-                    ReadStoryFragmentDirections.actionReadStoryFragmentToCommentFragment(chapter.id)
+                    ReadStoryFragmentDirections.actionReadStoryFragmentToCommentFragment(chapter_id)
                 findNavController().navigate(dir)
             }
             imgNoAd.setOnClickListener {

@@ -1,12 +1,19 @@
 package com.example.draftpad.ui.read
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import com.example.draftpad.R
 import com.example.draftpad.databinding.CommentBinding
 import com.example.draftpad.network.Comment
+import com.example.draftpad.ui.search.SearchApiStatus
+
 
 
 class CommentAdapter(

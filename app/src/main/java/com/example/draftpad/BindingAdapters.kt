@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import coil.load
+import com.example.draftpad.ui.read.CommentApiStatus
 import com.example.draftpad.ui.search.BookApiStatus
 import com.example.draftpad.ui.search.SearchApiStatus
 
@@ -21,6 +22,26 @@ fun bindStatus(statusImageView: ImageView, status: SearchApiStatus?) {
             statusImageView.load(R.drawable.loading_animation)
         }
         SearchApiStatus.DONE -> {
+            statusImageView.visibility = View.GONE
+        }
+        else -> {
+
+        }
+    }
+}
+
+@BindingAdapter("commentApiStatus")
+fun bindStatus(statusImageView: ImageView, status: CommentApiStatus?) {
+    when (status) {
+        CommentApiStatus.ERROR -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.load(R.drawable.ic_connection_error)
+        }
+        CommentApiStatus.LOADING -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.load(R.drawable.loading_animation)
+        }
+        CommentApiStatus.DONE -> {
             statusImageView.visibility = View.GONE
         }
         else -> {

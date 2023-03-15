@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
-private const val BASE_URL = "http://192.168.18.196:5000/"
+private const val BASE_URL = "http://192.168.125.124:5000/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -91,9 +91,7 @@ interface ApiService {
     suspend fun addComment(
         @Field("content") content: String,
         @Field("user_id") user_id: Int,
-        @Field("chapter_id") chapter_id: Int,
-        createdAt: String,
-        updatedAt: String
+        @Field("chapter_id") chapter_id: Int
     ): PostCommentResponse
 
     @GET("api/v1/chapters/{id}")

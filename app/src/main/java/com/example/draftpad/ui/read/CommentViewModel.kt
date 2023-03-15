@@ -61,40 +61,22 @@ class CommentViewModel : ViewModel() {
         _comId.value = id
     }
 
-    private fun addComment(comment: Comment){
-        viewModelScope.launch {
-            _status.value = CommentApiStatus.LOADING
-            try {
+    fun createComment(content: String, chapter_id: Int, user_id: Int) {
+        try {
+            viewModelScope.launch {
+                _status.value = CommentApiStatus.LOADING
                 _postRespose.value = ApiClient.retrofitService.addComment(
-                    comment.content,
-                    comment.chapter_id,
-                    comment.user_id,
-                    comment.created_at,
-                    comment.updated_at
-                )
-            } catch (e: Exception) {
-                Log.e("CommentViewModel", e.toString())
-                _status.value = CommentApiStatus.ERROR
-                _comments.value = listOf()
-            }
-        }
+                    content = content,
+                    chapter_id = chapter_id,
+                    user_id = user_id,
 
-    }
-    fun createComment(content: String, chapter_id: Int, user_id: Int){
-        val currDateTime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            LocalDateTime.now()
-        } else {
-            System.currentTimeMillis()
+                )
+                _status.value = CommentApiStatus.DONE
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        val comment = Comment(
-            id= null,
-            content = content!!,
-            chapter_id = chapter_id!!,
-            user_id = user_id!!,
-            created_at = currDateTime.toString(),
-            updated_at = currDateTime.toString(),
-            )
-        addComment(comment)
     }
+
 
 }

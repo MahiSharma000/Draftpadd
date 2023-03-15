@@ -17,6 +17,7 @@ import com.example.draftpad.databinding.FragmentCommentBinding
 import com.example.draftpad.ui.search.BookAdapter
 import com.example.draftpad.ui.search.BookViewModel
 import com.example.draftpad.ui.search.BooksFragmentDirections
+import com.google.android.material.snackbar.Snackbar
 
 
 class CommentFragment : Fragment() {
@@ -42,7 +43,7 @@ class CommentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        CommentFragmentArgs.fromBundle(requireArguments()).chapterId.let{
+        CommentFragmentArgs.fromBundle(requireArguments()).chapterId.let {
             vm.setCommentId(it)
         }
         vm.comId.observe(viewLifecycleOwner) {
@@ -58,10 +59,14 @@ class CommentFragment : Fragment() {
 
         binding.apply {
             imgSend.setOnClickListener {
-                if(txtComment.text.isEmpty()){
+                if (txtComment.text.isEmpty()) {
                     imgSend.isEnabled = false
-                }
-                else{
+                    Snackbar.make(
+                        requireView(),
+                        "Please enter a comment",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                } else {
                     imgSend.isEnabled = true
                     txtComment.text.toString()
                 }
@@ -74,7 +79,7 @@ class CommentFragment : Fragment() {
                     }
                     CommentApiStatus.DONE -> {
                         binding.imgSend.isEnabled = true
-                        findNavController().navigate(R.id.action_signUpFragment_to_authFragment)
+
                     }
                     CommentApiStatus.ERROR -> {
                         binding.imgSend.isEnabled = true
@@ -100,9 +105,5 @@ class CommentFragment : Fragment() {
                 }
             }
         }
-
-
-
     }
-
 }

@@ -16,14 +16,11 @@
 
       <de.hdodenhof.circleimageview.CircleImageView
           android:id="@+id/imgProfile"
-          android:layout_width="0dp"
-          android:layout_height="64dp"
+          android:layout_width="70dp"
+          android:layout_height="75dp"
           android:layout_marginStart="16dp"
-          android:layout_marginTop="4dp"
-          android:layout_marginEnd="12dp"
+          android:layout_marginTop="16dp"
           android:src="@drawable/profile"
-          app:layout_constraintEnd_toStartOf="@+id/txtComment"
-          app:layout_constraintHorizontal_bias="0.0"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
 
@@ -82,6 +79,17 @@
           app:layout_constraintStart_toEndOf="@+id/imgProfile"
           app:layout_constraintTop_toTopOf="parent"
           tools:text="Post a comment" />
+
+      <ImageView
+          android:id="@+id/status_image"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:commentApiStatus="@{commentVm.status}" />
+
 
    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
