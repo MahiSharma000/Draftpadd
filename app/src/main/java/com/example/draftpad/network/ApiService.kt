@@ -68,6 +68,20 @@ interface ApiService {
         @Field("password") password: String
     ): LoginResponse
 
+    @FormUrlEncoded
+    @POST("api/v1/chapter")
+    suspend fun createChapter(
+        @Field("title") title: String,
+        @Field("book_id") book_id: Int,
+        @Field("content") content: String,
+        @Field("user_id") user_id: Int,
+        @Field("status") status: Int,
+        @Field("created_at") created_at: String,
+        @Field("updated_at") updated_at: String,
+        @Field("total_comments") total_comments: Int = 0,
+        @Field("total_likes") total_likes: Int = 0,
+        @Field("category_id") category_id: Int
+    ): PostChapterResponse
     @GET("api/v1/logout")
     suspend fun logout(): LogoutResponse
 

@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".setting.SettingFragment" >
+        tools:context=".setting.SettingFragment">
 
         <TextView
             android:id="@+id/textView7"
@@ -35,11 +36,11 @@
             android:id="@+id/txtNotificationSetting"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="9dp"
             android:clickable="true"
             android:text="Notifications"
-            app:layout_constraintStart_toStartOf="@+id/txtProfileSetting"
-            app:layout_constraintTop_toBottomOf="@+id/txtProfileSetting" />
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
         <!-- 2dp gray line-->
 
         <View
@@ -47,14 +48,9 @@
             android:layout_width="380dp"
             android:layout_height="2dp"
             android:layout_marginTop="9dp"
-            android:layout_marginBottom="9dp"
             android:background="#808080"
-            app:layout_constraintBottom_toTopOf="@+id/txtNotificationSetting"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtProfileSetting"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintStart_toStartOf="@+id/txtProfileSetting"
+            app:layout_constraintTop_toBottomOf="@+id/txtProfileSetting" />
 
         <View
             android:id="@+id/view4"
@@ -62,17 +58,20 @@
             android:layout_height="2dp"
             android:layout_marginTop="9dp"
             android:background="#808080"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txtNotificationSetting"
             app:layout_constraintTop_toBottomOf="@+id/txtNotificationSetting" />
 
         <TextView
             android:id="@+id/textView33"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="2dp"
             android:text="Dark Mode"
-            tools:layout_editor_absoluteX="15dp"
-            tools:layout_editor_absoluteY="192dp" />
+            app:layout_constraintBottom_toTopOf="@+id/radioGroup2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view4" />
 
         <RadioGroup
             android:id="@+id/radioGroup2"
@@ -100,16 +99,16 @@
             android:id="@+id/textView34"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:text="Subscriptions"
-            app:layout_constraintStart_toStartOf="@+id/radioGroup2"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+            app:layout_constraintStart_toStartOf="@+id/divider2"
+            app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
         <TextView
             android:id="@+id/btnPremiumSetting"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             android:clickable="true"
             android:text="Premium Subscription"
             app:layout_constraintStart_toStartOf="@+id/textView34"
@@ -119,10 +118,10 @@
             android:id="@+id/textView37"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="9dp"
             android:text="Privacy And Safety"
-            app:layout_constraintStart_toStartOf="@+id/btnPremiumSetting"
-            app:layout_constraintTop_toBottomOf="@+id/btnPremiumSetting" />
+            app:layout_constraintStart_toStartOf="@+id/divider3"
+            app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
         <TextView
             android:id="@+id/txtBlocked"
@@ -138,20 +137,20 @@
             android:id="@+id/txtMuted"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:clickable="true"
             android:text="Muted Accounts"
-            app:layout_constraintStart_toStartOf="@+id/txtBlocked"
-            app:layout_constraintTop_toBottomOf="@+id/txtBlocked" />
+            app:layout_constraintStart_toStartOf="@+id/divider4"
+            app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
         <TextView
             android:id="@+id/textView40"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="9dp"
             android:text="Preferred Stories"
-            app:layout_constraintStart_toStartOf="@+id/txtMuted"
-            app:layout_constraintTop_toBottomOf="@+id/txtMuted" />
+            app:layout_constraintStart_toStartOf="@+id/divider6"
+            app:layout_constraintTop_toBottomOf="@+id/divider6" />
 
         <TextView
             android:id="@+id/txtLanguage"
@@ -167,16 +166,16 @@
             android:id="@+id/textView42"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="9dp"
             android:text="Others"
-            app:layout_constraintStart_toStartOf="@+id/txtLanguage"
-            app:layout_constraintTop_toBottomOf="@+id/txtLanguage" />
+            app:layout_constraintStart_toStartOf="@+id/divider7"
+            app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
         <TextView
             android:id="@+id/txtHelp"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="11dp"
             android:clickable="true"
             android:text="Help And Support"
             app:layout_constraintStart_toStartOf="@+id/textView42"
@@ -186,24 +185,18 @@
             android:id="@+id/divider2"
             android:layout_width="380dp"
             android:layout_height="2dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginBottom="9dp"
+            android:layout_marginTop="12dp"
             android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toTopOf="@+id/textView34"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/radioGroup2"
             app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
 
         <View
             android:id="@+id/divider3"
             android:layout_width="380dp"
             android:layout_height="2dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginBottom="9dp"
+            android:layout_marginTop="8dp"
             android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toTopOf="@+id/textView37"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/btnPremiumSetting"
             app:layout_constraintTop_toBottomOf="@+id/btnPremiumSetting" />
 
         <View
@@ -211,11 +204,8 @@
             android:layout_width="380dp"
             android:layout_height="2dp"
             android:layout_marginTop="9dp"
-            android:layout_marginBottom="9dp"
             android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toTopOf="@+id/txtMuted"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txtBlocked"
             app:layout_constraintTop_toBottomOf="@+id/txtBlocked" />
 
         <View
@@ -223,34 +213,26 @@
             android:layout_width="380dp"
             android:layout_height="2dp"
             android:layout_marginTop="9dp"
-            android:layout_marginBottom="9dp"
             android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toTopOf="@+id/textView40"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txtMuted"
             app:layout_constraintTop_toBottomOf="@+id/txtMuted" />
 
         <View
             android:id="@+id/divider7"
             android:layout_width="380dp"
             android:layout_height="2dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginBottom="9dp"
+            android:layout_marginTop="8dp"
             android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toTopOf="@+id/textView42"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txtLanguage"
             app:layout_constraintTop_toBottomOf="@+id/txtLanguage" />
 
         <View
             android:id="@+id/divider8"
             android:layout_width="380dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="9dp"
+            android:layout_height="0dp"
             android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtHelp" />
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="792dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -75,3 +75,8 @@ data class FollowerResponse(
     val status: String,
     val followers: List<Follower>
 )
+
+data class PostChapterResponse(
+    val status: String,
+    val msg: String
+)
