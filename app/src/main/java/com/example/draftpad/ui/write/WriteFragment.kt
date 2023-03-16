@@ -24,8 +24,6 @@ class WriteFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(WriteViewModel::class.java)
 
         _binding = FragmentWriteBinding.inflate(inflater, container, false)
         toolbar = binding.toolbar
@@ -41,8 +39,7 @@ class WriteFragment : Fragment() {
         }
         val root: View = binding.root
 
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-        }
+
         return root
     }
 

@@ -27,33 +27,29 @@ class WriteViewModel : ViewModel() {
         _status.value = WriteApiStatus.NONE
     }
 
-    fun createNewChapter(bookId: Int, chapterTitle: String, chapterContent: String) {
-        try {
-            val currDateTime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                LocalDateTime.now()
-            } else {
-                System.currentTimeMillis()
-            }
+    fun createNewChapter(bookId: Int, chapterTitle: String, chapterContent: String,status : Int) {
             val chapter=Chapter(
                 id = 1,
                 book_Id = bookId!!,
                 title = chapterTitle!!,
                 content = chapterContent!!,
-                created_at = currDateTime.toString(),
-                updated_at = currDateTime.toString(),
                 category_id = 1,
-                status = 0,
+                status = status,
                 total_comments = 0,
                 total_likes = 0,
                 user_Id = 1,
+                book_title = "",
+                book_views = 0,
             )
             postChapter(chapter)
-        }catch (e:Exception){
-            Log.d("Error", "createnewChapter: ${e.message}")
-        }
+//        }catch (e:Exception){
+//            Log.d("Error", "createnewChapter: ${e.message}")
+//        }
     }
 
+
     private fun postChapter(chapter: Chapter) {
+        Log.d("Chapter", "postChapter: ${chapter.title}")
         viewModelScope.launch {
             _status.value = WriteApiStatus.LOADING
             _response.value = ApiClient.retrofitService.createChapter(
@@ -63,13 +59,12 @@ class WriteViewModel : ViewModel() {
                 category_id = chapter.category_id,
                 user_id = chapter.user_Id,
                 status = chapter.status,
-                created_at = chapter.created_at,
-                updated_at = chapter.updated_at,
                 total_comments = chapter.total_comments,
                 total_likes = chapter.total_likes,
             )
             _status.value = WriteApiStatus.DONE
         }
     }
+
 
 }

@@ -68,8 +68,8 @@ class CreateNewStoryFragment : Fragment() {
                 viewModel.createnewBook(
                     requireContext(),
                     imgCover.toString(),
-                    txtStoryTitle.toString(),
-                    txtStoryDescription.toString()
+                    txtTitle.text.toString(),
+                    txtDescription.text.toString()
                 )
             }
             vm?.status?.observe(viewLifecycleOwner) {
@@ -79,7 +79,8 @@ class CreateNewStoryFragment : Fragment() {
                     }
                     NewStoryApiStatus.DONE -> {
                         binding.nextBt.isEnabled = true
-                        findNavController().navigate(R.id.action_createNewStoryFragment_to_writeStoryFragment)
+                        val dir=CreateNewStoryFragmentDirections.actionCreateNewStoryFragmentToWriteStoryFragment(viewModel.response.value!!.id)
+                        findNavController().navigate(dir)
                     }
                     NewStoryApiStatus.ERROR -> {
                         binding.nextBt.isEnabled = true

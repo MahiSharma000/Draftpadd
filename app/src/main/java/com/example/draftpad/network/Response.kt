@@ -38,7 +38,8 @@ data class BooksAllResponse(
 
 data class PostBookResponse(
     val status: String,
-    val msg: String
+    val msg: String,
+    val id: Int
 )
 
 data class SelectedBookResponse(
@@ -77,6 +78,5 @@ data class FollowerResponse(
 )
 
 data class PostChapterResponse(
-    val status: String,
-    val msg: String
+    val status: String
 )

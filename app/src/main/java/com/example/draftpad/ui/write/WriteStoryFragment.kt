@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
@@ -35,15 +36,29 @@ class WriteStoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val bi=WriteStoryFragmentArgs.fromBundle(requireArguments()).bookId
         binding.toolbar.inflateMenu(R.menu.write_story_menu)
         binding.apply {
+            var status : Int
             toolbar.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.action_save -> {
-
+                        viewModel?.createNewChapter(
+                            bi,
+                            chapterTitle.text.toString(),
+                            chapterContent.text.toString(),
+                            status = 0
+                        )
                         true
                     }
                     R.id.action_publish -> {
+                        Toast.makeText(context, "Published ${bi}", Toast.LENGTH_SHORT).show()
+                        viewModel?.createNewChapter(
+                            bi,
+                            chapterTitle.text.toString(),
+                            chapterContent.text.toString(),
+                            status = 1
+                        )
                         true
                     }
                     R.id.action_preview -> {

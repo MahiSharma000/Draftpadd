@@ -3,20 +3,14 @@ package com.example.draftpad.ui.read
 import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.draftpad.R
-import com.example.draftpad.auth.AuthApiStatus
-import com.example.draftpad.databinding.FragmentBooksBinding
+import com.example.draftpad.Utils
 import com.example.draftpad.databinding.FragmentCommentBinding
-import com.example.draftpad.ui.search.BookAdapter
-import com.example.draftpad.ui.search.BookViewModel
-import com.example.draftpad.ui.search.BooksFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -43,7 +37,8 @@ class CommentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        CommentFragmentArgs.fromBundle(requireArguments()).chapterId.let {
+        val chapterId = CommentFragmentArgs.fromBundle(requireArguments()).chapterId
+        chapterId.let {
             vm.setCommentId(it)
         }
         vm.comId.observe(viewLifecycleOwner) {
@@ -60,35 +55,21 @@ class CommentFragment : Fragment() {
         binding.apply {
             imgSend.setOnClickListener {
                 if (txtComment.text.isEmpty()) {
-                    imgSend.isEnabled = false
                     Snackbar.make(
                         requireView(),
                         "Please enter a comment",
                         Snackbar.LENGTH_SHORT
                     ).show()
                 } else {
-                    imgSend.isEnabled = true
-                    txtComment.text.toString()
+                    vm.createComment(
+                        txtComment.text.toString(),
+                        Utils(requireContext()).getUser().id.toInt(),
+                        chapterId
+                    )
                 }
 
             }
-            vm.status.observe(viewLifecycleOwner) {
-                when (it) {
-                    CommentApiStatus.LOADING -> {
-                        binding.imgSend.isEnabled = false
-                    }
-                    CommentApiStatus.DONE -> {
-                        binding.imgSend.isEnabled = true
 
-                    }
-                    CommentApiStatus.ERROR -> {
-                        binding.imgSend.isEnabled = true
-                    }
-                    else -> {
-                        binding.imgSend.isEnabled = true
-                    }
-                }
-            }
         }
         vm.postResponse.observe(viewLifecycleOwner) {
             if (it != null) {

@@ -40,6 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/chapterTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorAccent"
@@ -60,6 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textChapterTitle">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/chapterContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorAccent"
