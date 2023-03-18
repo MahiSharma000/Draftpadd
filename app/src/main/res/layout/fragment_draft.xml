@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="draftvm"
+            type="com.example.draftpad.ui.search.BookViewModel" >
+        </variable>
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/frameLayout12"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.write.DraftFragment">
 
-    <TextView
-        android:id="@+id/draftstxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="173dp"
-        android:layout_marginTop="306dp"
-        android:layout_marginEnd="180dp"
-        android:fontFamily="@font/aclonica"
-        android:text="Drafts"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="24sp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/draftrv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/draft_card" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

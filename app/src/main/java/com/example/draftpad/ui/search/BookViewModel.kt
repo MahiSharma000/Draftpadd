@@ -24,6 +24,9 @@ class BookViewModel : ViewModel() {
     private val _catId = MutableLiveData<Int>()
     val catId: LiveData<Int> = _catId
 
+    private val _statusBook=MutableLiveData<Int>()
+    val statusBook:LiveData<Int> = _statusBook
+
     init {
         _status.value = BookApiStatus.LOADING
     }
@@ -49,6 +52,12 @@ class BookViewModel : ViewModel() {
                 _status.value = BookApiStatus.ERROR
                 _books.value = listOf()
             }
+        }
+    }
+
+    fun getBookByStatus(){
+        viewModelScope.launch {
+            _status.value=BookApiStatus.LOADING
         }
     }
 

@@ -51,6 +51,8 @@ class ReadFragment : Fragment() {
                 val dir =ReadFragmentDirections.actionReadFragmentToAuthorProfileFragment(vm.book.value!!.user_id )
                 findNavController().navigate(dir)
             }
+            imgAdd.setOnClickListener {
+            }
         }
 
     }
