@@ -31,9 +31,7 @@ _binding = FragmentDraftBinding.inflate(inflater, container, false)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            draftstxt.setOnClickListener {
-                findNavController().navigate(R.id.action_editStoryFragment_to_editStoryDetailFragment )
-            }
+
         }
     }
 

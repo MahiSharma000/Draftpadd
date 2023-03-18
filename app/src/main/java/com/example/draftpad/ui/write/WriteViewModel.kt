@@ -28,11 +28,12 @@ class WriteViewModel : ViewModel() {
     }
 
     fun createNewChapter(bookId: Int, chapterTitle: String, chapterContent: String,status : Int) {
+        Log.d("Chapter", "createNewChapter: $bookId")
             val chapter=Chapter(
                 id = 1,
-                book_Id = bookId!!,
-                title = chapterTitle!!,
-                content = chapterContent!!,
+                book_Id = bookId,
+                title = chapterTitle,
+                content = chapterContent,
                 category_id = 1,
                 status = status,
                 total_comments = 0,

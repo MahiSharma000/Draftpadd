@@ -40,13 +40,15 @@ class WriteStoryFragment : Fragment() {
         binding.toolbar.inflateMenu(R.menu.write_story_menu)
         binding.apply {
             var status : Int
+            val title = chapterTitle.text.toString()
+            val content = chapterContent.text.toString()
             toolbar.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.action_save -> {
                         viewModel?.createNewChapter(
                             bi,
-                            chapterTitle.text.toString(),
-                            chapterContent.text.toString(),
+                            title,
+                            content,
                             status = 0
                         )
                         true

@@ -15,7 +15,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.draftpad.network.ApiClient
 import com.example.draftpad.network.Book
 import com.example.draftpad.network.PostBookResponse
-
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -91,7 +90,7 @@ class NewStoryViewModel : ViewModel() {
         context: Context,
         title: String,
         description: String,
-        cover: String,
+        userId: Int
     ) {
         try {
             val file = getFileFromUri(context, downloadUri.value!!)
@@ -104,7 +103,7 @@ class NewStoryViewModel : ViewModel() {
                 id = 1,
                 title = title!!,
                 description = description!!,
-                cover = file!!,
+                cover = getFileFromUri(context, downloadUri.value!!),
                 category_id = 1,
                 user_id = 1,
                 username = "",

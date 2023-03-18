@@ -67,9 +67,9 @@ class CreateNewStoryFragment : Fragment() {
             nextBt.setOnClickListener {
                 viewModel.createnewBook(
                     requireContext(),
-                    imgCover.toString(),
                     txtTitle.text.toString(),
-                    txtDescription.text.toString()
+                    txtDescription.text.toString(),
+                    Utils(requireContext()).getUser().id.toInt()
                 )
             }
             vm?.status?.observe(viewLifecycleOwner) {
@@ -185,7 +185,12 @@ class CreateNewStoryFragment : Fragment() {
     private val getImage =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             viewModel.setImageUri(uri, true)
+            getStringFromUri(uri)
         }
+
+    private fun getStringFromUri(uri: Uri?) {
+
+    }
 
 
 }
