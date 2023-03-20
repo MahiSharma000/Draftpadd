@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentWriteStoryBinding
@@ -16,7 +17,7 @@ class WriteStoryFragment : Fragment() {
     private var _binding: FragmentWriteStoryBinding? = null
     private val binding get() = _binding!!
     private var toolbar: Toolbar? = null
-    private var viewModel: WriteViewModel? = null
+    private val viewModel : WriteViewModel by activityViewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +56,7 @@ class WriteStoryFragment : Fragment() {
                     }
                     R.id.action_publish -> {
                         Toast.makeText(context, "Published ${bi}", Toast.LENGTH_SHORT).show()
-                        viewModel?.createNewChapter(
+                        viewModel.createNewChapter(
                             bi,
                             chapterTitle.text.toString(),
                             chapterContent.text.toString(),
