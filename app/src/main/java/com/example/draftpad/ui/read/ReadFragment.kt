@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentReadBinding
 
 
@@ -52,6 +53,7 @@ class ReadFragment : Fragment() {
                 findNavController().navigate(dir)
             }
             imgAdd.setOnClickListener {
+                findNavController().navigate(R.id.action_readFragment_to_addReadingListFragment)
             }
         }
 

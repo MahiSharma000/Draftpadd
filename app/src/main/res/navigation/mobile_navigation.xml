@@ -235,6 +235,9 @@
         <action
             android:id="@+id/action_readFragment_to_chapterFragment"
             app:destination="@id/chapterFragment" />
+        <action
+            android:id="@+id/action_readFragment_to_addReadingListFragment"
+            app:destination="@id/addReadingListFragment" />
     </fragment>
     <fragment
         android:id="@+id/readStoryFragment"
@@ -311,4 +314,9 @@
             android:id="@+id/action_chapterFragment_to_commentFragment"
             app:destination="@id/commentFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/addReadingListFragment"
+        android:name="com.example.draftpad.ui.write.AddReadingListFragment"
+        android:label="fragment_add_reading_list"
+        tools:layout="@layout/fragment_add_reading_list" />
 </navigation>
