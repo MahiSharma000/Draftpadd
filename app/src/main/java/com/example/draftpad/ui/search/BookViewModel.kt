@@ -24,8 +24,8 @@ class BookViewModel : ViewModel() {
     private val _catId = MutableLiveData<Int>()
     val catId: LiveData<Int> = _catId
 
-    private val _statusBook=MutableLiveData<Int>()
-    val statusBook:LiveData<Int> = _statusBook
+    private val _statusBook = MutableLiveData<Int>()
+    val statusBook: LiveData<Int> = _statusBook
 
     init {
         _status.value = BookApiStatus.LOADING
@@ -38,7 +38,6 @@ class BookViewModel : ViewModel() {
             try {
                 _catId.value?.let {
                     ApiClient.retrofitService.getCategoryBooks(it).let { response ->
-                        Log.d("BookViewModel", response.toString())
                         _books.value = response.books
                         if (response.books.isNotEmpty()) {
                             _status.value = BookApiStatus.DONE
@@ -48,21 +47,11 @@ class BookViewModel : ViewModel() {
                     }
                 }
             } catch (e: Exception) {
-                Log.e("BookViewModel", e.toString())
                 _status.value = BookApiStatus.ERROR
                 _books.value = listOf()
             }
         }
     }
-
-    fun getBookByStatus(){
-        viewModelScope.launch {
-            _status.value=BookApiStatus.LOADING
-        }
-    }
-
-
-
     fun setCategoryId(id: Int) {
         _catId.value = id
     }

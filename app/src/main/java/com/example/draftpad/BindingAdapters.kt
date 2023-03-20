@@ -9,6 +9,7 @@ import coil.load
 import com.example.draftpad.ui.read.CommentApiStatus
 import com.example.draftpad.ui.search.BookApiStatus
 import com.example.draftpad.ui.search.SearchApiStatus
+import com.example.draftpad.ui.write.EditStoryApiStatus
 
 @BindingAdapter("searchApiStatus")
 fun bindStatus(statusImageView: ImageView, status: SearchApiStatus?) {
@@ -69,6 +70,28 @@ fun bindStatus(statusImageView: ImageView, status: BookApiStatus?) {
         }
     }
 }
+
+@BindingAdapter("editStoryApiStatus")
+fun bindStatus(statusImageView: ImageView, status: EditStoryApiStatus?) {
+    when (status) {
+        EditStoryApiStatus.ERROR -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.load(R.drawable.ic_connection_error)
+        }
+        EditStoryApiStatus.LOADING -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.load(R.drawable.loading_animation)
+        }
+        EditStoryApiStatus.DONE -> {
+            statusImageView.visibility = View.GONE
+        }
+        else -> {
+
+        }
+    }
+}
+
+
 
 @BindingAdapter("summary_text")
 fun bindSummaryText(textView: TextView, text: String?) {

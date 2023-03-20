@@ -10,13 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.example.draftpad.R
 import com.example.draftpad.Utils
-import com.example.draftpad.auth.AuthApiStatus
 import com.example.draftpad.databinding.FragmentCreateNewStoryBinding
 import com.example.draftpad.ui.profile.ProfileSettingsFragment
 import com.vmadalin.easypermissions.EasyPermissions
@@ -26,7 +26,7 @@ import com.vmadalin.easypermissions.annotations.AfterPermissionGranted
 class CreateNewStoryFragment : Fragment() {
     private var _binding: FragmentCreateNewStoryBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: NewStoryViewModel by viewModels()
+    private val viewModel: NewStoryViewModel by activityViewModels()
 
     private lateinit var utils: Utils
 

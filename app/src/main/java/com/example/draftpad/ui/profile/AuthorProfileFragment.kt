@@ -40,7 +40,4 @@ class AuthorProfileFragment : Fragment() {
         vm.getAuthorId(userId)
     }
 
-    companion object {
-
-    }
 }
