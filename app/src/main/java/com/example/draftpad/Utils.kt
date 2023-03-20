@@ -3,7 +3,6 @@ package com.example.draftpad
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.draftpad.models.LoggedUser
-import com.example.draftpad.network.User
 
 class Utils(val context: Context) {
     val prefs: SharedPreferences =

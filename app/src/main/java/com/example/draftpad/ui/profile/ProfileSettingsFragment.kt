@@ -126,6 +126,7 @@ class ProfileSettingsFragment : Fragment(), EasyPermissions.PermissionCallbacks 
         val loggedInUser = utils.getUser()
         loggedInUser.username.let { binding.userName.setText(it) }
         loggedInUser.email.let { binding.editTextEmail.setText(it) }
+        vm.getUser(loggedInUser.id.toInt())
 
         vm.downloadUri.observe(viewLifecycleOwner) {
             binding.imgProfile.load(it) {

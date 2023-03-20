@@ -50,6 +50,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="5dp"
                 android:src="@drawable/profile"
+                app:author_img="@{viewModel.user.profile_pic}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -121,6 +122,7 @@
                 android:layout_marginTop="2dp"
                 android:ems="10"
                 android:hint="First Name"
+                app:text="@{viewModel.user.first_name}"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="@+id/textView17"
                 app:layout_constraintTop_toBottomOf="@+id/textView17" />
@@ -178,6 +180,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:hint="LastName"
+                app:text = "@{viewModel.user.last_name}"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="@+id/textView5"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -200,6 +203,7 @@
                 android:layout_marginTop="24dp"
                 android:ems="10"
                 android:hint="About"
+                app:text = "@{viewModel.user.about}"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="@+id/textView15"
                 app:layout_constraintTop_toTopOf="@+id/textView15" />
@@ -220,6 +224,7 @@
                 android:layout_marginTop="7dp"
                 android:ems="10"
                 android:hint="Phone Number"
+                app:text = "@{viewModel.user.phone}"
                 android:inputType="phone"
                 app:layout_constraintStart_toStartOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/textView4"
@@ -232,9 +237,20 @@
                 android:layout_marginTop="5dp"
                 android:ems="10"
                 android:hint="01-01-2000"
+                app:text = "@{viewModel.user.dob}"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="@+id/textView20"
                 app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+            <TextView
+                android:id="@+id/txtforgotpwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Forgot Password"
+                android:textColor="#243387"
+                app:layout_constraintStart_toStartOf="@+id/txtDob"
+                app:layout_constraintTop_toBottomOf="@+id/txtDob" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

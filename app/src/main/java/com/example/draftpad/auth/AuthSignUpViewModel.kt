@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.draftpad.network.ApiClient
-import com.example.draftpad.network.LoginResponse
 import com.example.draftpad.network.RegisterResponse
 import com.example.draftpad.network.User
 import kotlinx.coroutines.launch

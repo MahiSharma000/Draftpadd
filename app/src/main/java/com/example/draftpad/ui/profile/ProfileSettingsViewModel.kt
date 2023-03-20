@@ -7,16 +7,19 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.draftpad.Utils
 import com.example.draftpad.network.ApiClient
 import com.example.draftpad.network.UserDataResponse
 import com.example.draftpad.network.UserProfile
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import java.io.File
+
 
 
 enum class ProfileApiStatus { LOADING, ERROR, DONE, NONE }
@@ -26,8 +29,14 @@ class ProfileSettingsViewModel : ViewModel() {
     private val _status = MutableLiveData<ProfileApiStatus>()
     val status: LiveData<ProfileApiStatus> = _status
 
+    private val _getstatus = MutableLiveData<ProfileApiStatus>()
+    val getstatus: LiveData<ProfileApiStatus> = _getstatus
+
     private val _response = MutableLiveData<UserDataResponse>()
     val response: LiveData<UserDataResponse> = _response
+
+    private val _user = MutableLiveData<UserProfile?>()
+    val user: LiveData<UserProfile?> = _user
 
     private var _isImgSelected = MutableLiveData<Boolean>()
     val isImgSelected: LiveData<Boolean> = _isImgSelected
@@ -101,5 +110,23 @@ class ProfileSettingsViewModel : ViewModel() {
     fun setImageUri(uri: Uri?, selected: Boolean) {
         _downloadUri.value = uri
         _isImgSelected.value = selected
+    }
+
+    fun getUser(uid: Int) {
+        viewModelScope.launch {
+            _getstatus.value = ProfileApiStatus.LOADING
+            try {
+                ApiClient.retrofitService.getProfile(uid).let { response ->
+                    Log.d("ProfileSettingsViewModel", "getUserId: $response")
+                    _user.value = response.author
+                    _getstatus.value = ProfileApiStatus.DONE
+                }
+
+            } catch (e: Exception) {
+                _getstatus.value = ProfileApiStatus.ERROR
+                _user.value = null
+                Log.e("ProfileSettingViewModel", "getUserId: $e")
+            }
+        }
     }
 }
