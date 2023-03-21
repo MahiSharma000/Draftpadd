@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.compose.runtime.snapshots.Snapshot.Companion.observe
 import androidx.fragment.app.activityViewModels
 import com.example.draftpad.R
+import com.example.draftpad.Utils
 import com.example.draftpad.databinding.FragmentAuthorProfileBinding
 
 
@@ -38,6 +39,15 @@ class AuthorProfileFragment : Fragment() {
         val userId = AuthorProfileFragmentArgs.fromBundle(requireArguments()).userId
         Log.d("AuthorProfileFragment", "onViewCreated: $userId")
         vm.getAuthorId(userId)
+        binding.apply {
+            btnfollow.setOnClickListener {
+                vm.postFollow(
+                    Utils(requireContext()).getUser().id,
+                    userId.toString()
+                )
+                btnfollow.text= "Following"
+            }
+        }
     }
 
 }

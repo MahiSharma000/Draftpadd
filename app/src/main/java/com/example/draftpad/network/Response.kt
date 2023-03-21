@@ -89,3 +89,8 @@ data class BooksByStatusResponse(
     val status: String,
     val books: List<Book>
 )
+
+data class AddFollowerResponse(
+    val status: String,
+    val msg: String
+)

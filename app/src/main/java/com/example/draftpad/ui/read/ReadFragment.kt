@@ -53,7 +53,7 @@ class ReadFragment : Fragment() {
                 findNavController().navigate(dir)
             }
             imgAdd.setOnClickListener {
-                findNavController().navigate(R.id.action_readFragment_to_addReadingListFragment)
+               // findNavController().navigate(R.id.action_readFragment_to_addReadingListFragment)
             }
         }
 
