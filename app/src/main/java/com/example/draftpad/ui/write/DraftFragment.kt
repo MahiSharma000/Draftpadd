@@ -45,6 +45,8 @@ class DraftFragment : Fragment() {
                     Log.e("DraftFragment", books.toString())
                     draftrv.layoutManager = LinearLayoutManager(context)
                     draftrv.adapter = DraftAdapter() { book ->
+                        val dir = DraftFragmentDirections.actionDraftFragmentToEditStoryDetailFragment(book.id)
+                        findNavController().navigate(dir)
                     }
                     Log.e("DraftFragment", books.toString())
                     (draftrv.adapter as DraftAdapter).submitList(books)

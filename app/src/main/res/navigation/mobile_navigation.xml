@@ -173,6 +173,9 @@
         <action
             android:id="@+id/action_editStoryDetailFragment_to_addTagFragment"
             app:destination="@id/addTagFragment" />
+        <argument
+            android:name="bookId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/editChaptersFragment"
@@ -319,4 +322,12 @@
         android:name="com.example.draftpad.ui.write.AddReadingListFragment"
         android:label="fragment_add_reading_list"
         tools:layout="@layout/fragment_add_reading_list" />
+    <fragment
+        android:id="@+id/draftFragment"
+        android:name="com.example.draftpad.ui.write.DraftFragment"
+        android:label="DraftFragment" >
+        <action
+            android:id="@+id/action_draftFragment_to_editStoryDetailFragment"
+            app:destination="@id/editStoryDetailFragment" />
+    </fragment>
 </navigation>

@@ -27,7 +27,6 @@ class EditStoryViewModel : ViewModel(){
         viewModelScope.launch {
             _status.value = EditStoryApiStatus.LOADING
             try {
-
                 userId.let {
                     ApiClient.retrofitService.getBooksByStatus(userId, bookStatus).let { response ->
                         Log.d("EditStoryViewModel", response.toString())

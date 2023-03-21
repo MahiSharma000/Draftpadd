@@ -36,14 +36,14 @@ class AuthorProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val userId = AuthorProfileFragmentArgs.fromBundle(requireArguments()).userId
-        Log.d("AuthorProfileFragment", "onViewCreated: $userId")
-        vm.getAuthorId(userId)
+        val user_id = AuthorProfileFragmentArgs.fromBundle(requireArguments()).userId
+        Log.d("AuthorProfileFragment", "onViewCreated: $user_id")
+        vm.getAuthorId(user_id)
         binding.apply {
             btnfollow.setOnClickListener {
                 vm.postFollow(
                     Utils(requireContext()).getUser().id,
-                    userId.toString()
+                    user_id.toString()
                 )
                 btnfollow.text= "Following"
             }

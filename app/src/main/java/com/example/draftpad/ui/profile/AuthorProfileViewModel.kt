@@ -38,7 +38,6 @@ class AuthorProfileViewModel : ViewModel() {
         viewModelScope.launch {
             _status.value = AuthorApiStatus.LOADING
             try {
-                setAuthorId(uid)
                 ApiClient.retrofitService.getProfile(uid).let { response ->
                     Log.d("AuthorProfileViewModel", "getAuthorId: $response")
                     _author.value = response.author
@@ -53,15 +52,11 @@ class AuthorProfileViewModel : ViewModel() {
         }
     }
 
-    private fun setAuthorId(id: Int) {
-        _userId.value = id
-    }
-
 
     fun followAuthor(follower: Follower) {
         viewModelScope.launch {
             _status.value = AuthorApiStatus.LOADING
-            _response.value=ApiClient.retrofitService.follow(
+            _response.value = ApiClient.retrofitService.follow(
                 follower.user_id,
                 follower.follower_id
             )
@@ -71,7 +66,7 @@ class AuthorProfileViewModel : ViewModel() {
     fun postFollow(
         userId: String,
         followerId: String
-    ){
+    ) {
         val currDateTime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             LocalDateTime.now()
         } else {
