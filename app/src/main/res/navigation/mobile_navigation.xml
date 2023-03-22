@@ -105,7 +105,11 @@
         android:id="@+id/profileSettingsFragment"
         android:name="com.example.draftpad.ui.profile.ProfileSettingsFragment"
         android:label="fragment_profile_settings"
-        tools:layout="@layout/fragment_profile_settings" />
+        tools:layout="@layout/fragment_profile_settings" >
+        <action
+            android:id="@+id/action_profileSettingsFragment_to_changePassword"
+            app:destination="@id/changePassword" />
+    </fragment>
     <fragment
         android:id="@+id/notificationSettingFragment"
         android:name="com.example.draftpad.setting.NotificationSettingFragment"
@@ -329,5 +333,11 @@
         <action
             android:id="@+id/action_draftFragment_to_editStoryDetailFragment"
             app:destination="@id/editStoryDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePassword"
+        android:name="com.example.draftpad.setting.ChangePassword"
+        android:label="ChangePassword" >
+        <argument android:name="userId" />
     </fragment>
 </navigation>

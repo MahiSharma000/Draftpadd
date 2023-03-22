@@ -8,113 +8,139 @@
             name="authorProfileVm"
             type="com.example.draftpad.ui.profile.AuthorProfileViewModel" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/frameLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.profile.AuthorProfileFragment">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgProfile"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/profile"
-        app:author_img = "@{authorProfileVm.author.profile_pic}"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView29"
+        app:layout_constraintTop_toTopOf="@+id/textView29"
+        tools:context=".ui.profile.AuthorProfileFragment">
 
-    <TextView
-        android:id="@+id/AuthorName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="TextView"
-        app:text="@{authorProfileVm.author.username}"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgProfile" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgProfile"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/profile"
+            app:author_img="@{authorProfileVm.author.profile_pic}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/Author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="TextView"
-        app:text="@{authorProfileVm.author.first_name + authorProfileVm.author.last_name}}"
-        app:layout_constraintStart_toStartOf="@+id/AuthorName"
-        app:layout_constraintTop_toBottomOf="@+id/AuthorName" />
+        <TextView
+            android:id="@+id/AuthorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgProfile"
+            app:text="@{authorProfileVm.author.username}" />
 
-    <Button
-        android:id="@+id/btnfollow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/follow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Author" />
+        <TextView
+            android:id="@+id/Author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="@+id/AuthorName"
+            app:layout_constraintTop_toBottomOf="@+id/AuthorName"
+            app:text="@{authorProfileVm.author.first_name + authorProfileVm.author.last_name}}" />
 
-    <TextView
-        android:id="@+id/txtwork"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="10dp"
-        android:text="0"
-        app:text="@{String.valueOf(authorProfileVm.author.book_written)}"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnfollow" />
+        <Button
+            android:id="@+id/btnfollow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/follow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Author" />
 
-    <TextView
-        android:id="@+id/textView51"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="@string/works"
-        app:layout_constraintStart_toStartOf="@+id/txtwork"
-        app:layout_constraintTop_toBottomOf="@+id/txtwork" />
+        <TextView
+            android:id="@+id/txtwork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="10dp"
+            android:text="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnfollow"
+            app:text="@{String.valueOf(authorProfileVm.author.book_written)}" />
 
-    <TextView
-        android:id="@+id/txtReadingList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
-        android:text="0"
-        app:text="@{String.valueOf(authorProfileVm.author.booksRead)}"
-        app:layout_constraintStart_toEndOf="@+id/textView51"
-        app:layout_constraintTop_toBottomOf="@+id/btnfollow" />
+        <TextView
+            android:id="@+id/textView51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@string/works"
+            app:layout_constraintStart_toStartOf="@+id/txtwork"
+            app:layout_constraintTop_toBottomOf="@+id/txtwork" />
 
-    <TextView
-        android:id="@+id/textView56"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="@string/reading_list"
-        app:layout_constraintStart_toStartOf="@+id/txtReadingList"
-        app:layout_constraintTop_toBottomOf="@+id/txtReadingList" />
+        <TextView
+            android:id="@+id/txtReadingList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:text="0"
+            app:layout_constraintStart_toEndOf="@+id/textView51"
+            app:layout_constraintTop_toBottomOf="@+id/btnfollow"
+            app:text="@{String.valueOf(authorProfileVm.author.booksRead)}" />
 
-    <TextView
-        android:id="@+id/textView57"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
-        android:text="0"
-        app:text="@{String.valueOf(authorProfileVm.author.followers)}"
-        app:layout_constraintStart_toEndOf="@+id/textView56"
-        app:layout_constraintTop_toBottomOf="@+id/btnfollow" />
+        <TextView
+            android:id="@+id/textView56"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@string/reading_list"
+            app:layout_constraintStart_toStartOf="@+id/txtReadingList"
+            app:layout_constraintTop_toBottomOf="@+id/txtReadingList" />
 
-    <TextView
-        android:id="@+id/textView59"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="@string/followers"
-        app:layout_constraintStart_toStartOf="@+id/textView57"
-        app:layout_constraintTop_toBottomOf="@+id/textView57" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView57"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:text="0"
+            app:layout_constraintStart_toEndOf="@+id/textView56"
+            app:layout_constraintTop_toBottomOf="@+id/btnfollow"
+            app:text="@{String.valueOf(authorProfileVm.author.followers)}" />
+
+        <TextView
+            android:id="@+id/textView59"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@string/followers"
+            app:layout_constraintStart_toStartOf="@+id/textView57"
+            app:layout_constraintTop_toBottomOf="@+id/textView57" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="33dp"
+            android:text="ABOUT"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView51" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:text="@{authorProfileVm.author.about}"
+            app:layout_constraintStart_toStartOf="@+id/textView21"
+            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

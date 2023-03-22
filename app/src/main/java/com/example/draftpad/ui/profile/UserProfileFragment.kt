@@ -45,41 +45,11 @@ class UserProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val pagerAdapter = UserProfileFragment.PagerAdapter(childFragmentManager)
+
         val userId = Utils(requireContext()).getUser().id.toInt()
         viewModel.getUserProfile(userId)
-        binding.apply {
-            viewPager.adapter = pagerAdapter
-            tabLayout.setupWithViewPager(viewPager)
-        }
-    }
 
-    class PagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
-        override fun getItem(position: Int): Fragment {
-            return when (position) {
-                0 -> {
-                    AboutFragment.newInstance()
-                }
-//                1 -> {
-//                   // FollowerFragment.newInstance()
-//                }
-                else -> {
-                    FollowingFragment.newInstance()
-                }
-            }
-        }
 
-        override fun getCount(): Int {
-            return 3
-        }
-
-        override fun getPageTitle(position: Int): CharSequence? {
-            return when (position) {
-                0 -> "ABOUT"
-                1 -> "FOLLOWERS"
-                else -> "FOLLOWING"
-            }
-        }
     }
 
     companion object {

@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.example.draftpad.R
@@ -208,6 +209,9 @@ class ProfileSettingsFragment : Fragment(), EasyPermissions.PermissionCallbacks 
             }
             imgProfile.setOnClickListener {
                 selectImage()
+            }
+            txtchangepwd.setOnClickListener {
+                findNavController().navigate(R.id.action_profileSettingsFragment_to_changePassword)
             }
         }
     }
