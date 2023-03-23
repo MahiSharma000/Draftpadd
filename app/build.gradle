@@ -84,5 +84,8 @@ dependencies {
     implementation "io.coil-kt:coil-compose:2.1.0"
     implementation 'com.vmadalin:easypermissions-ktx:1.0.0'
 
+    implementation 'com.stripe:stripe-android:20.20.0'
+    implementation 'com.github.kittinunf.fuel:fuel:2.3.1'
+    implementation 'com.github.kittinunf.fuel:fuel-json:2.3.1'
 
 }

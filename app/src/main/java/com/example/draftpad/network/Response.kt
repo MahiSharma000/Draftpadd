@@ -99,3 +99,13 @@ data class ProfilesByNameResponse(
     val status: String,
     val profiles: List<UserProfile>
 )
+
+data class BooksByNameResponse(
+    val status: String,
+    val books: List<Book>
+)
+
+data class ReadingListByNameResponse(
+    val status: String,
+    val readingList: List<ReadingList>
+)

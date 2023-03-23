@@ -18,6 +18,9 @@ class BookViewModel : ViewModel() {
     private val _books = MutableLiveData<List<Book>>()
     val books: LiveData<List<Book>> = _books
 
+    private val _bookName = MutableLiveData<String>()
+    val bookName: LiveData<String> = _bookName
+
     private val _book = MutableLiveData<Book>()
     val book: LiveData<Book> = _book
 
@@ -54,6 +57,10 @@ class BookViewModel : ViewModel() {
     }
     fun setCategoryId(id: Int) {
         _catId.value = id
+    }
+
+    fun setBookName(name:String){
+        _bookName.value = name
     }
 
 }

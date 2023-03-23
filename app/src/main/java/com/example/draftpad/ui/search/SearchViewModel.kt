@@ -21,7 +21,6 @@ class SearchViewModel : ViewModel() {
     val categories: LiveData<List<Category>> = _categories
 
 
-
     init {
         _status.value = SearchApiStatus.LOADING
         getCategories()
@@ -47,6 +46,7 @@ class SearchViewModel : ViewModel() {
             }
         }
     }
+
 
 
 }

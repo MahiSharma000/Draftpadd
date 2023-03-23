@@ -17,7 +17,7 @@ class ProfileFragment : Fragment() {
 
     private val vm: ProfileViewModel by activityViewModels()
     private var _binding: FragmentProfileBinding? = null
-    private var _bind : FragmentSearchNextBinding? = null
+    private var _bind: FragmentSearchNextBinding? = null
     private val bind get() = _bind!!
     private val binding get() = _binding!!
 
@@ -46,7 +46,6 @@ class ProfileFragment : Fragment() {
         vm.name.observe(viewLifecycleOwner) {
             vm.getProfiles()
         }
-
         vm.profiles.observe(viewLifecycleOwner) { profiles ->
             binding.profilerv.layoutManager = LinearLayoutManager(context)
             binding.profilerv.adapter = ProfileAdapter() { profile ->
