@@ -19,8 +19,8 @@ class CommentViewModel : ViewModel() {
     private val _getresponse = MutableLiveData<GetCommentsResponse>()
     val getresponse: LiveData<GetCommentsResponse> = _getresponse
 
-    private val _postRespose = MutableLiveData<PostCommentResponse>()
-    val postResponse: LiveData<PostCommentResponse> = _postRespose
+    private val _postResponse = MutableLiveData<PostCommentResponse>()
+    val postResponse: LiveData<PostCommentResponse> = _postResponse
 
     private val _comments = MutableLiveData<List<Comment>>()
     val comments: LiveData<List<Comment>> = _comments
@@ -86,7 +86,7 @@ class CommentViewModel : ViewModel() {
     private fun postComment(comment: Comment) {
         viewModelScope.launch {
             _status.value = CommentApiStatus.LOADING
-            _postRespose.value = ApiClient.retrofitService.addComment(
+            _postResponse.value = ApiClient.retrofitService.addComment(
                 comment.content,
                 comment.chapter_id,
                 comment.user_id,

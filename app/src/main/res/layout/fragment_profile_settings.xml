@@ -63,7 +63,7 @@
                 android:fontFamily="@font/akaya_telivigala"
                 android:text="Profile Picture"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintStart_toEndOf="@+id/imgProfile"
+                app:layout_constraintStart_toEndOf="@+id/imgprofile"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
             <TextView
@@ -83,8 +83,8 @@
                 android:fontFamily="@font/akaya_telivigala"
                 android:text="About"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintStart_toStartOf="@+id/imgProfile"
-                app:layout_constraintTop_toBottomOf="@+id/imgProfile" />
+                app:layout_constraintStart_toStartOf="@+id/imgprofile"
+                app:layout_constraintTop_toBottomOf="@+id/imgprofile" />
 
             <TextView
                 android:id="@+id/textView16"

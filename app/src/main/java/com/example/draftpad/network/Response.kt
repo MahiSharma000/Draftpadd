@@ -94,3 +94,8 @@ data class AddFollowerResponse(
     val status: String,
     val msg: String
 )
+
+data class ProfilesByNameResponse(
+    val status: String,
+    val profiles: List<UserProfile>
+)

@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imgProfile"
+            android:id="@+id/imgprofile"
             android:layout_width="70dp"
             android:layout_height="75dp"
             android:layout_marginStart="5dp"
@@ -36,7 +36,7 @@
             android:text="@string/user_name"
             app:text = "@{comment.username}"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imgProfile"
+            app:layout_constraintStart_toEndOf="@+id/imgprofile"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/comment"
             app:text="@{comment.content}"
-            app:layout_constraintStart_toEndOf="@+id/imgProfile"
+            app:layout_constraintStart_toEndOf="@+id/imgprofile"
             app:layout_constraintTop_toBottomOf="@+id/txtAuthorName" />
 
         <TextView
@@ -58,7 +58,7 @@
             android:layout_marginTop="10dp"
             android:text="1:21 am"
             app:text = "@{String.valueOf(comment.created_at)}"
-            app:layout_constraintStart_toEndOf="@+id/imgProfile"
+            app:layout_constraintStart_toEndOf="@+id/imgprofile"
             app:layout_constraintTop_toBottomOf="@+id/txtComments" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

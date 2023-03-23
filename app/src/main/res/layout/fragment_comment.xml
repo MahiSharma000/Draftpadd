@@ -15,7 +15,7 @@
        tools:context=".ui.read.CommentFragment">
 
       <de.hdodenhof.circleimageview.CircleImageView
-          android:id="@+id/imgProfile"
+          android:id="@+id/imgprofile"
           android:layout_width="70dp"
           android:layout_height="75dp"
           android:layout_marginStart="16dp"
@@ -39,7 +39,7 @@
           android:layout_width="380dp"
           android:layout_height="1dp"
           android:background="?android:attr/listDivider"
-          app:layout_constraintBottom_toBottomOf="@+id/imgProfile"
+          app:layout_constraintBottom_toBottomOf="@+id/imgprofile"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent" />
 
@@ -50,7 +50,7 @@
           android:layout_marginTop="10dp"
           android:text="@string/view_comments"
           android:textStyle="bold"
-          app:layout_constraintStart_toStartOf="@+id/imgProfile"
+          app:layout_constraintStart_toStartOf="@+id/imgprofile"
           app:layout_constraintTop_toBottomOf="@+id/divider17" />
 
       <androidx.recyclerview.widget.RecyclerView
@@ -76,7 +76,7 @@
           android:hint="Post a comment"
           android:inputType="textPersonName"
           app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toEndOf="@+id/imgProfile"
+          app:layout_constraintStart_toEndOf="@+id/imgprofile"
           app:layout_constraintTop_toTopOf="parent"
           tools:text="Post a comment" />
 

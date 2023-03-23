@@ -48,6 +48,10 @@ class SearchFragment : Fragment() {
                 Log.e("SearchFragment", categories.toString())
                 (binding.rvCategory.adapter as CategoryAdapter).submitList(categories)
             }
+
+            txtsearch.setOnClickListener {
+                findNavController().navigate(R.id.action_navigation_search_to_searchNextFragment)
+            }
         }
     }
 
