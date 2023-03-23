@@ -26,7 +26,7 @@ class PremiumFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         paymentSheet = PaymentSheet(this, ::onPaymentSheetResult)
-        val ip = "192.168.18.182:5000"
+        val ip = "192.168.125.124:5000"
         "http://$ip/api/v1/create-checkout-session".httpPost().responseJson { _, _, result ->
             if (result is Result.Success) {
                 val responseJson = result.get().obj()

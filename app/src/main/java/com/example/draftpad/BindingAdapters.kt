@@ -8,6 +8,7 @@ import androidx.databinding.BindingAdapter
 import coil.load
 import com.example.draftpad.ui.read.CommentApiStatus
 import com.example.draftpad.ui.search.BookApiStatus
+import com.example.draftpad.ui.search.ProfileApiStatus
 import com.example.draftpad.ui.search.SearchApiStatus
 import com.example.draftpad.ui.write.EditStoryApiStatus
 
@@ -83,6 +84,26 @@ fun bindStatus(statusImageView: ImageView, status: EditStoryApiStatus?) {
             statusImageView.load(R.drawable.loading_animation)
         }
         EditStoryApiStatus.DONE -> {
+            statusImageView.visibility = View.GONE
+        }
+        else -> {
+
+        }
+    }
+}
+
+@BindingAdapter("profileApiStatus")
+fun bindStatus(statusImageView: ImageView, status: ProfileApiStatus?) {
+    when (status) {
+       ProfileApiStatus.ERROR -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.load(R.drawable.ic_connection_error)
+        }
+        ProfileApiStatus.LOADING -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.load(R.drawable.loading_animation)
+        }
+        ProfileApiStatus.DONE -> {
             statusImageView.visibility = View.GONE
         }
         else -> {

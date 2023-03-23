@@ -17,8 +17,6 @@ class ProfileFragment : Fragment() {
 
     private val vm: ProfileViewModel by activityViewModels()
     private var _binding: FragmentProfileBinding? = null
-    private var _bind: FragmentSearchNextBinding? = null
-    private val bind get() = _bind!!
     private val binding get() = _binding!!
 
 
