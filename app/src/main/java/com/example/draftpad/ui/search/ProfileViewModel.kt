@@ -57,7 +57,6 @@ class ProfileViewModel : ViewModel() {
 
     fun setName(name: String) {
         _name.value = name
-        Toast.makeText(null, name, Toast.LENGTH_SHORT).show()
 
     }
 }

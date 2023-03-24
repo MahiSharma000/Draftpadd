@@ -19,7 +19,7 @@ class ProfileFragment : Fragment() {
     private val vm: ProfileViewModel by activityViewModels()
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    private val getname: SearchNextFragment? = null
+  //   private val getname: SearchNextFragment? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,12 +39,10 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val name = getname?.getName()
-        //val name = ProfileFragmentArgs.fromBundle(requireArguments()).name
+      //  val name = getname?.getName()
+        val name = ProfileFragmentArgs.fromBundle(requireArguments()).name
         name.let {
-            if (it != null) {
-                vm.setName(it)
-            }
+            vm.setName(it)
         }
 
         vm.name.observe(viewLifecycleOwner) {

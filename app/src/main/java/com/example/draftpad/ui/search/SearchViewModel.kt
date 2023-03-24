@@ -4,10 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.draftpad.network.ApiClient
-import com.example.draftpad.network.Category
 import androidx.lifecycle.viewModelScope
-import com.example.draftpad.network.Book
+import com.example.draftpad.network.*
 import kotlinx.coroutines.launch
 
 
@@ -20,10 +18,26 @@ class SearchViewModel : ViewModel() {
     private val _categories = MutableLiveData<List<Category>>()
     val categories: LiveData<List<Category>> = _categories
 
+    private val _query = MutableLiveData<String>()
+    val query: LiveData<String> = _query
+
+    private val _storyList = MutableLiveData<List<Book>>()
+    val storyList = _storyList
+
+    private val _profileList = MutableLiveData<List<UserProfile>>()
+    val profileList = _profileList
+
+    private val _readingList = MutableLiveData<List<ReadingList>>()
+    val readingList = _readingList
+
 
     init {
         _status.value = SearchApiStatus.LOADING
         getCategories()
+    }
+
+    fun setQuery(query: String) {
+        _query.value = query
     }
 
     private fun getCategories() {
@@ -45,5 +59,26 @@ class SearchViewModel : ViewModel() {
                 _categories.value = listOf()
             }
         }
+    }
+
+    fun getSearchResult(query: String, filterName: String) {
+        when (filterName) {
+            "Stories" -> getStories(query)
+            "Profiles" -> getProfiles(query)
+            "Reading Lists" -> getReadingLists(query)
+        }
+    }
+
+    private fun getReadingLists(query: String) {
+        Log.d("SearchViewModel", "getReadingLists")
+    }
+
+    private fun getProfiles(query: String) {
+        Log.d("SearchViewModel", "getProfiles")
+    }
+
+    private fun getStories(query: String) {
+        Log.d("SearchViewModel", "getStories")
+
     }
 }

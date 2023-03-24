@@ -2,13 +2,12 @@ package com.example.draftpad.ui.search
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.draftpad.R
@@ -43,16 +42,23 @@ class SearchFragment : Fragment() {
             viewModel.categories.observe(viewLifecycleOwner) { categories ->
                 this.rvCategory.layoutManager = LinearLayoutManager(context)
                 this.rvCategory.adapter = CategoryAdapter() { category ->
-                    val dir = SearchFragmentDirections.actionNavigationSearchToBooksFragment(category.id)
+                    val dir =
+                        SearchFragmentDirections.actionNavigationSearchToBooksFragment(category.id)
                     findNavController().navigate(dir)
                 }
                 Log.e("SearchFragment", categories.toString())
                 (binding.rvCategory.adapter as CategoryAdapter).submitList(categories)
             }
 
-            txtsearch.addTextChangedListener {
-                findNavController().navigate(R.id.action_navigation_search_to_searchNextFragment)
-            }
+            txtsearch.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+                if (event.action == KeyEvent.ACTION_DOWN && (keyCode == KeyEvent.KEYCODE_ENTER) || (keyCode == KeyEvent.KEYCODE_SEARCH)) {
+                    val query = txtsearch.text.toString()
+                    viewModel.setQuery(query)
+                    findNavController().navigate(R.id.action_navigation_search_to_searchNextFragment)
+                    return@OnKeyListener true
+                }
+                false
+            })
         }
     }
 
