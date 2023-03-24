@@ -27,18 +27,22 @@ class SearchNextFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchNextBinding.inflate(inflater)
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        //binding.viewModel = viewModel
+        //binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.txtsearchByName.addTextChangedListener {
+        /*binding.txtsearchByName.addTextChangedListener {
             val action =
                 SearchNextFragmentDirections.actionSearchNextFragmentToProfileFragment(it.toString())
             findNavController().navigate(action)
-        }
+        }*/
+    }
+    //function that return name passed in the argument
+    fun getName(): String {
+        return binding.txtsearchByName.text.toString()
     }
 }
 

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -49,7 +50,7 @@ class SearchFragment : Fragment() {
                 (binding.rvCategory.adapter as CategoryAdapter).submitList(categories)
             }
 
-            txtsearch.setOnClickListener {
+            txtsearch.addTextChangedListener {
                 findNavController().navigate(R.id.action_navigation_search_to_searchNextFragment)
             }
         }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentPremiumBinding
+import com.example.draftpad.databinding.FragmentSearchBinding
 import com.github.kittinunf.fuel.httpPost
 import com.github.kittinunf.fuel.json.responseJson
 import com.stripe.android.PaymentConfiguration
@@ -70,8 +71,9 @@ class PremiumFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_premium, container, false)
+        _binding = FragmentPremiumBinding.inflate(inflater)
+        return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

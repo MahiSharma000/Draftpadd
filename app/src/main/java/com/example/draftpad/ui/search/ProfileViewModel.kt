@@ -2,12 +2,14 @@ package com.example.draftpad.ui.search
 
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.draftpad.network.*
 import kotlinx.coroutines.launch
+
 
 
 enum class ProfileApiStatus { LOADING, ERROR, DONE }
@@ -55,5 +57,7 @@ class ProfileViewModel : ViewModel() {
 
     fun setName(name: String) {
         _name.value = name
+        Toast.makeText(null, name, Toast.LENGTH_SHORT).show()
+
     }
 }

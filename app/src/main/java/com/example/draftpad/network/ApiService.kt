@@ -131,7 +131,7 @@ interface ApiService {
     suspend fun getBooksByStatus(@Path("id") id: Int, @Path("status") status: Int): BooksByStatusResponse
 
     //get profiles by name
-    @GET("api/v1/profiles/{name}")
+    @GET("api/v1/get_profiles/{name}")
     suspend fun getProfilesByName(@Path("name") name: String): ProfilesByNameResponse
 
     //get books by name
