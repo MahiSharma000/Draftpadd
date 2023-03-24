@@ -43,9 +43,6 @@ class WriteViewModel : ViewModel() {
                 book_views = 0,
             )
             postChapter(chapter)
-//        }catch (e:Exception){
-//            Log.d("Error", "createnewChapter: ${e.message}")
-//        }
     }
 
 

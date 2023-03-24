@@ -1,5 +1,6 @@
 package com.example.draftpad.ui.read
 
+import android.os.Build
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,7 +8,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.draftpad.network.ApiClient
 import com.example.draftpad.network.Book
+import com.example.draftpad.network.Download
+import com.example.draftpad.network.DownloadBookResponse
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
 
 enum class ReadApiStatus { LOADING, ERROR, DONE }
 
@@ -15,6 +19,9 @@ class ReadViewModel : ViewModel() {
 
     private val _status = MutableLiveData<ReadApiStatus>()
     val status: LiveData<ReadApiStatus> = _status
+
+    private val _downloadResponse = MutableLiveData<DownloadBookResponse>()
+    val downloadResponse: LiveData<DownloadBookResponse> = _downloadResponse
 
     private val _book = MutableLiveData<Book?>()
     val book: LiveData<Book?> = _book
@@ -50,6 +57,30 @@ class ReadViewModel : ViewModel() {
     fun setBookId(id: Int) {
         _bookId.value = id
         Log.d("ReadViewModel",_bookId.value.toString())
+    }
+
+    fun downloadBook(userid: Int, bookId: Int){
+        val currDateTime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            LocalDateTime.now()
+        } else {
+            System.currentTimeMillis()
+        }
+        val download= Download(
+            user_id = userid!!,
+            book_id = bookId!!,
+            created_at = currDateTime!!.toString(),
+            updated_at = currDateTime!!.toString()
+        )
+        postDownload(download)
+        }
+
+    fun postDownload(download: Download){
+        viewModelScope.launch {
+            _downloadResponse.value=ApiClient.retrofitService.download(
+                user_id = download.user_id.toString(),
+                book_id = download.book_id.toString(),
+            )
+        }
     }
 
 }

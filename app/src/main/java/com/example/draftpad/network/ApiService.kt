@@ -55,6 +55,15 @@ interface ApiService {
     ): AddFollowerResponse
 
     @FormUrlEncoded
+    @POST("api/v1/download")
+    suspend fun download(
+        @Field("user_id") user_id: String,
+        @Field("book_id") book_id: String
+    ): DownloadBookResponse
+
+
+
+    @FormUrlEncoded
     @POST("api/v1/book")
     suspend fun createBook(
         @Field("title") title: String,

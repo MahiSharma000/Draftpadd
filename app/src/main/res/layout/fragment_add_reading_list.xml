@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.draftpad.ui.read.ReadViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/frameLayout17"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,7 +20,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView23"
+            android:id="@+id/txtDownload"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/download"
@@ -30,3 +37,4 @@
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
