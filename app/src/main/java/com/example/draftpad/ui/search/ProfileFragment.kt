@@ -51,9 +51,7 @@ class ProfileFragment : Fragment() {
         vm.profiles.observe(viewLifecycleOwner) { profiles ->
             binding.profilerv.layoutManager = LinearLayoutManager(context)
             binding.profilerv.adapter = ProfileAdapter() { profile ->
-                val dir =
-                    ProfileFragmentDirections.actionProfileFragmentToAuthorProfileFragment(profile.user_id)
-                findNavController().navigate(dir)
+
             }
             Log.e("ProfileFragment", profiles.toString())
             (binding.profilerv.adapter as ProfileAdapter).submitList(profiles)

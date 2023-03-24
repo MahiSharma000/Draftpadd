@@ -48,7 +48,7 @@ class ProfileViewModel : ViewModel() {
                     }
                 }
             } catch (e: Exception) {
-                Log.e("CommentViewModel", e.toString())
+                Log.e("ProfileViewModel", e.toString())
                 _status.value = ProfileApiStatus.ERROR
                 _profiles.value = listOf()
             }

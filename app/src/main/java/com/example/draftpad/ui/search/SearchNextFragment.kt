@@ -2,6 +2,7 @@ package com.example.draftpad.ui.search
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentSearchNextBinding
 import com.example.draftpad.databinding.FragmentSearchResultBinding
@@ -50,8 +53,6 @@ class SearchNextFragment : Fragment() {
         super.onAttach(context)
 
     }
-
-    //function that return name passed in the argument
     fun getName(): String {
         return binding.txtsearchByName.text.toString()
     }
@@ -93,14 +94,29 @@ class SearchNextFragment : Fragment() {
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
-            // get query from the viewModel
             viewModel.query.observe(viewLifecycleOwner) {
                 viewModel.getSearchResult(it, filterName)
             }
             viewModel.profileList.observe(viewLifecycleOwner) { profiles ->
+                binding2.searchRv.layoutManager = LinearLayoutManager(context)
+                binding2.searchRv.adapter = ProfileAdapter() { profile ->
+                    val dir =
+                        SearchNextFragmentDirections.actionSearchNextFragmentToAuthorProfileFragment(profile.user_id)
+                    findNavController().navigate(dir)
+                }
+                Log.e("ProfileFragment", profiles.toString())
+                (binding2.searchRv.adapter as ProfileAdapter).submitList(profiles)
 
             }
-            viewModel.storyList.observe(viewLifecycleOwner) { stories ->
+            viewModel.bookList.observe(viewLifecycleOwner) { books ->
+                binding2.searchRv.layoutManager = LinearLayoutManager(context)
+                binding2.searchRv.adapter = BookAdapter() { book ->
+                    val dir =
+                        SearchNextFragmentDirections.actionSearchNextFragmentToReadFragment(book.id)
+                    findNavController().navigate(dir)
+                }
+                Log.e("SearchNextFragment", books.toString())
+                (binding2.searchRv.adapter as BookAdapter).submitList(books)
 
             }
             viewModel.readingList.observe(viewLifecycleOwner) { readingLists ->
