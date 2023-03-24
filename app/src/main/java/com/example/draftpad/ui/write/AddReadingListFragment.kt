@@ -5,14 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
+import com.example.draftpad.Utils
 import com.example.draftpad.databinding.FragmentAddReadingListBinding
+import com.example.draftpad.ui.read.ChapterViewModel
+import com.example.draftpad.ui.read.ReadViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class AddReadingListFragment : BottomSheetDialogFragment() {
+    private val vm: ReadViewModel by activityViewModels()
     private var _binding: FragmentAddReadingListBinding? = null
     private val binding get() = _binding!!
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,11 +34,23 @@ class AddReadingListFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val bi=AddReadingListFragmentArgs.fromBundle(requireArguments()).bookId
         binding.apply {
+            txtDownload.setOnClickListener {
+                vm.downloadBook(
+                    Utils(requireContext()).getUser().id.toInt(),
+                    bi
+                )
+                saveBookOffline()
+            }
             createReadingList.setOnClickListener {
-               // findNavController().navigate(R.id.action_addReadingListFragment_to_readingListFragment)
             }
         }
+    }
+    // function to save book offline
+    fun saveBookOffline(){
+        // save book offline
+
     }
 
     companion object {

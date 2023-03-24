@@ -335,7 +335,11 @@
         android:id="@+id/addReadingListFragment"
         android:name="com.example.draftpad.ui.write.AddReadingListFragment"
         android:label="fragment_add_reading_list"
-        tools:layout="@layout/fragment_add_reading_list" />
+        tools:layout="@layout/fragment_add_reading_list" >
+        <argument
+            android:name="bookId"
+            app:argType="integer" />
+    </dialog>
     <fragment
         android:id="@+id/draftFragment"
         android:name="com.example.draftpad.ui.write.DraftFragment"

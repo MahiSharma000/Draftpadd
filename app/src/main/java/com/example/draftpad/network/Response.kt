@@ -105,6 +105,11 @@ data class BooksByNameResponse(
     val books: List<Book>
 )
 
+data class DownloadBookResponse(
+    val status: String,
+    val msg: String
+)
+
 data class ReadingListByNameResponse(
     val status: String,
     val readingList: List<ReadingList>

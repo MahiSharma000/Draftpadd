@@ -53,7 +53,9 @@ class ReadFragment : Fragment() {
                 findNavController().navigate(dir)
             }
             imgAdd.setOnClickListener {
-               // findNavController().navigate(R.id.action_readFragment_to_addReadingListFragment)
+               val dir = ReadFragmentDirections.actionReadFragmentToAddReadingListFragment((vm.book.value?.id ?: 1)as Int)
+                findNavController().navigate(dir)
+
             }
         }
 
