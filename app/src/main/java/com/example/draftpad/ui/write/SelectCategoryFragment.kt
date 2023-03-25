@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentSelectCategoryBinding
@@ -38,10 +39,11 @@ class SelectCategoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-
             viewModel.categories.observe(viewLifecycleOwner) { categories ->
                 this.rveditcategory.layoutManager = LinearLayoutManager(context)
                 this.rveditcategory.adapter = CategoryAdapter() { category ->
+                    val dir = SelectCategoryFragmentDirections.actionSelectCategoryFragmentToCreateNewStoryFragment(category.id,category.name)
+                    findNavController().navigate(dir)
 
                 }
                 Log.e("SearchFragment", categories.toString())

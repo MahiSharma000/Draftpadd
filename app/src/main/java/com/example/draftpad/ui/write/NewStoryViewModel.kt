@@ -90,7 +90,8 @@ class NewStoryViewModel : ViewModel() {
         context: Context,
         title: String,
         description: String,
-        userId: Int
+        userId: Int,
+        categoryId: Int,
     ) {
         try {
             val file = getFileFromUri(context, downloadUri.value!!)
@@ -104,7 +105,7 @@ class NewStoryViewModel : ViewModel() {
                 title = title!!,
                 description = description!!,
                 cover = getFileFromUri(context, downloadUri.value!!),
-                category_id = 1,
+                category_id = categoryId,
                 user_id = 1,
                 username = "",
                 chapters = 0,

@@ -63,6 +63,7 @@ class SearchViewModel : ViewModel() {
     }
 
     fun getSearchResult(query: String, filterName: String) {
+        Log.d("SearchViewModel", "getSearchResult: $query, $filterName")
         when (filterName) {
             "stories" -> getStories(query)
             "profiles" -> getProfiles(query)

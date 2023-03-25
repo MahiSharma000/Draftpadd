@@ -40,11 +40,13 @@ class SearchNextFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // if fragment is attached to the activity
+
         binding.txtsearchByName.setText(viewModel.query.value)
+        binding.viewPager.adapter = SearchNextViewPagerAdapter(childFragmentManager)
+        binding.tabLayout2.setupWithViewPager(binding.viewPager)
         binding.txtsearchByName.addTextChangedListener {
             // pass name to the viewpager fragment
             viewModel.setQuery(getName())
-            binding.viewPager.adapter = SearchNextViewPagerAdapter(childFragmentManager)
         }
 
     }
@@ -60,8 +62,7 @@ class SearchNextFragment : Fragment() {
     class SearchNextViewPagerAdapter(
         fm: FragmentManager
     ) : FragmentStatePagerAdapter(
-        fm,
-        BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+        fm
     ) {
         override fun getCount(): Int = 3
 
@@ -71,6 +72,14 @@ class SearchNextFragment : Fragment() {
                 1 -> SearchResultFragment("profiles")
                 2 -> SearchResultFragment("reading lists")
                 else -> SearchResultFragment("stories")
+            }
+        }
+        override fun getPageTitle(position: Int): CharSequence? {
+            return when (position) {
+                0 -> "Stories"
+                1 -> "Profiles"
+                2 -> "Reading Lists"
+                else -> "Stories"
             }
         }
     }

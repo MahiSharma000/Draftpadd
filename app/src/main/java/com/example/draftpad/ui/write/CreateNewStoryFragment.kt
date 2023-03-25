@@ -55,6 +55,9 @@ class CreateNewStoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val category_id = CreateNewStoryFragmentArgs.fromBundle(requireArguments()).category
+        val category_name = CreateNewStoryFragmentArgs.fromBundle(requireArguments()).categoryName
+        binding.cat.text = category_name
         viewModel.downloadUri.observe(viewLifecycleOwner) {
             binding.imgCover.load(it) {
                 crossfade(true)
@@ -65,12 +68,16 @@ class CreateNewStoryFragment : Fragment() {
             imgCover.setOnClickListener {
                 selectImage()
             }
+            txtSelectCategory.setOnClickListener {
+                findNavController().navigate(R.id.action_createNewStoryFragment_to_selectCategoryFragment)
+            }
             nextBt.setOnClickListener {
                 viewModel.createnewBook(
                     requireContext(),
                     txtTitle.text.toString(),
                     txtDescription.text.toString(),
-                    Utils(requireContext()).getUser().id.toInt()
+                    Utils(requireContext()).getUser().id.toInt(),
+                    category_id,
                 )
             }
             vm?.status?.observe(viewLifecycleOwner) {
@@ -82,7 +89,7 @@ class CreateNewStoryFragment : Fragment() {
                         binding.nextBt.isEnabled = true
                         val dir =
                             CreateNewStoryFragmentDirections.actionCreateNewStoryFragmentToWriteStoryFragment(
-                                viewModel.response.value!!.id
+                                viewModel.response.value!!.id,category_id
                             )
                         findNavController().navigate(dir)
                     }

@@ -38,6 +38,7 @@ class WriteStoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val bi=WriteStoryFragmentArgs.fromBundle(requireArguments()).bookId
+        //val cat = WriteStoryFragmentArgs.fromBundle(requireArguments()).
         binding.toolbar.inflateMenu(R.menu.write_story_menu)
         binding.apply {
             var status : Int
