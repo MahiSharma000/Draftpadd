@@ -16,8 +16,14 @@ class SearchViewModel : ViewModel() {
     private val _status = MutableLiveData<SearchApiStatus>()
     val status: LiveData<SearchApiStatus> = _status
 
-    private val _searchStatus = MutableLiveData<SearchApiStatus>()
-    val searchStatus: LiveData<SearchApiStatus> = _searchStatus
+    private val _profileStatus = MutableLiveData<SearchApiStatus>()
+    val profileStatus: LiveData<SearchApiStatus> = _profileStatus
+
+    private val _storyStatus = MutableLiveData<SearchApiStatus>()
+    val storyStatus: LiveData<SearchApiStatus> = _storyStatus
+
+    private val _readingListStatus = MutableLiveData<SearchApiStatus>()
+    val readingListStatus: LiveData<SearchApiStatus> = _readingListStatus
 
     private val _categories = MutableLiveData<List<Category>>()
     val categories: LiveData<List<Category>> = _categories
@@ -80,43 +86,44 @@ class SearchViewModel : ViewModel() {
 
     private fun getProfiles(query: String) {
         viewModelScope.launch {
-            _searchStatus.value = SearchApiStatus.LOADING
+            _profileStatus.value = SearchApiStatus.LOADING
             try {
                 ApiClient.retrofitService.getProfilesByName(query).let { response ->
                     Log.d("SearchNextViewModel", response.toString())
                     _profileList.value = response.profiles
                     if (response.profiles.isNotEmpty()) {
-                        _searchStatus.value = SearchApiStatus.DONE
+                        _profileStatus.value = SearchApiStatus.DONE
                     } else {
-                        _searchStatus.value = SearchApiStatus.ERROR
+                        _profileStatus.value = SearchApiStatus.ERROR
                     }
                 }
 
             } catch (e: Exception) {
                 Log.e("SearchNextViewModel", e.toString())
-                _searchStatus.value = SearchApiStatus.ERROR
+                _profileStatus.value = SearchApiStatus.ERROR
                 _profileList.value = listOf()
             }
         }
+
     }
 
     private fun getStories(query: String) {
         viewModelScope.launch {
-            _searchStatus.value = SearchApiStatus.LOADING
+            _storyStatus.value = SearchApiStatus.LOADING
             try {
                 ApiClient.retrofitService.getBooksByName(query).let { response ->
                     Log.d("SearchNextViewModel", response.toString())
                     _bookList.value = response.books
                     if (response.books.isNotEmpty()) {
-                        _searchStatus.value = SearchApiStatus.DONE
+                        _storyStatus.value = SearchApiStatus.DONE
                     } else {
-                        _searchStatus.value = SearchApiStatus.ERROR
+                        _storyStatus.value = SearchApiStatus.ERROR
                     }
                 }
 
             } catch (e: Exception) {
                 Log.e("SearchNextViewModel", e.toString())
-                _searchStatus.value = SearchApiStatus.ERROR
+                _storyStatus.value = SearchApiStatus.ERROR
                 _bookList.value = listOf()
             }
         }
