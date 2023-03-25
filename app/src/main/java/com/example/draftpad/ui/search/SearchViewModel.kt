@@ -16,6 +16,9 @@ class SearchViewModel : ViewModel() {
     private val _status = MutableLiveData<SearchApiStatus>()
     val status: LiveData<SearchApiStatus> = _status
 
+    private val _searchStatus = MutableLiveData<SearchApiStatus>()
+    val searchStatus: LiveData<SearchApiStatus> = _searchStatus
+
     private val _categories = MutableLiveData<List<Category>>()
     val categories: LiveData<List<Category>> = _categories
 
@@ -77,21 +80,21 @@ class SearchViewModel : ViewModel() {
 
     private fun getProfiles(query: String) {
         viewModelScope.launch {
-            _status.value = SearchApiStatus.LOADING
+            _searchStatus.value = SearchApiStatus.LOADING
             try {
                 ApiClient.retrofitService.getProfilesByName(query).let { response ->
                     Log.d("SearchNextViewModel", response.toString())
                     _profileList.value = response.profiles
                     if (response.profiles.isNotEmpty()) {
-                        _status.value = SearchApiStatus.DONE
+                        _searchStatus.value = SearchApiStatus.DONE
                     } else {
-                        _status.value = SearchApiStatus.ERROR
+                        _searchStatus.value = SearchApiStatus.ERROR
                     }
                 }
 
             } catch (e: Exception) {
                 Log.e("SearchNextViewModel", e.toString())
-                _status.value = SearchApiStatus.ERROR
+                _searchStatus.value = SearchApiStatus.ERROR
                 _profileList.value = listOf()
             }
         }
@@ -99,25 +102,31 @@ class SearchViewModel : ViewModel() {
 
     private fun getStories(query: String) {
         viewModelScope.launch {
-            _status.value = SearchApiStatus.LOADING
+            _searchStatus.value = SearchApiStatus.LOADING
             try {
                 ApiClient.retrofitService.getBooksByName(query).let { response ->
                     Log.d("SearchNextViewModel", response.toString())
                     _bookList.value = response.books
                     if (response.books.isNotEmpty()) {
-                        _status.value = SearchApiStatus.DONE
+                        _searchStatus.value = SearchApiStatus.DONE
                     } else {
-                        _status.value = SearchApiStatus.ERROR
+                        _searchStatus.value = SearchApiStatus.ERROR
                     }
                 }
 
             } catch (e: Exception) {
                 Log.e("SearchNextViewModel", e.toString())
-                _status.value = SearchApiStatus.ERROR
+                _searchStatus.value = SearchApiStatus.ERROR
                 _bookList.value = listOf()
             }
         }
 
+    }
+
+    fun clearSearchResult() {
+        _bookList.value = listOf()
+        _profileList.value = listOf()
+        _readingList.value = listOf()
     }
 
 }

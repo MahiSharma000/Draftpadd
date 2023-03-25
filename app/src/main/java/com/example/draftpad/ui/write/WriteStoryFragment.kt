@@ -38,7 +38,7 @@ class WriteStoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val bi=WriteStoryFragmentArgs.fromBundle(requireArguments()).bookId
-        //val cat = WriteStoryFragmentArgs.fromBundle(requireArguments()).
+        val cat = WriteStoryFragmentArgs.fromBundle(requireArguments()).categoryId
         binding.toolbar.inflateMenu(R.menu.write_story_menu)
         binding.apply {
             var status : Int
@@ -51,7 +51,8 @@ class WriteStoryFragment : Fragment() {
                             bi,
                             title,
                             content,
-                            status = 0
+                            status = 0,
+                            cat
                         )
                         true
                     }
@@ -61,7 +62,8 @@ class WriteStoryFragment : Fragment() {
                             bi,
                             chapterTitle.text.toString(),
                             chapterContent.text.toString(),
-                            status = 1
+                            status = 1,
+                            cat
                         )
                         true
                     }

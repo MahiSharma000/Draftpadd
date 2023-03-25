@@ -109,7 +109,7 @@ class NewStoryViewModel : ViewModel() {
                 user_id = 1,
                 username = "",
                 chapters = 0,
-                status = 0,
+                status = 1,
                 views = 0,
                 lang = "English",
                 created_at = currDateTime.toString(),

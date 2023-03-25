@@ -15,45 +15,45 @@
     app:cardElevation="4dp"
     app:strokeWidth="1dp"
     app:strokeColor="@android:color/background_light">
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgprofile"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/profile"
-        app:author_img="@{profile.profile_pic}"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/txtUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="User Name"
-        app:text = "@{profile.username}"
-        app:layout_constraintStart_toEndOf="@+id/imgprofile"
-        app:layout_constraintTop_toTopOf="parent" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgprofile"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/profile"
+            app:author_img="@{profile.profile_pic}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txtEditStory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:text="Name"
-        app:text = "@{profile.first_name + ' ' + profile.last_name}"
-        app:layout_constraintStart_toEndOf="@+id/imgprofile"
-        app:layout_constraintTop_toBottomOf="@+id/txtUserName" />
+        <TextView
+            android:id="@+id/txtUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="User Name"
+            app:layout_constraintStart_toEndOf="@+id/imgprofile"
+            app:layout_constraintTop_toTopOf="parent"
+            app:text="@{profile.username}" />
+
+        <TextView
+            android:id="@+id/txtEditStory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:text="Name"
+            app:layout_constraintStart_toEndOf="@+id/imgprofile"
+            app:layout_constraintTop_toBottomOf="@+id/txtUserName"
+            app:text="@{profile.first_name + ' ' + profile.last_name}" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
 </layout>
