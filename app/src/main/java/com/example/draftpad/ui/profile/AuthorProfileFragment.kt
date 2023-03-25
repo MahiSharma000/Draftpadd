@@ -11,10 +11,13 @@ import androidx.fragment.app.activityViewModels
 import com.example.draftpad.R
 import com.example.draftpad.Utils
 import com.example.draftpad.databinding.FragmentAuthorProfileBinding
+import com.example.draftpad.ui.search.ProfileViewModel
+import com.google.android.play.integrity.internal.f
 
 
 class AuthorProfileFragment : Fragment() {
     private val vm: AuthorProfileViewModel by activityViewModels()
+    private val vm1: ProfileSettingsViewModel by activityViewModels()
     private var _binding: FragmentAuthorProfileBinding? = null
     private val binding get() = _binding!!
 
@@ -39,6 +42,7 @@ class AuthorProfileFragment : Fragment() {
         val user_id = AuthorProfileFragmentArgs.fromBundle(requireArguments()).userId
         Log.d("AuthorProfileFragment", "onViewCreated: $user_id")
         vm.getAuthorId(user_id)
+        var f=binding.txtFollower.text.toString().toInt()
         binding.apply {
             btnfollow.setOnClickListener {
                 vm.postFollow(
@@ -46,8 +50,12 @@ class AuthorProfileFragment : Fragment() {
                     user_id.toString()
                 )
                 btnfollow.text= "Following"
+                f=f+1
+                vm1.createOrUpdateProfile(requireContext(),user_id.toString(),vm.author.value?.first_name.toString(),vm.author.value?.last_name.toString(),vm.author.value?.profile_pic.toString(),vm.author.value?.about.toString(),f.toString(),vm.author.value?.following.toString().toInt())
             }
+
         }
     }
 
 }
+

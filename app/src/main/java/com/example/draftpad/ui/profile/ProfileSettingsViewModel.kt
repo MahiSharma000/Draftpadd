@@ -59,6 +59,7 @@ class ProfileSettingsViewModel : ViewModel() {
         dob: String,
         about: String,
         phone:String,
+        follower: Int,
     ) {
         try {
             val file = getFileFromUri(context, downloadUri.value!!)
@@ -71,7 +72,7 @@ class ProfileSettingsViewModel : ViewModel() {
                     last_name = lastName,
                     about = about,
                     book_written = 0,
-                    followers = 0,
+                    followers = follower,
                     following = 0,
                     bookRead = 0,
                     is_premium = false,

@@ -201,7 +201,8 @@ class ProfileSettingsFragment : Fragment(), EasyPermissions.PermissionCallbacks 
                         txtLastName.text.toString(),
                         txtDob.text.toString(),
                         txtAbout.text.toString(),
-                        txtPhone.text.toString()
+                        txtPhone.text.toString(),
+                        0
                     )
                 } else {
                     showSnackBar("Please fill all the fields $error_count")

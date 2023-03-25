@@ -18,7 +18,7 @@ class AuthorProfileViewModel : ViewModel() {
     private val _status = MutableLiveData<AuthorApiStatus>()
     val status: LiveData<AuthorApiStatus> = _status
 
-    private val _author = MutableLiveData<UserProfile?>()
+    val _author = MutableLiveData<UserProfile?>()
     val author: LiveData<UserProfile?> = _author
 
     private val _userId = MutableLiveData<Int>()
