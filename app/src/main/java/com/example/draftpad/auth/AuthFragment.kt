@@ -28,7 +28,9 @@ class AuthFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
     private val vm: LoginViewModel by activityViewModels()
-
+    private val sharedPrefManager: SharedPreferenceManager by lazy {
+        SharedPreferenceManager(requireContext())
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
@@ -50,6 +52,7 @@ class AuthFragment : Fragment() {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_auth, container, false)
         binding.viewModel = vm
         binding.lifecycleOwner = this
+
         return binding.root
     }
 
@@ -98,6 +101,7 @@ class AuthFragment : Fragment() {
                                         )
                                     )
                                     loginProgress.setVisibility(View.INVISIBLE)
+                                    sharedPrefManager.setLoggedIn(true)
                                     startActivity(Intent(activity, MainActivity::class.java))
                                     activity?.finish()
 
