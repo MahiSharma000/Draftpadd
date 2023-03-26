@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.draftpad.Utils
 import com.example.draftpad.network.ApiClient
+import com.example.draftpad.network.ChangePasswordResponse
 import com.example.draftpad.network.UserDataResponse
 import com.example.draftpad.network.UserProfile
 import kotlinx.coroutines.launch
@@ -34,6 +35,9 @@ class ProfileSettingsViewModel : ViewModel() {
 
     private val _response = MutableLiveData<UserDataResponse>()
     val response: LiveData<UserDataResponse> = _response
+
+    private val _getresponse = MutableLiveData<ChangePasswordResponse>()
+    val getresponse: LiveData<ChangePasswordResponse> = _getresponse
 
     private val _user = MutableLiveData<UserProfile?>()
     val user: LiveData<UserProfile?> = _user
@@ -127,6 +131,22 @@ class ProfileSettingsViewModel : ViewModel() {
                 _getstatus.value = ProfileApiStatus.ERROR
                 _user.value = null
                 Log.e("ProfileSettingViewModel", "getUserId: $e")
+            }
+        }
+    }
+
+    fun changeUserPassword(userId:Int, oldPassword:String, newPassword:String){
+        viewModelScope.launch {
+            _status.value = ProfileApiStatus.LOADING
+            try {
+                ApiClient.retrofitService.changePassword(userId, oldPassword, newPassword).let { response ->
+                    Log.d("ProfileSettingsViewModel", "changePassword: ${response.msg}")
+                    _status.value = ProfileApiStatus.DONE
+                }
+
+            } catch (e: Exception) {
+                _status.value = ProfileApiStatus.ERROR
+                Log.e("ProfileSettingViewModel", "changePassword: $e")
             }
         }
     }

@@ -76,6 +76,7 @@ class CreateNewStoryFragment : Fragment() {
                     requireContext(),
                     txtTitle.text.toString(),
                     txtDescription.text.toString(),
+                    0,
                     Utils(requireContext()).getUser().id.toInt(),
                     category_id,
                 )
@@ -89,7 +90,10 @@ class CreateNewStoryFragment : Fragment() {
                         binding.nextBt.isEnabled = true
                         val dir =
                             CreateNewStoryFragmentDirections.actionCreateNewStoryFragmentToWriteStoryFragment(
-                                viewModel.response.value!!.id,category_id
+                                viewModel.response.value!!.id,
+                                binding.txtTitle.text.toString(),
+                                binding.txtDescription.text.toString(),
+                                category_id
                             )
                         findNavController().navigate(dir)
                     }
@@ -103,54 +107,35 @@ class CreateNewStoryFragment : Fragment() {
             }
 
 
-    }
-    viewModel.response.observe(viewLifecycleOwner)
-    {
-        if (it != null) {
-            when (it.status) {
-                "Success" -> {
-                    AlertDialog.Builder(requireContext())
-                        .setTitle("Success")
-                        .setMessage(it.msg)
-                        .setPositiveButton("OK") { dialog, which ->
-                            dialog.dismiss()
-                        }
-                        .show()
+        }
+        viewModel.response.observe(viewLifecycleOwner)
+        {
+            if (it != null) {
+                when (it.status) {
+                    "Success" -> {
+                        AlertDialog.Builder(requireContext())
+                            .setTitle("Success")
+                            .setMessage(it.msg)
+                            .setPositiveButton("OK") { dialog, which ->
+                                dialog.dismiss()
+                            }
+                            .show()
+                    }
                 }
             }
         }
+
     }
 
-}
-
-private fun hasPermission(): Boolean {
-    return EasyPermissions.hasPermissions(
-        context,
-        Manifest.permission.READ_EXTERNAL_STORAGE,
-        Manifest.permission.WRITE_EXTERNAL_STORAGE
-    )
-}
-
-private fun getPermission() {
-    EasyPermissions.requestPermissions(
-        this,
-        getString(R.string.permission_required),
-        ProfileSettingsFragment.REQUEST_IMAGE_GET,
-        Manifest.permission.READ_EXTERNAL_STORAGE,
-        Manifest.permission.WRITE_EXTERNAL_STORAGE
-    )
-}
-
-@AfterPermissionGranted(ProfileSettingsFragment.REQUEST_IMAGE_GET)
-private fun selectImage() {
-    if (EasyPermissions.hasPermissions(
+    private fun hasPermission(): Boolean {
+        return EasyPermissions.hasPermissions(
             context,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
-    ) {
-        getImage.launch("image/*")
-    } else {
+    }
+
+    private fun getPermission() {
         EasyPermissions.requestPermissions(
             this,
             getString(R.string.permission_required),
@@ -159,54 +144,71 @@ private fun selectImage() {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
     }
-}
 
-fun onPermissionsDenied(requestCode: Int, perms: List<String>) {
-    val dialog = AlertDialog.Builder(requireContext())
-    dialog.setTitle("Permission Required")
-    dialog.setMessage("This permission is required to upload image")
-    dialog.setPositiveButton("Ok") { _, _ ->
-        getPermission()
-    }
-    dialog.setNegativeButton("Cancel") { _, _ ->
-        dialog.setCancelable(true)
-    }
-    dialog.show()
-
-}
-
-fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
-    showSnackBar("Permission Granted")
-}
-
-@Deprecated("Deprecated in Java")
-override fun onRequestPermissionsResult(
-    requestCode: Int, permissions: Array<String>, grantResults: IntArray
-) {
-    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
-}
-
-private fun showSnackBar(msg: String) {
-    AlertDialog.Builder(requireContext())
-        .setTitle("Error Occurred")
-        .setMessage(msg)
-        .setPositiveButton("Ok") { _, _ ->
-
-        }.create().show()
-}
-
-private val getImage =
-    registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-        viewModel.setImageUri(uri, true)
-        getStringFromUri(uri)
+    @AfterPermissionGranted(ProfileSettingsFragment.REQUEST_IMAGE_GET)
+    private fun selectImage() {
+        if (EasyPermissions.hasPermissions(
+                context,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+        ) {
+            getImage.launch("image/*")
+        } else {
+            EasyPermissions.requestPermissions(
+                this,
+                getString(R.string.permission_required),
+                ProfileSettingsFragment.REQUEST_IMAGE_GET,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+        }
     }
 
-private fun getStringFromUri(uri: Uri?) {
+    fun onPermissionsDenied(requestCode: Int, perms: List<String>) {
+        val dialog = AlertDialog.Builder(requireContext())
+        dialog.setTitle("Permission Required")
+        dialog.setMessage("This permission is required to upload image")
+        dialog.setPositiveButton("Ok") { _, _ ->
+            getPermission()
+        }
+        dialog.setNegativeButton("Cancel") { _, _ ->
+            dialog.setCancelable(true)
+        }
+        dialog.show()
 
-}
+    }
 
+    fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
+        showSnackBar("Permission Granted")
+    }
 
+    @Deprecated("Deprecated in Java")
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String>, grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
+    }
+
+    private fun showSnackBar(msg: String) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Error Occurred")
+            .setMessage(msg)
+            .setPositiveButton("Ok") { _, _ ->
+
+            }.create().show()
+    }
+
+    private val getImage =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            viewModel.setImageUri(uri, true)
+            getStringFromUri(uri)
+        }
+
+    private fun getStringFromUri(uri: Uri?) {
+
+    }
 
 
 }

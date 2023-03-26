@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_navigation_home_to_authIntroFragment2"
             app:destination="@id/authIntroFragment2" />
+        <action
+            android:id="@+id/action_navigation_home_to_readFragment"
+            app:destination="@id/readFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_notifications"
@@ -178,9 +181,14 @@
             android:name="bookId"
             app:argType="integer" />
         <argument
+            android:name="bookTitle"
+            app:argType="string" />
+        <argument
+            android:name="bookDescription"
+            app:argType="string" />
+        <argument
             android:name="categoryId"
-            app:argType="integer"
-            android:defaultValue="4" />
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/editStoryDetailFragment"
@@ -382,4 +390,5 @@
             android:name="name"
             app:argType="string" />
     </fragment>
+    <fragment android:id="@+id/placeholder" />
 </navigation>

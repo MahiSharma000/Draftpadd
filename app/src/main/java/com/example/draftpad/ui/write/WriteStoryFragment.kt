@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
+import com.example.draftpad.Utils
 import com.example.draftpad.databinding.FragmentWriteStoryBinding
 
 class WriteStoryFragment : Fragment() {
@@ -18,6 +19,7 @@ class WriteStoryFragment : Fragment() {
     private val binding get() = _binding!!
     private var toolbar: Toolbar? = null
     private val viewModel : WriteViewModel by activityViewModels()
+    private val viewModel2 :NewStoryViewModel by activityViewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +46,8 @@ class WriteStoryFragment : Fragment() {
             var status : Int
             val title = chapterTitle.text.toString()
             val content = chapterContent.text.toString()
+            val bookTitle = WriteStoryFragmentArgs.fromBundle(requireArguments()).bookTitle
+            val bookContent = WriteStoryFragmentArgs.fromBundle(requireArguments()).bookDescription
             toolbar.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.action_save -> {
@@ -65,6 +69,15 @@ class WriteStoryFragment : Fragment() {
                             status = 1,
                             cat
                         )
+                        viewModel2.createnewBook(
+                            requireContext(),
+                            bookTitle,
+                            bookContent,
+                            status = 1,
+                            Utils(requireContext()).getUser().id.toInt(),
+                            cat
+                        )
+
                         true
                     }
                     R.id.action_preview -> {
@@ -79,5 +92,4 @@ class WriteStoryFragment : Fragment() {
             }
         }
     }
-
 }

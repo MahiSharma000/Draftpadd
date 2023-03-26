@@ -135,11 +135,9 @@ interface ApiService {
     @GET("api/v1/get_follower/{id}")
     suspend fun getFollowers(@Path("id") id: Int): FollowerResponse
 
-    //get books by user id and status
     @GET("api/v1/books/{id}/{status}")
     suspend fun getBooksByStatus(@Path("id") id: Int, @Path("status") status: Int): BooksByStatusResponse
 
-    //get profiles by name
     @GET("api/v1/get_profiles/{name}")
     suspend fun getProfilesByName(@Path("name") name: String): ProfilesByNameResponse
 
@@ -150,6 +148,17 @@ interface ApiService {
     //get reading list by name
     @GET("api/v1/get_reading_list/{name}")
     suspend fun getReadingListByName(@Path("name") name: String): ReadingListByNameResponse
+
+    @FormUrlEncoded
+    @POST("api/v1/change_password")
+    suspend fun changePassword(
+        @Field("user_id") user_id: Int,
+        @Field("old_password") old_password: String,
+        @Field("new_password") new_password: String
+    ): ChangePasswordResponse
+   //get books with maximum views
+    @GET("api/v1/get_books_max_views")
+    suspend fun getBooksByMaxViews(): BooksByMaxViewsResponse
 
 }
 

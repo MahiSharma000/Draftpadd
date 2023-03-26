@@ -29,10 +29,6 @@ data class BooksByCategoryResponse(
     val status: String,
     val books: List<Book>
 )
-data class BooksByStatus(
-    val status: String,
-    val books: List<Book>
-)
 
 
 data class BooksAllResponse(
@@ -113,4 +109,14 @@ data class DownloadBookResponse(
 data class ReadingListByNameResponse(
     val status: String,
     val readingList: List<ReadingList>
+)
+
+data class ChangePasswordResponse(
+    val status: String,
+    val msg: String
+)
+
+data class BooksByMaxViewsResponse(
+    val status: String,
+    val books: List<Book>
 )
