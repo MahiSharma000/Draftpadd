@@ -38,6 +38,7 @@ class CommentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        vm.getUserProfile(Utils(requireContext()).getUser().id.toInt())
         val chapterId = CommentFragmentArgs.fromBundle(requireArguments()).chapterId
         chapterId.let {
             vm.setCommentId(it)

@@ -68,9 +68,6 @@ class CreateNewStoryFragment : Fragment() {
             imgCover.setOnClickListener {
                 selectImage()
             }
-            txtSelectCategory.setOnClickListener {
-                findNavController().navigate(R.id.action_createNewStoryFragment_to_selectCategoryFragment)
-            }
             nextBt.setOnClickListener {
                 viewModel.createnewBook(
                     requireContext(),

@@ -62,14 +62,14 @@
         android:label="fragment_write"
         tools:layout="@layout/fragment_write" >
         <action
-            android:id="@+id/action_navigation_write_to_createNewStoryFragment"
-            app:destination="@id/createNewStoryFragment" />
-        <action
             android:id="@+id/action_navigation_write_to_editStoryFragment"
             app:destination="@id/editStoryFragment" />
         <action
             android:id="@+id/action_navigation_write_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/action_navigation_write_to_selectCategoryFragment"
+            app:destination="@id/selectCategoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchNextFragment"
@@ -94,9 +94,6 @@
         <action
             android:id="@+id/action_createNewStoryFragment_to_writeStoryFragment"
             app:destination="@id/writeStoryFragment" />
-        <action
-            android:id="@+id/action_createNewStoryFragment_to_selectCategoryFragment"
-            app:destination="@id/selectCategoryFragment" />
         <argument
             android:name="category"
             app:argType="integer"
@@ -236,6 +233,9 @@
         tools:layout="@layout/fragment_select_category" >
         <action
             android:id="@+id/action_selectCategoryFragment_to_createNewStoryFragment"
+            app:destination="@id/createNewStoryFragment" />
+        <action
+            android:id="@+id/action_selectCategoryFragment_to_createNewStoryFragment2"
             app:destination="@id/createNewStoryFragment" />
     </fragment>
     <fragment

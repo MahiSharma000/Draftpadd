@@ -69,7 +69,7 @@ data class AuthorResponse(
 
 data class PostCommentResponse(
     val status: String,
-    val msg: String
+    val msg: String,
 )
 
 data class FollowerResponse(

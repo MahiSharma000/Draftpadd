@@ -47,7 +47,7 @@ class WriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             txtCreateNewStory.setOnClickListener {
-                findNavController().navigate(R.id.action_navigation_write_to_createNewStoryFragment)
+                findNavController().navigate(R.id.action_navigation_write_to_selectCategoryFragment)
             }
             txtEditStory.setOnClickListener {
                 findNavController().navigate(R.id.action_navigation_write_to_editStoryFragment)

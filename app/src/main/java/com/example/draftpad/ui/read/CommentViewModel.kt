@@ -7,6 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.draftpad.network.*
+import com.example.draftpad.ui.profile.ProfileApiStatus
+import com.example.draftpad.ui.profile.UserProfileApiStatus
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
@@ -21,6 +23,12 @@ class CommentViewModel : ViewModel() {
 
     private val _postResponse = MutableLiveData<PostCommentResponse>()
     val postResponse: LiveData<PostCommentResponse> = _postResponse
+
+    private val _userstatus = MutableLiveData<UserProfileApiStatus>()
+    val userstatus: LiveData<UserProfileApiStatus> = _userstatus
+
+    private val _user = MutableLiveData<UserProfile?>()
+    val user: LiveData<UserProfile?> = _user
 
     private val _comments = MutableLiveData<List<Comment>>()
     val comments: LiveData<List<Comment>> = _comments
@@ -49,6 +57,7 @@ class CommentViewModel : ViewModel() {
                         }
                     }
                 }
+
             } catch (e: Exception) {
                 Log.e("CommentViewModel", e.toString())
                 _status.value = CommentApiStatus.ERROR
@@ -75,7 +84,8 @@ class CommentViewModel : ViewModel() {
                 username = "",
                 chapter_id = chapter_id,
                 created_at = currDateTime.toString(),
-                updated_at = currDateTime.toString()
+                updated_at = currDateTime.toString(),
+                ""
             )
             postComment(comment)
         } catch (e: Exception) {
@@ -95,5 +105,22 @@ class CommentViewModel : ViewModel() {
         }
     }
 
+    fun getUserProfile(uid: Int) {
+        viewModelScope.launch {
+            _userstatus.value = UserProfileApiStatus.LOADING
+            try {
+                ApiClient.retrofitService.getProfile(uid).let { response ->
+                    Log.d("UserProfileViewModel", "getUserProfile: $response")
+                    _user.value = response.author
+                    _userstatus.value = UserProfileApiStatus.DONE
+                }
+
+            } catch (e: Exception) {
+                _userstatus.value = UserProfileApiStatus.ERROR
+                _user.value = null
+                Log.e("UserProfileViewModel", "getUserProfile: $e")
+            }
+        }
+    }
 
 }
