@@ -19,7 +19,7 @@ class WriteStoryFragment : Fragment() {
     private val binding get() = _binding!!
     private var toolbar: Toolbar? = null
     private val viewModel : WriteViewModel by activityViewModels()
-    private val viewModel2 :NewStoryViewModel by activityViewModels()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,7 +69,7 @@ class WriteStoryFragment : Fragment() {
                             status = 1,
                             cat
                         )
-                        viewModel2.createnewBook(
+                        viewModel.createnewBook(
                             requireContext(),
                             bookTitle,
                             bookContent,
