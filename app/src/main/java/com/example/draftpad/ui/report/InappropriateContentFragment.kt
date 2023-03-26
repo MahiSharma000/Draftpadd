@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentInappropriateContentBinding
 
@@ -12,6 +13,7 @@ import com.example.draftpad.databinding.FragmentInappropriateContentBinding
 class InappropriateContentFragment : Fragment() {
     private var _binding: FragmentInappropriateContentBinding? = null
     private val binding get() = _binding!!
+    private val vm: ReportViewModel by activityViewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,10 +31,12 @@ class InappropriateContentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val ui=InappropriateContentFragmentArgs.fromBundle(requireArguments()).userId
+        val rt=InappropriateContentFragmentArgs.fromBundle(requireArguments()).reportType
         val bi=InappropriateContentFragmentArgs.fromBundle(requireArguments()).bookId
         binding.apply {
+            btnReport.setOnClickListener {
 
+            }
         }
     }
 

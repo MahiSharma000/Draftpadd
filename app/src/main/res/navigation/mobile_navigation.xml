@@ -309,9 +309,6 @@
             android:id="@+id/action_reportFragment_to_inappropriateContentFragment"
             app:destination="@id/inappropriateContentFragment" />
         <argument
-            android:name="userId"
-            app:argType="integer" />
-        <argument
             android:name="bookId"
             app:argType="integer" />
     </fragment>
@@ -321,11 +318,11 @@
         android:label="fragment_copyright_infringement"
         tools:layout="@layout/fragment_copyright_infringement" >
         <argument
-            android:name="userId"
-            app:argType="integer" />
-        <argument
             android:name="bookId"
             app:argType="integer" />
+        <argument
+            android:name="reportTypre"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/inappropriateContentFragment"
@@ -333,11 +330,11 @@
         android:label="fragment_inappropriate_content"
         tools:layout="@layout/fragment_inappropriate_content" >
         <argument
-            android:name="userId"
-            app:argType="integer" />
-        <argument
             android:name="bookId"
             app:argType="integer" />
+        <argument
+            android:name="reportType"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/inviteFriendsFragment"

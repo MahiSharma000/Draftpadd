@@ -66,7 +66,7 @@ class ReadFragment : Fragment() {
             toolbar.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.report -> {
-                        val dir= ReadFragmentDirections.actionReadFragmentToReportFragment(vm.book.value!!.id!!,vm.book.value!!.user_id)
+                        val dir= ReadFragmentDirections.actionReadFragmentToReportFragment(vm.book.value!!.id!!)
                         findNavController().navigate(dir)
                         true
                     }

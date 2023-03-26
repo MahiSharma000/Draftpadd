@@ -30,15 +30,14 @@ class ReportFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val ui=ReportFragmentArgs.fromBundle(requireArguments()).userId
         val bi=ReportFragmentArgs.fromBundle(requireArguments()).bookId
         binding.apply {
             txtInappropriate.setOnClickListener {
-                val dir=ReportFragmentDirections.actionReportFragmentToInappropriateContentFragment(ui,bi)
+                val dir=ReportFragmentDirections.actionReportFragmentToInappropriateContentFragment(bi,txtInappropriate.text.toString())
                 findNavController().navigate(dir)
             }
             txtCopyright.setOnClickListener {
-                val dir=ReportFragmentDirections.actionReportFragmentToCopyrightInfringementFragment(ui,bi)
+                val dir=ReportFragmentDirections.actionReportFragmentToCopyrightInfringementFragment(bi,txtCopyright.text.toString())
                 findNavController().navigate(dir)
             }
         }
