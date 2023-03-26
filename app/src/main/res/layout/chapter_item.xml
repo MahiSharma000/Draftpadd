@@ -16,26 +16,18 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="2dp"
         app:contentPadding="8dp"
-        app:strokeColor="@android:color/background_light"
+        android:backgroundTint="@color/white"
         app:strokeWidth="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/txtChapterNo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="123dp"
-                android:layout_marginEnd="122dp"
-                android:fontFamily="@font/akaya_telivigala"
-                android:padding="10dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:text="Chapter Number"
-                android:textColor="@color/black"
-                android:textSize="14sp"
+            <View
+                android:id="@+id/view4"
+                android:layout_width="400dp"
+                android:layout_height="2dp"
+                android:background="#808080"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -44,16 +36,17 @@
                 android:id="@+id/txtChapterTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/akaya_telivigala"
-                android:padding="10dp"
+                android:padding="2dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:text="Chapter Title"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@+id/txtChapterNo"
-                app:layout_constraintStart_toStartOf="@+id/txtChapterNo"
-                app:layout_constraintTop_toBottomOf="@+id/txtChapterNo"
+                app:layout_constraintEnd_toStartOf="@+id/txtCom"
+                app:layout_constraintStart_toEndOf="@+id/txtLikes"
+                app:layout_constraintTop_toBottomOf="@+id/view4"
                 app:text="@{chapter.title}" />
 
             <TextView
@@ -65,7 +58,7 @@
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/baseline_comment"
                 android:fontFamily="@font/akaya_telivigala"
-                android:padding="5dp"
+                android:padding="2dp"
                 android:text="Comments"
                 android:textColor="@color/black"
                 android:textSize="14sp"
@@ -73,6 +66,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/txtLikes"
                 app:layout_constraintTop_toBottomOf="@+id/txtChapterTitle"
+                app:layout_constraintVertical_bias="1.0"
                 app:text="@{String.valueOf(chapter.total_comments)}" />
 
             <TextView
@@ -83,7 +77,7 @@
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/baseline_like"
                 android:fontFamily="@font/akaya_telivigala"
-                android:padding="5dp"
+                android:padding="2dp"
                 android:text="Likes"
                 android:textColor="@color/black"
                 android:textSize="14sp"

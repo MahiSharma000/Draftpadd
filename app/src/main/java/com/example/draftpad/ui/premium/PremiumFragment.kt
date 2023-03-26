@@ -20,14 +20,14 @@ import com.github.kittinunf.result.Result
 class PremiumFragment : Fragment() {
     lateinit var paymentSheet: PaymentSheet
     lateinit var customerConfig: PaymentSheet.CustomerConfiguration
-    lateinit var paymentIntentClientSecret: String
+    var paymentIntentClientSecret: String="pk_test_51MolceSCy9vRZRquZEq0mR1RoGp42VtBxlq3GlasZsgytqxQQANkXfrnTtipiwplDTw3qVBy0TzuPmOhRlYeWOF500PQ0pCriT"
     private var _binding: FragmentPremiumBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         paymentSheet = PaymentSheet(this, ::onPaymentSheetResult)
-        val ip = "192.168.125.124:5000"
+        val ip = "192.168.18.207:5000"
         "http://$ip/api/v1/create-checkout-session".httpPost().responseJson { _, _, result ->
             if (result is Result.Success) {
                 val responseJson = result.get().obj()
