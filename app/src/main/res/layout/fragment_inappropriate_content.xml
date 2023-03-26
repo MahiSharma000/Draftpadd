@@ -15,64 +15,85 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/why_is_this_inappropriate"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtExplicitContent"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="160dp"
         android:clickable="true"
         android:text="@string/explicit_content"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView50"
         app:layout_constraintTop_toBottomOf="@+id/textView50" />
 
     <TextView
         android:id="@+id/txtHate"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="93dp"
         android:clickable="true"
         android:text="@string/hate_and_harassment"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/txtExplicitContent"
         app:layout_constraintTop_toBottomOf="@+id/txtExplicitContent" />
 
     <TextView
         android:id="@+id/txtViolence"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:clickable="true"
         android:text="@string/violence"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/txtHate"
         app:layout_constraintTop_toBottomOf="@+id/txtHate" />
 
     <TextView
         android:id="@+id/txtPersonalContent"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="3dp"
         android:text="@string/release_of_personal_information"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/txtViolence"
         app:layout_constraintTop_toBottomOf="@+id/txtViolence" />
 
     <TextView
         android:id="@+id/txtSelfHarm"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:clickable="true"
         android:text="@string/self_harm"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/txtPersonalContent"
         app:layout_constraintTop_toBottomOf="@+id/txtPersonalContent" />
 
     <TextView
         android:id="@+id/txtSpam"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
         android:text="@string/spam"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/txtSelfHarm"
         app:layout_constraintTop_toBottomOf="@+id/txtSelfHarm" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
-private const val BASE_URL = "http://192.168.125.124:5000/"
+private const val BASE_URL = "http://192.168.1.41:5000/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -29,6 +29,16 @@ interface ApiService {
         @Field("password") password: String,
         @Field("last_seen") lastSeen: String
     ): RegisterResponse
+
+    @FormUrlEncoded
+    @POST("api/v1/report")
+    suspend fun report(
+        @Field("user_id") user_id: String,
+        @Field("book_id") book_id: String,
+        @Field("report_type") report_type: String,
+        @Field("report_reason") report_reason: String
+    ): ReportResponse
+
 
     @FormUrlEncoded
     @POST("api/v1/profile")

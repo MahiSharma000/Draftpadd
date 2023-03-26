@@ -14,26 +14,36 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/original_owner"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtNotAnOwner"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
         android:clickable="true"
         android:text="@string/i_am_not_original_owner"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView54"
         app:layout_constraintTop_toBottomOf="@+id/textView54" />
 
     <TextView
         android:id="@+id/txtOwner"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
+        android:layout_marginEnd="46dp"
         android:clickable="true"
         android:text="@string/i_am_original_owner"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/txtNotAnOwner"
         app:layout_constraintTop_toBottomOf="@+id/txtNotAnOwner" />
 </androidx.constraintlayout.widget.ConstraintLayout>

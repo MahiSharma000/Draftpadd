@@ -80,4 +80,6 @@ class AuthorProfileViewModel : ViewModel() {
         )
         followAuthor(follower)
     }
+
+
 }

@@ -1,13 +1,15 @@
 package com.example.draftpad.network
 
+import com.squareup.moshi.Json
+
 data class Report(
     val id: String? = null,
+    @Json(name = "user_id")
     val user_id: String,
+    @Json(name = "book_id")
     val book_id: String,
-    val chapter_id: String,
-    val comment_id: String,
+    @Json(name = "report_type")
     val report_type: String,
-    val report_reason: String,
-    val created_at: String,
-    val updated_at: String
+    @Json(name = "report_reason")
+    val report_reason: String
 )

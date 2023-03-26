@@ -9,6 +9,11 @@ data class UserDataResponse(
     val status: String
 )
 
+data class ReportResponse(
+    val status: String,
+    val msg: String
+)
+
 data class LoginResponse(
     val status: String,
     val username: String,
