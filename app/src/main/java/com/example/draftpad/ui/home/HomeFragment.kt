@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -13,13 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.draftpad.AuthActivity
-import com.example.draftpad.MainActivity
 import com.example.draftpad.R
 import com.example.draftpad.Utils
 import com.example.draftpad.databinding.FragmentHomeBinding
 import com.example.draftpad.ui.search.BookAdapter
-import com.example.draftpad.ui.search.BookViewModel
-import com.example.draftpad.ui.search.BooksFragmentDirections
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
