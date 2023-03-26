@@ -40,15 +40,15 @@ class ChangePassword : Fragment() {
         val loggedInUser = utils.getUser()
         vm.getUser(loggedInUser.id.toInt())
         binding.apply {
-            btnchangePassword.setOnClickListener {
-                if (edittxtOldPassword.text.isEmpty() || edittxtNewPassword.text.isEmpty() || edittxtReenter.text.isEmpty()) {
+            btnchange.setOnClickListener {
+                if (editTextTextPassword.text.isEmpty() || editTextTextPassword2.text.isEmpty() || editTextTextPassword3.text.isEmpty()) {
                     Toast.makeText(
                         requireContext(),
                         "Please fill all the fields",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    if (edittxtNewPassword.text.toString() != edittxtReenter.text.toString()) {
+                    if (editTextTextPassword2.text.toString() != editTextTextPassword3.text.toString()) {
                         Toast.makeText(
                             requireContext(),
                             "Passwords do not match",
@@ -57,8 +57,8 @@ class ChangePassword : Fragment() {
                     } else {
                         vm.changeUserPassword(
                             loggedInUser.id.toInt(),
-                            edittxtOldPassword.text.toString(),
-                            edittxtNewPassword.text.toString()
+                            editTextTextPassword.text.toString(),
+                            editTextTextPassword2.text.toString()
                         )
 
                         vm.getresponse.observe(viewLifecycleOwner) { response ->
