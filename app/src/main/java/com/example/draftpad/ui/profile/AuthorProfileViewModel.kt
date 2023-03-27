@@ -1,16 +1,21 @@
 package com.example.draftpad.ui.profile
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
+import android.provider.MediaStore
+import android.util.Base64
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.draftpad.network.AddFollowerResponse
-import com.example.draftpad.network.ApiClient
-import com.example.draftpad.network.Follower
-import com.example.draftpad.network.UserProfile
+import com.example.draftpad.network.*
 import kotlinx.coroutines.launch
+import java.io.ByteArrayOutputStream
+import java.io.File
 import java.time.LocalDateTime
 
 enum class AuthorApiStatus { LOADING, ERROR, DONE }
@@ -29,6 +34,12 @@ class AuthorProfileViewModel : ViewModel() {
 
     private val _followed = MutableLiveData<Follower>()
     val followed: LiveData<Follower> = _followed
+
+    private val _fresponse = MutableLiveData<UserDataResponse>()
+    val fresponse: LiveData<UserDataResponse> = _fresponse
+
+    private var _downloadUri = MutableLiveData<Uri?>()
+    val downloadUri: MutableLiveData<Uri?> = _downloadUri
 
     init {
         _status.value = AuthorApiStatus.LOADING
@@ -79,6 +90,55 @@ class AuthorProfileViewModel : ViewModel() {
             updated_at = currDateTime.toString()
         )
         followAuthor(follower)
+    }
+
+    fun updateProfile(
+        context: Context,
+        id: String,
+        firstName: String,
+        lastName: String,
+        dob: String,
+        about: String,
+        phone:String,
+        follower: Int,
+    ) {
+        try {
+            val file = getFileFromUri(context, downloadUri.value!!)
+            viewModelScope.launch {
+                _status.value = AuthorApiStatus.LOADING
+
+                _fresponse.value = ApiClient.retrofitService.createProfile(
+                    user_id = id,
+                    first_name = firstName,
+                    last_name = lastName,
+                    about = about,
+                    book_written = 0,
+                    followers = follower,
+                    following = 0,
+                    bookRead = 0,
+                    is_premium = false,
+                    dob = dob,
+                    phone = phone,
+                    profile_pic = file!!
+                )
+                _status.value = AuthorApiStatus.DONE
+
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+    @SuppressLint("Recycle")
+    private fun getFileFromUri(context: Context, uri: Uri): String? {
+        // get the file path from the URI using the content resolver
+        val bitmap = MediaStore.Images.Media.getBitmap(context.contentResolver, uri)
+        val file = File(context.cacheDir, "profile_pic")
+        file.createNewFile()
+        val bos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 0, bos)
+        val bitmapData = bos.toByteArray()
+        return Base64.encodeToString(bitmapData, Base64.DEFAULT)
+
     }
 
 
