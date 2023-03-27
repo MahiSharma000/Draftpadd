@@ -3,7 +3,7 @@ package com.example.draftpad.network
 import com.squareup.moshi.Json
 
 data class Chapter(
-    val id: Int = 1,
+    @Json(name = "id")val id: Int = 1,
     @Json(name = "title") val title: String,
     @Json(name = "book_id") val book_Id: Int,
     @Json(name="book_title") val book_title:String,

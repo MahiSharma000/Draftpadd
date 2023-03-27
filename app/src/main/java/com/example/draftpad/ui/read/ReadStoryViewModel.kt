@@ -60,6 +60,7 @@ class ReadStoryViewModel : ViewModel() {
     }
 
     fun updateChapter(
+        id:Int,
         bookId: Int,
         chapterTitle: String,
         chapterContent: String,
@@ -71,7 +72,7 @@ class ReadStoryViewModel : ViewModel() {
     ) {
         Log.d("Chapter", "createNewChapter: $bookId")
         val chapter = Chapter(
-            id = 1,
+            id = id,
             book_Id = bookId,
             title = chapterTitle,
             content = chapterContent,

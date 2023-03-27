@@ -68,6 +68,7 @@ class ReadStoryFragment : Fragment() {
 
                 imgVote.setImageResource(R.drawable.baseline_star_24)
                 vm.updateChapter(
+                    vm.chapter.value!!.id,
                     vm.chapter.value!!.book_Id,
                     vm.chapter.value!!.title,
                     vm.chapter.value!!.content,
