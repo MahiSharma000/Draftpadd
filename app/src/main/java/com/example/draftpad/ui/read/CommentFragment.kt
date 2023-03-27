@@ -71,11 +71,27 @@ class CommentFragment : Fragment() {
                     Toast.makeText(requireContext(), "Comment posted", Toast.LENGTH_SHORT).show()
                     txtComment.text.clear()
                     vm.getAllComments()
+                    vm.setChapter(chapterId)
+                    vm.getchapter()
+                    try {
+                        vm.updateChapter(
+                            chapterId,
+                            vm.chapter.value!!.book_Id,
+                            vm.chapter.value!!.title,
+                            vm.chapter.value!!.content,
+                            1,
+                            vm.chapter.value!!.category_id,
+                            vm.chapter.value!!.total_likes,
+                            vm.chapter.value!!.total_comments + 1,
+                            Utils(requireContext()).getUser().id.toInt()
+                        )
 
+
+                    } catch (e: Exception) {
+                        Log.e("CommentFragment", e.toString())
+                    }
                 }
-
             }
-
         }
         vm.postResponse.observe(viewLifecycleOwner) {
             if (it != null) {

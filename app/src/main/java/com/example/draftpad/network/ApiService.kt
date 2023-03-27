@@ -97,6 +97,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("api/v1/chapter")
     suspend fun createChapter(
+        @Field("id")id:Int,
         @Field("title") title: String,
         @Field("book_id") book_id: Int,
         @Field("content") content: String,
