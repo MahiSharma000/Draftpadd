@@ -50,7 +50,6 @@ class ReadStoryViewModel : ViewModel() {
             } catch (e: Exception) {
                 Log.e("ReadStoryViewModel", e.toString())
                 _status.value = ReadStoryApiStatus.ERROR
-                _chapter.value = null
             }
         }
     }
@@ -93,6 +92,7 @@ class ReadStoryViewModel : ViewModel() {
         viewModelScope.launch {
             _chapterStatus.value = ReadStoryApiStatus.LOADING
             _chapterResponse.value = ApiClient.retrofitService.createChapter(
+                id = chapter.id,
                 title = chapter.title,
                 book_id = chapter.book_Id,
                 content = chapter.content,

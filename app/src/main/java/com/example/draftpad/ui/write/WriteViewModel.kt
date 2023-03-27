@@ -59,6 +59,7 @@ class WriteViewModel : ViewModel() {
         viewModelScope.launch {
             _status.value = WriteApiStatus.LOADING
             _response.value = ApiClient.retrofitService.createChapter(
+                id=0,
                 title = chapter.title,
                 book_id = chapter.book_Id,
                 content = chapter.content,
