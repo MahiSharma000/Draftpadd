@@ -35,7 +35,11 @@ class EditStoryViewModel : ViewModel(){
     private val _books = MutableLiveData<List<Book>>()
     val books: LiveData<List<Book>> = _books
 
+   private val _draftbooks = MutableLiveData<List<Book>>()
+    val draftbooks: LiveData<List<Book>> = _draftbooks
 
+    private val _publishedbooks = MutableLiveData<List<Book>>()
+    val publishedbooks: LiveData<List<Book>> = _publishedbooks
 
     init {
         _status.value = EditStoryApiStatus.LOADING
@@ -45,7 +49,7 @@ class EditStoryViewModel : ViewModel(){
         Log.d("SearchViewModel", "getSearchResult: $filterName")
         when (filterName) {
             "published" -> getBooksByStatus(uid,1)
-            "draft" -> getBooksByStatus(uid,0)
+            "drafts" -> getBooksByStatus(uid,0)
         }
     }
 
@@ -56,18 +60,25 @@ class EditStoryViewModel : ViewModel(){
                 userId.let {
                     ApiClient.retrofitService.getBooksByStatus(userId, bookStatus).let { response ->
                         Log.d("EditStoryViewModel", response.toString())
-                        _books.value = response.books
+                        if(bookStatus==1){
+                            _publishedbooks.value = response.books
+
+                        } else {
+                            _draftbooks.value = response.books
+                        }
+
                         if (response.books.isNotEmpty()) {
                             _status.value = EditStoryApiStatus.DONE
                         } else {
                             _status.value = EditStoryApiStatus.ERROR
                         }
+
+
                     }
                 }
             } catch (e: Exception) {
                 Log.e("EditStoryViewModel", e.toString())
                 _status.value = EditStoryApiStatus.ERROR
-                _books.value = listOf()
             }
         }
     }

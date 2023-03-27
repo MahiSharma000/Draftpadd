@@ -2,16 +2,15 @@ package com.example.draftpad.ui.read
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
-import com.example.draftpad.databinding.*
-import com.example.draftpad.ui.search.SearchFragmentDirections
+import com.example.draftpad.Utils
+import com.example.draftpad.databinding.FragmentReadStoryBinding
 
 
 class ReadStoryFragment : Fragment() {
@@ -35,7 +34,7 @@ class ReadStoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ReadStoryFragmentArgs.fromBundle(requireArguments()).chapterId.let{
+        ReadStoryFragmentArgs.fromBundle(requireArguments()).chapterId.let {
             vm.setChapterId(it)
         }
         vm.chapterId.observe(viewLifecycleOwner) {
@@ -63,6 +62,22 @@ class ReadStoryFragment : Fragment() {
                 }
                 val shareIntent = Intent.createChooser(sendIntent, null)
                 startActivity(shareIntent)
+            }
+
+            imgVote.setOnClickListener {
+
+                imgVote.setImageResource(R.drawable.baseline_star_24)
+                vm.updateChapter(
+                    vm.chapter.value!!.book_Id,
+                    vm.chapter.value!!.title,
+                    vm.chapter.value!!.content,
+                    1,
+                    vm.chapter.value!!.category_id,
+                    vm.chapter.value!!.total_likes.plus(1),
+                    vm.chapter.value!!.total_comments,
+                    Utils(requireContext()).getUser().id.toInt()
+                )
+
             }
 
         }

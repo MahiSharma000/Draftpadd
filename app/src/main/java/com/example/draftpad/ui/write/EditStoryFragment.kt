@@ -1,5 +1,6 @@
 package com.example.draftpad.ui.write
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.draftpad.R
+import com.example.draftpad.Utils
 import com.example.draftpad.databinding.FragmentEditBinding
 import com.example.draftpad.databinding.FragmentEditStoryBinding
 import com.example.draftpad.ui.search.BookAdapter
@@ -24,6 +26,10 @@ class EditStoryFragment : Fragment() {
 
     private var _binding: FragmentEditStoryBinding? = null
     private val binding get() = _binding!!
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+    }
 
 
     override fun onCreateView(
@@ -46,12 +52,9 @@ class EditStoryFragment : Fragment() {
     class PagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
             return when (position) {
-                0 -> {
-                    PublishedFragment.newInstance()
-                }
-                else -> {
-                    DraftFragment.newInstance()
-                }
+                0 -> EditFragment("published")
+                1 -> EditFragment("drafts")
+                else -> EditFragment("published")
             }
         }
 
@@ -87,9 +90,11 @@ class EditStoryFragment : Fragment() {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
 
+            viewModel.getResult(filterName,Utils(requireContext()).getUser().id.toInt())
+
             when (filterName) {
                 "published" -> {
-                    viewModel.books.observe(viewLifecycleOwner) { books ->
+                    viewModel.publishedbooks.observe(viewLifecycleOwner) { books ->
                         binding2.editrv.layoutManager = LinearLayoutManager(context)
                         binding2.editrv.adapter = BookAdapter() { book ->
 
@@ -99,8 +104,8 @@ class EditStoryFragment : Fragment() {
                     }
                 }
 
-                "draft" -> {
-                    viewModel.books.observe(viewLifecycleOwner) { books ->
+                "drafts" -> {
+                    viewModel.draftbooks.observe(viewLifecycleOwner) { books ->
                         binding2.editrv.layoutManager = LinearLayoutManager(context)
                         binding2.editrv.adapter = BookAdapter() { book ->
 
