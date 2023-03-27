@@ -1,12 +1,28 @@
 package com.example.draftpad.ui.write
 
+import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.draftpad.R
+import com.example.draftpad.Utils
+import com.example.draftpad.databinding.FragmentEditStoryBinding
+import com.example.draftpad.databinding.FragmentSearchResultBinding
 import com.example.draftpad.network.ApiClient
 import com.example.draftpad.network.Book
+import com.example.draftpad.ui.search.BookAdapter
+import com.example.draftpad.ui.search.SearchNextFragmentDirections
+import com.example.draftpad.ui.search.SearchViewModel
 import kotlinx.coroutines.launch
 
 
@@ -19,8 +35,18 @@ class EditStoryViewModel : ViewModel(){
     private val _books = MutableLiveData<List<Book>>()
     val books: LiveData<List<Book>> = _books
 
+
+
     init {
         _status.value = EditStoryApiStatus.LOADING
+    }
+
+    fun getResult( filterName: String, uid:Int) {
+        Log.d("SearchViewModel", "getSearchResult: $filterName")
+        when (filterName) {
+            "published" -> getBooksByStatus(uid,1)
+            "draft" -> getBooksByStatus(uid,0)
+        }
     }
 
     fun getBooksByStatus(userId:Int , bookStatus:Int) {
@@ -46,3 +72,4 @@ class EditStoryViewModel : ViewModel(){
         }
     }
 }
+

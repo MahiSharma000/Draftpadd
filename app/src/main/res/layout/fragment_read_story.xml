@@ -21,6 +21,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
+            app:title="@{viewModel.chapter.title}"
             android:background="@color/colorPrimary"
             android:titleTextColor="@color/white"/>
 
@@ -41,25 +42,17 @@
                 android:layout_height="match_parent"
                 tools:context=".ui.read.ReadStoryFragment">
 
-                <ImageView
-                    android:id="@+id/imageView7"
-                    android:layout_width="188dp"
-                    android:layout_height="155dp"
-                    android:layout_marginTop="1dp"
-                    android:src="@drawable/cover"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <TextView
                     android:id="@+id/txtBookTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="32dp"
                     android:text="@string/book_title"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView7"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:text="@{viewModel.chapter.book_title}" />
 
                 <TextView
@@ -110,6 +103,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
                     android:text="@string/chapter"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtVotes"
