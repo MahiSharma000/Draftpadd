@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.draftpad.network.ApiClient
+import com.example.draftpad.network.Book
 import com.example.draftpad.network.Chapter
 import kotlinx.coroutines.launch
 
@@ -20,6 +21,11 @@ class ChapterViewModel:ViewModel() {
 
     private val _bookId = MutableLiveData<Int>()
     val bookId: LiveData<Int> = _bookId
+
+    private val _books = MutableLiveData<Book>()
+    val books: LiveData<Book> = _books
+
+
 
     init {
         _status.value = ChapterApiStatus.LOADING

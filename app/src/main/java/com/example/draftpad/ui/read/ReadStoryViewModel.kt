@@ -1,15 +1,16 @@
 package com.example.draftpad.ui.read
 
+import android.content.Context
+import android.os.Build
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.draftpad.network.ApiClient
-import com.example.draftpad.network.Chapter
-import com.example.draftpad.network.PostChapterResponse
+import com.example.draftpad.network.*
 import com.example.draftpad.ui.write.WriteApiStatus
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
 
 enum class ReadStoryApiStatus { LOADING, ERROR, DONE }
 class ReadStoryViewModel : ViewModel() {
@@ -27,6 +28,12 @@ class ReadStoryViewModel : ViewModel() {
 
     private val _chapterResponse = MutableLiveData<PostChapterResponse>()
     val chapterResponse: LiveData<PostChapterResponse> = _chapterResponse
+
+    private val _bookstatus = MutableLiveData<ReadStoryApiStatus>()
+    val bookstatus: MutableLiveData<ReadStoryApiStatus> = _bookstatus
+
+    private val _bookResponse = MutableLiveData<PostBookResponse>()
+    val bookResponse: MutableLiveData<PostBookResponse> = _bookResponse
 
     init {
         _status.value = ReadStoryApiStatus.LOADING
@@ -103,6 +110,59 @@ class ReadStoryViewModel : ViewModel() {
                 total_likes = chapter.total_likes,
             )
             _status.value = ReadStoryApiStatus.DONE
+        }
+    }
+
+    fun postupdateBook(book: Book) {
+        viewModelScope.launch {
+            _bookstatus.value = ReadStoryApiStatus.LOADING
+            _bookResponse.value = ApiClient.retrofitService.createBook(
+                title = book.title,
+                description = book.description,
+                category_id = book.category_id,
+                user_id = book.user_id,
+                status = book.status,
+                views = book.views,
+                lang = book.lang,
+                created_at = book.created_at,
+                cover = book.cover.toString()
+            )
+            _status.value = ReadStoryApiStatus.DONE
+        }
+    }
+
+    fun updateBook(
+        context: Context,
+        title: String,
+        description: String,
+        status: Int,
+        userId: Int,
+        categoryId: Int,
+    ) {
+        try {
+            val currDateTime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                LocalDateTime.now()
+            } else {
+                System.currentTimeMillis()
+            }
+            val book = Book(
+                id = 1,
+                title = title!!,
+                description = description!!,
+                cover = "",
+                category_id = categoryId,
+                user_id = userId,
+                username = "",
+                chapters = 0,
+                status = status,
+                views = 0,
+                lang = "English",
+                created_at = currDateTime.toString(),
+                updated_at = currDateTime.toString(),
+            )
+            postupdateBook(book)
+        } catch (e: Exception) {
+            Log.d("Error", "createnewBook: ${e.message}")
         }
     }
 }

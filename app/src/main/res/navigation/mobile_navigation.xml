@@ -199,9 +199,6 @@
             android:id="@+id/action_editStoryDetailFragment_to_editChaptersFragment"
             app:destination="@id/editChaptersFragment" />
         <action
-            android:id="@+id/action_editStoryDetailFragment_to_selectCategoryFragment"
-            app:destination="@id/selectCategoryFragment" />
-        <action
             android:id="@+id/action_editStoryDetailFragment_to_bookDescriptionFragment"
             app:destination="@id/bookDescriptionFragment" />
         <action
@@ -210,6 +207,15 @@
         <argument
             android:name="bookId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_editStoryDetailFragment_to_blankcategory"
+            app:destination="@id/blankcategory" />
+        <argument
+            android:name="categoryId"
+            app:argType="integer" />
+        <argument
+            android:name="categoryName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/editChaptersFragment"
@@ -219,6 +225,9 @@
         <argument
             android:name="bookId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_editChaptersFragment_to_editChapterContent"
+            app:destination="@id/editChapterContent" />
     </fragment>
     <fragment
         android:id="@+id/contentPreferenceFragment"
@@ -404,4 +413,30 @@
             app:argType="string" />
     </fragment>
     <fragment android:id="@+id/placeholder" />
+    <fragment
+        android:id="@+id/editChapterContent"
+        android:name="com.example.draftpad.ui.write.EditChapterContent"
+        android:label="fragment_edit_chapter_content"
+        tools:layout="@layout/fragment_edit_chapter_content" >
+        <argument
+            android:name="chapterId"
+            app:argType="integer" />
+        <argument
+            android:name="bookTitle"
+            app:argType="string" />
+        <argument
+            android:name="bookDes"
+            app:argType="string" />
+        <argument
+            android:name="category"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/blankcategory"
+        android:name="com.example.draftpad.ui.write.Blankcategory"
+        android:label="Blankcategory" >
+        <action
+            android:id="@+id/action_blankcategory_to_editStoryDetailFragment"
+            app:destination="@id/editStoryDetailFragment" />
+    </fragment>
 </navigation>
