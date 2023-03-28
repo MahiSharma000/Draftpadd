@@ -27,17 +27,8 @@ class CommentViewModel : ViewModel() {
     private val _userstatus = MutableLiveData<UserProfileApiStatus>()
     val userstatus: LiveData<UserProfileApiStatus> = _userstatus
 
-    private val _chapterStatus = MutableLiveData<ReadStoryApiStatus>()
-    val chapterStatus: LiveData<ReadStoryApiStatus> = _chapterStatus
-
-    private val _chapterResponse = MutableLiveData<PostChapterResponse>()
-    val chapterResponse: LiveData<PostChapterResponse> = _chapterResponse
-
-    private val _chapter = MutableLiveData<Chapter>()
-    val chapter: LiveData<Chapter> = _chapter
-
-    private val _chapterId = MutableLiveData<Int>()
-    val chapterId: LiveData<Int> = _chapterId
+    private val _updateResponse=MutableLiveData<UpdateCommentsResponse>()
+    val updateResponse:LiveData<UpdateCommentsResponse> = _updateResponse
 
     private val _user = MutableLiveData<UserProfile?>()
     val user: LiveData<UserProfile?> = _user
@@ -115,6 +106,7 @@ class CommentViewModel : ViewModel() {
             )
             _status.value = CommentApiStatus.DONE
         }
+
     }
 
     fun getUserProfile(uid: Int) {
@@ -135,78 +127,13 @@ class CommentViewModel : ViewModel() {
         }
     }
 
-    fun updateChapter(
-        id:Int,
-        bookId: Int,
-        chapterTitle: String,
-        chapterContent: String,
-        status: Int,
-        categoryid: Int,
-        likes:Int,
-        comments:Int,
-        uid:Int
-    ) {
-        Log.d("Chapter", "createNewChapter: $bookId")
-        val chapter = Chapter(
-            id = id,
-            book_Id = bookId,
-            title = chapterTitle,
-            content = chapterContent,
-            category_id = categoryid,
-            status = status,
-            total_comments = comments,
-            total_likes = likes,
-            user_Id = uid,
-            book_title = "",
-            book_views = 0,
-        )
-        postChapter(chapter)
-    }
-
-
-    private fun postChapter(chapter: Chapter) {
-        Log.d("Chapter", "postChapter: ${chapter.title}")
+    fun updateComments(){
         viewModelScope.launch {
-            _chapterStatus.value = ReadStoryApiStatus.LOADING
-            _chapterResponse.value = ApiClient.retrofitService.createChapter(
-                id = chapter.id,
-                title = chapter.title,
-                book_id = chapter.book_Id,
-                content = chapter.content,
-                category_id = chapter.category_id,
-                user_id = chapter.user_Id,
-                status = chapter.status,
-                total_comments = chapter.total_comments,
-                total_likes = chapter.total_likes,
+            _status.value = CommentApiStatus.LOADING
+            _updateResponse.value = ApiClient.retrofitService.updateComments(
+                _comId.value!!
             )
             _status.value = CommentApiStatus.DONE
         }
     }
-
-    fun getchapter() {
-        viewModelScope.launch {
-            _chapterStatus.value = ReadStoryApiStatus.LOADING
-            try {
-                _chapterId.value?.let {
-                    ApiClient.retrofitService.getChapter(it).let { response ->
-                        Log.d("CommentViewModel", response.toString())
-                        _chapter.value = response.chapter
-                        if (response.chapter != null) {
-                            _chapterStatus.value = ReadStoryApiStatus.DONE
-                        } else {
-                            _chapterStatus.value = ReadStoryApiStatus.ERROR
-                        }
-                    }
-                }
-            } catch (e: Exception) {
-                Log.e("CommentViewModel", e.toString())
-                _chapterStatus.value = ReadStoryApiStatus.ERROR
-            }
-        }
-    }
-
-    fun setChapter(chapterid: Int) {
-        _chapterId.value = chapterid
-    }
-
 }

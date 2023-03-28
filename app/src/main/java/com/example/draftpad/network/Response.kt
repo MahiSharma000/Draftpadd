@@ -125,3 +125,8 @@ data class BooksByMaxViewsResponse(
     val status: String,
     val books: List<Book>
 )
+
+data class UpdateCommentsResponse(
+    val status: String,
+
+)

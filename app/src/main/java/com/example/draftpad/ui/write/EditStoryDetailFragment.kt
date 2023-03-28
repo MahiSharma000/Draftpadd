@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentEditStoryDetailBinding
@@ -14,6 +16,7 @@ class EditStoryDetailFragment : Fragment() {
     private var _binding: FragmentEditStoryDetailBinding? = null
     private val binding get() = _binding!!
     private var toolbar: Toolbar? = null
+    private val vm: NewStoryViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +27,10 @@ class EditStoryDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentEditStoryDetailBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_edit_story_detail, container, false)
+        binding.viewModel = vm
+        binding.lifecycleOwner = viewLifecycleOwner
+
         val root: View = binding.root
         binding.toolbar.inflateMenu(R.menu.edit_story_detail_menu)
         binding.toolbar.setOnMenuItemClickListener { item ->
@@ -45,24 +51,32 @@ class EditStoryDetailFragment : Fragment() {
             }
         }
         return root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val bookId = EditStoryDetailFragmentArgs.fromBundle(requireArguments()).bookId
+        bookId.let{
+            vm.setBookId(it)
+        }
+
+        vm.bookId.observe(viewLifecycleOwner) {
+            vm.getSelectedBook()
+        }
+
         binding.apply {
             editChapter.setOnClickListener {
                 findNavController().navigate(R.id.action_editStoryDetailFragment_to_editChaptersFragment)
             }
             txtEditCategory.setOnClickListener {
-                findNavController().navigate(R.id.action_editStoryDetailFragment_to_selectCategoryFragment)
+
             }
-            txtEditBookDescription.setOnClickListener {
-                findNavController().navigate(R.id.action_editStoryDetailFragment_to_bookDescriptionFragment)
+
+            editChapter.setOnClickListener {
+                val dir = EditStoryDetailFragmentDirections.actionEditStoryDetailFragmentToEditChaptersFragment(bookId)
+                findNavController().navigate(dir)
             }
-            txtTags.setOnClickListener {
-                findNavController().navigate(R.id.action_editStoryDetailFragment_to_addTagFragment)
-            }
+
         }
     }
 

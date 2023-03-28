@@ -193,29 +193,27 @@
         android:label="fragment_edit_story_detail"
         tools:layout="@layout/fragment_edit_story_detail" >
         <action
-            android:id="@+id/action_editStoryDetailFragment_to_writeStoryFragment"
-            app:destination="@id/writeStoryFragment" />
-        <action
             android:id="@+id/action_editStoryDetailFragment_to_editChaptersFragment"
             app:destination="@id/editChaptersFragment" />
         <action
-            android:id="@+id/action_editStoryDetailFragment_to_selectCategoryFragment"
-            app:destination="@id/selectCategoryFragment" />
-        <action
             android:id="@+id/action_editStoryDetailFragment_to_bookDescriptionFragment"
             app:destination="@id/bookDescriptionFragment" />
-        <action
-            android:id="@+id/action_editStoryDetailFragment_to_addTagFragment"
-            app:destination="@id/addTagFragment" />
         <argument
             android:name="bookId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_editStoryDetailFragment_to_writeStoryFragment"
+            app:destination="@id/writeStoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/editChaptersFragment"
         android:name="com.example.draftpad.ui.write.EditChaptersFragment"
         android:label="fragment_edit_chapters"
-        tools:layout="@layout/fragment_edit_chapters" />
+        tools:layout="@layout/fragment_edit_chapters" >
+        <argument
+            android:name="bookId"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/contentPreferenceFragment"
         android:name="com.example.draftpad.ui.home.ContentPreferenceFragment"
@@ -243,11 +241,6 @@
         android:name="com.example.draftpad.ui.write.BookDescriptionFragment"
         android:label="fragment_book_description"
         tools:layout="@layout/fragment_book_description" />
-    <fragment
-        android:id="@+id/addTagFragment"
-        android:name="com.example.draftpad.ui.write.AddTagFragment"
-        android:label="fragment_add_tag"
-        tools:layout="@layout/fragment_add_tag" />
     <fragment
         android:id="@+id/booksFragment"
         android:name="com.example.draftpad.ui.search.BooksFragment"
@@ -384,14 +377,6 @@
             android:name="bookId"
             app:argType="integer" />
     </dialog>
-    <fragment
-        android:id="@+id/draftFragment"
-        android:name="com.example.draftpad.ui.write.DraftFragment"
-        android:label="DraftFragment" >
-        <action
-            android:id="@+id/action_draftFragment_to_editStoryDetailFragment"
-            app:destination="@id/editStoryDetailFragment" />
-    </fragment>
     <fragment
         android:id="@+id/changePassword"
         android:name="com.example.draftpad.setting.ChangePassword"

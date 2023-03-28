@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.draftpad.R
 import com.example.draftpad.Utils
@@ -97,6 +98,8 @@ class EditStoryFragment : Fragment() {
                     viewModel.publishedbooks.observe(viewLifecycleOwner) { books ->
                         binding2.editrv.layoutManager = LinearLayoutManager(context)
                         binding2.editrv.adapter = BookAdapter() { book ->
+                            val dir = EditStoryFragmentDirections.actionEditStoryFragmentToEditStoryDetailFragment(book.id)
+                            findNavController().navigate(dir)
 
                         }
                         Log.e("SearchNextFragment", books.toString())
@@ -108,6 +111,8 @@ class EditStoryFragment : Fragment() {
                     viewModel.draftbooks.observe(viewLifecycleOwner) { books ->
                         binding2.editrv.layoutManager = LinearLayoutManager(context)
                         binding2.editrv.adapter = BookAdapter() { book ->
+                            val dir = EditStoryFragmentDirections.actionEditStoryFragmentToEditStoryDetailFragment(book.id)
+                            findNavController().navigate(dir)
 
                         }
                         Log.e("SearchNextFragment", books.toString())

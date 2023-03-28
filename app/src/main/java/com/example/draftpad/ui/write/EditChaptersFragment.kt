@@ -1,11 +1,20 @@
 package com.example.draftpad.ui.write
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.draftpad.R
+import com.example.draftpad.databinding.FragmentChapterBinding
+import com.example.draftpad.databinding.FragmentEditChaptersBinding
+import com.example.draftpad.ui.read.ChapterAdapter
+import com.example.draftpad.ui.read.ChapterFragmentDirections
+import com.example.draftpad.ui.read.ChapterViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,43 +27,44 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class EditChaptersFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private val vm: ChapterViewModel by activityViewModels()
+    private var _binding: FragmentEditChaptersBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_chapters, container, false)
+        _binding = FragmentEditChaptersBinding.inflate(inflater)
+        binding.viewModel = vm
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment EditChaptersFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            EditChaptersFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        EditChaptersFragmentArgs.fromBundle(requireArguments()).bookId.let {
+            vm.setBookId(it)
+        }
+        vm.bookId.observe(viewLifecycleOwner) {
+            vm.getChapterOfBook()
+        }
+        vm.chapter.observe(viewLifecycleOwner) { chapters ->
+            binding.rvEditChapters.layoutManager = LinearLayoutManager(context)
+            binding.rvEditChapters.adapter = ChapterAdapter() { chapter ->
+
             }
+            Log.e("ChapterFragment", chapters.toString())
+            (binding.rvEditChapters.adapter as ChapterAdapter).submitList(chapters)
+            binding.rvEditChapters.hasFixedSize()
+
+        }
     }
+
+
 }

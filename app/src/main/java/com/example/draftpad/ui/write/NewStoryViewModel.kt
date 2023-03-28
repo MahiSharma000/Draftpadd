@@ -15,6 +15,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.draftpad.network.ApiClient
 import com.example.draftpad.network.Book
 import com.example.draftpad.network.PostBookResponse
+import com.example.draftpad.ui.read.ReadApiStatus
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -30,6 +31,15 @@ class NewStoryViewModel : ViewModel() {
 
     private val _response = MutableLiveData<PostBookResponse>()
     val response: MutableLiveData<PostBookResponse> = _response
+
+    private val _bookId = MutableLiveData<Int>()
+    val bookId: MutableLiveData<Int> = _bookId
+
+    private val _book = MutableLiveData<Book>()
+    val book: MutableLiveData<Book> = _book
+
+    private val _getStatus = MutableLiveData<ReadApiStatus>()
+    val getStatus: MutableLiveData<ReadApiStatus> = _getStatus
 
     private var _isImgSelected = MutableLiveData<Boolean>()
     val isImgSelected: LiveData<Boolean> = _isImgSelected
@@ -120,6 +130,32 @@ class NewStoryViewModel : ViewModel() {
         } catch (e: Exception) {
             Log.d("Error", "createnewBook: ${e.message}")
         }
+    }
+
+    fun getSelectedBook() {
+        Log.d("ReadViewModel",_bookId.value.toString())
+        viewModelScope.launch {
+            _getStatus.value = ReadApiStatus.LOADING
+            try {
+                _bookId.value?.let {
+                    ApiClient.retrofitService.getBook(it).let { response ->
+                        _book.value = response.book
+                        _getStatus.value = ReadApiStatus.DONE
+                        Log.d("ReadViewModel",_book.value.toString())
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("ReadViewModel", e.toString())
+                _getStatus.value = ReadApiStatus.ERROR
+
+            }
+        }
+    }
+
+
+    fun setBookId(id: Int) {
+        _bookId.value = id
+        Log.d("ReadViewModel",_bookId.value.toString())
     }
 
 
