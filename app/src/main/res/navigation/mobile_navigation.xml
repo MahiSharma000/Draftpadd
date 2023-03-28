@@ -193,9 +193,6 @@
         android:label="fragment_edit_story_detail"
         tools:layout="@layout/fragment_edit_story_detail" >
         <action
-            android:id="@+id/action_editStoryDetailFragment_to_writeStoryFragment"
-            app:destination="@id/writeStoryFragment" />
-        <action
             android:id="@+id/action_editStoryDetailFragment_to_editChaptersFragment"
             app:destination="@id/editChaptersFragment" />
         <action
@@ -215,7 +212,11 @@
         android:id="@+id/editChaptersFragment"
         android:name="com.example.draftpad.ui.write.EditChaptersFragment"
         android:label="fragment_edit_chapters"
-        tools:layout="@layout/fragment_edit_chapters" />
+        tools:layout="@layout/fragment_edit_chapters" >
+        <action
+            android:id="@+id/action_editChaptersFragment_to_editChapterContent"
+            app:destination="@id/editChapterContent" />
+    </fragment>
     <fragment
         android:id="@+id/contentPreferenceFragment"
         android:name="com.example.draftpad.ui.home.ContentPreferenceFragment"
@@ -408,4 +409,9 @@
             app:argType="string" />
     </fragment>
     <fragment android:id="@+id/placeholder" />
+    <fragment
+        android:id="@+id/editChapterContent"
+        android:name="com.example.draftpad.ui.write.EditChapterContent"
+        android:label="fragment_edit_chapter_content"
+        tools:layout="@layout/fragment_edit_chapter_content" />
 </navigation>
