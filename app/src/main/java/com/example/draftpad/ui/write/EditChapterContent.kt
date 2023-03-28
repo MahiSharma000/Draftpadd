@@ -19,7 +19,7 @@ import com.example.draftpad.ui.read.ReadStoryViewModel
 class EditChapterContent : Fragment() {
     private var _binding: FragmentEditChapterContentBinding ?= null
     private val binding get() = _binding!!
-    private val vm: ReadStoryViewModel by activityViewModels()
+    private val vm: NewStoryViewModel by activityViewModels()
     private var toolbar: Toolbar? = null
 
 
@@ -79,8 +79,7 @@ class EditChapterContent : Fragment() {
                         vm.chapter.value!!.total_comments,
                         Utils(requireContext()).getUser().id.toInt()
                     )
-
-                    vm.updateBook(
+                    vm.createnewBook(
                         requireContext(),
                         bookTitle,
                         bookContent,
@@ -103,7 +102,4 @@ class EditChapterContent : Fragment() {
 
     }
 
-    companion object {
-
-    }
 }

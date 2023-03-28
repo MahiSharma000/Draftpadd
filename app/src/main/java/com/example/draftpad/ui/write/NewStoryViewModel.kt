@@ -12,10 +12,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.draftpad.network.ApiClient
-import com.example.draftpad.network.Book
-import com.example.draftpad.network.PostBookResponse
+import com.example.draftpad.network.*
 import com.example.draftpad.ui.read.ReadApiStatus
+import com.example.draftpad.ui.read.ReadStoryApiStatus
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -37,6 +36,18 @@ class NewStoryViewModel : ViewModel() {
 
     private val _book = MutableLiveData<Book>()
     val book: MutableLiveData<Book> = _book
+
+    private val _chapterId = MutableLiveData<Int>()
+    val chapterId: LiveData<Int> = _chapterId
+
+    private val _chapter = MutableLiveData<Chapter>()
+    val chapter: LiveData<Chapter> = _chapter
+
+    private val _chapterStatus = MutableLiveData<ReadStoryApiStatus>()
+    val chapterStatus: LiveData<ReadStoryApiStatus> = _chapterStatus
+
+    private val _chapterResponse = MutableLiveData<PostChapterResponse>()
+    val chapterResponse: LiveData<PostChapterResponse> = _chapterResponse
 
     private val _getStatus = MutableLiveData<ReadApiStatus>()
     val getStatus: MutableLiveData<ReadApiStatus> = _getStatus
@@ -158,5 +169,77 @@ class NewStoryViewModel : ViewModel() {
         Log.d("ReadViewModel",_bookId.value.toString())
     }
 
+    fun updateChapter(
+        id:Int,
+        bookId: Int,
+        chapterTitle: String,
+        chapterContent: String,
+        status: Int,
+        categoryid: Int,
+        likes:Int,
+        comments:Int,
+        uid:Int
+    ) {
+        Log.d("Chapter", "createNewChapter: $bookId")
+        val chapter = Chapter(
+            id = id,
+            book_Id = bookId,
+            title = chapterTitle,
+            content = chapterContent,
+            category_id = categoryid,
+            status = status,
+            total_comments = comments,
+            total_likes = likes,
+            user_Id = uid,
+            book_title = "",
+            book_views = 0,
+        )
+        postChapter(chapter)
+    }
 
+
+    private fun postChapter(chapter: Chapter) {
+        Log.d("Chapter", "postChapter: ${chapter.title}")
+        viewModelScope.launch {
+            _chapterStatus.value = ReadStoryApiStatus.LOADING
+            _chapterResponse.value = ApiClient.retrofitService.createChapter(
+                id = chapter.id,
+                title = chapter.title,
+                book_id = chapter.book_Id,
+                content = chapter.content,
+                category_id = chapter.category_id,
+                user_id = chapter.user_Id,
+                status = chapter.status,
+                total_comments = chapter.total_comments,
+                total_likes = chapter.total_likes,
+            )
+            _chapterStatus.value = ReadStoryApiStatus.DONE
+        }
+    }
+
+    fun getChapterById() {
+        viewModelScope.launch {
+            _chapterStatus.value = ReadStoryApiStatus.LOADING
+            try {
+                _chapterId.value?.let {
+                    ApiClient.retrofitService.getChapter(it).let { response ->
+                        Log.d("ReadStoryViewModel", response.toString())
+                        _chapter.value = response.chapter
+                        if (response.chapter != null) {
+                            _chapterStatus.value = ReadStoryApiStatus.DONE
+                        } else {
+                            _chapterStatus.value = ReadStoryApiStatus.ERROR
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("ReadStoryViewModel", e.toString())
+                _chapterStatus.value = ReadStoryApiStatus.ERROR
+            }
+        }
+
+    }
+    fun setChapterId(id: Int) {
+        _chapterId.value = id
+    }
 }

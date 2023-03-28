@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.draftpad.ui.read.ReadStoryViewModel" />
+            type="com.example.draftpad.ui.write.NewStoryViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/frameLayout35"

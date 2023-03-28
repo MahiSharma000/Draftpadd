@@ -113,9 +113,7 @@ class ReadStoryFragment : Fragment() {
                     vm.deleteLikes(uid, chapter_id)
                     flag = 0
                 }
-
             }
-
         }
     }
 }
