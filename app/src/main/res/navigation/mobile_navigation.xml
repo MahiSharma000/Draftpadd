@@ -215,7 +215,11 @@
         android:id="@+id/editChaptersFragment"
         android:name="com.example.draftpad.ui.write.EditChaptersFragment"
         android:label="fragment_edit_chapters"
-        tools:layout="@layout/fragment_edit_chapters" />
+        tools:layout="@layout/fragment_edit_chapters" >
+        <argument
+            android:name="bookId"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/contentPreferenceFragment"
         android:name="com.example.draftpad.ui.home.ContentPreferenceFragment"
@@ -384,14 +388,6 @@
             android:name="bookId"
             app:argType="integer" />
     </dialog>
-    <fragment
-        android:id="@+id/draftFragment"
-        android:name="com.example.draftpad.ui.write.DraftFragment"
-        android:label="DraftFragment" >
-        <action
-            android:id="@+id/action_draftFragment_to_editStoryDetailFragment"
-            app:destination="@id/editStoryDetailFragment" />
-    </fragment>
     <fragment
         android:id="@+id/changePassword"
         android:name="com.example.draftpad.setting.ChangePassword"
