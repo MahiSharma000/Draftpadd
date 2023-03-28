@@ -44,6 +44,7 @@ class EditChapterContent : Fragment() {
         var bookTitle = EditChapterContentArgs.fromBundle(requireArguments()).bookTitle
         var bookContent=EditChapterContentArgs.fromBundle(requireArguments()).bookDes
         var cat=EditChapterContentArgs.fromBundle(requireArguments()).category
+        var bookId = EditChapterContentArgs.fromBundle(requireArguments()).bookId
         ReadStoryFragmentArgs.fromBundle(requireArguments()).chapterId.let {
             vm.setChapterId(it)
         }
@@ -81,6 +82,7 @@ class EditChapterContent : Fragment() {
                     )
                     vm.createnewBook(
                         requireContext(),
+                        bookId,
                         bookTitle,
                         bookContent,
                         status = 1,

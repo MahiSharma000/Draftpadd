@@ -68,6 +68,54 @@ class ReadStoryViewModel : ViewModel() {
         _chapterId.value = id
     }
 
+    fun updateChapter(
+        id:Int,
+        bookId: Int,
+        chapterTitle: String,
+        chapterContent: String,
+        status: Int,
+        categoryid: Int,
+        likes:Int,
+        comments:Int,
+        uid:Int
+    ) {
+        Log.d("Chapter", "createNewChapter: $bookId")
+        val chapter = Chapter(
+            id = id,
+            book_Id = bookId,
+            title = chapterTitle,
+            content = chapterContent,
+            category_id = categoryid,
+            status = status,
+            total_comments = comments,
+            total_likes = likes,
+            user_Id = uid,
+            book_title = "",
+            book_views = 0,
+        )
+        postChapter(chapter)
+    }
+
+
+    private fun postChapter(chapter: Chapter) {
+        Log.d("Chapter", "postChapter: ${chapter.title}")
+        viewModelScope.launch {
+            _chapterStatus.value = ReadStoryApiStatus.LOADING
+            _chapterResponse.value = ApiClient.retrofitService.createChapter(
+                id = chapter.id,
+                title = chapter.title,
+                book_id = chapter.book_Id,
+                content = chapter.content,
+                category_id = chapter.category_id,
+                user_id = chapter.user_Id,
+                status = chapter.status,
+                total_comments = chapter.total_comments,
+                total_likes = chapter.total_likes,
+            )
+            _chapterStatus.value = ReadStoryApiStatus.DONE
+        }
+    }
+
     fun deleteLikes(uid:Int, chapter_id:Int){
         viewModelScope.launch {
             _chapterStatus.value = ReadStoryApiStatus.LOADING

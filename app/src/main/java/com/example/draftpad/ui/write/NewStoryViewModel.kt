@@ -93,6 +93,7 @@ class NewStoryViewModel : ViewModel() {
         viewModelScope.launch {
             _status.value = NewStoryApiStatus.LOADING
             _response.value = ApiClient.retrofitService.createBook(
+                id = book.id,
                 title = book.title,
                 description = book.description,
                 category_id = book.category_id,
@@ -109,6 +110,7 @@ class NewStoryViewModel : ViewModel() {
 
     fun createnewBook(
         context: Context,
+        id :Int,
         title: String,
         description: String,
         status:Int,
@@ -123,7 +125,7 @@ class NewStoryViewModel : ViewModel() {
                 System.currentTimeMillis()
             }
             val book = Book(
-                id = 1,
+                id = id,
                 title = title!!,
                 description = description!!,
                 cover = getFileFromUri(context, downloadUri.value!!),

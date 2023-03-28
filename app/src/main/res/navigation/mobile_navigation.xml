@@ -430,6 +430,9 @@
         <argument
             android:name="category"
             app:argType="integer" />
+        <argument
+            android:name="bookId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/blankcategory"

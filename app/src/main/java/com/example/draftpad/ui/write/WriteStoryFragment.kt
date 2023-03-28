@@ -71,6 +71,7 @@ class WriteStoryFragment : Fragment() {
                         )
                         viewModel.createnewBook(
                             requireContext(),
+                            bi,
                             bookTitle,
                             bookContent,
                             status = 1,

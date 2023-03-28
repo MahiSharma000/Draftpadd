@@ -93,6 +93,7 @@ class EditStoryDetailFragment : Fragment() {
             button.setOnClickListener {
                 vm.createnewBook(
                     requireContext(),
+                    bookId,
                     bookTitle.text.toString(),
                     decription.text.toString(),
                     vm.book.value!!.status,

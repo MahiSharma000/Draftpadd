@@ -27,7 +27,6 @@ class CreateNewStoryFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: NewStoryViewModel by activityViewModels()
 
-    private lateinit var utils: Utils
 
     companion object {
         const val REQUEST_IMAGE_SET = 122
@@ -71,6 +70,7 @@ class CreateNewStoryFragment : Fragment() {
             nextBt.setOnClickListener {
                 viewModel.createnewBook(
                     requireContext(),
+                    0,
                     txtTitle.text.toString(),
                     txtDescription.text.toString(),
                     0,

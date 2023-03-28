@@ -77,6 +77,7 @@ class WriteViewModel : ViewModel() {
         viewModelScope.launch {
             _status.value = WriteApiStatus.LOADING
             _bookResponse.value = ApiClient.retrofitService.createBook(
+                id = book.id,
                 title = book.title,
                 description = book.description,
                 category_id = book.category_id,
@@ -93,6 +94,7 @@ class WriteViewModel : ViewModel() {
 
     fun createnewBook(
         context: Context,
+        id :Int,
         title: String,
         description: String,
         status: Int,
@@ -106,7 +108,7 @@ class WriteViewModel : ViewModel() {
                 System.currentTimeMillis()
             }
             val book = Book(
-                id = 1,
+                id = id,
                 title = title!!,
                 description = description!!,
                 cover = "",

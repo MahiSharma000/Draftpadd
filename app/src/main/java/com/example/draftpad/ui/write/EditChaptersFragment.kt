@@ -49,10 +49,13 @@ class EditChaptersFragment : Fragment() {
             binding.rvEditChapters.layoutManager = LinearLayoutManager(context)
             binding.rvEditChapters.adapter = ChapterAdapter() { chapter ->
                 val dir =
-                    EditChaptersFragmentDirections.actionEditChaptersFragmentToEditChapterContent(chapter.id,
+                    EditChaptersFragmentDirections.actionEditChaptersFragmentToEditChapterContent(
+                        chapter.id,
                         vm.books.value?.title.toString(),
                         vm.books.value?.description.toString(),
-                        vm.books.value?.category_id.toString().toInt())
+                        vm.books.value?.category_id.toString().toInt(),
+                        vm.books.value?.id.toString().toInt()
+                    )
                 findNavController().navigate(dir)
             }
             Log.e("ChapterFragment", chapters.toString())

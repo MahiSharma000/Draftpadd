@@ -75,6 +75,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("api/v1/book")
     suspend fun createBook(
+        @Field("id") id :Int,
         @Field("title") title: String,
         @Field("cover") cover: String,
         @Field("lang") lang: String,
