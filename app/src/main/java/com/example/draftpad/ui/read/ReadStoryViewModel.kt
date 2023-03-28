@@ -5,9 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.draftpad.network.ApiClient
-import com.example.draftpad.network.Chapter
-import com.example.draftpad.network.PostChapterResponse
+import com.example.draftpad.network.*
 import com.example.draftpad.ui.write.WriteApiStatus
 import kotlinx.coroutines.launch
 
@@ -24,6 +22,18 @@ class ReadStoryViewModel : ViewModel() {
 
     private val _chapterStatus = MutableLiveData<ReadStoryApiStatus>()
     val chapterStatus: LiveData<ReadStoryApiStatus> = _chapterStatus
+
+    private val _checkLikeStatus = MutableLiveData<ReadStoryApiStatus>()
+    val checkLikeStatus: LiveData<ReadStoryApiStatus> = _checkLikeStatus
+
+    private val _likeResponse = MutableLiveData<CheckLikeResponse>()
+    val likeResponse: LiveData<CheckLikeResponse> = _likeResponse
+
+    private val _update = MutableLiveData<UpdateLikesResponse>()
+    val update: LiveData<UpdateLikesResponse> = _update
+
+    private val _delete = MutableLiveData<DeleteLikeResponse>()
+    val delete: LiveData<DeleteLikeResponse> = _delete
 
     private val _chapterResponse = MutableLiveData<PostChapterResponse>()
     val chapterResponse: LiveData<PostChapterResponse> = _chapterResponse
@@ -103,6 +113,45 @@ class ReadStoryViewModel : ViewModel() {
                 total_likes = chapter.total_likes,
             )
             _status.value = ReadStoryApiStatus.DONE
+        }
+    }
+
+    fun checkLikes(uid: Int,chapterid:Int) {
+        viewModelScope.launch {
+            _checkLikeStatus.value = ReadStoryApiStatus.LOADING
+            try {
+                _likeResponse.value = ApiClient.retrofitService.checkLike(uid,chapterid)
+                _checkLikeStatus.value = ReadStoryApiStatus.DONE
+            } catch (e: Exception) {
+                Log.e("ReadStoryViewModel", e.toString())
+                _checkLikeStatus.value = ReadStoryApiStatus.ERROR
+            }
+        }
+    }
+
+    fun updateLikes(uid:Int , chapterId:Int){
+        _checkLikeStatus.value = ReadStoryApiStatus.LOADING
+        viewModelScope.launch {
+            try {
+                _update.value = ApiClient.retrofitService.updateLike(uid,chapterId)
+                _checkLikeStatus.value = ReadStoryApiStatus.DONE
+            } catch (e: Exception) {
+                Log.e("ReadStoryViewModel", e.toString())
+                _checkLikeStatus.value = ReadStoryApiStatus.ERROR
+            }
+        }
+    }
+
+    fun deleteLikes(uid:Int, chapterId : Int){
+        _checkLikeStatus.value = ReadStoryApiStatus.LOADING
+        viewModelScope.launch {
+            try {
+                _delete.value = ApiClient.retrofitService.deleteLike(uid,chapterId)
+                _checkLikeStatus.value = ReadStoryApiStatus.DONE
+            } catch (e: Exception) {
+                Log.e("ReadStoryViewModel", e.toString())
+                _checkLikeStatus.value = ReadStoryApiStatus.ERROR
+            }
         }
     }
 }

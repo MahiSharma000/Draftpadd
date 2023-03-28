@@ -57,10 +57,6 @@ class HomeFragment : Fragment() {
                     findNavController().navigate(R.id.action_navigation_home_to_userProfileFragment)
                     true
                 }
-                R.id.content_preferences -> {
-                    findNavController().navigate(R.id.action_navigation_home_to_contentPreferenceFragment)
-                    true
-                }
                 R.id.settings -> {
                     findNavController().navigate(R.id.action_navigation_home_to_settingsFragment)
                     true

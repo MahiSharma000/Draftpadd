@@ -72,7 +72,6 @@ interface ApiService {
     ): DownloadBookResponse
 
 
-
     @FormUrlEncoded
     @POST("api/v1/book")
     suspend fun createBook(
@@ -97,7 +96,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("api/v1/chapter")
     suspend fun createChapter(
-        @Field("id")id:Int,
+        @Field("id") id: Int,
         @Field("title") title: String,
         @Field("book_id") book_id: Int,
         @Field("content") content: String,
@@ -107,6 +106,7 @@ interface ApiService {
         @Field("total_likes") total_likes: Int = 0,
         @Field("category_id") category_id: Int
     ): PostChapterResponse
+
     @GET("api/v1/logout")
     suspend fun logout(): LogoutResponse
 
@@ -147,7 +147,10 @@ interface ApiService {
     suspend fun getFollowers(@Path("id") id: Int): FollowerResponse
 
     @GET("api/v1/books/{id}/{status}")
-    suspend fun getBooksByStatus(@Path("id") id: Int, @Path("status") status: Int): BooksByStatusResponse
+    suspend fun getBooksByStatus(
+        @Path("id") id: Int,
+        @Path("status") status: Int
+    ): BooksByStatusResponse
 
     @GET("api/v1/get_profiles/{name}")
     suspend fun getProfilesByName(@Path("name") name: String): ProfilesByNameResponse
@@ -167,7 +170,8 @@ interface ApiService {
         @Field("old_password") old_password: String,
         @Field("new_password") new_password: String
     ): ChangePasswordResponse
-   //get books with maximum views
+
+    //get books with maximum views
     @GET("api/v1/get_books_max_views")
     suspend fun getBooksByMaxViews(): BooksByMaxViewsResponse
 
@@ -177,6 +181,31 @@ interface ApiService {
     suspend fun updateComments(
         @Field("id") id: Int
     ): UpdateCommentsResponse
+
+    //check tha the user has liked the chapter or not
+    @FormUrlEncoded
+    @POST("api/v1/check_like")
+    suspend fun checkLike(
+        @Field("user_id") user_id: Int,
+        @Field("chapter_id") chapter_id: Int
+    ): CheckLikeResponse
+
+    //update number of likes in a chapter
+    @FormUrlEncoded
+    @POST("api/v1/add_like")
+    suspend fun updateLike(
+        @Field("user_id") user_id: Int,
+        @Field("chapter_id") chapter_id: Int,
+    ): UpdateLikesResponse
+
+    //detele like
+    @FormUrlEncoded
+    @POST("api/v1/delete_like")
+    suspend fun deleteLike(
+        @Field("user_id") user_id: Int,
+        @Field("chapter_id") chapter_id: Int,
+    ): DeleteLikeResponse
+
 
 }
 

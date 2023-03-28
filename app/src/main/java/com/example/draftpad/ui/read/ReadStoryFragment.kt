@@ -2,6 +2,7 @@ package com.example.draftpad.ui.read
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,12 +35,27 @@ class ReadStoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ReadStoryFragmentArgs.fromBundle(requireArguments()).chapterId.let {
+        var flag = 0
+        val uid = Utils(requireContext()).getUser().id.toInt()
+        val chapter_id = ReadStoryFragmentArgs.fromBundle(requireArguments()).chapterId
+        chapter_id.let {
             vm.setChapterId(it)
         }
         vm.chapterId.observe(viewLifecycleOwner) {
             vm.getChapterById()
+
         }
+        try {
+            vm.checkLikes(uid, chapter_id)
+            if (vm.likeResponse.value!!.status == "OK") {
+                binding.imgVote.setImageResource(R.drawable.baseline_star_24)
+                flag = 1
+            }
+        } catch (e: Exception) {
+            Log.e("Likes", e.message.toString())
+        }
+
+
         binding.apply {
             imgComments.setOnClickListener {
                 val chapter_id = vm.chapterId.value!!
@@ -64,27 +80,42 @@ class ReadStoryFragment : Fragment() {
                 startActivity(shareIntent)
             }
 
-            imgVote.setOnClickListener {
 
-                imgVote.setImageResource(R.drawable.baseline_star_24)
-                vm.updateChapter(
-                    vm.chapter.value!!.id,
-                    vm.chapter.value!!.book_Id,
-                    vm.chapter.value!!.title,
-                    vm.chapter.value!!.content,
-                    1,
-                    vm.chapter.value!!.category_id,
-                    vm.chapter.value!!.total_likes.plus(1),
-                    vm.chapter.value!!.total_comments,
-                    Utils(requireContext()).getUser().id.toInt()
-                )
+            imgVote.setOnClickListener {
+                if (flag == 0) {
+                    imgVote.setImageResource(R.drawable.baseline_star_24)
+                    vm.updateChapter(
+                        vm.chapter.value!!.id,
+                        vm.chapter.value!!.book_Id,
+                        vm.chapter.value!!.title,
+                        vm.chapter.value!!.content,
+                        1,
+                        vm.chapter.value!!.category_id,
+                        vm.chapter.value!!.total_likes.plus(1),
+                        vm.chapter.value!!.total_comments,
+                        uid
+                    )
+                    vm.updateLikes(uid, chapter_id)
+                    flag = 1
+                } else {
+                    imgVote.setImageResource(R.drawable.baseline_vote)
+                    vm.updateChapter(
+                        vm.chapter.value!!.id,
+                        vm.chapter.value!!.book_Id,
+                        vm.chapter.value!!.title,
+                        vm.chapter.value!!.content,
+                        1,
+                        vm.chapter.value!!.category_id,
+                        vm.chapter.value!!.total_likes - 1,
+                        vm.chapter.value!!.total_comments,
+                        uid
+                    )
+                    vm.deleteLikes(uid, chapter_id)
+                    flag = 0
+                }
 
             }
 
         }
-    }
-
-    companion object {
-
     }
 }

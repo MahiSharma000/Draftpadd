@@ -10,11 +10,6 @@
         />
 
     <item
-        android:id="@+id/content_preferences"
-        android:title="Content Preferences"
-        />
-
-    <item
         android:id="@+id/user_profile"
         android:title="User Profile"
         />

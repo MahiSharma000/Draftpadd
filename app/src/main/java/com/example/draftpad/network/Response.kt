@@ -127,6 +127,17 @@ data class BooksByMaxViewsResponse(
 )
 
 data class UpdateCommentsResponse(
-    val status: String,
+    val status: String
 
+)
+
+data class CheckLikeResponse(
+    val status: String
+)
+data class UpdateLikesResponse(
+    val status: String
+)
+
+data class DeleteLikeResponse(
+    val status: String
 )
