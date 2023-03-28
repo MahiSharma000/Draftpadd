@@ -44,7 +44,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:clickable="true"
-            android:src="@drawable/cover"
+            android:src="@drawable/image_placeholder"
+            app:author_img="@{viewModel.book.cover}"
             tools:ignore="SpeakableTextPresentCheck" />
 
 
@@ -138,7 +139,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="@string/edit_category" />
+                android:text="@string/edit_category"
+                app:text="@{viewModel.book.category_id}"/>
 
             <TextView
                 android:id="@+id/editChapter"

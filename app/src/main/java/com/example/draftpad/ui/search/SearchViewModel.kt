@@ -34,6 +34,9 @@ class SearchViewModel : ViewModel() {
     private val _bookList = MutableLiveData<List<Book>>()
     val bookList: LiveData<List<Book>> = _bookList
 
+    private val _chapters = MutableLiveData<Chapter>()
+    val chapter: MutableLiveData<Chapter> = _chapters
+
     private val _profileList = MutableLiveData<List<UserProfile>>()
     val profileList: LiveData<List<UserProfile>> = _profileList
 

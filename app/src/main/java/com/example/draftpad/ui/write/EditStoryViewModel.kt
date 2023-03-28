@@ -20,6 +20,7 @@ import com.example.draftpad.databinding.FragmentEditStoryBinding
 import com.example.draftpad.databinding.FragmentSearchResultBinding
 import com.example.draftpad.network.ApiClient
 import com.example.draftpad.network.Book
+import com.example.draftpad.network.Category
 import com.example.draftpad.ui.search.BookAdapter
 import com.example.draftpad.ui.search.SearchNextFragmentDirections
 import com.example.draftpad.ui.search.SearchViewModel
@@ -34,6 +35,12 @@ class EditStoryViewModel : ViewModel(){
 
     private val _books = MutableLiveData<List<Book>>()
     val books: LiveData<List<Book>> = _books
+
+    private val _book = MutableLiveData<Book>()
+    val book: MutableLiveData<Book> = _book
+
+    private val cat=MutableLiveData<Category>()
+    val category:LiveData<Category> = cat
 
    private val _draftbooks = MutableLiveData<List<Book>>()
     val draftbooks: LiveData<List<Book>> = _draftbooks

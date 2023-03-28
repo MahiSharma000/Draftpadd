@@ -25,6 +25,7 @@ class EditStoryFragment : Fragment() {
         fun newInstance() = EditStoryFragment()
     }
 
+
     private var _binding: FragmentEditStoryBinding? = null
     private val binding get() = _binding!!
 
@@ -98,7 +99,7 @@ class EditStoryFragment : Fragment() {
                     viewModel.publishedbooks.observe(viewLifecycleOwner) { books ->
                         binding2.editrv.layoutManager = LinearLayoutManager(context)
                         binding2.editrv.adapter = BookAdapter() { book ->
-                            val dir = EditStoryFragmentDirections.actionEditStoryFragmentToEditStoryDetailFragment(book.id)
+                            val dir = EditStoryFragmentDirections.actionEditStoryFragmentToEditStoryDetailFragment(book.id,viewModel.book.value!!.category_id,viewModel.category.value!!.name)
                             findNavController().navigate(dir)
 
                         }
@@ -111,7 +112,7 @@ class EditStoryFragment : Fragment() {
                     viewModel.draftbooks.observe(viewLifecycleOwner) { books ->
                         binding2.editrv.layoutManager = LinearLayoutManager(context)
                         binding2.editrv.adapter = BookAdapter() { book ->
-                            val dir = EditStoryFragmentDirections.actionEditStoryFragmentToEditStoryDetailFragment(book.id)
+                            val dir = EditStoryFragmentDirections.actionEditStoryFragmentToEditStoryDetailFragment(book.id,viewModel.book.value!!.category_id,viewModel.category.value!!.name)
                             findNavController().navigate(dir)
 
                         }
