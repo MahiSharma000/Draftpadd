@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.draftpad.R
 
 
-class ReadingListFragment : Fragment() {
+class ReadLaterFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,10 +21,10 @@ class ReadingListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reading_list, container, false)
+        return inflater.inflate(R.layout.fragment_read_later, container, false)
     }
 
     companion object {
-        fun newInstance() = ReadingListFragment()
+        fun newInstance() = ReadLaterFragment()
     }
 }

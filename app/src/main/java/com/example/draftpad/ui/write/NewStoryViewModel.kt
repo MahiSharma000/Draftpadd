@@ -146,7 +146,7 @@ class NewStoryViewModel : ViewModel() {
     }
 
     fun getSelectedBook() {
-        Log.d("ReadViewModel",_bookId.value.toString())
+        Log.d("NewStoryViewModel",_bookId.value.toString())
         viewModelScope.launch {
             _getStatus.value = ReadApiStatus.LOADING
             try {

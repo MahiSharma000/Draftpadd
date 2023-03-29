@@ -37,7 +37,7 @@ class EditStoryDetailFragment : Fragment() {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_edit_story_detail, container, false)
         binding.viewModel = vm
         binding.lifecycleOwner = viewLifecycleOwner
-
+        binding.toolbar.inflateMenu(R.menu.edit_story_detail_menu)
         val root: View = binding.root
 
         return root
@@ -53,12 +53,7 @@ class EditStoryDetailFragment : Fragment() {
             vm.setBookId(it)
         }
 
-        vm.bookId.observe(viewLifecycleOwner) {
-            vm.getSelectedBook()
-        }
-
-        binding.toolbar.inflateMenu(R.menu.edit_story_detail_menu)
-
+        vm.getSelectedBook()
 
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {

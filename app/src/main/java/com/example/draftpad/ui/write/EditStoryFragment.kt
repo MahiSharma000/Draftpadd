@@ -99,6 +99,7 @@ class EditStoryFragment : Fragment() {
 
             when (filterName) {
                 "published" -> {
+                    Log.e("EditStoryFragment", viewModel.publishedbooks.value.toString())
                     viewModel.publishedbooks.observe(viewLifecycleOwner) { books ->
                         binding2.editrv.layoutManager = LinearLayoutManager(context)
                         binding2.editrv.adapter = BookAdapter() { book ->
@@ -119,6 +120,7 @@ class EditStoryFragment : Fragment() {
                 }
 
                 "drafts" -> {
+                    Log.e("EditStoryFragment", viewModel.draftbooks.value.toString())
                     viewModel.draftbooks.observe(viewLifecycleOwner) { books ->
                         binding2.editrv.layoutManager = LinearLayoutManager(context)
                         binding2.editrv.adapter = BookAdapter() { book ->

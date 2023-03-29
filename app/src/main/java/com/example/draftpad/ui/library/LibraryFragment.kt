@@ -50,7 +50,7 @@ class LibraryFragment : Fragment() {
                     ArchiveFragment.newInstance()
                 }
                 else -> {
-                    ReadingListFragment.newInstance()
+                    ReadLaterFragment.newInstance()
                 }
             }
         }

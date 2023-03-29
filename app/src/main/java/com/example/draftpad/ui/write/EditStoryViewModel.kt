@@ -50,7 +50,6 @@ class EditStoryViewModel : ViewModel(){
     }
 
     fun getResult( filterName: String, uid:Int) {
-        Log.d("SearchViewModel", "getSearchResult: $filterName")
         when (filterName) {
             "published" -> getBooksByStatus(uid,1)
             "drafts" -> getBooksByStatus(uid,0)
