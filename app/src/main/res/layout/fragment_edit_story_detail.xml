@@ -140,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="@string/edit_category"
-                app:text="@{viewModel.book.category_id}"/>
+                app:text="@{String.valueOf(viewModel.book.category_id)}"/>
 
             <TextView
                 android:id="@+id/editChapter"

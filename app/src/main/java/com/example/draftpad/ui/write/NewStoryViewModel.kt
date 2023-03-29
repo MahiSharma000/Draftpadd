@@ -58,6 +58,8 @@ class NewStoryViewModel : ViewModel() {
     private var _downloadUri = MutableLiveData<Uri?>()
     val downloadUri: MutableLiveData<Uri?> = _downloadUri
 
+    private var _isEdited = MutableLiveData<Boolean>(false)
+    val isEdited: LiveData<Boolean> = _isEdited
 
     init {
         _status.value = NewStoryApiStatus.NONE
@@ -110,25 +112,30 @@ class NewStoryViewModel : ViewModel() {
 
     fun createnewBook(
         context: Context,
-        id :Int,
+        id: Int,
         title: String,
         description: String,
-        status:Int,
+        status: Int,
         userId: Int,
         categoryId: Int,
     ) {
         try {
-            val file = getFileFromUri(context, downloadUri.value!!)
+
             val currDateTime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 LocalDateTime.now()
             } else {
                 System.currentTimeMillis()
             }
+            val cover = if (_isImgSelected.value == true) {
+                _downloadUri.value?.let { getFileFromUri(context, it) }
+            } else {
+                _book.value?.cover
+            }
             val book = Book(
                 id = id,
                 title = title!!,
                 description = description!!,
-                cover = getFileFromUri(context, downloadUri.value!!),
+                cover = cover,
                 category_id = categoryId,
                 user_id = userId,
                 username = "",
@@ -146,7 +153,7 @@ class NewStoryViewModel : ViewModel() {
     }
 
     fun getSelectedBook() {
-        Log.d("NewStoryViewModel",_bookId.value.toString())
+        Log.d("NewStoryViewModel", _bookId.value.toString())
         viewModelScope.launch {
             _getStatus.value = ReadApiStatus.LOADING
             try {
@@ -154,7 +161,7 @@ class NewStoryViewModel : ViewModel() {
                     ApiClient.retrofitService.getBook(it).let { response ->
                         _book.value = response.book
                         _getStatus.value = ReadApiStatus.DONE
-                        Log.d("ReadViewModel",_book.value.toString())
+                        Log.d("ReadViewModel", _book.value.toString())
                     }
                 }
             } catch (e: Exception) {
@@ -168,19 +175,19 @@ class NewStoryViewModel : ViewModel() {
 
     fun setBookId(id: Int) {
         _bookId.value = id
-        Log.d("ReadViewModel",_bookId.value.toString())
+        Log.d("ReadViewModel", _bookId.value.toString())
     }
 
     fun updateChapter(
-        id:Int,
+        id: Int,
         bookId: Int,
         chapterTitle: String,
         chapterContent: String,
         status: Int,
         categoryid: Int,
-        likes:Int,
-        comments:Int,
-        uid:Int
+        likes: Int,
+        comments: Int,
+        uid: Int
     ) {
         Log.d("Chapter", "createNewChapter: $bookId")
         val chapter = Chapter(
@@ -241,6 +248,7 @@ class NewStoryViewModel : ViewModel() {
         }
 
     }
+
     fun setChapterId(id: Int) {
         _chapterId.value = id
     }

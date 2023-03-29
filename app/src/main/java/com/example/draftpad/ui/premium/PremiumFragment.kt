@@ -1,43 +1,55 @@
 package com.example.draftpad.ui.premium
 
+import android.app.AlertDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.draftpad.R
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.draftpad.databinding.FragmentPremiumBinding
-import com.example.draftpad.databinding.FragmentSearchBinding
-import com.github.kittinunf.fuel.httpPost
-import com.github.kittinunf.fuel.json.responseJson
-import com.stripe.android.PaymentConfiguration
-import com.stripe.android.paymentsheet.PaymentSheet
-import com.stripe.android.paymentsheet.PaymentSheetResult
 import com.github.kittinunf.fuel.httpPost
 import com.github.kittinunf.fuel.json.responseJson
 import com.github.kittinunf.result.Result
+import com.stripe.android.PaymentConfiguration
+import com.stripe.android.paymentsheet.PaymentSheet
+import com.stripe.android.paymentsheet.PaymentSheetResult
 
 class PremiumFragment : Fragment() {
+
+    val publishableKey = "pk_test_51MqsCESCz8rZMjh8kM2ElCXyKd8L4HIE3zhVAASQELg8ZLwVYpserzPdxOt5YHAy4FBp33TBH5rMgGKX42m0mcQE004Buf8yVW"
+    val secretKey = "sk_test_51MqsCESCz8rZMjh8Kwew9NTEiBpxHqEQ9xaqITnSYty7NIsPT831jc46picJ7vjMrqjD0cjy9IPqJikqOVi6i46e00Ko8jRijT"
+    val testSCard = "4242424242424242"
+    val testFCard = "4000000000009995"
+    val ip = "192.168.18.207:5000"
     lateinit var paymentSheet: PaymentSheet
     lateinit var customerConfig: PaymentSheet.CustomerConfiguration
-    var paymentIntentClientSecret: String="pk_test_51MolceSCy9vRZRquZEq0mR1RoGp42VtBxlq3GlasZsgytqxQQANkXfrnTtipiwplDTw3qVBy0TzuPmOhRlYeWOF500PQ0pCriT"
+    var paymentIntentClientSecret = publishableKey
     private var _binding: FragmentPremiumBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         paymentSheet = PaymentSheet(this, ::onPaymentSheetResult)
-        val ip = "192.168.18.207:5000"
         "http://$ip/api/v1/create-checkout-session".httpPost().responseJson { _, _, result ->
             if (result is Result.Success) {
                 val responseJson = result.get().obj()
                 paymentIntentClientSecret = responseJson.getString("paymentIntent")
+                Toast.makeText(requireContext(), paymentIntentClientSecret, Toast.LENGTH_SHORT).show()
                 customerConfig = PaymentSheet.CustomerConfiguration(
                     responseJson.getString("customer"),
                     responseJson.getString("ephemeralKey")
                 )
                 val publishableKey = responseJson.getString("publishableKey")
                 PaymentConfiguration.init(requireContext(), publishableKey)
+            }else{
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Error")
+                    .setMessage("Error in creating payment session")
+                    .setPositiveButton("OK") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .show()
             }
         }
     }

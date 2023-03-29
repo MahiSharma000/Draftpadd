@@ -53,7 +53,7 @@ class EditChaptersFragment : Fragment() {
                         chapter.id,
                         vm.books.value?.title.toString(),
                         vm.books.value?.description.toString(),
-                        vm.books.value?.category_id.toString().toInt(),
+                        vm.books.value?.category_id!!,
                         vm.books.value?.id.toString().toInt()
                     )
                 findNavController().navigate(dir)
