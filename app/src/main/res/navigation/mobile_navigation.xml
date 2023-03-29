@@ -186,6 +186,9 @@
         <argument
             android:name="categoryId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_writeStoryFragment_to_navigation_write"
+            app:destination="@id/navigation_write" />
     </fragment>
     <fragment
         android:id="@+id/editStoryDetailFragment"
@@ -212,10 +215,12 @@
             app:destination="@id/blankcategory" />
         <argument
             android:name="categoryId"
-            app:argType="integer" />
+            app:argType="integer"
+            android:defaultValue="4" />
         <argument
             android:name="categoryName"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue="Fantasy" />
     </fragment>
     <fragment
         android:id="@+id/editChaptersFragment"

@@ -4,12 +4,12 @@ import android.Manifest
 import android.app.AlertDialog
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
@@ -68,15 +68,29 @@ class CreateNewStoryFragment : Fragment() {
                 selectImage()
             }
             nextBt.setOnClickListener {
-                viewModel.createnewBook(
-                    requireContext(),
-                    0,
-                    txtTitle.text.toString(),
-                    txtDescription.text.toString(),
-                    0,
-                    Utils(requireContext()).getUser().id.toInt(),
-                    category_id,
-                )
+                if (txtTitle.text.toString().isEmpty() || txtDescription.text.toString()
+                        .isEmpty() || txtSelectCategory.text.toString()
+                        .isEmpty() || vm!!.isImgSelected.value == false
+                ) {
+                    AlertDialog.Builder(requireContext())
+                        .setTitle("Error")
+                        .setMessage("Please fill all the fields")
+                        .setPositiveButton("OK") { dialog, which ->
+                            dialog.dismiss()
+                        }
+                        .show()
+                } else {
+                    viewModel.createnewBook(
+                        requireContext(),
+                        0,
+                        txtTitle.text.toString(),
+                        txtDescription.text.toString(),
+                        0,
+                        Utils(requireContext()).getUser().id.toInt(),
+                        category_id,
+                    )
+                }
+
             }
             vm?.status?.observe(viewLifecycleOwner) {
                 when (it) {

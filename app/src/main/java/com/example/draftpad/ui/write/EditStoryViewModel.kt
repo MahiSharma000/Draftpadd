@@ -36,9 +36,6 @@ class EditStoryViewModel : ViewModel(){
     private val _books = MutableLiveData<List<Book>>()
     val books: LiveData<List<Book>> = _books
 
-    private val _book = MutableLiveData<Book>()
-    val book: MutableLiveData<Book> = _book
-
     private val cat=MutableLiveData<Category>()
     val category:LiveData<Category> = cat
 

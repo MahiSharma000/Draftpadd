@@ -28,6 +28,7 @@ class EditStoryFragment : Fragment() {
 
     private var _binding: FragmentEditStoryBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: EditStoryViewModel by activityViewModels()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -39,6 +40,8 @@ class EditStoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentEditStoryBinding.inflate(inflater, container, false)
+        binding.editStoryvm = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
@@ -92,18 +95,25 @@ class EditStoryFragment : Fragment() {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
 
-            viewModel.getResult(filterName,Utils(requireContext()).getUser().id.toInt())
+            viewModel.getResult(filterName, Utils(requireContext()).getUser().id.toInt())
 
             when (filterName) {
                 "published" -> {
                     viewModel.publishedbooks.observe(viewLifecycleOwner) { books ->
                         binding2.editrv.layoutManager = LinearLayoutManager(context)
                         binding2.editrv.adapter = BookAdapter() { book ->
-                            val dir = EditStoryFragmentDirections.actionEditStoryFragmentToEditStoryDetailFragment(book.id,viewModel.book.value!!.category_id,viewModel.category.value!!.name)
-                            findNavController().navigate(dir)
+                            try {
+                                val dir =
+                                    EditStoryFragmentDirections.actionEditStoryFragmentToEditStoryDetailFragment(
+                                        book.id
+                                    )
+                                findNavController().navigate(dir)
 
+                            } catch (e: Exception) {
+                                Log.e("Error", e.toString())
+                            }
                         }
-                        Log.e("SearchNextFragment", books.toString())
+                        Log.e("EditStoryFragment", books.toString())
                         (binding2.editrv.adapter as BookAdapter).submitList(books)
                     }
                 }
@@ -112,11 +122,19 @@ class EditStoryFragment : Fragment() {
                     viewModel.draftbooks.observe(viewLifecycleOwner) { books ->
                         binding2.editrv.layoutManager = LinearLayoutManager(context)
                         binding2.editrv.adapter = BookAdapter() { book ->
-                            val dir = EditStoryFragmentDirections.actionEditStoryFragmentToEditStoryDetailFragment(book.id,viewModel.book.value!!.category_id,viewModel.category.value!!.name)
-                            findNavController().navigate(dir)
+                            Log.e("Book", book.toString())
+                            try {
+                                val dir =
+                                    EditStoryFragmentDirections.actionEditStoryFragmentToEditStoryDetailFragment(
+                                        book.id
+                                    )
+                                findNavController().navigate(dir)
 
+                            } catch (e: Exception) {
+                                Log.e("Error", e.toString())
+                            }
                         }
-                        Log.e("SearchNextFragment", books.toString())
+                        Log.e("EditStoryFragment", books.toString())
                         (binding2.editrv.adapter as BookAdapter).submitList(books)
                     }
 
