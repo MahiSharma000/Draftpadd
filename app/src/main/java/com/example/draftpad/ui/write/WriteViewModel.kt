@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.draftpad.network.*
+import com.example.draftpad.ui.read.ReadApiStatus
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
@@ -18,6 +19,15 @@ class WriteViewModel : ViewModel() {
 
     private val _status = MutableLiveData<WriteApiStatus>()
     val status: MutableLiveData<WriteApiStatus> = _status
+
+    private val _getStatus = MutableLiveData<WriteApiStatus>()
+    val getStatus: MutableLiveData<WriteApiStatus> = _getStatus
+
+    private val _bookId = MutableLiveData<Int>()
+    val bookId: MutableLiveData<Int> = _bookId
+
+    private val _book = MutableLiveData<Book>()
+    val book: MutableLiveData<Book> = _book
 
     private val _response = MutableLiveData<PostChapterResponse>()
     val response: MutableLiveData<PostChapterResponse> = _response
@@ -126,6 +136,31 @@ class WriteViewModel : ViewModel() {
         } catch (e: Exception) {
             Log.d("Error", "createnewBook: ${e.message}")
         }
+    }
+
+    fun getBook() {
+        Log.d("NewStoryViewModel", _bookId.value.toString())
+        viewModelScope.launch {
+            _getStatus.value = WriteApiStatus.LOADING
+            try {
+                _bookId.value?.let {
+                    ApiClient.retrofitService.getBook(it).let { response ->
+                        _book.value = response.book
+                        _getStatus.value = WriteApiStatus.DONE
+                        Log.d("ReadViewModel", _book.value.toString())
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("ReadViewModel", e.toString())
+                _getStatus.value = WriteApiStatus.ERROR
+
+            }
+        }
+    }
+
+    fun setBookId(id: Int) {
+        _bookId.value = id
+        Log.d("ReadViewModel", _bookId.value.toString())
     }
 }
 

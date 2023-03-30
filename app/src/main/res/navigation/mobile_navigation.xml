@@ -204,9 +204,6 @@
         <action
             android:id="@+id/action_editStoryDetailFragment_to_bookDescriptionFragment"
             app:destination="@id/bookDescriptionFragment" />
-        <action
-            android:id="@+id/action_editStoryDetailFragment_to_addTagFragment"
-            app:destination="@id/addTagFragment" />
         <argument
             android:name="bookId"
             app:argType="integer" />
@@ -221,6 +218,9 @@
             android:name="categoryName"
             app:argType="string"
             android:defaultValue="Fantasy" />
+        <action
+            android:id="@+id/action_editStoryDetailFragment_to_addNewChapter"
+            app:destination="@id/addNewChapter" />
     </fragment>
     <fragment
         android:id="@+id/editChaptersFragment"
@@ -261,11 +261,6 @@
         android:name="com.example.draftpad.ui.write.BookDescriptionFragment"
         android:label="fragment_book_description"
         tools:layout="@layout/fragment_book_description" />
-    <fragment
-        android:id="@+id/addTagFragment"
-        android:name="com.example.draftpad.ui.write.AddTagFragment"
-        android:label="fragment_add_tag"
-        tools:layout="@layout/fragment_add_tag" />
     <fragment
         android:id="@+id/booksFragment"
         android:name="com.example.draftpad.ui.search.BooksFragment"
@@ -446,5 +441,13 @@
         <action
             android:id="@+id/action_blankcategory_to_editStoryDetailFragment"
             app:destination="@id/editStoryDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewChapter"
+        android:name="com.example.draftpad.ui.write.AddNewChapter"
+        android:label="AddNewChapter" >
+        <argument
+            android:name="bookId"
+            app:argType="integer" />
     </fragment>
 </navigation>

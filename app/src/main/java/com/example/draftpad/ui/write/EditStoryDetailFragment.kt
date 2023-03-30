@@ -58,7 +58,8 @@ class EditStoryDetailFragment : Fragment() {
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_add -> {
-                    findNavController().navigate(R.id.action_editStoryDetailFragment_to_writeStoryFragment)
+                    val action=EditStoryDetailFragmentDirections.actionEditStoryDetailFragmentToAddNewChapter(bookId)
+                    findNavController().navigate(action)
                     true
                 }
                 R.id.action_view_as_reader -> {
@@ -82,7 +83,9 @@ class EditStoryDetailFragment : Fragment() {
                 findNavController().navigate(R.id.action_editStoryDetailFragment_to_editChaptersFragment)
             }
             txtEditCategory.setOnClickListener {
-                        txtEditCategory.text = category_name
+
+               // findNavController().navigate(R.id.action_editStoryDetailFragment_to_blankcategory)
+                txtEditCategory.text = category_name
             }
 
             button.setOnClickListener {
