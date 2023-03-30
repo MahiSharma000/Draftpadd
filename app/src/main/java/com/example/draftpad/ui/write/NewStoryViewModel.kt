@@ -8,6 +8,7 @@ import android.os.Build
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
+//import androidx.compose.foundation.gestures.ModifierLocalScrollableContainerProvider.value
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -60,6 +61,15 @@ class NewStoryViewModel : ViewModel() {
 
     private var _isEdited = MutableLiveData<Boolean>(false)
     val isEdited: LiveData<Boolean> = _isEdited
+
+    private var _catName= MutableLiveData<String>()
+    val catName: LiveData<String> = _catName
+
+    private val _catId = MutableLiveData<Int>()
+    val catId: LiveData<Int> = _catId
+
+    private val _categoryResponse = MutableLiveData<CategoryResponse>()
+    val categoryResponse: LiveData<CategoryResponse> = _categoryResponse
 
     init {
         _status.value = NewStoryApiStatus.NONE
@@ -248,6 +258,16 @@ class NewStoryViewModel : ViewModel() {
         }
 
     }
+
+    /*fun getCategoryName(){
+        viewModelScope.launch {
+            _catId.value?.let {
+                ApiClient.retrofitService.getCategoryName(it).let { response ->
+                    _catName.value =response.category.name
+                }
+            }
+        }
+    }*/
 
     fun setChapterId(id: Int) {
         _chapterId.value = id

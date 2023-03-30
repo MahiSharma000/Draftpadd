@@ -141,3 +141,8 @@ data class UpdateLikesResponse(
 data class DeleteLikeResponse(
     val status: String
 )
+
+data class CategoryResponse(
+    val category: Category,
+    val status: String
+)

@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
-private const val BASE_URL = "http://192.168.125.124:5000/"
+private const val BASE_URL = "http://192.168.1.41:5000/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -116,6 +116,9 @@ interface ApiService {
 
     @GET("api/v1/category/{id}")
     suspend fun getCategoryBooks(@Path("id") id: Int): BooksByCategoryResponse
+
+    @GET("/api/v1/get_category/{id}")
+    suspend fun getCategoryName(@Path("id") id: Int): CategoryResponse
 
     @GET("api/v1/book/{id}")
     suspend fun getBook(@Path("id") id: Int): SelectedBookResponse

@@ -67,6 +67,8 @@ class EditChapterContent : Fragment() {
                         vm.chapter.value!!.total_comments,
                         Utils(requireContext()).getUser().id.toInt()
                     )
+                    Toast.makeText(requireContext(), "Chapter Saved", Toast.LENGTH_SHORT).show()
+                    //findNavController().navigate(R.id.action_editChapterContent_to_editStoryDetailFragment2)
 
                     true
                 }
@@ -91,6 +93,9 @@ class EditChapterContent : Fragment() {
                         Utils(requireContext()).getUser().id.toInt(),
                         vm.book.value!!.category_id,
                     )
+
+                    Toast.makeText(requireContext(), "Chapter published", Toast.LENGTH_SHORT).show()
+                    //findNavController().navigate(R.id.action_editChapterContent_to_editStoryDetailFragment2)
                     true
                 }
                 R.id.action_preview -> {

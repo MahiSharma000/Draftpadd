@@ -4,10 +4,12 @@ import android.content.Context
 import android.net.Uri
 import android.os.Build
 import android.util.Log
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.draftpad.Utils
 import com.example.draftpad.network.*
 import com.example.draftpad.ui.read.ReadApiStatus
 import kotlinx.coroutines.launch
@@ -44,7 +46,8 @@ class WriteViewModel : ViewModel() {
         chapterTitle: String,
         chapterContent: String,
         status: Int,
-        categoryid: Int
+        categoryid: Int,
+        userId: Int
     ) {
         Log.d("Chapter", "createNewChapter: $bookId")
         val chapter = Chapter(
@@ -56,7 +59,7 @@ class WriteViewModel : ViewModel() {
             status = status,
             total_comments = 0,
             total_likes = 0,
-            user_Id = 1,
+            user_Id = userId,
             book_title = "",
             book_views = 0,
         )

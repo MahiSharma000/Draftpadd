@@ -68,7 +68,8 @@ class WriteStoryFragment : Fragment() {
                                     title,
                                     content,
                                     status = 0,
-                                    cat
+                                    cat ,
+                                    Utils(requireContext()).getUser().id.toInt(),
                                 )
                                 findNavController().navigate(R.id.action_writeStoryFragment_to_navigation_write)
                             }
@@ -91,7 +92,8 @@ class WriteStoryFragment : Fragment() {
                                     chapterTitle.text.toString(),
                                     chapterContent.text.toString(),
                                     status = 1,
-                                    cat
+                                    cat,
+                                    Utils(requireContext()).getUser().id.toInt(),
                                 )
                                 viewModel.createnewBook(
                                     requireContext(),

@@ -58,9 +58,17 @@ class AddNewChapter : Fragment() {
                             .show()
                     }
                     else{
-                        //cal funtion to create chapter
-                        //cal function to create book
-                        findNavController().navigate(R.id.action_writeStoryFragment_to_navigation_write)
+                        vm.createNewChapter(
+                            vm.book.value!!.id,
+                            binding.newchapterTitle.text.toString(),
+                            binding.newchapterContent.text.toString(),
+                        0,
+                            vm.book.value!!.category_id,
+                            Utils(requireContext()).getUser().id.toInt(),
+                        )
+                        Toast.makeText(requireContext(), "Chapter Saved", Toast.LENGTH_SHORT).show()
+                        //findNavController().navigate(R.id.action_addNewChapter_to_editStoryDetailFragment2)
+
                     }
 
                     true
@@ -76,9 +84,29 @@ class AddNewChapter : Fragment() {
                             .show()
                     }
                     else{
-                        //cal funtion to create chapter
-                        //cal function to create book
-                        findNavController().navigate(R.id.action_writeStoryFragment_to_navigation_write)}
+                        vm.createNewChapter(
+                            vm.book.value!!.id,
+                            binding.newchapterTitle.text.toString(),
+                            binding.newchapterContent.text.toString(),
+                            1,
+                            vm.book.value!!.category_id,
+                            Utils(requireContext()).getUser().id.toInt(),
+                        )
+
+                        vm.createnewBook(
+                            requireContext(),
+                            vm.book.value!!.id,
+                            vm.book.value!!.title,
+                            vm.book.value!!.description,
+                            1,
+                            Utils(requireContext()).getUser().id.toInt(),
+                            vm.book.value!!.category_id,
+
+                        )
+
+                        Toast.makeText(requireContext(), "Chapter Published", Toast.LENGTH_SHORT).show()
+                        //findNavController().navigate(R.id.action_addNewChapter_to_editStoryDetailFragment2)
+                    }
 
 
                     true
@@ -97,7 +125,7 @@ class AddNewChapter : Fragment() {
 
     }
     private fun checkFields(): Boolean {
-        return binding.chapterTitle.text.toString().isNotEmpty() || binding.chapterContent.text.toString().isNotEmpty()
+        return binding.newchapterTitle.text.toString().isEmpty() || binding.newchapterContent.text.toString().isEmpty()
     }
 
     companion object {
