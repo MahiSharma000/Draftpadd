@@ -41,17 +41,19 @@ class EditChapterContent : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.inflateMenu(R.menu.write_story_menu)
-        var bookTitle = EditChapterContentArgs.fromBundle(requireArguments()).bookTitle
-        var bookContent=EditChapterContentArgs.fromBundle(requireArguments()).bookDes
-        var cat=EditChapterContentArgs.fromBundle(requireArguments()).category
-        var bookId = EditChapterContentArgs.fromBundle(requireArguments()).bookId
-        ReadStoryFragmentArgs.fromBundle(requireArguments()).chapterId.let {
+        EditChapterContentArgs.fromBundle(requireArguments()).bookId.let {
+            vm.setBookId(it)
+        }
+        vm.bookId.observe(viewLifecycleOwner) {
+            vm.getSelectedBook()
+        }
+        EditChapterContentArgs.fromBundle(requireArguments()).chapterId.let {
             vm.setChapterId(it)
         }
         vm.chapterId.observe(viewLifecycleOwner) {
             vm.getChapterById()
         }
-        toolbar?.setOnMenuItemClickListener { item ->
+        binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_save -> {
                     vm.updateChapter(
@@ -82,12 +84,12 @@ class EditChapterContent : Fragment() {
                     )
                     vm.createnewBook(
                         requireContext(),
-                        bookId,
-                        bookTitle,
-                        bookContent,
+                        vm.book.value!!.id,
+                        vm.book.value!!.title,
+                        vm.book.value!!.description,
                         status = 1,
                         Utils(requireContext()).getUser().id.toInt(),
-                        cat
+                        vm.book.value!!.category_id,
                     )
                     true
                 }

@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.AlertDialog
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentEditStoryDetailBinding
 import com.example.draftpad.ui.profile.ProfileSettingsFragment
+import com.example.draftpad.ui.write.CreateNewStoryFragmentArgs.Companion.fromBundle
 import com.vmadalin.easypermissions.EasyPermissions
 import com.vmadalin.easypermissions.annotations.AfterPermissionGranted
 
@@ -48,7 +50,12 @@ class EditStoryDetailFragment : Fragment() {
         val catId = EditStoryDetailFragmentArgs.fromBundle(requireArguments()).categoryId
         val category_name = EditStoryDetailFragmentArgs.fromBundle(requireArguments()).categoryName
         val bookId = EditStoryDetailFragmentArgs.fromBundle(requireArguments()).bookId
+        val title= EditStoryDetailFragmentArgs.fromBundle(requireArguments()).bookTitle
+        val description = EditStoryDetailFragmentArgs.fromBundle(requireArguments()).bookDescription
 
+        binding.txtEditCategory.setText(category_name)
+        binding.bookTitle.setText(title)
+        binding.decription.setText(description)
         bookId.let{
             vm.setBookId(it)
         }
@@ -58,11 +65,14 @@ class EditStoryDetailFragment : Fragment() {
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_add -> {
+                    Log.e("EditStoryDetailFragment", bookId.toString())
                     val action=EditStoryDetailFragmentDirections.actionEditStoryDetailFragmentToAddNewChapter(bookId)
                     findNavController().navigate(action)
                     true
                 }
                 R.id.action_view_as_reader -> {
+                    val action=EditStoryDetailFragmentDirections.actionEditStoryDetailFragmentToReadFragment(bookId)
+                    findNavController().navigate(action)
 
                     true
                 }
@@ -84,8 +94,10 @@ class EditStoryDetailFragment : Fragment() {
             }
             txtEditCategory.setOnClickListener {
 
-               // findNavController().navigate(R.id.action_editStoryDetailFragment_to_blankcategory)
-                txtEditCategory.text = category_name
+               val dir = EditStoryDetailFragmentDirections.actionEditStoryDetailFragmentToBlankcategory(bookId, vm.book.value!!.title,vm.book.value!!.description)
+                findNavController().navigate(dir)
+
+
             }
 
             button.setOnClickListener {

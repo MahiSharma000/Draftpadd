@@ -106,7 +106,9 @@ class EditStoryFragment : Fragment() {
                             try {
                                 val dir =
                                     EditStoryFragmentDirections.actionEditStoryFragmentToEditStoryDetailFragment(
-                                        book.id
+                                        book.id,
+                                        book.title,
+                                        book.description
                                     )
                                 findNavController().navigate(dir)
 
@@ -128,7 +130,9 @@ class EditStoryFragment : Fragment() {
                             try {
                                 val dir =
                                     EditStoryFragmentDirections.actionEditStoryFragmentToEditStoryDetailFragment(
-                                        book.id
+                                        book.id,
+                                        book.title,
+                                        book.description
                                     )
                                 findNavController().navigate(dir)
 

@@ -45,8 +45,7 @@ class AddNewChapter : Fragment() {
         }
 
         binding.toolbar.inflateMenu(R.menu.write_story_menu)
-        toolbar!!.setOnMenuItemClickListener { item ->
-
+        binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_save -> {
                     if(checkFields() == true){
@@ -97,7 +96,7 @@ class AddNewChapter : Fragment() {
         }
 
     }
-    fun checkFields(): Boolean {
+    private fun checkFields(): Boolean {
         return binding.chapterTitle.text.toString().isNotEmpty() || binding.chapterContent.text.toString().isNotEmpty()
     }
 

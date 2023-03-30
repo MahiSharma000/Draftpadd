@@ -15,6 +15,7 @@ import com.example.draftpad.databinding.FragmentEditChaptersBinding
 import com.example.draftpad.ui.read.ChapterAdapter
 import com.example.draftpad.ui.read.ChapterFragmentDirections
 import com.example.draftpad.ui.read.ChapterViewModel
+import com.example.draftpad.ui.read.ReadStoryViewModel
 
 
 class EditChaptersFragment : Fragment() {
@@ -51,10 +52,7 @@ class EditChaptersFragment : Fragment() {
                 val dir =
                     EditChaptersFragmentDirections.actionEditChaptersFragmentToEditChapterContent(
                         chapter.id,
-                        vm.books.value?.title.toString(),
-                        vm.books.value?.description.toString(),
-                        vm.books.value?.category_id!!.toInt(),
-                        vm.books.value?.id.toString().toInt()
+                        chapter.book_Id
                     )
                 findNavController().navigate(dir)
             }

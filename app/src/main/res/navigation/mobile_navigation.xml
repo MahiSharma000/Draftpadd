@@ -196,14 +196,8 @@
         android:label="fragment_edit_story_detail"
         tools:layout="@layout/fragment_edit_story_detail" >
         <action
-            android:id="@+id/action_editStoryDetailFragment_to_writeStoryFragment"
-            app:destination="@id/writeStoryFragment" />
-        <action
             android:id="@+id/action_editStoryDetailFragment_to_editChaptersFragment"
             app:destination="@id/editChaptersFragment" />
-        <action
-            android:id="@+id/action_editStoryDetailFragment_to_bookDescriptionFragment"
-            app:destination="@id/bookDescriptionFragment" />
         <argument
             android:name="bookId"
             app:argType="integer" />
@@ -221,6 +215,15 @@
         <action
             android:id="@+id/action_editStoryDetailFragment_to_addNewChapter"
             app:destination="@id/addNewChapter" />
+        <action
+            android:id="@+id/action_editStoryDetailFragment_to_readFragment"
+            app:destination="@id/readFragment" />
+        <argument
+            android:name="bookTitle"
+            app:argType="string" />
+        <argument
+            android:name="bookDescription"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/editChaptersFragment"
@@ -256,11 +259,6 @@
             android:id="@+id/action_selectCategoryFragment_to_createNewStoryFragment2"
             app:destination="@id/createNewStoryFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/bookDescriptionFragment"
-        android:name="com.example.draftpad.ui.write.BookDescriptionFragment"
-        android:label="fragment_book_description"
-        tools:layout="@layout/fragment_book_description" />
     <fragment
         android:id="@+id/booksFragment"
         android:name="com.example.draftpad.ui.search.BooksFragment"
@@ -422,15 +420,6 @@
             android:name="chapterId"
             app:argType="integer" />
         <argument
-            android:name="bookTitle"
-            app:argType="string" />
-        <argument
-            android:name="bookDes"
-            app:argType="string" />
-        <argument
-            android:name="category"
-            app:argType="integer" />
-        <argument
             android:name="bookId"
             app:argType="integer" />
     </fragment>
@@ -441,6 +430,15 @@
         <action
             android:id="@+id/action_blankcategory_to_editStoryDetailFragment"
             app:destination="@id/editStoryDetailFragment" />
+        <argument
+            android:name="bookId"
+            app:argType="integer" />
+        <argument
+            android:name="bookTitle"
+            app:argType="string" />
+        <argument
+            android:name="bookDescription"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addNewChapter"

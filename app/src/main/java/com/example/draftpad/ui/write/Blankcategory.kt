@@ -41,11 +41,14 @@ class Blankcategory : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val bookId = BlankcategoryArgs.fromBundle(requireArguments()).bookId
+        val title = BlankcategoryArgs.fromBundle(requireArguments()).bookTitle
+        val description = BlankcategoryArgs.fromBundle(requireArguments()).bookDescription
         binding.apply {
             viewModel.categories.observe(viewLifecycleOwner) { categories ->
                 this.rveditcategory.layoutManager = LinearLayoutManager(context)
                 this.rveditcategory.adapter = CategoryAdapter() { category ->
-                    val dir = BlankcategoryDirections.actionBlankcategoryToEditStoryDetailFragment(viewModel.chapter.value!!.book_Id,category.id,category.name)
+                    val dir = BlankcategoryDirections.actionBlankcategoryToEditStoryDetailFragment(bookId, title, description, category.id, category.name)
                     findNavController().navigate(dir)
 
                 }
