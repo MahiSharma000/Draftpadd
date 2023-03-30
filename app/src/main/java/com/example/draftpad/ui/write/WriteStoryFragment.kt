@@ -123,7 +123,7 @@ class WriteStoryFragment : Fragment() {
         }
     }
     fun checkFields(): Boolean {
-        return binding.chapterTitle.text.toString().isNotEmpty() || binding.chapterContent.text.toString().isNotEmpty()
+        return binding.chapterTitle.text.toString().isEmpty() || binding.chapterContent.text.toString().isEmpty()
     }
 
 }
