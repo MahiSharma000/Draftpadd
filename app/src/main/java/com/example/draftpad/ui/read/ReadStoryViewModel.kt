@@ -35,9 +35,6 @@ class ReadStoryViewModel : ViewModel() {
     private val _checkLike = MutableLiveData<CheckLikeResponse>()
     val checkLike: LiveData<CheckLikeResponse> = _checkLike
 
-    private val _likeResponse = MutableLiveData<CheckLikeResponse>()
-    val likeResponse: LiveData<CheckLikeResponse> = _likeResponse
-
     init {
         _status.value = ReadStoryApiStatus.LOADING
     }
@@ -120,7 +117,7 @@ class ReadStoryViewModel : ViewModel() {
         viewModelScope.launch {
             _chapterStatus.value = ReadStoryApiStatus.LOADING
             _delete.value = ApiClient.retrofitService.deleteLike(uid, chapter_id)
-            _status.value = ReadStoryApiStatus.DONE
+            _chapterStatus.value = ReadStoryApiStatus.DONE
         }
     }
 
@@ -128,7 +125,7 @@ class ReadStoryViewModel : ViewModel() {
         viewModelScope.launch {
             _chapterStatus.value = ReadStoryApiStatus.LOADING
             _update.value = ApiClient.retrofitService.updateLike(uid, chapter_id)
-            _status.value = ReadStoryApiStatus.DONE
+            _chapterStatus.value = ReadStoryApiStatus.DONE
         }
     }
 
@@ -136,7 +133,7 @@ class ReadStoryViewModel : ViewModel() {
         viewModelScope.launch {
             _chapterStatus.value = ReadStoryApiStatus.LOADING
             _checkLike.value = ApiClient.retrofitService.checkLike(uid, chapter_id)
-            _status.value = ReadStoryApiStatus.DONE
+            _chapterStatus.value = ReadStoryApiStatus.DONE
         }
     }
 }

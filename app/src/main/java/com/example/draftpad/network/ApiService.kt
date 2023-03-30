@@ -137,7 +137,6 @@ interface ApiService {
     @GET("api/v1/chapters/{id}")
     suspend fun getChapters(@Path("id") id: Int): ChaptersResponse
 
-    //get a chapter by chapter id
     @GET("api/v1/chapter/{id}")
     suspend fun getChapter(@Path("id") id: Int): ChapterResponse
 
@@ -156,11 +155,9 @@ interface ApiService {
     @GET("api/v1/get_profiles/{name}")
     suspend fun getProfilesByName(@Path("name") name: String): ProfilesByNameResponse
 
-    //get books by name
     @GET("api/v1/get_books/{name}")
     suspend fun getBooksByName(@Path("name") name: String): BooksByNameResponse
 
-    //get reading list by name
     @GET("api/v1/get_reading_list/{name}")
     suspend fun getReadingListByName(@Path("name") name: String): ReadingListByNameResponse
 
@@ -172,18 +169,15 @@ interface ApiService {
         @Field("new_password") new_password: String
     ): ChangePasswordResponse
 
-    //get books with maximum views
     @GET("api/v1/get_books_max_views")
     suspend fun getBooksByMaxViews(): BooksByMaxViewsResponse
 
-    //update number of comments in a chapter
     @FormUrlEncoded
     @POST("api/v1/update_comment")
     suspend fun updateComments(
         @Field("id") id: Int
     ): UpdateCommentsResponse
 
-    //check tha the user has liked the chapter or not
     @FormUrlEncoded
     @POST("api/v1/check_like")
     suspend fun checkLike(
@@ -191,7 +185,6 @@ interface ApiService {
         @Field("chapter_id") chapter_id: Int
     ): CheckLikeResponse
 
-    //update number of likes in a chapter
     @FormUrlEncoded
     @POST("api/v1/add_like")
     suspend fun updateLike(
@@ -199,15 +192,12 @@ interface ApiService {
         @Field("chapter_id") chapter_id: Int,
     ): UpdateLikesResponse
 
-    //detele like
     @FormUrlEncoded
     @POST("api/v1/delete_like")
     suspend fun deleteLike(
         @Field("user_id") user_id: Int,
         @Field("chapter_id") chapter_id: Int,
     ): DeleteLikeResponse
-
-
 }
 
 object ApiClient {

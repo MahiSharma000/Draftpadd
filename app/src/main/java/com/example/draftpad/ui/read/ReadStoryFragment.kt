@@ -38,23 +38,26 @@ class ReadStoryFragment : Fragment() {
         var flag = 0
         val uid = Utils(requireContext()).getUser().id.toInt()
         val chapter_id = ReadStoryFragmentArgs.fromBundle(requireArguments()).chapterId
-        chapter_id.let {
-            vm.setChapterId(it)
-        }
-        vm.chapterId.observe(viewLifecycleOwner) {
-            vm.getChapterById()
-
-        }
         try {
+            chapter_id.let {
+                vm.setChapterId(it)
+            }
+            vm.chapterId.observe(viewLifecycleOwner) {
+                vm.getChapterById()
+
+            }
+
             vm.checkLikes(uid, chapter_id)
-            if (vm.likeResponse.value!!.status == "OK") {
+            if (vm.checkLike.value!!.status == "OK") {
                 binding.imgVote.setImageResource(R.drawable.baseline_star_24)
                 flag = 1
+            } else {
+                binding.imgVote.setImageResource(R.drawable.baseline_vote)
+                flag = 0
             }
         } catch (e: Exception) {
-            Log.e("Likes", e.message.toString())
+            Log.d("Likes", "onViewCreated: ${e.message}")
         }
-
 
         binding.apply {
             imgComments.setOnClickListener {
