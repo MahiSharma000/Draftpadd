@@ -5,7 +5,7 @@
     <data>
         <variable
             name="userProfilevm"
-            type="com.example.draftpad.ui.profile.UserProfileViewModel" />
+            type="com.example.draftpad.ui.profile.AuthorProfileViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,10 +28,10 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgprofile"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/profile"
-            app:author_img="@{userProfilevm.user.profile_pic}"
+            app:author_img="@{userProfilevm.author.profile_pic}"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -48,7 +48,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgprofile"
-            app:text="@{userProfilevm.user.first_name + ' ' + userProfilevm.user.last_name}" />
+            app:text="@{userProfilevm.author.first_name + ' ' + userProfilevm.author.last_name}" />
 
         <TextView
             android:id="@+id/txtUser"
@@ -61,14 +61,14 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edittxtName"
-            app:text="@{userProfilevm.user.username}" />
+            app:text="@{userProfilevm.author.username}" />
 
         <TextView
             android:id="@+id/textView35"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="41dp"
+            android:layout_marginTop="8dp"
             android:text="ABOUT"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -81,9 +81,31 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:text="TextView"
-            app:text="@{userProfilevm.user.about}"
+            app:text="@{userProfilevm.author.about}"
             app:layout_constraintStart_toStartOf="@+id/textView35"
             app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+        <TextView
+            android:id="@+id/textView46"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Followers"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textView36"
+            app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/followerrv"
+            android:layout_width="409dp"
+            android:layout_height="402dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:listitem="@layout/profile_item"
+            app:layout_constraintTop_toBottomOf="@+id/textView46" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -47,7 +47,7 @@ class AddReadingListFragment : BottomSheetDialogFragment() {
                 Toast.makeText(requireContext(), "Book saved offline", Toast.LENGTH_SHORT).show()
             }
             createReadingList.setOnClickListener {
-                vm.addReadlater(
+                vm.addreadlater(
                     Utils(requireContext()).getUser().id.toInt(),
                     bi
                 )

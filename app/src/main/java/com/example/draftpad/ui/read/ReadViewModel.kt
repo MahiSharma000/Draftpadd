@@ -6,10 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.draftpad.network.ApiClient
-import com.example.draftpad.network.Book
-import com.example.draftpad.network.Download
-import com.example.draftpad.network.DownloadBookResponse
+import com.example.draftpad.network.*
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
@@ -28,6 +25,12 @@ class ReadViewModel : ViewModel() {
 
     private val _bookId = MutableLiveData<Int>(10)
     val bookId: LiveData<Int> = _bookId
+
+    private val _updateResponse = MutableLiveData<UpdateBookViewsResponse>()
+    val updateResponse: LiveData<UpdateBookViewsResponse> = _updateResponse
+
+    private val _readLater = MutableLiveData<AddToReadLaterResponse>()
+    val readLater: LiveData<AddToReadLaterResponse> = _readLater
 
     init {
         _status.value = ReadApiStatus.LOADING
@@ -79,6 +82,23 @@ class ReadViewModel : ViewModel() {
             _downloadResponse.value=ApiClient.retrofitService.download(
                 user_id = download.user_id.toString(),
                 book_id = download.book_id.toString(),
+            )
+        }
+    }
+
+    fun updateViews(bookId: Int){
+        viewModelScope.launch {
+            _updateResponse.value=ApiClient.retrofitService.updateViews(
+                bookId,
+            )
+        }
+    }
+
+    fun addreadlater( userId: Int,bookId: Int){
+        viewModelScope.launch {
+            _readLater.value=ApiClient.retrofitService.addReadlater(
+                userId,
+                bookId
             )
         }
     }

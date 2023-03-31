@@ -14,7 +14,7 @@ class UserProfileFragment : Fragment() {
 
     private var _binding: FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: UserProfileViewModel by activityViewModels()
+    private val viewModel: AuthorProfileViewModel by activityViewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +37,7 @@ class UserProfileFragment : Fragment() {
 
 
         val userId = Utils(requireContext()).getUser().id.toInt()
-        viewModel.getUserProfile(userId)
+        viewModel.getAuthorId(userId)
 
 
     }
