@@ -11,7 +11,8 @@
     android:id="@+id/frameLayout19"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.write.EditStoryDetailFragment">
+    tools:context=".ui.write.EditStoryDetailFragment"
+    android:background="@drawable/bg5">
 
     <Toolbar
         android:id="@+id/toolbar"
@@ -44,7 +45,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:clickable="true"
-            android:src="@drawable/image_placeholder"
+            android:padding="10dp"
+            android:src="@drawable/cover"
             app:author_img="@{viewModel.book.cover}"
             tools:ignore="SpeakableTextPresentCheck" />
 
@@ -55,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/aclonica"
+            android:padding="20dp"
             android:text="@string/edit_book_cover"
             android:textAlignment="viewStart"
             android:textColor="@color/colorPrimaryDark"
@@ -63,10 +66,14 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:padding="10dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -159,8 +166,9 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:text="Edit"
         app:layout_constraintStart_toStartOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />

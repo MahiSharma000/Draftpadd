@@ -11,9 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentInviteFriendsBinding
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 
-class InviteFriendsFragment : Fragment() {
+class InviteFriendsFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentInviteFriendsBinding? = null
     private val binding get() = _binding!!
 

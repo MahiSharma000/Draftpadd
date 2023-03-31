@@ -46,11 +46,17 @@ class AddReadingListFragment : BottomSheetDialogFragment() {
                 Toast.makeText(requireContext(), "Book saved offline", Toast.LENGTH_SHORT).show()
             }
             createReadingList.setOnClickListener {
-                vm.addreadlater(
-                    Utils(requireContext()).getUser().id.toInt(),
-                    bi
-                )
-                Toast.makeText(requireContext(), "Book added to read later", Toast.LENGTH_SHORT).show()
+                try {
+                    /*vm.addreadlater(
+                        Utils(requireContext()).getUser().id.toInt(),
+                        bi
+                    )*/
+                    Toast.makeText(requireContext(), "Book added to read later", Toast.LENGTH_SHORT)
+                        .show()
+                }catch (e:Exception){
+                    Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
         }
     }

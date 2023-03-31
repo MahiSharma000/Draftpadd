@@ -11,12 +11,12 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_margin="8dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:clickable="true"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="10dp"
-        app:cardElevation="4dp"
+        app:cardElevation="12dp"
         app:strokeColor="@android:color/background_light"
         app:strokeWidth="1dp">
 

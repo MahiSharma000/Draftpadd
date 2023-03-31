@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.premium.PremiumFragment">
+    tools:context=".ui.premium.PremiumFragment"
+    android:background="@drawable/bg3">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -76,11 +77,13 @@
         android:id="@+id/btnGoPremium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="148dp"
         android:text="Go Premium"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        android:backgroundTint="@color/colorPrimaryDark"/>
 
     <View
         android:id="@+id/view"

@@ -55,14 +55,5 @@
             app:layout_constraintStart_toStartOf="@+id/txtNotAnOwner"
             app:layout_constraintTop_toBottomOf="@+id/txtNotAnOwner" />
 
-        <Button
-            android:id="@+id/reportBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="92dp"
-            android:text="REPORT"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtOwner" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
