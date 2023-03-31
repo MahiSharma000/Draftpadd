@@ -66,13 +66,12 @@ class SearchNextFragment : Fragment() {
     ) : FragmentStatePagerAdapter(
         fm
     ) {
-        override fun getCount(): Int = 3
+        override fun getCount(): Int = 2
 
         override fun getItem(position: Int): Fragment {
             return when (position) {
                 0 -> SearchResultFragment("stories")
                 1 -> SearchResultFragment("profiles")
-                2 -> SearchResultFragment("reading lists")
                 else -> SearchResultFragment("stories")
             }
         }
@@ -81,7 +80,6 @@ class SearchNextFragment : Fragment() {
             return when (position) {
                 0 -> "Stories"
                 1 -> "Profiles"
-                2 -> "Reading Lists"
                 else -> "Stories"
             }
         }
@@ -141,49 +139,7 @@ class SearchNextFragment : Fragment() {
                         (binding2.searchRv.adapter as ProfileAdapter).submitList(profiles)
                     }
                 }
-                "reading lists" -> {
-                    viewModel.readingList.observe(viewLifecycleOwner) { readingLists ->
-                        binding2.searchRv.layoutManager = LinearLayoutManager(context)
-//                        binding2.searchRv.adapter = ReadingListAdapter() { readingList ->
-//                            val dir =
-//                                SearchNextFragmentDirections.actionSearchNextFragmentToReadingListFragment(
-//                                    readingList.id
-//                                )
-//                            findNavController().navigate(dir)
-//                        }
-//                        Log.e("ReadingListFragment", readingLists.toString())
-//                        (binding2.searchRv.adapter as ReadingListAdapter).submitList(readingLists)
-                    }
-                }
             }
-
-//            viewModel.profileList.observe(viewLifecycleOwner) { profiles ->
-//                binding2.searchRv.layoutManager = LinearLayoutManager(context)
-//                binding2.searchRv.adapter = ProfileAdapter() { profile ->
-//                    val dir =
-//                        SearchNextFragmentDirections.actionSearchNextFragmentToAuthorProfileFragment(
-//                            profile.user_id
-//                        )
-//                    findNavController().navigate(dir)
-//                }
-//                Log.e("ProfileFragment", profiles.toString())
-//                (binding2.searchRv.adapter as ProfileAdapter).submitList(profiles)
-//
-//            }
-//            viewModel.bookList.observe(viewLifecycleOwner) { books ->
-//                binding2.searchRv.layoutManager = LinearLayoutManager(context)
-//                binding2.searchRv.adapter = BookAdapter() { book ->
-//                    val dir =
-//                        SearchNextFragmentDirections.actionSearchNextFragmentToReadFragment(book.id)
-//                    findNavController().navigate(dir)
-//                }
-//                Log.e("SearchNextFragment", books.toString())
-//                (binding2.searchRv.adapter as BookAdapter).submitList(books)
-//
-//            }
-//            viewModel.readingList.observe(viewLifecycleOwner) { readingLists ->
-//
-//            }
         }
     }
 }

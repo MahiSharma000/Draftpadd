@@ -46,9 +46,6 @@ class LibraryFragment : Fragment() {
                 0 -> {
                    DownloadsFragment.newInstance()
                 }
-                1 -> {
-                    ArchiveFragment.newInstance()
-                }
                 else -> {
                     ReadLaterFragment.newInstance()
                 }
@@ -56,13 +53,12 @@ class LibraryFragment : Fragment() {
         }
 
         override fun getCount(): Int {
-            return 3
+            return 2
         }
 
         override fun getPageTitle(position: Int): CharSequence? {
             return when (position) {
                 0 -> "Downloads"
-                1 -> "Archived"
                 else -> "Read Later"
             }
         }
