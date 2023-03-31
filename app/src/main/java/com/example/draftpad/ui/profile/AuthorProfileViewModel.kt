@@ -38,8 +38,8 @@ class AuthorProfileViewModel : ViewModel() {
     private val _followerStatus = MutableLiveData<AuthorApiStatus>()
     val followerStatus: LiveData<AuthorApiStatus> = _followerStatus
 
-    private val _followerResponse = MutableLiveData<FollowersResponse>()
-    val followerResponse: LiveData<FollowersResponse> = _followerResponse
+    private val _checkFollow = MutableLiveData<CheckFollowResponse>()
+    val checkFollow: LiveData<CheckFollowResponse> = _checkFollow
 
 
 
@@ -150,12 +150,12 @@ class AuthorProfileViewModel : ViewModel() {
 
     }
 
-    fun getFollowers(uid : Int){
+    fun getFollower(uid : Int){
         viewModelScope.launch {
             _followerStatus.value = AuthorApiStatus.LOADING
             try {
                 ApiClient.retrofitService.getFollowers(uid).let { response ->
-                    Log.d("AuthorProfileViewModel", "getAuthorId: $response")
+                    Log.d("Follower Function", "$response")
                     _followers.value = response.followers
                     _followerStatus.value = AuthorApiStatus.DONE
                 }
@@ -163,10 +163,25 @@ class AuthorProfileViewModel : ViewModel() {
             } catch (e: Exception) {
                 _followerStatus.value = AuthorApiStatus.ERROR
                 _followers.value = null
-                Log.e("AuthorProfileViewModel", "$e")
+                Log.e("Follower Function", "$e")
             }
         }
     }
 
+    fun checkFollow(uid : Int, followerId : Int){
+        viewModelScope.launch {
+            _followerStatus.value = AuthorApiStatus.LOADING
+            try {
+                ApiClient.retrofitService.checkFollower(uid, followerId).let { response ->
+                    Log.d("FollowerModel", "$response")
+                    _checkFollow.value = response
+                    _followerStatus.value = AuthorApiStatus.DONE
+                }
 
+            } catch (e: Exception) {
+                _followerStatus.value = AuthorApiStatus.ERROR
+                Log.e("Follower", "$e")
+            }
+        }
+    }
 }

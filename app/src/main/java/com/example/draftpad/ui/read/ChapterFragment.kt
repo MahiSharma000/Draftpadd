@@ -43,6 +43,7 @@ class ChapterFragment : Fragment() {
         vm.chapter.observe(viewLifecycleOwner) { chapters ->
             binding.rvChapter.layoutManager = LinearLayoutManager(context)
             binding.rvChapter.adapter = ChapterAdapter() { chapter ->
+                vm.updateViews(chapter.book_Id)
                 val dir =
                     ChapterFragmentDirections.actionChapterFragmentToReadStoryFragment(chapter.id)
                 findNavController().navigate(dir)

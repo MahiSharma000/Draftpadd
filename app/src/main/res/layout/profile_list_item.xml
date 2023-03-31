@@ -5,7 +5,7 @@
     <data>
         <variable
             name="follower"
-            type="com.example.draftpad.network.Follower" />
+            type="com.example.draftpad.network.UserProfile" />
     </data>
 <com.google.android.material.card.MaterialCardView
     android:layout_width="match_parent"

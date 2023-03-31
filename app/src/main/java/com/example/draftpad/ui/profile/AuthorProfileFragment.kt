@@ -37,21 +37,43 @@ class AuthorProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var flag = 0
         val user_id = AuthorProfileFragmentArgs.fromBundle(requireArguments()).userId
         Log.d("AuthorProfileFragment", "onViewCreated: $user_id")
         vm.getAuthorId(user_id)
-        vm.getFollowers(user_id)
-        binding.apply {
+        vm.getFollower(user_id)
+        vm.checkFollow(Utils(requireContext()).getUser().id.toInt(), user_id)
+        try {
 
-            vm.followers.observe(viewLifecycleOwner) {followers ->
-                this.rvfollowers.layoutManager = LinearLayoutManager(context)
-                this.rvfollowers.adapter = FollowerAdapter(){
-                    follower->
-                    val dir = AuthorProfileFragmentDirections.actionAuthorProfileFragmentSelf(follower.id.toString().toInt())
-                    findNavController().navigate(dir)
+            if (vm.checkFollow.value!!.status == "OK") {
+                binding.btnfollow.text = "Following"
+                binding.btnfollow.setBackgroundColor(resources.getColor(R.color.colorPrimaryDark))
+                flag = 1
+            } else {
+                binding.btnfollow.text = "Follow"
+                flag = 0
+            }
+        } catch (e: Exception) {
+            Log.e("Follow Button", "$e")
+        }
+        binding.apply {
+            try {
+                txtwork.setText(vm.author.value!!.book_written.toString())
+                txtFollower.setText(vm.author.value!!.followers.toString())
+                vm.followers.observe(viewLifecycleOwner) { followers ->
+                    this.rvfollowers.layoutManager = LinearLayoutManager(context)
+                    this.rvfollowers.adapter = FollowerAdapter() { follower ->
+                        Log.e("Followers", "$follower")
+                        val dir = AuthorProfileFragmentDirections.actionAuthorProfileFragmentSelf(
+                            follower.id.toString().toInt()
+                        )
+                        findNavController().navigate(dir)
+
+                    }
 
                 }
-
+            } catch (e: Exception) {
+                Log.e("Followers", "$e")
             }
             btnfollow.setOnClickListener {
                 vm.updateProfile(
@@ -68,8 +90,8 @@ class AuthorProfileFragment : Fragment() {
                     Utils(requireContext()).getUser().id,
                     user_id.toString()
                 )
-
-                btnfollow.text= "Following"
+                flag = 1
+                btnfollow.text = "Following"
                 btnfollow.setBackgroundColor(resources.getColor(R.color.colorPrimaryDark))
 
             }

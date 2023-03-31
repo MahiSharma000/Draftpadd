@@ -13,7 +13,6 @@
         android:id="@+id/frameLayout24"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/appbg"
         tools:context=".ui.write.SelectCategoryFragment">
 
         <Toolbar

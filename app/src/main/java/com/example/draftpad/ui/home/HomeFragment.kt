@@ -79,7 +79,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         vm.getBooks()
         vm.books.observe(viewLifecycleOwner) { books ->
-            binding.rvhome.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            binding.rvhome.layoutManager = LinearLayoutManager(context)
             binding.rvhome.adapter = BookAdapter() { book ->
                 Log.e("BooksFragment", book.toString())
                 (binding.rvhome.adapter as BookAdapter).notifyDataSetChanged()

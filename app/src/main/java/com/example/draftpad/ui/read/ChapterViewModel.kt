@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.draftpad.network.ApiClient
 import com.example.draftpad.network.Book
 import com.example.draftpad.network.Chapter
+import com.example.draftpad.network.UpdateBookViewsResponse
 import kotlinx.coroutines.launch
 
 enum class ChapterApiStatus { LOADING, ERROR, DONE }
@@ -18,6 +19,9 @@ class ChapterViewModel:ViewModel() {
 
     private val _chapters = MutableLiveData<List<Chapter>>()
     val chapter: LiveData<List<Chapter>> = _chapters
+
+    private val _updateResponse = MutableLiveData<UpdateBookViewsResponse>()
+    val updateResponse: LiveData<UpdateBookViewsResponse> = _updateResponse
 
     private val _bookId = MutableLiveData<Int>()
     val bookId: LiveData<Int> = _bookId
@@ -56,5 +60,13 @@ class ChapterViewModel:ViewModel() {
 
     fun setBookId(id: Int) {
         _bookId.value = id
+    }
+
+    fun updateViews(bookId: Int){
+        viewModelScope.launch {
+            _updateResponse.value=ApiClient.retrofitService.updateViews(
+                bookId,
+            )
+        }
     }
 }

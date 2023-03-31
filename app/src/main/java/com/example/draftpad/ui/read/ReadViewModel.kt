@@ -26,8 +26,7 @@ class ReadViewModel : ViewModel() {
     private val _bookId = MutableLiveData<Int>(10)
     val bookId: LiveData<Int> = _bookId
 
-    private val _updateResponse = MutableLiveData<UpdateBookViewsResponse>()
-    val updateResponse: LiveData<UpdateBookViewsResponse> = _updateResponse
+
 
     private val _readLater = MutableLiveData<AddToReadLaterResponse>()
     val readLater: LiveData<AddToReadLaterResponse> = _readLater
@@ -86,17 +85,11 @@ class ReadViewModel : ViewModel() {
         }
     }
 
-    fun updateViews(bookId: Int){
-        viewModelScope.launch {
-            _updateResponse.value=ApiClient.retrofitService.updateViews(
-                bookId,
-            )
-        }
-    }
+
 
     fun addreadlater( userId: Int,bookId: Int){
         viewModelScope.launch {
-            _readLater.value=ApiClient.retrofitService.addReadlater(
+            _readLater.value=ApiClient.retrofitService.addReadLater(
                 userId,
                 bookId
             )

@@ -35,6 +35,7 @@ class ReadStoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         var flag = 0
         val uid = Utils(requireContext()).getUser().id.toInt()
         val chapter_id = ReadStoryFragmentArgs.fromBundle(requireArguments()).chapterId

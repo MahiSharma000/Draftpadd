@@ -7,8 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.draftpad.network.*
-import com.example.draftpad.ui.profile.ProfileApiStatus
-import com.example.draftpad.ui.profile.UserProfileApiStatus
+import com.example.draftpad.ui.profile.AuthorApiStatus
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
@@ -24,8 +23,8 @@ class CommentViewModel : ViewModel() {
     private val _postResponse = MutableLiveData<PostCommentResponse>()
     val postResponse: LiveData<PostCommentResponse> = _postResponse
 
-    private val _userstatus = MutableLiveData<UserProfileApiStatus>()
-    val userstatus: LiveData<UserProfileApiStatus> = _userstatus
+    private val _userstatus = MutableLiveData<AuthorApiStatus>()
+    val userstatus: LiveData<AuthorApiStatus> = _userstatus
 
     private val _updateResponse=MutableLiveData<UpdateCommentsResponse>()
     val updateResponse:LiveData<UpdateCommentsResponse> = _updateResponse
@@ -108,19 +107,18 @@ class CommentViewModel : ViewModel() {
         }
 
     }
-
     fun getUserProfile(uid: Int) {
         viewModelScope.launch {
-            _userstatus.value = UserProfileApiStatus.LOADING
+            _userstatus.value = AuthorApiStatus.LOADING
             try {
                 ApiClient.retrofitService.getProfile(uid).let { response ->
                     Log.d("UserProfileViewModel", "getUserProfile: $response")
                     _user.value = response.author
-                    _userstatus.value = UserProfileApiStatus.DONE
+                    _userstatus.value = AuthorApiStatus.DONE
                 }
 
             } catch (e: Exception) {
-                _userstatus.value = UserProfileApiStatus.ERROR
+                _userstatus.value = AuthorApiStatus.ERROR
                 _user.value = null
                 Log.e("UserProfileViewModel", "getUserProfile: $e")
             }

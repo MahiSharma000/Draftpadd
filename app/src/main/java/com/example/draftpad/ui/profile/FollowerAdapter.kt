@@ -5,18 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.draftpad.databinding.BookListItemBinding
 import com.example.draftpad.databinding.ProfileListItemBinding
-import com.example.draftpad.network.Book
 import com.example.draftpad.network.Follower
-import com.example.draftpad.ui.search.BookAdapter
+import com.example.draftpad.network.UserProfile
 
 class FollowerAdapter(
-    val listener: (Follower) -> Unit
-) : ListAdapter<Follower, FollowerAdapter.FollowerViewHolder>(DiffCallback) {
+    val listener: (UserProfile) -> Unit
+) : ListAdapter<UserProfile, FollowerAdapter.FollowerViewHolder>(DiffCallback) {
     class FollowerViewHolder(private val binding: ProfileListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(follower: Follower) {
+        fun bind(follower: UserProfile) {
             binding.follower = follower
             binding.executePendingBindings()
         }
@@ -42,17 +40,17 @@ class FollowerAdapter(
         }
     }
 
-    companion object DiffCallback : DiffUtil.ItemCallback<com.example.draftpad.network.Follower>() {
+    companion object DiffCallback : DiffUtil.ItemCallback<com.example.draftpad.network.UserProfile>() {
         override fun areItemsTheSame(
-            oldItem: com.example.draftpad.network.Follower,
-            newItem: com.example.draftpad.network.Follower
+            oldItem: com.example.draftpad.network.UserProfile,
+            newItem: com.example.draftpad.network.UserProfile
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: com.example.draftpad.network.Follower,
-            newItem: com.example.draftpad.network.Follower
+            oldItem: com.example.draftpad.network.UserProfile,
+            newItem: com.example.draftpad.network.UserProfile
         ): Boolean {
             return oldItem.user_id == newItem.user_id
         }

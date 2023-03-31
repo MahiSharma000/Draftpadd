@@ -155,3 +155,7 @@ data class FollowersResponse(
     val status: String,
     val followers: List<UserProfile>
 )
+
+data class CheckFollowResponse(
+    val status: String
+)

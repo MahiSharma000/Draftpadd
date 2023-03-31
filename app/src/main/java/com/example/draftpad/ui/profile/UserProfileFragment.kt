@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.draftpad.Utils
 import com.example.draftpad.databinding.FragmentUserProfileBinding
 
@@ -27,7 +29,7 @@ class UserProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentUserProfileBinding.inflate(inflater, container, false)
-        binding.userProfilevm =viewModel
+        binding.userProfilevm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
@@ -38,6 +40,20 @@ class UserProfileFragment : Fragment() {
 
         val userId = Utils(requireContext()).getUser().id.toInt()
         viewModel.getAuthorId(userId)
+
+        binding.apply {
+            viewModel.followers.observe(viewLifecycleOwner) { followers ->
+                this.followerrv.layoutManager = LinearLayoutManager(context)
+                this.followerrv.adapter = FollowerAdapter() { follower ->
+                    val dir = AuthorProfileFragmentDirections.actionAuthorProfileFragmentSelf(
+                        follower.id.toString().toInt()
+                    )
+                    findNavController().navigate(dir)
+
+                }
+
+            }
+        }
 
 
     }
