@@ -43,7 +43,6 @@ class AddReadingListFragment : BottomSheetDialogFragment() {
                     bi
                 )
                 saveBookOffline()
-                //create toast
                 Toast.makeText(requireContext(), "Book saved offline", Toast.LENGTH_SHORT).show()
             }
             createReadingList.setOnClickListener {
@@ -55,7 +54,7 @@ class AddReadingListFragment : BottomSheetDialogFragment() {
             }
         }
     }
-    // function to save book offline
+
     fun saveBookOffline(){
         // save book offline
 
