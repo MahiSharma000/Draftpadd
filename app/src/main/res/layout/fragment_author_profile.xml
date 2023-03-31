@@ -153,7 +153,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-             app:AuthorApiStatus="@{authorProfileVm.followerStatus}"/>
+            app:AuthorApiStatus="@{authorProfileVm.followerStatus}"
+            app:layout_constraintBottom_toBottomOf="@+id/rvfollowers"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/rvfollowers"
+            app:layout_constraintTop_toTopOf="@+id/rvfollowers" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
