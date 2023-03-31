@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
-private const val BASE_URL = "http://192.168.125.124:5000/"
+private const val BASE_URL = "http://192.168.92.25:5000"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -38,6 +38,13 @@ interface ApiService {
         @Field("report_type") report_type: String,
         @Field("report_reason") report_reason: String
     ): ReportResponse
+
+    @FormUrlEncoded
+    @POST("/api/v1/reading_list")
+    suspend fun addToReadingList(
+        @Field("user_id") user_id: String,
+        @Field("book_id") book_id: String
+    ): AddToReadLaterResponse
 
 
     @FormUrlEncoded
@@ -147,7 +154,7 @@ interface ApiService {
     suspend fun getProfile(@Path("id") id: Int): AuthorResponse
 
     @GET("api/v1/get_follower/{id}")
-    suspend fun getFollowers(@Path("id") id: Int): FollowersResponse
+    suspend fun getFollowers(@Path("id") id: Int): FollowerResponse
 
     @GET("api/v1/books/{id}/{status}")
     suspend fun getBooksByStatus(
@@ -201,21 +208,6 @@ interface ApiService {
         @Field("user_id") user_id: Int,
         @Field("chapter_id") chapter_id: Int,
     ): DeleteLikeResponse
-
-    //update views on book
-    @FormUrlEncoded
-    @POST("api/v1/update_views")
-    suspend fun updateViews(
-        @Field("id") id: Int
-    ): UpdateBookViewsResponse
-
-    //add books in read Later
-    @FormUrlEncoded
-    @POST("api/v1/add_reading_later")
-    suspend fun addReadlater(
-        @Field("user_id") user_id: Int,
-        @Field("book_id") book_id: Int,
-    ): AddToReadLaterResponse
 }
 
 object ApiClient {
