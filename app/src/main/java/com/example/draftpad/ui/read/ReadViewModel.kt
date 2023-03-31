@@ -20,14 +20,17 @@ class ReadViewModel : ViewModel() {
     private val _downloadResponse = MutableLiveData<DownloadBookResponse>()
     val downloadResponse: LiveData<DownloadBookResponse> = _downloadResponse
 
-    private val _readLaterResponse = MutableLiveData<AddToReadLaterResponse>()
-    val readLaterResponse: LiveData<AddToReadLaterResponse> = _readLaterResponse
-
     private val _book = MutableLiveData<Book?>()
     val book: LiveData<Book?> = _book
 
     private val _bookId = MutableLiveData<Int>(10)
     val bookId: LiveData<Int> = _bookId
+
+    private val _updateResponse = MutableLiveData<UpdateBookViewsResponse>()
+    val updateResponse: LiveData<UpdateBookViewsResponse> = _updateResponse
+
+    private val _readLater = MutableLiveData<AddToReadLaterResponse>()
+    val readLater: LiveData<AddToReadLaterResponse> = _readLater
 
     init {
         _status.value = ReadApiStatus.LOADING
@@ -83,19 +86,19 @@ class ReadViewModel : ViewModel() {
         }
     }
 
-    fun addReadlater(userid: Int, bookId: Int){
-        val readLater=ReadingList(
-            user_id = userid,
-            book_id = bookId
-        )
-        postReadLater(readLater)
+    fun updateViews(bookId: Int){
+        viewModelScope.launch {
+            _updateResponse.value=ApiClient.retrofitService.updateViews(
+                bookId,
+            )
+        }
     }
 
-    private fun postReadLater(readLater: ReadingList) {
+    fun addreadlater( userId: Int,bookId: Int){
         viewModelScope.launch {
-            _readLaterResponse.value=ApiClient.retrofitService.addToReadingList(
-                user_id = readLater.user_id.toString(),
-                book_id = readLater.book_id.toString(),
+            _readLater.value=ApiClient.retrofitService.addReadlater(
+                userId,
+                bookId
             )
         }
     }

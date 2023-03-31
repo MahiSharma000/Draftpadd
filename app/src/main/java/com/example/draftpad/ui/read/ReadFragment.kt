@@ -50,6 +50,7 @@ class ReadFragment : Fragment() {
 
         binding.apply {
             btnRead.setOnClickListener {
+                vm.updateViews(vm.book.value!!.id)
                 val action =
                     ReadFragmentDirections.actionReadFragmentToChapterFragment((vm.book.value?.id ?: 1) as Int)
                 findNavController().navigate(action)

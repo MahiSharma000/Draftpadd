@@ -370,6 +370,9 @@
         <argument
             android:name="userId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_authorProfileFragment_self"
+            app:destination="@id/authorProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/chapterFragment"

@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.draftpad.R
 import com.example.draftpad.Utils
 import com.example.draftpad.databinding.FragmentAuthorProfileBinding
@@ -38,7 +40,19 @@ class AuthorProfileFragment : Fragment() {
         val user_id = AuthorProfileFragmentArgs.fromBundle(requireArguments()).userId
         Log.d("AuthorProfileFragment", "onViewCreated: $user_id")
         vm.getAuthorId(user_id)
+        vm.getFollowers(user_id)
         binding.apply {
+
+            vm.followers.observe(viewLifecycleOwner) {followers ->
+                this.rvfollowers.layoutManager = LinearLayoutManager(context)
+                this.rvfollowers.adapter = FollowerAdapter(){
+                    follower->
+                    val dir = AuthorProfileFragmentDirections.actionAuthorProfileFragmentSelf(follower.id.toString().toInt())
+                    findNavController().navigate(dir)
+
+                }
+
+            }
             btnfollow.setOnClickListener {
                 vm.updateProfile(
                     requireContext(),

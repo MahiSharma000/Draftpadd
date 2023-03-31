@@ -82,11 +82,6 @@ data class PostCommentResponse(
     val msg: String,
 )
 
-data class FollowerResponse(
-    val status: String,
-    val followers: List<Follower>
-)
-
 data class PostChapterResponse(
     val status: String
 )
@@ -150,4 +145,13 @@ data class DeleteLikeResponse(
 data class CategoryResponse(
     val category: Category,
     val status: String
+)
+
+data class UpdateBookViewsResponse(
+    val status: String
+)
+
+data class FollowersResponse(
+    val status: String,
+    val followers: List<UserProfile>
 )

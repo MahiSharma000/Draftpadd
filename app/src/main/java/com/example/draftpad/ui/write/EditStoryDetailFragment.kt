@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
@@ -53,7 +54,7 @@ class EditStoryDetailFragment : Fragment() {
         val title= EditStoryDetailFragmentArgs.fromBundle(requireArguments()).bookTitle
         val description = EditStoryDetailFragmentArgs.fromBundle(requireArguments()).bookDescription
 
-        binding.txtEditCategory.setText(category_name)
+        binding.txtEditCategory.text = category_name
         binding.bookTitle.setText(title)
         binding.decription.setText(description)
         bookId.let{
@@ -110,6 +111,7 @@ class EditStoryDetailFragment : Fragment() {
                     vm.book.value!!.user_id,
                     catId
                 )
+                Toast.makeText(requireContext(), "Book Updated", Toast.LENGTH_SHORT).show()
             }
 
             editChapter.setOnClickListener {

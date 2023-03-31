@@ -22,7 +22,7 @@ import com.example.draftpad.ui.search.BookAdapter
 
 class EditStoryFragment : Fragment() {
     companion object {
-        fun newInstance() = EditStoryFragment()
+       // fun newInstance() = EditStoryFragment()
     }
 
 
