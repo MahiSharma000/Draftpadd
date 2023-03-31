@@ -26,10 +26,9 @@ class FollowerViewModel:ViewModel(){
 
     init {
         _status.value = FollowerApiStatus.LOADING
-        getFollowers()
-    }
+   }
 
-    fun getFollowers() {
+    /*fun getFollowers() {
         viewModelScope.launch {
             _status.value = FollowerApiStatus.LOADING
             try {
@@ -50,7 +49,7 @@ class FollowerViewModel:ViewModel(){
                 _followers.value = listOf()
             }
         }
-    }
+    }*/
 
     fun setUserId(id: Int) {
         _userId.value = id

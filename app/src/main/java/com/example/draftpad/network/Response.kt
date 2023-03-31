@@ -146,3 +146,12 @@ data class CategoryResponse(
     val category: Category,
     val status: String
 )
+
+data class UpdateBookViewsResponse(
+    val status: String
+)
+
+data class FollowersResponse(
+    val status: String,
+    val followers: List<UserProfile>
+)

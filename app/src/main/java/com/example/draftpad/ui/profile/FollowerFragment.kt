@@ -36,7 +36,7 @@ class FollowerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         super.onViewCreated(view, savedInstanceState)
         vm.setUserId(arguments?.getInt("user") ?: 1)
-        vm.getFollowers()
+        //vm.getFollowers()
         vm.followers.observe(viewLifecycleOwner) { followers ->
             binding.rvFollowers.layoutManager = LinearLayoutManager(context)
             binding.rvFollowers.adapter = FollowerAdapter() { follower ->

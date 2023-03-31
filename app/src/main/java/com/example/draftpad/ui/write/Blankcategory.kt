@@ -23,7 +23,6 @@ class Blankcategory : Fragment() {
     private val viewModel: SearchViewModel by activityViewModels()
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -48,7 +47,13 @@ class Blankcategory : Fragment() {
             viewModel.categories.observe(viewLifecycleOwner) { categories ->
                 this.rveditcategory.layoutManager = LinearLayoutManager(context)
                 this.rveditcategory.adapter = CategoryAdapter() { category ->
-                    val dir = BlankcategoryDirections.actionBlankcategoryToEditStoryDetailFragment(bookId, title, description, category.id, category.name)
+                    val dir = BlankcategoryDirections.actionBlankcategoryToEditStoryDetailFragment(
+                        bookId,
+                        title,
+                        description,
+                        category.id,
+                        category.name
+                    )
                     findNavController().navigate(dir)
 
                 }

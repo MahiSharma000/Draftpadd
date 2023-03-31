@@ -6,10 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.draftpad.network.ApiClient
-import com.example.draftpad.network.Book
-import com.example.draftpad.network.Download
-import com.example.draftpad.network.DownloadBookResponse
+import com.example.draftpad.network.*
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
@@ -29,12 +26,15 @@ class ReadViewModel : ViewModel() {
     private val _bookId = MutableLiveData<Int>(10)
     val bookId: LiveData<Int> = _bookId
 
+    private val _updateResponse = MutableLiveData<UpdateBookViewsResponse>()
+    val updateResponse: LiveData<UpdateBookViewsResponse> = _updateResponse
+
     init {
         _status.value = ReadApiStatus.LOADING
     }
 
     fun getSelectedBook() {
-        Log.d("ReadViewModel",_bookId.value.toString())
+        Log.d("ReadViewModel", _bookId.value.toString())
         viewModelScope.launch {
             _status.value = ReadApiStatus.LOADING
             try {
@@ -42,7 +42,7 @@ class ReadViewModel : ViewModel() {
                     ApiClient.retrofitService.getBook(it).let { response ->
                         _book.value = response.book
                         _status.value = ReadApiStatus.DONE
-                        Log.d("ReadViewModel",_book.value.toString())
+                        Log.d("ReadViewModel", _book.value.toString())
                     }
                 }
             } catch (e: Exception) {
@@ -56,29 +56,37 @@ class ReadViewModel : ViewModel() {
 
     fun setBookId(id: Int) {
         _bookId.value = id
-        Log.d("ReadViewModel",_bookId.value.toString())
+        Log.d("ReadViewModel", _bookId.value.toString())
     }
 
-    fun downloadBook(userid: Int, bookId: Int){
+    fun downloadBook(userid: Int, bookId: Int) {
         val currDateTime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             LocalDateTime.now()
         } else {
             System.currentTimeMillis()
         }
-        val download= Download(
+        val download = Download(
             user_id = userid!!,
             book_id = bookId!!,
             created_at = currDateTime!!.toString(),
             updated_at = currDateTime!!.toString()
         )
         postDownload(download)
-        }
+    }
 
-    fun postDownload(download: Download){
+    fun postDownload(download: Download) {
         viewModelScope.launch {
-            _downloadResponse.value=ApiClient.retrofitService.download(
+            _downloadResponse.value = ApiClient.retrofitService.download(
                 user_id = download.user_id.toString(),
                 book_id = download.book_id.toString(),
+            )
+        }
+    }
+
+    fun updateViews(bookId: Int) {
+        viewModelScope.launch {
+            _updateResponse.value = ApiClient.retrofitService.updateBookViews(
+                bookId
             )
         }
     }

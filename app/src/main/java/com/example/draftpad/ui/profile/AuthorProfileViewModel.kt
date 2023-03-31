@@ -32,8 +32,17 @@ class AuthorProfileViewModel : ViewModel() {
     private val _response = MutableLiveData<AddFollowerResponse>()
     val response: LiveData<AddFollowerResponse> = _response
 
-    private val _followed = MutableLiveData<Follower>()
-    val followed: LiveData<Follower> = _followed
+    private val _followers = MutableLiveData<List<UserProfile>?>()
+    val followers: MutableLiveData<List<UserProfile>?> = _followers
+
+    private val _followerStatus = MutableLiveData<AuthorApiStatus>()
+    val followerStatus: LiveData<AuthorApiStatus> = _followerStatus
+
+    private val _followerResponse = MutableLiveData<FollowersResponse>()
+    val followerResponse: LiveData<FollowersResponse> = _followerResponse
+
+
+
 
     private val _fresponse = MutableLiveData<UserDataResponse>()
     val fresponse: LiveData<UserDataResponse> = _fresponse
@@ -139,6 +148,24 @@ class AuthorProfileViewModel : ViewModel() {
         val bitmapData = bos.toByteArray()
         return Base64.encodeToString(bitmapData, Base64.DEFAULT)
 
+    }
+
+    fun getFollowers(uid : Int){
+        viewModelScope.launch {
+            _followerStatus.value = AuthorApiStatus.LOADING
+            try {
+                ApiClient.retrofitService.getFollowers(uid).let { response ->
+                    Log.d("AuthorProfileViewModel", "getAuthorId: $response")
+                    _followers.value = response.followers
+                    _followerStatus.value = AuthorApiStatus.DONE
+                }
+
+            } catch (e: Exception) {
+                _followerStatus.value = AuthorApiStatus.ERROR
+                _followers.value = null
+                Log.e("AuthorProfileViewModel", "$e")
+            }
+        }
     }
 
 

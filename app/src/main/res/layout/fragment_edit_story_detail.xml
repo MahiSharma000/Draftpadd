@@ -65,8 +65,8 @@
         android:id="@+id/cardView"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -100,8 +100,7 @@
                 android:hint="@string/book_title"
                 android:inputType="textPersonName"
                 android:padding="10dp"
-                tools:text="@string/book_title"
-                android:text="@{viewModel.book.title}"/>
+                tools:text="@string/book_title" />
 
             <TextView
                 android:id="@+id/textView60"
@@ -120,8 +119,7 @@
                 android:ems="10"
                 android:hint="Book Description"
                 android:inputType="textPersonName"
-                android:maxLines="5"
-                android:text="@{viewModel.book.description}"/>
+                android:maxLines="5" />
 
 
             <TextView
@@ -139,8 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="@string/edit_category"
-                app:text="@{String.valueOf(viewModel.book.category_id)}"/>
+                android:text="@string/edit_category" />
 
             <TextView
                 android:id="@+id/editChapter"

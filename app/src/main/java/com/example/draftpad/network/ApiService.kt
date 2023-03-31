@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
-private const val BASE_URL = "http://192.168.1.41:5000/"
+private const val BASE_URL = "http://192.168.125.124:5000/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -75,7 +75,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("api/v1/book")
     suspend fun createBook(
-        @Field("id") id :Int,
+        @Field("id") id: Int,
         @Field("title") title: String,
         @Field("cover") cover: String,
         @Field("lang") lang: String,
@@ -146,9 +146,6 @@ interface ApiService {
     @GET("api/v1/get_profile/{id}")
     suspend fun getProfile(@Path("id") id: Int): AuthorResponse
 
-    @GET("api/v1/get_follower/{id}")
-    suspend fun getFollowers(@Path("id") id: Int): FollowerResponse
-
     @GET("api/v1/books/{id}/{status}")
     suspend fun getBooksByStatus(
         @Path("id") id: Int,
@@ -201,6 +198,17 @@ interface ApiService {
         @Field("user_id") user_id: Int,
         @Field("chapter_id") chapter_id: Int,
     ): DeleteLikeResponse
+
+    //update book views
+    @FormUrlEncoded
+    @POST("/api/v1/update_views")
+    suspend fun updateBookViews(
+        @Field("id") id: Int
+    ): UpdateBookViewsResponse
+
+    //get followers of user
+    @GET("/api/v1/get_followers/{id}")
+    suspend fun getFollowers(@Path("id") id: Int): FollowersResponse
 }
 
 object ApiClient {
