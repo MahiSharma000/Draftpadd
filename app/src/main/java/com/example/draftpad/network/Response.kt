@@ -14,6 +14,11 @@ data class ReportResponse(
     val msg: String
 )
 
+data class AddToReadLaterResponse(
+    val status: String,
+    val msg: String
+)
+
 data class LoginResponse(
     val status: String,
     val username: String,

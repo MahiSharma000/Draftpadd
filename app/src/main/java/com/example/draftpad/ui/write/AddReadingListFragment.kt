@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
@@ -42,8 +43,15 @@ class AddReadingListFragment : BottomSheetDialogFragment() {
                     bi
                 )
                 saveBookOffline()
+                //create toast
+                Toast.makeText(requireContext(), "Book saved offline", Toast.LENGTH_SHORT).show()
             }
             createReadingList.setOnClickListener {
+                vm.addReadlater(
+                    Utils(requireContext()).getUser().id.toInt(),
+                    bi
+                )
+                Toast.makeText(requireContext(), "Book added to read later", Toast.LENGTH_SHORT).show()
             }
         }
     }

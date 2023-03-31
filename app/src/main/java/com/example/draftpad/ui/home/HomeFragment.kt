@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.HorizontalScrollView
 import androidx.appcompat.widget.Toolbar
+import androidx.compose.ui.layout.HorizontalAlignmentLine
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -77,7 +79,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         vm.getBooks()
         vm.books.observe(viewLifecycleOwner) { books ->
-            binding.rvhome.layoutManager = LinearLayoutManager(context)
+            binding.rvhome.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             binding.rvhome.adapter = BookAdapter() { book ->
                 Log.e("BooksFragment", book.toString())
                 (binding.rvhome.adapter as BookAdapter).notifyDataSetChanged()
