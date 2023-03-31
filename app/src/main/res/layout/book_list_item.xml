@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="10dp">
 
     <data>
 
@@ -10,90 +11,65 @@
             type="com.example.draftpad.network.Book" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="4dp"
-        app:strokeColor="@android:color/background_light"
-        app:strokeWidth="1dp">
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescripton">
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <View
-                android:id="@+id/view4"
-                android:layout_width="400dp"
-                android:layout_height="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="#808080"
-                app:layout_constraintBottom_toTopOf="@+id/imgBookCover"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="400dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imgBookCover"
-                android:layout_width="100dp"
+                android:id="@+id/imageView5"
+                android:layout_width="150dp"
                 android:layout_height="100dp"
-                android:layout_marginStart="123dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="122dp"
-                android:layout_marginBottom="13dp"
-                android:src="@drawable/cover"
-                app:layout_constraintBottom_toTopOf="@+id/txtTitle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_weight="1"
+                android:padding="10dp"
                 app:author_img="@{book.cover}"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:srcCompat="@drawable/cover" />
 
-            <TextView
-                android:id="@+id/txtTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/aclonica"
-                android:padding="8dp"
-                android:textColor="?android:textColorSecondary"
-                app:layout_constraintBottom_toTopOf="@+id/txtAuthor"
-                app:layout_constraintEnd_toEndOf="@+id/imgBookCover"
-                app:layout_constraintStart_toStartOf="@+id/imgBookCover"
-                app:text="@{book.title}"
-                tools:text="@string/book_title" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtAuthor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/aclonica"
-                android:padding="8dp"
-                android:textColor="?android:textColorSecondary"
-                app:layout_constraintEnd_toEndOf="@+id/txtTitle"
-                app:layout_constraintStart_toStartOf="@+id/txtTitle"
-                app:layout_constraintTop_toBottomOf="@+id/txtTitle"
-                app:text="@{book.username}"
-                tools:text="@string/author" />
+                <TextView
+                    android:id="@+id/textView55"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="5dp"
+                    android:text="@string/book_title"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:text="@{book.title}" />
 
-            <TextView
-                android:id="@+id/txtDescripton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="152dp"
-                android:layout_marginEnd="134dp"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/aclonica"
-                android:padding="8dp"
-                android:textColor="?android:textColorSecondary"
-                android:textSize="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtAuthor"
-                app:summary_text="@{book.description}"
-                tools:text="@string/book_description" />
+                <TextView
+                    android:id="@+id/textView57"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="5dp"
+                    android:text="@string/author"
+                    android:textStyle="bold"
+                    app:text="@{book.username}" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:id="@+id/textView58"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="5dp"
+                    android:text="@string/book_description"
+                    app:summary_text="@{book.description}" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
 </layout>
