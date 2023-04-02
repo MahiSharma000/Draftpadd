@@ -3,6 +3,7 @@ package com.example.draftpad
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.draftpad.auth.SharedPreferenceManager
 
@@ -20,14 +21,11 @@ class AuthActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Utils(this).getUser().isLogged().let {
-            if (it) {
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
-            }else{
-                startActivity(Intent(this, AuthActivity::class.java))
-                finish()
-            }
+        val logged = Utils(this).getUser().isLogged()
+        Log.d("AuthActivity", "Logged: $logged")
+        if (logged) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 
