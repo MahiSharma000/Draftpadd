@@ -67,9 +67,9 @@
     <string name="draft">DRAFT</string>
     <string name="your_phone_number">Your Phone Number</string>
     <string name="otp">OTP</string>
-    <string name="premium_1_month">1 Month              Rs.190.0/month</string>
-    <string name="premium_1_year">1 Year             Rs.1500.0/year</string>
-    <string name="premimum_6_month">6 Months       Rs.600.00/6 months </string>
+    <string name="premium_1_month">1 Month              Rs.99.00/month</string>
+    <string name="premium_1_year">1 Year             Rs.999.00/year</string>
+    <string name="premimum_6_month">6 Months       Rs.499.00/6 months </string>
     <string name="why_are_you_reporting">Why are you reporting?</string>
     <string name="inappropriate_content">Inappropriate Content</string>
     <string name="copyright_infringement">Copyright Infringement</string>

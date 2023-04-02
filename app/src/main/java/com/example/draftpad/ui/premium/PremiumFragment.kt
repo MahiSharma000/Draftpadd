@@ -1,6 +1,8 @@
 package com.example.draftpad.ui.premium
 
 import android.app.AlertDialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -92,7 +94,18 @@ class PremiumFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             btnGoPremium.setOnClickListener {
-                presentPaymentSheet()
+                if(btnPremiumOneMonth.isChecked){
+                    val intent =Intent( Intent.ACTION_VIEW, Uri.parse("https://buy.stripe.com/test_aEU17p6H4f5Gfx63cc"))
+                }
+                else if(btnPremiumSixMonth.isChecked){
+                    val intent =Intent( Intent.ACTION_VIEW, Uri.parse("https://buy.stripe.com/test_bIY9DV3uSf5G84EaEG"))
+                }
+                else if(btnPremiumOneYear.isChecked){
+                    val intent =Intent( Intent.ACTION_VIEW, Uri.parse("https://buy.stripe.com/test_eVaeYf8Pcf5G70A9AB"))
+                }
+                else{
+                    Toast.makeText(requireContext(), "Please select a plan", Toast.LENGTH_LONG).show()
+                }
             }
         }
 

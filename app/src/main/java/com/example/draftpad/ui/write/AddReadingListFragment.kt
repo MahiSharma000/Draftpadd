@@ -47,10 +47,10 @@ class AddReadingListFragment : BottomSheetDialogFragment() {
             }
             createReadingList.setOnClickListener {
                 try {
-                    /*vm.addreadlater(
+                    vm.addreadlater(
                         Utils(requireContext()).getUser().id.toInt(),
                         bi
-                    )*/
+                    )
                     Toast.makeText(requireContext(), "Book added to read later", Toast.LENGTH_SHORT)
                         .show()
                 }catch (e:Exception){
