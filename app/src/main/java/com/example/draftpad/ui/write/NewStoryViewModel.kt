@@ -14,6 +14,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.draftpad.network.*
+import com.example.draftpad.ui.profile.ProfileApiStatus
 import com.example.draftpad.ui.read.ReadApiStatus
 import com.example.draftpad.ui.read.ReadStoryApiStatus
 import kotlinx.coroutines.launch
@@ -62,7 +63,7 @@ class NewStoryViewModel : ViewModel() {
     private var _isEdited = MutableLiveData<Boolean>(false)
     val isEdited: LiveData<Boolean> = _isEdited
 
-    private var _catName= MutableLiveData<String>()
+    private var _catName = MutableLiveData<String>()
     val catName: LiveData<String> = _catName
 
     private val _catId = MutableLiveData<Int>()
@@ -259,15 +260,6 @@ class NewStoryViewModel : ViewModel() {
 
     }
 
-    /*fun getCategoryName(){
-        viewModelScope.launch {
-            _catId.value?.let {
-                ApiClient.retrofitService.getCategoryName(it).let { response ->
-                    _catName.value =response.category.name
-                }
-            }
-        }
-    }*/
 
     fun setChapterId(id: Int) {
         _chapterId.value = id

@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.draftpad.databinding.ProfileItemBinding
 import com.example.draftpad.databinding.ProfileListItemBinding
 import com.example.draftpad.network.Follower
 import com.example.draftpad.network.UserProfile
@@ -12,10 +13,10 @@ import com.example.draftpad.network.UserProfile
 class FollowerAdapter(
     val listener: (UserProfile) -> Unit
 ) : ListAdapter<UserProfile, FollowerAdapter.FollowerViewHolder>(DiffCallback) {
-    class FollowerViewHolder(private val binding: ProfileListItemBinding) :
+    class FollowerViewHolder(private val binding: ProfileItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(follower: UserProfile) {
-            binding.follower = follower
+            binding.profile = follower
             binding.executePendingBindings()
         }
 
@@ -26,7 +27,7 @@ class FollowerAdapter(
         viewType: Int
     ): FollowerAdapter.FollowerViewHolder {
         return FollowerAdapter.FollowerViewHolder(
-           ProfileListItemBinding.inflate(
+           ProfileItemBinding.inflate(
                 LayoutInflater.from(parent.context)
             )
         )

@@ -41,9 +41,6 @@ class AuthorProfileViewModel : ViewModel() {
     private val _checkFollow = MutableLiveData<CheckFollowResponse>()
     val checkFollow: LiveData<CheckFollowResponse> = _checkFollow
 
-
-
-
     private val _fresponse = MutableLiveData<UserDataResponse>()
     val fresponse: LiveData<UserDataResponse> = _fresponse
 
@@ -168,7 +165,7 @@ class AuthorProfileViewModel : ViewModel() {
         }
     }
 
-    fun checkFollow(uid : Int, followerId : Int){
+    fun checkfollow(uid : Int, followerId : Int){
         viewModelScope.launch {
             _followerStatus.value = AuthorApiStatus.LOADING
             try {

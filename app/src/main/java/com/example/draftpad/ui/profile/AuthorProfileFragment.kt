@@ -43,9 +43,8 @@ class AuthorProfileFragment : Fragment() {
         Log.d("AuthorProfileFragment", "onViewCreated: $user_id")
         vm.getAuthorId(user_id)
         vm.getFollower(user_id)
-        vm.checkFollow(Utils(requireContext()).getUser().id.toInt(), user_id)
+        vm.checkfollow(Utils(requireContext()).getUser().id.toInt(), user_id)
         try {
-
             if (vm.checkFollow.value!!.status == "OK") {
                 binding.btnfollow.text = "Following"
                 binding.btnfollow.setBackgroundColor(resources.getColor(R.color.colorPrimaryDark))
@@ -58,16 +57,16 @@ class AuthorProfileFragment : Fragment() {
             Log.e("Follow Button", "$e")
         }
 
-        vm.followers.observe(viewLifecycleOwner) { followers ->
+        vm.followers.observe(viewLifecycleOwner) { profiles ->
             binding.apply {
                 rvfollowers.layoutManager = LinearLayoutManager(context)
-                rvfollowers.adapter = FollowerAdapter() { follower ->
-                    Log.e("Follower", "$follower")
-                    val dir = AuthorProfileFragmentDirections.actionAuthorProfileFragmentSelf(follower.id.toString().toInt())
+                rvfollowers.adapter = FollowerAdapter() { profile ->
+                    Log.e("Follower", "$profile")
+                    val dir = AuthorProfileFragmentDirections.actionAuthorProfileFragmentSelf(profile.id.toString().toInt())
                     findNavController().navigate(dir)
 
                 }
-                (binding.rvfollowers.adapter as FollowerAdapter).submitList(followers)
+                (binding.rvfollowers.adapter as FollowerAdapter).submitList(profiles)
             }
 
         }

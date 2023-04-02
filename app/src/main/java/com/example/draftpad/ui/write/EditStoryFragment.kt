@@ -21,9 +21,6 @@ import com.example.draftpad.ui.search.BookAdapter
 
 
 class EditStoryFragment : Fragment() {
-    companion object {
-       // fun newInstance() = EditStoryFragment()
-    }
 
 
     private var _binding: FragmentEditStoryBinding? = null

@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
-private const val BASE_URL = "http://192.168.18.211:5000"
+private const val BASE_URL = "http://192.168.125.124:5000/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -147,7 +147,7 @@ interface ApiService {
     @GET("api/v1/get_profile/{id}")
     suspend fun getProfile(@Path("id") id: Int): AuthorResponse
 
-    @GET("/api/v1/get_followers/{id}")
+    @GET("api/v1/get_followers/{id}")
     suspend fun getFollowers(@Path("id") id: Int): FollowersResponse
 
     @GET("api/v1/books/{id}/{status}")
@@ -209,22 +209,21 @@ interface ApiService {
 
     //add books in read later
     @FormUrlEncoded
-    @POST("/api/v1/add_reading_later")
+    @POST("api/v1/add_reading_later")
     suspend fun addReadLater(
         @Field("user_id") user_id: Int,
         @Field("book_id") book_id: Int,
     ): AddToReadLaterResponse
 
-    //check the user is following the auther
     @FormUrlEncoded
-    @POST("/api/v1/check_follow")
+    @POST("api/v1/check_follow")
     suspend fun checkFollower(
         @Field("user_id") user_id: Int,
         @Field("follower_id") follower_id: Int,
     ): CheckFollowResponse
 
-    //get books from reading list
-    @GET("/api/v1/get_reading_list/{id}")
+
+    @GET("api/v1/get_reading_list/{id}")
     suspend fun getReadingList(@Path("id") id: Int): ReadingListResponse
 }
 

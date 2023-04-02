@@ -2,66 +2,85 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="comment"
             type="com.example.draftpad.network.Comment" />
     </data>
-<com.google.android.material.card.MaterialCardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imgprofile"
-            android:layout_width="70dp"
-            android:layout_height="75dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:src="@drawable/profile"
-            app:author_img="@{comment.profile_pic}"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/txtAuthorName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/user_name"
-            app:text = "@{comment.username}"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imgprofile"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="360dp"
+                android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/txtComments"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/comment"
-            app:text="@{comment.content}"
-            app:layout_constraintStart_toEndOf="@+id/imgprofile"
-            app:layout_constraintTop_toBottomOf="@+id/txtAuthorName" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgprofile"
+                    android:layout_width="70dp"
+                    android:layout_height="75dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/profile"
+                    app:author_img="@{comment.profile_pic}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/txtCommented"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:text="1:21 am"
-            app:text = "@{String.valueOf(comment.created_at)}"
-            app:layout_constraintStart_toEndOf="@+id/imgprofile"
-            app:layout_constraintTop_toBottomOf="@+id/txtComments" />
+                <TextView
+                    android:id="@+id/txtAuthorName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/user_name"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/imgprofile"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:text="@{comment.username}" />
 
+                <TextView
+                    android:id="@+id/txtComments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/comment"
+                    app:layout_constraintStart_toEndOf="@+id/imgprofile"
+                    app:layout_constraintTop_toBottomOf="@+id/txtAuthorName"
+                    app:text="@{comment.content}" />
+
+                <TextView
+                    android:id="@+id/txtCommented"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="1:21 am"
+                    app:layout_constraintStart_toEndOf="@+id/imgprofile"
+                    app:layout_constraintTop_toBottomOf="@+id/txtComments"
+                    app:text="@{String.valueOf(comment.created_at)}" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</com.google.android.material.card.MaterialCardView>
+
 </layout>
