@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.draftpad.R
 import com.example.draftpad.Utils
 import com.example.draftpad.databinding.FragmentAuthorProfileBinding
+import com.example.draftpad.ui.search.CategoryAdapter
 
 
 class AuthorProfileFragment : Fragment() {
@@ -56,23 +57,27 @@ class AuthorProfileFragment : Fragment() {
         } catch (e: Exception) {
             Log.e("Follow Button", "$e")
         }
+
+        vm.followers.observe(viewLifecycleOwner) { followers ->
+            binding.apply {
+                rvfollowers.layoutManager = LinearLayoutManager(context)
+                rvfollowers.adapter = FollowerAdapter() { follower ->
+                    Log.e("Follower", "$follower")
+                    val dir = AuthorProfileFragmentDirections.actionAuthorProfileFragmentSelf(follower.id.toString().toInt())
+                    findNavController().navigate(dir)
+
+                }
+                (binding.rvfollowers.adapter as FollowerAdapter).submitList(followers)
+            }
+
+        }
+
         try {
             binding.apply {
 
                 txtwork.setText(vm.author.value!!.book_written.toString())
                 txtFollower.setText(vm.author.value!!.followers.toString())
-                vm.followers.observe(viewLifecycleOwner) { followers ->
-                    this.rvfollowers.layoutManager = LinearLayoutManager(context)
-                    this.rvfollowers.adapter = FollowerAdapter() { follower ->
-                        Log.e("Followers", "$follower")
-                        val dir = AuthorProfileFragmentDirections.actionAuthorProfileFragmentSelf(
-                            follower.id.toString().toInt()
-                        )
-                        findNavController().navigate(dir)
 
-                    }
-
-                }
 
                 btnfollow.setOnClickListener {
                     vm.updateProfile(

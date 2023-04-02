@@ -47,7 +47,6 @@ class ReadStoryFragment : Fragment() {
                 vm.getChapterById()
 
             }
-
             vm.checkLikes(uid, chapter_id)
             if (vm.checkLike.value!!.status == "OK") {
                 binding.imgVote.setImageResource(R.drawable.baseline_star_24)

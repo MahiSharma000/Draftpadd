@@ -155,7 +155,7 @@ class AuthorProfileViewModel : ViewModel() {
             _followerStatus.value = AuthorApiStatus.LOADING
             try {
                 ApiClient.retrofitService.getFollowers(uid).let { response ->
-                    Log.d("Follower Function", "$response")
+                    Log.d("Follower Function", "${response.followers}")
                     _followers.value = response.followers
                     _followerStatus.value = AuthorApiStatus.DONE
                 }

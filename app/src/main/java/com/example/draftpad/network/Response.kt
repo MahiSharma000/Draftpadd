@@ -15,8 +15,7 @@ data class ReportResponse(
 )
 
 data class AddToReadLaterResponse(
-    val status: String,
-    val msg: String
+    val status: String
 )
 
 data class LoginResponse(
@@ -147,11 +146,6 @@ data class UpdateBookViewsResponse(
 )
 
 data class FollowersResponse(
-    val status: String,
-    val followers: List<UserProfile>
-)
-
-data class FollowerResponse(
     val status: String,
     val followers: List<UserProfile>
 )
