@@ -40,8 +40,7 @@ class SearchViewModel : ViewModel() {
     private val _profileList = MutableLiveData<List<UserProfile>>()
     val profileList: LiveData<List<UserProfile>> = _profileList
 
-    private val _readingList = MutableLiveData<List<ReadingList>>()
-    val readingList: LiveData<List<ReadingList>> = _readingList
+
 
 
     init {
@@ -79,7 +78,6 @@ class SearchViewModel : ViewModel() {
         when (filterName) {
             "stories" -> getStories(query)
             "profiles" -> getProfiles(query)
-            "reading lists" -> getReadingLists(query)
         }
     }
 
@@ -136,7 +134,6 @@ class SearchViewModel : ViewModel() {
     fun clearSearchResult() {
         _bookList.value = listOf()
         _profileList.value = listOf()
-        _readingList.value = listOf()
     }
 
 }

@@ -55,7 +55,11 @@
         android:id="@+id/navigation_library"
         android:name="com.example.draftpad.ui.library.LibraryFragment"
         android:label="fragment_library"
-        tools:layout="@layout/fragment_library" />
+        tools:layout="@layout/fragment_library" >
+        <action
+            android:id="@+id/action_navigation_library_to_readFragment"
+            app:destination="@id/readFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_write"
         android:name="com.example.draftpad.ui.write.WriteFragment"
@@ -76,9 +80,6 @@
         android:name="com.example.draftpad.ui.search.SearchNextFragment"
         android:label="fragment_search_next"
         tools:layout="@layout/fragment_search_next" >
-        <action
-            android:id="@+id/action_searchNextFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
         <action
             android:id="@+id/action_searchNextFragment_to_authorProfileFragment"
             app:destination="@id/authorProfileFragment" />
@@ -403,15 +404,6 @@
         android:name="com.example.draftpad.setting.ChangePassword"
         android:label="ChangePassword" >
         <argument android:name="userId" />
-    </fragment>
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.draftpad.ui.search.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
-        <argument
-            android:name="name"
-            app:argType="string" />
     </fragment>
     <fragment android:id="@+id/placeholder" />
     <fragment

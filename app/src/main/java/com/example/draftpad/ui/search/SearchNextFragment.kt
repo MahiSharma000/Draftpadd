@@ -105,7 +105,7 @@ class SearchNextFragment : Fragment() {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
             viewModel.query.observe(viewLifecycleOwner) {
-                if (viewModel.profileList.value.isNullOrEmpty() && viewModel.bookList.value.isNullOrEmpty() && viewModel.readingList.value.isNullOrEmpty()) {
+                if (viewModel.profileList.value.isNullOrEmpty() && viewModel.bookList.value.isNullOrEmpty()) {
                     viewModel.getSearchResult(it, filterName)
                 }
             }

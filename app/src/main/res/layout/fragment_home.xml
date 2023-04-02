@@ -14,7 +14,7 @@
         android:id="@+id/ConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg3"
+        android:background="@drawable/bg4"
         tools:context=".ui.home.HomeFragment">
 
 
@@ -45,8 +45,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvhome"
-            android:layout_width="409dp"
+            android:layout_width="wrap_content"
             android:layout_height="633dp"
+            android:layout_marginEnd="2dp"
             android:padding="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

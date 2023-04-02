@@ -111,11 +111,6 @@ data class DownloadBookResponse(
     val msg: String
 )
 
-data class ReadingListByNameResponse(
-    val status: String,
-    val readingList: List<ReadingList>
-)
-
 data class ChangePasswordResponse(
     val status: String,
     val msg: String
@@ -163,4 +158,9 @@ data class FollowerResponse(
 
 data class CheckFollowResponse(
     val status: String
+)
+
+data class ReadingListResponse(
+    val status: String,
+    val readLater : List<Book>
 )

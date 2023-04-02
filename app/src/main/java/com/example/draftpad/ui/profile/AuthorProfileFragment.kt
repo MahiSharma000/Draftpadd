@@ -56,8 +56,9 @@ class AuthorProfileFragment : Fragment() {
         } catch (e: Exception) {
             Log.e("Follow Button", "$e")
         }
-        binding.apply {
-            try {
+        try {
+            binding.apply {
+
                 txtwork.setText(vm.author.value!!.book_written.toString())
                 txtFollower.setText(vm.author.value!!.followers.toString())
                 vm.followers.observe(viewLifecycleOwner) { followers ->
@@ -72,30 +73,31 @@ class AuthorProfileFragment : Fragment() {
                     }
 
                 }
-            } catch (e: Exception) {
-                Log.e("Followers", "$e")
-            }
-            btnfollow.setOnClickListener {
-                vm.updateProfile(
-                    requireContext(),
-                    user_id.toString(),
-                    vm.author.value!!.first_name,
-                    vm.author.value!!.last_name,
-                    vm.author.value!!.dob,
-                    vm.author.value!!.about,
-                    vm.author.value!!.phone,
-                    vm.author.value!!.followers.plus(1),
-                )
-                vm.postFollow(
-                    Utils(requireContext()).getUser().id,
-                    user_id.toString()
-                )
-                flag = 1
-                btnfollow.text = "Following"
-                btnfollow.setBackgroundColor(resources.getColor(R.color.colorPrimaryDark))
+
+                btnfollow.setOnClickListener {
+                    vm.updateProfile(
+                        requireContext(),
+                        user_id.toString(),
+                        vm.author.value!!.first_name,
+                        vm.author.value!!.last_name,
+                        vm.author.value!!.dob,
+                        vm.author.value!!.about,
+                        vm.author.value!!.phone,
+                        vm.author.value!!.followers.plus(1),
+                    )
+                    vm.postFollow(
+                        Utils(requireContext()).getUser().id,
+                        user_id.toString()
+                    )
+                    flag = 1
+                    btnfollow.text = "Following"
+                    btnfollow.setBackgroundColor(resources.getColor(R.color.colorPrimaryDark))
+
+                }
 
             }
-
+        } catch (e: Exception) {
+            Log.e("Followers", "$e")
         }
     }
 
