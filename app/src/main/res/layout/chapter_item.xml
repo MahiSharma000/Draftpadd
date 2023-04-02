@@ -8,88 +8,92 @@
             type="com.example.draftpad.network.Chapter" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardBackgroundColor="#F1EAEA"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="2dp"
-        app:contentPadding="8dp"
-        android:backgroundTint="@color/white"
-        app:strokeWidth="1dp">
+        android:layout_margin="10dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/white"
+            app:cardBackgroundColor="#F1EAEA"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp"
+            app:contentPadding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="1dp">
 
-            <View
-                android:id="@+id/view4"
-                android:layout_width="400dp"
-                android:layout_height="2dp"
-                android:background="#808080"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/txtChapterTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/akaya_telivigala"
-                android:padding="2dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:text="Chapter Title"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/txtCom"
-                app:layout_constraintStart_toEndOf="@+id/txtLikes"
-                app:layout_constraintTop_toBottomOf="@+id/view4"
-                app:text="@{chapter.title}" />
+                <TextView
+                    android:id="@+id/txtChapterTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:padding="2dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="Chapter Title"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/txtCom"
+                    app:layout_constraintStart_toEndOf="@+id/txtLikes"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:text="@{chapter.title}" />
 
-            <TextView
-                android:id="@+id/txtCom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="55dp"
-                android:layout_marginEnd="64dp"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/baseline_comment"
-                android:fontFamily="@font/akaya_telivigala"
-                android:padding="2dp"
-                android:text="Comments"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/txtLikes"
-                app:layout_constraintTop_toBottomOf="@+id/txtChapterTitle"
-                app:layout_constraintVertical_bias="1.0"
-                app:text="@{String.valueOf(chapter.total_comments)}" />
+                <TextView
+                    android:id="@+id/txtCom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="55dp"
+                    android:layout_marginEnd="64dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/baseline_comment"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:padding="2dp"
+                    android:text="Comments"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/txtLikes"
+                    app:layout_constraintTop_toBottomOf="@+id/txtChapterTitle"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:text="@{String.valueOf(chapter.total_comments)}" />
 
-            <TextView
-                android:id="@+id/txtLikes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="64dp"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/baseline_like"
-                android:fontFamily="@font/akaya_telivigala"
-                android:padding="2dp"
-                android:text="Likes"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/txtCom"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtChapterTitle"
-                app:text="@{String.valueOf(chapter.total_likes)}" />
+                <TextView
+                    android:id="@+id/txtLikes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="64dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/baseline_like"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:padding="2dp"
+                    android:text="Likes"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/txtCom"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtChapterTitle"
+                    app:text="@{String.valueOf(chapter.total_likes)}" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>
