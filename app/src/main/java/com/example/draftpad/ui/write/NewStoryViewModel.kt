@@ -33,6 +33,9 @@ class NewStoryViewModel : ViewModel() {
     private val _deleteStatus = MutableLiveData<NewStoryApiStatus>()
     val deleteStatus: MutableLiveData<NewStoryApiStatus> = _deleteStatus
 
+    private val _updateStatus = MutableLiveData<NewStoryApiStatus>()
+    val updateStatus: MutableLiveData<NewStoryApiStatus> = _updateStatus
+
     private val _response = MutableLiveData<PostBookResponse>()
     val response: MutableLiveData<PostBookResponse> = _response
 
@@ -279,7 +282,6 @@ class NewStoryViewModel : ViewModel() {
             }
         }
     }
-
     fun deletechapter(chapter:Int){
         viewModelScope.launch {
             _deleteStatus.value = NewStoryApiStatus.LOADING
@@ -296,9 +298,9 @@ class NewStoryViewModel : ViewModel() {
             }
         }
     }
-
-
     fun setChapterId(id: Int) {
         _chapterId.value = id
     }
+
+
 }

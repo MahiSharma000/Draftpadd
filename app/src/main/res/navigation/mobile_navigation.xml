@@ -423,6 +423,9 @@
         <action
             android:id="@+id/action_editChapterContent_to_editChaptersFragment"
             app:destination="@id/editChaptersFragment" />
+        <action
+            android:id="@+id/action_editChapterContent_to_readStoryFragment"
+            app:destination="@id/readStoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/blankcategory"

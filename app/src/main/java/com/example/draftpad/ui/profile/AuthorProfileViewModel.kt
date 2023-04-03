@@ -32,6 +32,9 @@ class AuthorProfileViewModel : ViewModel() {
     private val _response = MutableLiveData<AddFollowerResponse>()
     val response: LiveData<AddFollowerResponse> = _response
 
+    private val _unfollowResponse = MutableLiveData<UnfollowResponse>()
+    val unfollowResponse: LiveData<UnfollowResponse> = _unfollowResponse
+
     private val _followers = MutableLiveData<List<UserProfile>?>()
     val followers: MutableLiveData<List<UserProfile>?> = _followers
 
@@ -179,6 +182,16 @@ class AuthorProfileViewModel : ViewModel() {
                 _followerStatus.value = AuthorApiStatus.ERROR
                 Log.e("Follower", "$e")
             }
+        }
+    }
+
+    fun unfollowAuthor(userId :Int, followerId : Int) {
+        viewModelScope.launch {
+            _status.value = AuthorApiStatus.LOADING
+            _unfollowResponse.value = ApiClient.retrofitService.unfollow(
+                userId,
+                followerId
+            )
         }
     }
 }

@@ -239,6 +239,14 @@ interface ApiService {
     suspend fun deleteChapter(
         @Field("id") id: Int
     ): DeleteChapterResponse
+
+    //unfollow user
+    @FormUrlEncoded
+    @POST("api/v1/unfollow")
+    suspend fun unfollow(
+        @Field("user_id") user_id: Int,
+        @Field("follower_id") follower_id: Int,
+    ): UnfollowResponse
 }
 
 

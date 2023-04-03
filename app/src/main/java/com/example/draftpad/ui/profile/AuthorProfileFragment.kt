@@ -62,7 +62,9 @@ class AuthorProfileFragment : Fragment() {
                 rvfollowers.layoutManager = LinearLayoutManager(context)
                 rvfollowers.adapter = FollowerAdapter() { profile ->
                     Log.e("Follower", "$profile")
-                    val dir = AuthorProfileFragmentDirections.actionAuthorProfileFragmentSelf(profile.id.toString().toInt())
+                    val dir = AuthorProfileFragmentDirections.actionAuthorProfileFragmentSelf(
+                        profile.id.toString().toInt()
+                    )
                     findNavController().navigate(dir)
 
                 }
@@ -79,26 +81,47 @@ class AuthorProfileFragment : Fragment() {
 
 
                 btnfollow.setOnClickListener {
-                    vm.updateProfile(
-                        requireContext(),
-                        user_id.toString(),
-                        vm.author.value!!.first_name,
-                        vm.author.value!!.last_name,
-                        vm.author.value!!.dob,
-                        vm.author.value!!.about,
-                        vm.author.value!!.phone,
-                        vm.author.value!!.followers.plus(1),
-                    )
-                    vm.postFollow(
-                        Utils(requireContext()).getUser().id,
-                        user_id.toString()
-                    )
-                    flag = 1
-                    btnfollow.text = "Following"
-                    btnfollow.setBackgroundColor(resources.getColor(R.color.colorPrimaryDark))
+                    if (flag == 0) {
+                        vm.updateProfile(
+                            requireContext(),
+                            user_id.toString(),
+                            vm.author.value!!.first_name,
+                            vm.author.value!!.last_name,
+                            vm.author.value!!.dob,
+                            vm.author.value!!.about,
+                            vm.author.value!!.phone,
+                            vm.author.value!!.followers.plus(1),
+                        )
+                        vm.postFollow(
+                            Utils(requireContext()).getUser().id,
+                            user_id.toString()
+                        )
+                        flag = 1
+                        btnfollow.text = "Following"
+                        btnfollow.setBackgroundColor(resources.getColor(R.color.colorPrimaryDark))
+
+                    } else {
+                        vm.updateProfile(
+                            requireContext(),
+                            user_id.toString(),
+                            vm.author.value!!.first_name,
+                            vm.author.value!!.last_name,
+                            vm.author.value!!.dob,
+                            vm.author.value!!.about,
+                            vm.author.value!!.phone,
+                            vm.author.value!!.followers - 1,
+                        )
+                        vm.unfollowAuthor(
+                            Utils(requireContext()).getUser().id.toInt(),
+                            user_id
+                        )
+                        flag == 0
+                        btnfollow.text = "Follow"
+                        btnfollow.setBackgroundColor(resources.getColor(R.color.colorPrimary))
+
+                    }
 
                 }
-
             }
         } catch (e: Exception) {
             Log.e("Followers", "$e")

@@ -101,6 +101,11 @@ class EditChapterContent : Fragment() {
                     true
                 }
                 R.id.action_preview -> {
+                    val dir =
+                        EditChapterContentDirections.actionEditChapterContentToReadStoryFragment(
+                            chapterId
+                        )
+                    findNavController().navigate(dir)
 
                     true
                 }

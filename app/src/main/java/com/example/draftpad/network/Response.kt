@@ -129,6 +129,7 @@ data class UpdateCommentsResponse(
 data class CheckLikeResponse(
     val status: String
 )
+
 data class UpdateLikesResponse(
     val status: String
 )
@@ -157,7 +158,7 @@ data class CheckFollowResponse(
 
 data class ReadingListResponse(
     val status: String,
-    val readLater : List<Book>
+    val readLater: List<Book>
 )
 
 data class DeleteBookResponse(
@@ -165,5 +166,9 @@ data class DeleteBookResponse(
 )
 
 data class DeleteChapterResponse(
+    val status: String
+)
+
+data class UnfollowResponse(
     val status: String
 )
