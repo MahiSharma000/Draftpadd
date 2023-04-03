@@ -37,7 +37,8 @@ class EditStoryDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_edit_story_detail, container, false)
+        _binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_edit_story_detail, container, false)
         binding.viewModel = vm
         binding.lifecycleOwner = viewLifecycleOwner
         binding.toolbar.inflateMenu(R.menu.edit_story_detail_menu)
@@ -51,13 +52,13 @@ class EditStoryDetailFragment : Fragment() {
         val catId = EditStoryDetailFragmentArgs.fromBundle(requireArguments()).categoryId
         val category_name = EditStoryDetailFragmentArgs.fromBundle(requireArguments()).categoryName
         val bookId = EditStoryDetailFragmentArgs.fromBundle(requireArguments()).bookId
-        val title= EditStoryDetailFragmentArgs.fromBundle(requireArguments()).bookTitle
+        val title = EditStoryDetailFragmentArgs.fromBundle(requireArguments()).bookTitle
         val description = EditStoryDetailFragmentArgs.fromBundle(requireArguments()).bookDescription
 
         binding.txtEditCategory.text = category_name
         binding.bookTitle.setText(title)
         binding.decription.setText(description)
-        bookId.let{
+        bookId.let {
             vm.setBookId(it)
         }
 
@@ -67,18 +68,28 @@ class EditStoryDetailFragment : Fragment() {
             when (item.itemId) {
                 R.id.action_add -> {
                     Log.e("EditStoryDetailFragment", bookId.toString())
-                    val action=EditStoryDetailFragmentDirections.actionEditStoryDetailFragmentToAddNewChapter(bookId)
+                    val action =
+                        EditStoryDetailFragmentDirections.actionEditStoryDetailFragmentToAddNewChapter(
+                            bookId
+                        )
                     findNavController().navigate(action)
                     true
                 }
                 R.id.action_view_as_reader -> {
-                    val action=EditStoryDetailFragmentDirections.actionEditStoryDetailFragmentToReadFragment(bookId)
+                    val action =
+                        EditStoryDetailFragmentDirections.actionEditStoryDetailFragmentToReadFragment(
+                            bookId
+                        )
                     findNavController().navigate(action)
 
                     true
                 }
                 R.id.delete -> {
-
+                    vm.deletebook(bookId)
+                    Toast.makeText(requireContext(), "Book Deleted", Toast.LENGTH_SHORT).show()
+                    val dir =
+                        EditStoryDetailFragmentDirections.actionEditStoryDetailFragmentToEditStoryFragment()
+                    findNavController().navigate(dir)
                     true
                 }
                 else -> false
@@ -95,7 +106,12 @@ class EditStoryDetailFragment : Fragment() {
             }
             txtEditCategory.setOnClickListener {
 
-               val dir = EditStoryDetailFragmentDirections.actionEditStoryDetailFragmentToBlankcategory(bookId, vm.book.value!!.title,vm.book.value!!.description)
+                val dir =
+                    EditStoryDetailFragmentDirections.actionEditStoryDetailFragmentToBlankcategory(
+                        bookId,
+                        vm.book.value!!.title,
+                        vm.book.value!!.description
+                    )
                 findNavController().navigate(dir)
 
 
@@ -115,12 +131,16 @@ class EditStoryDetailFragment : Fragment() {
             }
 
             editChapter.setOnClickListener {
-                val dir = EditStoryDetailFragmentDirections.actionEditStoryDetailFragmentToEditChaptersFragment(bookId)
+                val dir =
+                    EditStoryDetailFragmentDirections.actionEditStoryDetailFragmentToEditChaptersFragment(
+                        bookId
+                    )
                 findNavController().navigate(dir)
             }
 
         }
     }
+
     private fun hasPermission(): Boolean {
         return EasyPermissions.hasPermissions(
             context,
@@ -158,6 +178,7 @@ class EditStoryDetailFragment : Fragment() {
             )
         }
     }
+
     fun onPermissionsDenied(requestCode: Int, perms: List<String>) {
         val dialog = AlertDialog.Builder(requireContext())
         dialog.setTitle("Permission Required")
@@ -183,6 +204,7 @@ class EditStoryDetailFragment : Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
+
     private val getImage =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             vm.setImageUri(uri, true)
@@ -192,6 +214,7 @@ class EditStoryDetailFragment : Fragment() {
     private fun getStringFromUri(uri: Uri?) {
 
     }
+
     private fun showSnackBar(msg: String) {
         AlertDialog.Builder(requireContext())
             .setTitle("Error Occurred")

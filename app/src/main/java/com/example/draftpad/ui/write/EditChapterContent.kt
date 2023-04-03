@@ -17,7 +17,7 @@ import com.example.draftpad.ui.read.ReadStoryFragmentArgs
 import com.example.draftpad.ui.read.ReadStoryViewModel
 
 class EditChapterContent : Fragment() {
-    private var _binding: FragmentEditChapterContentBinding ?= null
+    private var _binding: FragmentEditChapterContentBinding? = null
     private val binding get() = _binding!!
     private val vm: NewStoryViewModel by activityViewModels()
     private var toolbar: Toolbar? = null
@@ -41,13 +41,15 @@ class EditChapterContent : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.inflateMenu(R.menu.write_story_menu)
-        EditChapterContentArgs.fromBundle(requireArguments()).bookId.let {
+        val chapterId = EditChapterContentArgs.fromBundle(requireArguments()).chapterId
+        val bookId = EditChapterContentArgs.fromBundle(requireArguments()).bookId
+        bookId.let {
             vm.setBookId(it)
         }
         vm.bookId.observe(viewLifecycleOwner) {
             vm.getSelectedBook()
         }
-        EditChapterContentArgs.fromBundle(requireArguments()).chapterId.let {
+        chapterId.let {
             vm.setChapterId(it)
         }
         vm.chapterId.observe(viewLifecycleOwner) {
@@ -103,6 +105,13 @@ class EditChapterContent : Fragment() {
                     true
                 }
                 R.id.action_delete -> {
+                    vm.deletechapter(chapterId)
+                    Toast.makeText(requireContext(), "Chapter Deleted", Toast.LENGTH_SHORT).show()
+                    val dir =
+                        EditChapterContentDirections.actionEditChapterContentToEditChaptersFragment(
+                            bookId
+                        )
+                    findNavController().navigate(dir)
                     true
                 }
                 else -> false

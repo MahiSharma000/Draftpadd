@@ -225,6 +225,20 @@ interface ApiService {
 
     @GET("api/v1/get_reading_list/{id}")
     suspend fun getReadingList(@Path("id") id: Int): ReadingListResponse
+
+    //delete book
+    @FormUrlEncoded
+    @POST("api/v1/delete_book")
+    suspend fun deleteBook(
+        @Field("id") id: Int
+    ): DeleteBookResponse
+
+    //delete chapter
+    @FormUrlEncoded
+    @POST("api/v1/delete_chapter")
+    suspend fun deleteChapter(
+        @Field("id") id: Int
+    ): DeleteChapterResponse
 }
 
 

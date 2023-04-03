@@ -12,7 +12,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.write.EditStoryDetailFragment"
-    android:background="@drawable/bg5">
+    android:background="@drawable/bg4">
 
     <Toolbar
         android:id="@+id/toolbar"

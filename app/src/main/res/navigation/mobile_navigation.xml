@@ -225,6 +225,9 @@
         <argument
             android:name="bookDescription"
             app:argType="string" />
+        <action
+            android:id="@+id/action_editStoryDetailFragment_to_editStoryFragment"
+            app:destination="@id/editStoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/editChaptersFragment"
@@ -417,6 +420,9 @@
         <argument
             android:name="bookId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_editChapterContent_to_editChaptersFragment"
+            app:destination="@id/editChaptersFragment" />
     </fragment>
     <fragment
         android:id="@+id/blankcategory"

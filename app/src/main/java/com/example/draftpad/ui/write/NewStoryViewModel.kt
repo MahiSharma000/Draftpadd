@@ -30,6 +30,9 @@ class NewStoryViewModel : ViewModel() {
     private val _status = MutableLiveData<NewStoryApiStatus>()
     val status: MutableLiveData<NewStoryApiStatus> = _status
 
+    private val _deleteStatus = MutableLiveData<NewStoryApiStatus>()
+    val deleteStatus: MutableLiveData<NewStoryApiStatus> = _deleteStatus
+
     private val _response = MutableLiveData<PostBookResponse>()
     val response: MutableLiveData<PostBookResponse> = _response
 
@@ -258,6 +261,40 @@ class NewStoryViewModel : ViewModel() {
             }
         }
 
+    }
+
+    fun deletebook(bookid:Int){
+        viewModelScope.launch {
+            _deleteStatus.value = NewStoryApiStatus.LOADING
+            try {
+                bookid.let {
+                    ApiClient.retrofitService.deleteBook(it).let { response ->
+                        Log.d("DeleteBook", response.toString())
+                        _deleteStatus.value = NewStoryApiStatus.DONE
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("DeleteBook", e.toString())
+                _deleteStatus.value = NewStoryApiStatus.ERROR
+            }
+        }
+    }
+
+    fun deletechapter(chapter:Int){
+        viewModelScope.launch {
+            _deleteStatus.value = NewStoryApiStatus.LOADING
+            try {
+                chapter.let {
+                    ApiClient.retrofitService.deleteChapter(it).let { response ->
+                        Log.d("DeleteChapter", response.toString())
+                        _deleteStatus.value = NewStoryApiStatus.DONE
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("DeleteChapter", e.toString())
+                _deleteStatus.value = NewStoryApiStatus.ERROR
+            }
+        }
     }
 
 

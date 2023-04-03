@@ -15,7 +15,8 @@ data class ReportResponse(
 )
 
 data class AddToReadLaterResponse(
-    val status: String
+    val status: String,
+    val msg: String
 )
 
 data class LoginResponse(
@@ -157,4 +158,12 @@ data class CheckFollowResponse(
 data class ReadingListResponse(
     val status: String,
     val readLater : List<Book>
+)
+
+data class DeleteBookResponse(
+    val status: String
+)
+
+data class DeleteChapterResponse(
+    val status: String
 )
