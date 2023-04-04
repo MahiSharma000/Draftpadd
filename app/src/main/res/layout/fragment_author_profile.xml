@@ -17,17 +17,29 @@
         app:layout_constraintTop_toTopOf="@+id/textView29"
         tools:context=".ui.profile.AuthorProfileFragment">
 
+        <Toolbar
+            android:id="@+id/toolbarProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            android:title="Profile"
+            android:titleTextColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgprofile"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="2dp"
             android:src="@drawable/profile"
             app:author_img="@{authorProfileVm.author.profile_pic}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbarProfile" />
 
         <TextView
             android:id="@+id/AuthorName"
@@ -120,9 +132,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="TextView"
-            app:text="@{authorProfileVm.author.about}"
             app:layout_constraintStart_toStartOf="@+id/textView21"
-            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+            app:layout_constraintTop_toBottomOf="@+id/textView21"
+            app:text="@{authorProfileVm.author.about}" />
 
         <TextView
             android:id="@+id/textView44"
@@ -134,7 +146,6 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/textView29"
             app:layout_constraintTop_toBottomOf="@+id/textView29" />
-
 
 
         <ImageView
@@ -150,8 +161,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvfollowers"
             android:layout_width="360dp"
-            android:layout_height="400dp"
-            android:layout_marginTop="8dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

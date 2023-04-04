@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +21,7 @@ class AuthorProfileFragment : Fragment() {
     private val vm: AuthorProfileViewModel by activityViewModels()
     private var _binding: FragmentAuthorProfileBinding? = null
     private val binding get() = _binding!!
+    private var toolbar: Toolbar? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +36,7 @@ class AuthorProfileFragment : Fragment() {
         _binding = FragmentAuthorProfileBinding.inflate(inflater)
         binding.authorProfileVm = vm
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.toolbarProfile.inflateMenu(R.menu.profile_menu)
         return binding.root
     }
 
@@ -71,6 +75,28 @@ class AuthorProfileFragment : Fragment() {
                 (binding.rvfollowers.adapter as FollowerAdapter).submitList(profiles)
             }
 
+        }
+
+        binding.toolbarProfile.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.block -> {
+                    if(item.title=="Block"){
+                    item.title = "Unblock"
+                    vm.blockAuthor(Utils(requireContext()).getUser().id.toInt(), user_id)
+                    Toast.makeText(context, "Blocked", Toast.LENGTH_SHORT).show()}
+                    else{
+                        item.title = "Block"
+                        vm.blockAuthor(Utils(requireContext()).getUser().id.toInt(), user_id)
+                        Toast.makeText(context, "Unblocked", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+
+                R.id.mute -> {
+
+                }
+            }
+            true
         }
 
         try {

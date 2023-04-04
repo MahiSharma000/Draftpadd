@@ -141,7 +141,11 @@
         android:id="@+id/blockedAccountFragment"
         android:name="com.example.draftpad.setting.BlockedAccountFragment"
         android:label="fragment_blocked_account"
-        tools:layout="@layout/fragment_blocked_account" />
+        tools:layout="@layout/fragment_blocked_account" >
+        <action
+            android:id="@+id/action_blockedAccountFragment_to_authorProfileFragment"
+            app:destination="@id/authorProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mutedAccountFragment"
         android:name="com.example.draftpad.setting.MutedAccountFragment"

@@ -172,3 +172,12 @@ data class DeleteChapterResponse(
 data class UnfollowResponse(
     val status: String
 )
+
+data class BlockResponse(
+    val status: String
+)
+
+data class BlockedResponse(
+    val status: String,
+    val blocked: List<UserProfile>
+)

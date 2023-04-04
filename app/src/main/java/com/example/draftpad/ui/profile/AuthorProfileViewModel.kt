@@ -26,6 +26,9 @@ class AuthorProfileViewModel : ViewModel() {
     val _author = MutableLiveData<UserProfile?>()
     val author: LiveData<UserProfile?> = _author
 
+    val _blockStatus = MutableLiveData<AuthorApiStatus>()
+    val blockStatus: LiveData<AuthorApiStatus> = _blockStatus
+
     private val _userId = MutableLiveData<Int>()
     val userId: LiveData<Int> = _userId
 
@@ -49,6 +52,9 @@ class AuthorProfileViewModel : ViewModel() {
 
     private var _downloadUri = MutableLiveData<Uri?>()
     val downloadUri: MutableLiveData<Uri?> = _downloadUri
+
+    private val _blockList = MutableLiveData<List<UserProfile>>()
+    val blockList: LiveData<List<UserProfile>> = _blockList
 
     init {
         _status.value = AuthorApiStatus.LOADING
@@ -108,7 +114,7 @@ class AuthorProfileViewModel : ViewModel() {
         lastName: String,
         dob: String,
         about: String,
-        phone:String,
+        phone: String,
         follower: Int,
     ) {
         try {
@@ -137,6 +143,7 @@ class AuthorProfileViewModel : ViewModel() {
             e.printStackTrace()
         }
     }
+
     @SuppressLint("Recycle")
     private fun getFileFromUri(context: Context, uri: Uri): String? {
         // get the file path from the URI using the content resolver
@@ -150,7 +157,7 @@ class AuthorProfileViewModel : ViewModel() {
 
     }
 
-    fun getFollower(uid : Int){
+    fun getFollower(uid: Int) {
         viewModelScope.launch {
             _followerStatus.value = AuthorApiStatus.LOADING
             try {
@@ -168,7 +175,7 @@ class AuthorProfileViewModel : ViewModel() {
         }
     }
 
-    fun checkfollow(uid : Int, followerId : Int){
+    fun checkfollow(uid: Int, followerId: Int) {
         viewModelScope.launch {
             _followerStatus.value = AuthorApiStatus.LOADING
             try {
@@ -185,13 +192,44 @@ class AuthorProfileViewModel : ViewModel() {
         }
     }
 
-    fun unfollowAuthor(userId :Int, followerId : Int) {
+    fun unfollowAuthor(userId: Int, followerId: Int) {
         viewModelScope.launch {
             _status.value = AuthorApiStatus.LOADING
             _unfollowResponse.value = ApiClient.retrofitService.unfollow(
                 userId,
                 followerId
             )
+        }
+    }
+
+    fun blockAuthor(userId: Int, blockedId: Int) {
+        viewModelScope.launch {
+            _blockStatus.value = AuthorApiStatus.LOADING
+            try {
+                ApiClient.retrofitService.block(userId, blockedId).let { response ->
+                    Log.d("BlockUser", "$response")
+                    _blockStatus.value = AuthorApiStatus.DONE
+                }
+            } catch (e: Exception) {
+                _blockStatus.value = AuthorApiStatus.ERROR
+                Log.e("BlockUser", "$e")
+            }
+        }
+    }
+
+    fun getBlocked(userId: Int) {
+        viewModelScope.launch {
+            _status.value = AuthorApiStatus.LOADING
+            try {
+                ApiClient.retrofitService.getBlocked(userId).let { response ->
+                    Log.d("Blocked Accounts", "${response.blocked}")
+                    _blockList.value = response.blocked
+                    _status.value = AuthorApiStatus.DONE
+                }
+            } catch (e: Exception) {
+                Log.e("Blocked Account","$e")
+                _status.value = AuthorApiStatus.ERROR
+            }
         }
     }
 }

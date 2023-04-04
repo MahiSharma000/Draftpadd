@@ -247,6 +247,19 @@ interface ApiService {
         @Field("user_id") user_id: Int,
         @Field("follower_id") follower_id: Int,
     ): UnfollowResponse
+
+    //block user
+    @FormUrlEncoded
+    @POST("api/v1/block")
+    suspend fun block(
+        @Field("user_id") user_id: Int,
+        @Field("blocked_id") follower_id: Int,
+    ): BlockResponse
+
+    //get list of blocked users
+    @GET("api/v1/get_blocked/{id}")
+    suspend fun getBlocked(@Path("id") id: Int): BlockedResponse
+
 }
 
 
