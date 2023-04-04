@@ -266,15 +266,13 @@ class NewStoryViewModel : ViewModel() {
 
     }
 
-    fun deletebook(bookid:Int){
+    fun deletebook(bookid: Int) {
         viewModelScope.launch {
             _deleteStatus.value = NewStoryApiStatus.LOADING
             try {
-                bookid.let {
-                    ApiClient.retrofitService.deleteBook(it).let { response ->
-                        Log.d("DeleteBook", response.toString())
-                        _deleteStatus.value = NewStoryApiStatus.DONE
-                    }
+                ApiClient.retrofitService.deleteBook(bookid).let { response ->
+                    Log.d("DeleteBook", response.toString())
+                    _deleteStatus.value = NewStoryApiStatus.DONE
                 }
             } catch (e: Exception) {
                 Log.e("DeleteBook", e.toString())
@@ -282,15 +280,14 @@ class NewStoryViewModel : ViewModel() {
             }
         }
     }
-    fun deletechapter(chapter:Int){
+
+    fun deletechapter(chapter: Int) {
         viewModelScope.launch {
             _deleteStatus.value = NewStoryApiStatus.LOADING
             try {
-                chapter.let {
-                    ApiClient.retrofitService.deleteChapter(it).let { response ->
-                        Log.d("DeleteChapter", response.toString())
-                        _deleteStatus.value = NewStoryApiStatus.DONE
-                    }
+                ApiClient.retrofitService.deleteChapter(chapter).let { response ->
+                    Log.d("DeleteChapter", response.toString())
+                    _deleteStatus.value = NewStoryApiStatus.DONE
                 }
             } catch (e: Exception) {
                 Log.e("DeleteChapter", e.toString())
@@ -298,6 +295,7 @@ class NewStoryViewModel : ViewModel() {
             }
         }
     }
+
     fun setChapterId(id: Int) {
         _chapterId.value = id
     }
