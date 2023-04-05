@@ -23,9 +23,9 @@
             android:id="@+id/txtDownload"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/download"
+            android:drawableLeft="@drawable/baseline_favorite_24"
             android:padding="20dp"
-            android:text="Download"
+            android:text="Favourites"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />

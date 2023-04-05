@@ -181,3 +181,8 @@ data class BlockedResponse(
     val status: String,
     val blocked: List<UserProfile>
 )
+
+data class FavouriteResponse(
+    val status: String,
+    val favourite: List<Book>
+)

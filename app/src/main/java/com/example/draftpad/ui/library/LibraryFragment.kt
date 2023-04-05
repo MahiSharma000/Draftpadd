@@ -60,7 +60,7 @@ class LibraryFragment : Fragment() {
         override fun getItem(position: Int): Fragment {
             return when (position) {
                 0 -> {
-                    LibraryDetailFragment("Downloads")
+                    LibraryDetailFragment("Favourites")
                 }
                 else -> {
                     LibraryDetailFragment("Read Later")
@@ -74,7 +74,7 @@ class LibraryFragment : Fragment() {
 
         override fun getPageTitle(position: Int): CharSequence? {
             return when (position) {
-                0 -> "Downloads"
+                0 -> "Favourites"
                 else -> "Read Later"
             }
         }
@@ -107,12 +107,27 @@ class LibraryFragment : Fragment() {
             vm.getResult(filterName, Utils(requireContext()).getUser().id.toInt())
 
             when (filterName) {
-                "Downloads" -> {
+                "Favourites" -> {
+                    vm.favouriteBooks.observe(viewLifecycleOwner) { books ->
+                        binding2.rvLibrary.layoutManager = LinearLayoutManager(context)
+                        binding2.rvLibrary.adapter = BookAdapter() { book ->
+                            try {
+                                val dir =
+                                    LibraryFragmentDirections.actionNavigationLibraryToReadFragment(
+                                        book.id
+                                    )
+                                findNavController().navigate(dir)
+
+                            } catch (e: Exception) {
+                                Log.e("Error", e.toString())
+                            }
+                        }
+                        (binding2.rvLibrary.adapter as BookAdapter).submitList(books)
+                    }
 
                 }
 
                 "Read Later" -> {
-                    Log.e("Library", vm.readLaterBooks.value.toString())
                     vm.readLaterBooks.observe(viewLifecycleOwner) { books ->
                         binding2.rvLibrary.layoutManager = LinearLayoutManager(context)
                         binding2.rvLibrary.adapter = BookAdapter() { book ->
@@ -127,7 +142,6 @@ class LibraryFragment : Fragment() {
                                 Log.e("Error", e.toString())
                             }
                         }
-                        Log.e("Library", books.toString())
                         (binding2.rvLibrary.adapter as BookAdapter).submitList(books)
                     }
 

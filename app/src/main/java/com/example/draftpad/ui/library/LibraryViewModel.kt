@@ -15,8 +15,11 @@ class LibraryViewModel : ViewModel() {
     private val _status = MutableLiveData<LibraryApiStatus>()
     val status: LiveData<LibraryApiStatus> = _status
 
-    private val _downloadBooks = MutableLiveData<List<Book>>()
-    val downloadBooks: LiveData<List<Book>> = _downloadBooks
+    private val _favStatus = MutableLiveData<LibraryApiStatus>()
+    val favStatus: LiveData<LibraryApiStatus> = _favStatus
+
+    private val _favouriteBooks = MutableLiveData<List<Book>>()
+    val favouriteBooks: LiveData<List<Book>> = _favouriteBooks
 
     private val _readLaterBooks = MutableLiveData<List<Book>>()
     val readLaterBooks: LiveData<List<Book>> = _readLaterBooks
@@ -27,7 +30,7 @@ class LibraryViewModel : ViewModel() {
 
     fun getResult( filterName: String, uid:Int) {
         when (filterName) {
-            //"Download" -> readLater(uid)
+            "Favourites" -> favourites(uid)
            "Read Later" -> readLater(uid)
         }
     }
@@ -39,7 +42,6 @@ class LibraryViewModel : ViewModel() {
                 userId.let {
                     ApiClient.retrofitService.getReadingList(userId).let { response ->
                         _readLaterBooks.value = response.readLater
-                        Log.d("Readlater", response.toString())
                         if (response.readLater.isNotEmpty()) {
                             _status.value = LibraryApiStatus.DONE
                         } else {
@@ -52,6 +54,29 @@ class LibraryViewModel : ViewModel() {
             } catch (e: Exception) {
                 Log.e("ReadLater", e.toString())
                 _status.value = LibraryApiStatus.ERROR
+            }
+        }
+    }
+
+    private fun favourites(userId:Int){
+        viewModelScope.launch {
+            _favStatus.value = LibraryApiStatus.LOADING
+            try {
+                userId.let {
+                    ApiClient.retrofitService.getFavourite(userId).let { response ->
+                        _favouriteBooks.value = response.favourite
+                        if (response.favourite.isNotEmpty()) {
+                            _favStatus.value = LibraryApiStatus.DONE
+                        } else {
+                            _favStatus.value = LibraryApiStatus.ERROR
+                        }
+
+
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("Favourites", e.toString())
+                _favStatus.value = LibraryApiStatus.ERROR
             }
         }
     }

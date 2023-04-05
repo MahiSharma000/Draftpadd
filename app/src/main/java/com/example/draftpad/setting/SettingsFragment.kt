@@ -33,14 +33,8 @@ class SettingsFragment : Fragment() {
             txtProfileSetting.setOnClickListener {
                 findNavController().navigate(R.id.action_settingsFragment_to_profileSettingsFragment)
             }
-            txtNotificationSetting.setOnClickListener {
-                findNavController().navigate(R.id.action_settingsFragment_to_notificationSettingFragment)
-            }
             txtBlocked.setOnClickListener {
                 findNavController().navigate(R.id.action_settingsFragment_to_blockedAccountFragment)
-            }
-            txtMuted.setOnClickListener {
-                findNavController().navigate(R.id.action_settingsFragment_to_mutedAccountFragment)
             }
             btnPremiumSetting.setOnClickListener {
                 findNavController().navigate(R.id.action_settingsFragment_to_premiumFragment)
