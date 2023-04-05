@@ -19,11 +19,13 @@ import com.stripe.android.paymentsheet.PaymentSheetResult
 
 class PremiumFragment : Fragment() {
 
-    val publishableKey = "pk_test_51MqsCESCz8rZMjh8kM2ElCXyKd8L4HIE3zhVAASQELg8ZLwVYpserzPdxOt5YHAy4FBp33TBH5rMgGKX42m0mcQE004Buf8yVW"
-    val secretKey = "sk_test_51MqsCESCz8rZMjh8Kwew9NTEiBpxHqEQ9xaqITnSYty7NIsPT831jc46picJ7vjMrqjD0cjy9IPqJikqOVi6i46e00Ko8jRijT"
+    val publishableKey =
+        "pk_test_51MqsCESCz8rZMjh8kM2ElCXyKd8L4HIE3zhVAASQELg8ZLwVYpserzPdxOt5YHAy4FBp33TBH5rMgGKX42m0mcQE004Buf8yVW"
+    val secretKey =
+        "sk_test_51MqsCESCz8rZMjh8Kwew9NTEiBpxHqEQ9xaqITnSYty7NIsPT831jc46picJ7vjMrqjD0cjy9IPqJikqOVi6i46e00Ko8jRijT"
     val testSCard = "4242424242424242"
     val testFCard = "4000000000009995"
-    val ip = "192.168.1.41:5000"
+    val ip = "192.168.18.212:5000"
     lateinit var paymentSheet: PaymentSheet
     lateinit var customerConfig: PaymentSheet.CustomerConfiguration
     var paymentIntentClientSecret = publishableKey
@@ -37,45 +39,29 @@ class PremiumFragment : Fragment() {
             if (result is Result.Success) {
                 val responseJson = result.get().obj()
                 paymentIntentClientSecret = responseJson.getString("paymentIntent")
-                Toast.makeText(requireContext(), paymentIntentClientSecret, Toast.LENGTH_SHORT).show()
                 customerConfig = PaymentSheet.CustomerConfiguration(
                     responseJson.getString("customer"),
                     responseJson.getString("ephemeralKey")
                 )
                 val publishableKey = responseJson.getString("publishableKey")
                 PaymentConfiguration.init(requireContext(), publishableKey)
-            }else{
+            } else {
                 AlertDialog.Builder(requireContext())
                     .setTitle("Error")
                     .setMessage("Error in creating payment session")
                     .setPositiveButton("OK") { dialog, _ ->
                         dialog.dismiss()
-                    }
-                    .show()
+                    }.show()
             }
         }
     }
 
-    fun presentPaymentSheet() {
-        paymentSheet.presentWithPaymentIntent(
-            paymentIntentClientSecret,
-            PaymentSheet.Configuration(
-                merchantDisplayName = "Draftpad",
-                customer = customerConfig,
-                // Set `allowsDelayedPaymentMethods` to true if your business
-                // can handle payment methods that complete payment after a delay, like SEPA Debit and Sofort.
-                allowsDelayedPaymentMethods = true
-            )
-        )
-    }
     fun onPaymentSheetResult(paymentSheetResult: PaymentSheetResult) {
         paymentSheet.presentWithPaymentIntent(
             paymentIntentClientSecret,
             PaymentSheet.Configuration(
                 merchantDisplayName = "Draftpad",
                 customer = customerConfig,
-                // Set `allowsDelayedPaymentMethods` to true if your business
-                // can handle payment methods that complete payment after a delay, like SEPA Debit and Sofort.
                 allowsDelayedPaymentMethods = true
             )
         )
@@ -94,17 +80,27 @@ class PremiumFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             btnGoPremium.setOnClickListener {
-                if(btnPremiumOneMonth.isChecked){
-                    val intent =Intent( Intent.ACTION_VIEW, Uri.parse("https://buy.stripe.com/test_aEU17p6H4f5Gfx63cc"))
-                }
-                else if(btnPremiumSixMonth.isChecked){
-                    val intent =Intent( Intent.ACTION_VIEW, Uri.parse("https://buy.stripe.com/test_bIY9DV3uSf5G84EaEG"))
-                }
-                else if(btnPremiumOneYear.isChecked){
-                    val intent =Intent( Intent.ACTION_VIEW, Uri.parse("https://buy.stripe.com/test_eVaeYf8Pcf5G70A9AB"))
-                }
-                else{
-                    Toast.makeText(requireContext(), "Please select a plan", Toast.LENGTH_LONG).show()
+                if (btnPremiumOneMonth.isChecked) {
+                    val intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://buy.stripe.com/test_aEU17p6H4f5Gfx63cc")
+                    )
+                    requireContext().startActivity(intent)
+                } else if (btnPremiumSixMonth.isChecked) {
+                    val intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://buy.stripe.com/test_eVaeYf8Pcf5G70A9AB")
+                    )
+                    requireContext().startActivity(intent)
+                } else if (btnPremiumOneYear.isChecked) {
+                    val intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://buy.stripe.com/test_bIY9DV3uSf5G84EaEG")
+                    )
+                    requireContext().startActivity(intent)
+                } else {
+                    Toast.makeText(requireContext(), "Please select a plan", Toast.LENGTH_LONG)
+                        .show()
                 }
             }
         }
