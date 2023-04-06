@@ -100,15 +100,7 @@ class EditChapterContent : Fragment() {
                     //findNavController().navigate(R.id.action_editChapterContent_to_editStoryDetailFragment2)
                     true
                 }
-                R.id.action_preview -> {
-                    val dir =
-                        EditChapterContentDirections.actionEditChapterContentToReadStoryFragment(
-                            chapterId
-                        )
-                    findNavController().navigate(dir)
 
-                    true
-                }
                 R.id.action_delete -> {
                     vm.deletechapter(chapterId)
                     Toast.makeText(requireContext(), "Chapter Deleted", Toast.LENGTH_SHORT).show()

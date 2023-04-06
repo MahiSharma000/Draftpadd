@@ -136,7 +136,7 @@ class ProfileSettingsFragment : Fragment(), EasyPermissions.PermissionCallbacks 
             }
         }
 
-        vm.status.observe(viewLifecycleOwner) { status ->
+        /*vm.status.observe(viewLifecycleOwner) { status ->
             when (status) {
                 ProfileApiStatus.DONE -> {
                     showSnackBar("Profile Updated")
@@ -149,9 +149,10 @@ class ProfileSettingsFragment : Fragment(), EasyPermissions.PermissionCallbacks 
                 }
                 ProfileApiStatus.NONE -> {
 
+
                 }
             }
-        }
+        }*/
 
         vm.response.observe(viewLifecycleOwner) { response ->
             if (response != null) {
@@ -208,7 +209,7 @@ class ProfileSettingsFragment : Fragment(), EasyPermissions.PermissionCallbacks 
                     showSnackBar("Please fill all the fields $error_count")
                 }
             }
-            imgProfile.setOnClickListener {
+            txtChangeImage.setOnClickListener {
                 selectImage()
             }
             txtchangepwd.setOnClickListener {

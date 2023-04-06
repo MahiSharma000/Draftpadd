@@ -62,9 +62,7 @@ class AuthFragment : Fragment() {
         binding.loginProgress.setVisibility(View.INVISIBLE)
 
         binding.apply {
-            txtSignUp.setOnClickListener {
-                findNavController().navigate(R.id.action_authFragment_to_signUpFragment)
-            }
+
             imgPhone.setOnClickListener {
                 findNavController().navigate(R.id.action_authFragment_to_phoneLoginFragment2)
             }
@@ -128,6 +126,10 @@ class AuthFragment : Fragment() {
             }
 
             txtForgotPwd.setOnClickListener {
+            }
+
+            txtSignUp.setOnClickListener {
+                findNavController().navigate(R.id.action_authFragment_to_signUpFragment)
             }
         }
 

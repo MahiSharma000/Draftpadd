@@ -111,10 +111,6 @@ class AddNewChapter : Fragment() {
 
                     true
                 }
-                R.id.action_preview -> {
-                    findNavController().navigate(R.id.action_writeStoryFragment_to_readStoryFragment)
-                    true
-                }
                 R.id.action_delete -> {
                     true
                 }

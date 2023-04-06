@@ -43,7 +43,7 @@ class AddReadingListFragment : BottomSheetDialogFragment() {
                     bi
                 )
                 saveBookOffline()
-                Toast.makeText(requireContext(), "Book saved offline", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Added to favorites", Toast.LENGTH_SHORT).show()
             }
             createReadingList.setOnClickListener {
                 try {

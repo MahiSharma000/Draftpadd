@@ -92,9 +92,7 @@ class AuthorProfileFragment : Fragment() {
 
                 }
 
-                R.id.mute -> {
 
-                }
             }
             true
         }

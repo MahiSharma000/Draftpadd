@@ -51,6 +51,7 @@
             android:backgroundTint="@color/colorAccent"
             android:drawableLeft="@drawable/ic_baseline_email_24"
             android:ems="10"
+            android:hint="Enter Email"
             android:inputType="textEmailAddress"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
@@ -75,6 +76,7 @@
             android:backgroundTint="@color/colorAccent"
             android:drawableLeft="@drawable/ic_baseline_person_24"
             android:ems="10"
+            android:hint="Enter Username"
             android:inputType="textPersonName"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
@@ -97,6 +99,7 @@
             android:backgroundTint="@color/colorAccent"
             android:drawableLeft="@drawable/ic_baseline_password_24"
             android:ems="10"
+            android:hint="Enter Password"
             android:inputType="textPassword"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
@@ -108,8 +111,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/txtEmail"
             app:layout_constraintTop_toBottomOf="@+id/txtEmail"
-            tools:ignore="TouchTargetSizeCheck"
-            tools:text="Enter Password" />
+            tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
             android:id="@+id/txtConfirmPassword"
@@ -120,6 +122,7 @@
             android:backgroundTint="@color/colorAccent"
             android:drawableLeft="@drawable/ic_baseline_password_24"
             android:ems="10"
+            android:hint="Confirm Password"
             android:inputType="textPassword"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
