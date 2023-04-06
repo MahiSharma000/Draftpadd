@@ -187,3 +187,13 @@ data class FavouriteResponse(
     val status: String,
     val favourite: List<Book>
 )
+
+data class DeleteFavourite(
+    val status: String,
+    val msg: String
+)
+
+data class DeleteReadLaterResponse(
+    val status: String,
+    val msg: String
+)

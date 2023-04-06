@@ -26,6 +26,12 @@ class ReadViewModel : ViewModel() {
     private val _bookId = MutableLiveData<Int>(10)
     val bookId: LiveData<Int> = _bookId
 
+    private val _deletefav = MutableLiveData<DeleteFavourite>()
+    val deletefav: LiveData<DeleteFavourite> = _deletefav
+
+    private val _deleteLater = MutableLiveData<DeleteReadLaterResponse>()
+    val deleteLater: LiveData<DeleteReadLaterResponse> = _deleteLater
+
 
 
     private val _readLater = MutableLiveData<AddToReadLaterResponse>()
@@ -84,12 +90,27 @@ class ReadViewModel : ViewModel() {
             )
         }
     }
-
-
-
     fun addreadlater( userId: Int,bookId: Int){
         viewModelScope.launch {
             _readLater.value=ApiClient.retrofitService.addReadLater(
+                userId,
+                bookId
+            )
+        }
+    }
+
+    fun deletefavourite(userId: Int,bookId: Int){
+        viewModelScope.launch {
+            _deletefav.value=ApiClient.retrofitService.deleteFavourite(
+                userId,
+                bookId
+            )
+        }
+    }
+
+    fun deletereadLater(userId: Int,bookId: Int){
+        viewModelScope.launch {
+            _deleteLater.value=ApiClient.retrofitService.deleteReadLater(
                 userId,
                 bookId
             )

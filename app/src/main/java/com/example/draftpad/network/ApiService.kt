@@ -261,6 +261,21 @@ interface ApiService {
     @GET("api/v1/get_favourite/{id}")
     suspend fun getFavourite(@Path("id") id: Int): FavouriteResponse
 
+    @FormUrlEncoded
+    @POST("api/v1/delete_favourite")
+    suspend fun deleteFavourite(
+        @Field("user_id") user_id: Int,
+        @Field("book_id") book_id: Int,
+    ): DeleteFavourite
+
+    @FormUrlEncoded
+    @POST("api/v1/delete_readinglater")
+    suspend fun deleteReadLater(
+        @Field("user_id") user_id: Int,
+        @Field("book_id") book_id: Int,
+    ): DeleteReadLaterResponse
+
+
 }
 object ApiClient {
     val retrofitService: ApiService by lazy {

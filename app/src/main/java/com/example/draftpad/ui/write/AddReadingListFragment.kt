@@ -1,6 +1,7 @@
 package com.example.draftpad.ui.write
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -36,22 +37,22 @@ class AddReadingListFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val bi=AddReadingListFragmentArgs.fromBundle(requireArguments()).bookId
+        val userId = Utils(requireContext()).getUser().id.toInt()
+        val bi = AddReadingListFragmentArgs.fromBundle(requireArguments()).bookId
         binding.apply {
             txtDownload.setOnClickListener {
                 vm.downloadBook(
-                    Utils(requireContext()).getUser().id.toInt(),
+                    userId,
                     bi
                 )
-                saveBookOffline()
                 vm.favouriteResponse.observe(viewLifecycleOwner) {
                     if (it != null) {
                         when (it.status) {
-                            "error" ->{
+                            "error" -> {
                                 Toast.makeText(requireContext(), it.msg, Toast.LENGTH_SHORT)
                                     .show()
                             }
-                            "success" ->{
+                            "success" -> {
                                 Toast.makeText(requireContext(), it.msg, Toast.LENGTH_SHORT)
                                     .show()
                             }
@@ -62,7 +63,7 @@ class AddReadingListFragment : BottomSheetDialogFragment() {
             createReadingList.setOnClickListener {
                 try {
                     vm.addreadlater(
-                        Utils(requireContext()).getUser().id.toInt(),
+                        userId,
                         bi
                     )
 
@@ -73,27 +74,64 @@ class AddReadingListFragment : BottomSheetDialogFragment() {
                                     Toast.makeText(requireContext(), it.msg, Toast.LENGTH_SHORT)
                                         .show()
 
-                                "OK" ->{
-                                   Toast.makeText(requireContext(), it.msg, Toast.LENGTH_SHORT)
+                                "OK" -> {
+                                    Toast.makeText(requireContext(), it.msg, Toast.LENGTH_SHORT)
                                         .show()
                                 }
                             }
                         }
                     }
-                }catch (e:Exception){
+                } catch (e: Exception) {
                     Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT)
                         .show()
                 }
 
             }
+            txtRemoveReadLater.setOnClickListener {
+                vm.deletereadLater(
+                    userId,
+                    bi
+                )
+                vm.deleteLater.observe(viewLifecycleOwner) {
+                    if (it != null) {
+                        when (it.status) {
+                            "ERROR" -> {
+                                Log.e("Delete", "${it.msg}")
+                                Toast.makeText(requireContext(), it.msg, Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                            "OK" -> {
+                                Log.e("Delete", "${it.msg}")
+                                Toast.makeText(requireContext(), it.msg, Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                        }
+                    }
+                }
+            }
+
+            txtRemoveFavourites.setOnClickListener {
+                vm.deletefavourite(
+                    userId,
+                    bi
+                )
+                vm.deletefav.observe(viewLifecycleOwner) {
+                    if (it != null) {
+                        when (it.status) {
+                            "ERROR" ->
+                                Toast.makeText(requireContext(), it.msg, Toast.LENGTH_SHORT)
+                                    .show()
+
+                            "OK" -> {
+                                Toast.makeText(requireContext(), it.msg, Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                        }
+                    }
+
+                }
+            }
+
         }
-    }
-
-    fun saveBookOffline(){
-        // save book offline
-
-    }
-
-    companion object {
     }
 }
