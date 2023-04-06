@@ -14,6 +14,7 @@ import com.example.draftpad.databinding.FragmentAddReadingListBinding
 import com.example.draftpad.ui.read.ChapterViewModel
 import com.example.draftpad.ui.read.ReadViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.snackbar.Snackbar
 
 class AddReadingListFragment : BottomSheetDialogFragment() {
     private val vm: ReadViewModel by activityViewModels()
@@ -43,7 +44,20 @@ class AddReadingListFragment : BottomSheetDialogFragment() {
                     bi
                 )
                 saveBookOffline()
-                Toast.makeText(requireContext(), "Added to favorites", Toast.LENGTH_SHORT).show()
+                vm.favouriteResponse.observe(viewLifecycleOwner) {
+                    if (it != null) {
+                        when (it.status) {
+                            "error" ->{
+                                Toast.makeText(requireContext(), it.msg, Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                            "success" ->{
+                                Toast.makeText(requireContext(), it.msg, Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                        }
+                    }
+                }
             }
             createReadingList.setOnClickListener {
                 try {
@@ -51,12 +65,26 @@ class AddReadingListFragment : BottomSheetDialogFragment() {
                         Utils(requireContext()).getUser().id.toInt(),
                         bi
                     )
-                    Toast.makeText(requireContext(), "Book added to read later", Toast.LENGTH_SHORT)
-                        .show()
+
+                    vm.readLater.observe(viewLifecycleOwner) {
+                        if (it != null) {
+                            when (it.status) {
+                                "ERROR" ->
+                                    Toast.makeText(requireContext(), it.msg, Toast.LENGTH_SHORT)
+                                        .show()
+
+                                "OK" ->{
+                                   Toast.makeText(requireContext(), it.msg, Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+                            }
+                        }
+                    }
                 }catch (e:Exception){
                     Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT)
                         .show()
                 }
+
             }
         }
     }

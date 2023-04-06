@@ -17,8 +17,8 @@ class ReadViewModel : ViewModel() {
     private val _status = MutableLiveData<ReadApiStatus>()
     val status: LiveData<ReadApiStatus> = _status
 
-    private val _downloadResponse = MutableLiveData<DownloadBookResponse>()
-    val downloadResponse: LiveData<DownloadBookResponse> = _downloadResponse
+    private val _favouriteResponse = MutableLiveData<DownloadBookResponse>()
+    val favouriteResponse: LiveData<DownloadBookResponse> = _favouriteResponse
 
     private val _book = MutableLiveData<Book?>()
     val book: LiveData<Book?> = _book
@@ -78,7 +78,7 @@ class ReadViewModel : ViewModel() {
 
     fun postDownload(download: Download){
         viewModelScope.launch {
-            _downloadResponse.value=ApiClient.retrofitService.download(
+            _favouriteResponse.value=ApiClient.retrofitService.download(
                 user_id = download.user_id.toString(),
                 book_id = download.book_id.toString(),
             )

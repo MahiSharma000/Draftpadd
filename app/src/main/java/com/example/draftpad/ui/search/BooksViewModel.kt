@@ -27,7 +27,7 @@ class BooksViewModel: ViewModel(){
         viewModelScope.launch {
             _status.value = BookApiStatus.LOADING
             try {
-                ApiClient.retrofitService.getBooksByStatus(catId,1).let {response->
+                ApiClient.retrofitService.getCategoryBooks(catId).let {response->
                     _status.value = BookApiStatus.DONE
                     _bookList.value = response.books
                     Log.d("SearchViewModel", response.toString())

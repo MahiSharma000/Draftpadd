@@ -54,35 +54,17 @@ class SignUpFragment : Fragment() {
                     )
                 }
             }
-            vm.status.observe(viewLifecycleOwner) {
-                when (it) {
-                    AuthApiStatus.LOADING -> {
-                        binding.signUpbt.isEnabled = false
-                    }
-                    AuthApiStatus.DONE -> {
-                        binding.signUpbt.isEnabled = true
-                        findNavController().navigate(R.id.action_signUpFragment_to_authFragment)
-                    }
-                    AuthApiStatus.ERROR -> {
-                        binding.signUpbt.isEnabled = true
-                    }
-                    else -> {
-                        binding.signUpbt.isEnabled = true
-                    }
-                }
-            }
         }
         vm.response.observe(viewLifecycleOwner) {
             if (it != null) {
                 when (it.status) {
-                    "Success" -> {
-                        AlertDialog.Builder(requireContext())
-                            .setTitle("Success")
-                            .setMessage(it.msg)
-                            .setPositiveButton("OK") { dialog, which ->
-                                dialog.dismiss()
-                            }
+                    "ERROR" ->{
+                        Snackbar.make(binding.root, it.msg, Snackbar.LENGTH_SHORT)
                             .show()
+                    }
+                    "OK" ->{
+                        binding.signUpbt.isEnabled = true
+                        findNavController().navigate(R.id.action_signUpFragment_to_authFragment)
                     }
                 }
             }

@@ -18,6 +18,7 @@ import coil.transform.CircleCropTransformation
 import com.example.draftpad.R
 import com.example.draftpad.Utils
 import com.example.draftpad.databinding.FragmentProfileSettingsBinding
+import com.google.android.material.snackbar.Snackbar
 import com.vmadalin.easypermissions.EasyPermissions
 import com.vmadalin.easypermissions.annotations.AfterPermissionGranted
 
@@ -136,34 +137,17 @@ class ProfileSettingsFragment : Fragment(), EasyPermissions.PermissionCallbacks 
             }
         }
 
-        /*vm.status.observe(viewLifecycleOwner) { status ->
-            when (status) {
-                ProfileApiStatus.DONE -> {
-                    showSnackBar("Profile Updated")
-                }
-                ProfileApiStatus.ERROR -> {
-                    showSnackBar("Error Occurred")
-                }
-                ProfileApiStatus.LOADING -> {
-                    showSnackBar("Loading")
-                }
-                ProfileApiStatus.NONE -> {
-
-
-                }
-            }
-        }*/
-
-        vm.response.observe(viewLifecycleOwner) { response ->
-            if (response != null) {
-                when (response.status) {
-                    "OK" -> {
-                        showSnackBar("Profile Updated")
+        vm.response.observe(viewLifecycleOwner) {
+            if (it != null) {
+                when (it.status) {
+                    "ERROR" ->{
+                        Snackbar.make(binding.root, it.msg, Snackbar.LENGTH_SHORT)
+                            .show()
                     }
-                    "ERROR" -> {
-                        showSnackBar("Profile Error Occurred")
+                    "OK" ->{
+                        Snackbar.make(binding.root, it.msg, Snackbar.LENGTH_SHORT)
+                            .show()
                     }
-
                 }
             }
         }
