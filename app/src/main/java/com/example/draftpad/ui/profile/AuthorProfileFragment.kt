@@ -63,7 +63,7 @@ class AuthorProfileFragment : Fragment() {
 
         vm.followers.observe(viewLifecycleOwner) { profiles ->
             binding.apply {
-                rvfollowers.layoutManager = LinearLayoutManager(context)
+                rvfollowers.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 rvfollowers.adapter = FollowerAdapter() { profile ->
                     Log.e("Follower", "$profile")
                     val dir = AuthorProfileFragmentDirections.actionAuthorProfileFragmentSelf(

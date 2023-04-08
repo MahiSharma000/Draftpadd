@@ -62,10 +62,6 @@ class AuthFragment : Fragment() {
         binding.loginProgress.setVisibility(View.INVISIBLE)
 
         binding.apply {
-
-            imgPhone.setOnClickListener {
-                findNavController().navigate(R.id.action_authFragment_to_phoneLoginFragment2)
-            }
             loginbt.setOnClickListener {
                 binding.loginProgress.max = 10
                 val currentProgress = 6

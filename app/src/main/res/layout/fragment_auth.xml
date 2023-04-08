@@ -154,18 +154,6 @@
         app:layout_constraintTop_toBottomOf="@+id/txtForgotPwd"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <ImageView
-        android:id="@+id/imgPhone"
-        android:layout_width="54dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="46dp"
-        android:src="@drawable/phone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
