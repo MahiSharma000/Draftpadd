@@ -95,8 +95,4 @@ class ChangePassword : Fragment() {
             }.create().show()
     }
 
-
-    companion object {
-
-    }
 }

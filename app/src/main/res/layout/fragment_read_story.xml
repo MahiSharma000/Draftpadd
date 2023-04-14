@@ -32,8 +32,10 @@
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintVertical_bias="1.0">
 
             <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -46,14 +48,13 @@
                     android:id="@+id/txtBookTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
                     android:text="@string/book_title"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:text="@{viewModel.chapter.book_title}" />
+                    app:text="@{viewModel.chapter.book_title}"
+                    tools:layout_editor_absoluteY="56dp" />
 
                 <TextView
                     android:id="@+id/txtRead"
@@ -125,15 +126,29 @@
                     app:layout_constraintTop_toBottomOf="@+id/txtChapterName"
                     app:text="@{viewModel.chapter.content}" />
 
+                <com.google.android.gms.ads.AdView
+                    android:id="@+id/adView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="32dp"
+                    app:adSize="BANNER"
+                    app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.01"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtChapter"></com.google.android.gms.ads.AdView>
+
                 <ImageView
                     android:id="@+id/imgVote"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="75dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="15dp"
                     android:src="@drawable/baseline_vote"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtChapter" />
+                    app:layout_constraintTop_toBottomOf="@+id/adView" />
 
                 <TextView
                     android:id="@+id/textView48"
@@ -149,10 +164,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/baseline_comment"
                     app:layout_constraintStart_toEndOf="@+id/imgVote"
-                    app:layout_constraintTop_toBottomOf="@+id/txtChapter" />
+                    app:layout_constraintTop_toBottomOf="@+id/adView" />
 
                 <TextView
                     android:id="@+id/textView49"
@@ -168,10 +183,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/baseline_share"
                     app:layout_constraintStart_toEndOf="@+id/imgComments"
-                    app:layout_constraintTop_toBottomOf="@+id/txtChapter" />
+                    app:layout_constraintTop_toBottomOf="@+id/adView" />
 
                 <TextView
                     android:id="@+id/textView52"
@@ -187,10 +202,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/baseline_noads"
                     app:layout_constraintStart_toEndOf="@+id/imgShare"
-                    app:layout_constraintTop_toBottomOf="@+id/txtChapter" />
+                    app:layout_constraintTop_toBottomOf="@+id/adView" />
 
                 <TextView
                     android:id="@+id/textView53"

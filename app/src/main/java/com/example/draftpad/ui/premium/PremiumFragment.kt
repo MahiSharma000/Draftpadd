@@ -106,8 +106,4 @@ class PremiumFragment : Fragment() {
         }
 
     }
-
-    companion object {
-
-    }
 }

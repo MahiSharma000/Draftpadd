@@ -12,15 +12,21 @@ import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
 import com.example.draftpad.Utils
 import com.example.draftpad.databinding.FragmentReadStoryBinding
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 
 class ReadStoryFragment : Fragment() {
     private val vm: ReadStoryViewModel by activityViewModels()
     private var _binding: FragmentReadStoryBinding? = null
     private val binding get() = _binding!!
+    lateinit var mAdView: AdView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        MobileAds.initialize(requireContext())
+        mAdView = AdView(requireContext())
     }
 
     override fun onCreateView(
@@ -30,7 +36,16 @@ class ReadStoryFragment : Fragment() {
         _binding = FragmentReadStoryBinding.inflate(inflater)
         binding.viewModel = vm
         binding.lifecycleOwner = viewLifecycleOwner
+        showAds()
         return binding.root
+    }
+
+    private fun showAds() {
+        val adRequest = AdRequest.Builder().build()
+        val adSize = AdSize(300, 50)
+        mAdView = binding.adView
+        mAdView.loadAd(adRequest)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
