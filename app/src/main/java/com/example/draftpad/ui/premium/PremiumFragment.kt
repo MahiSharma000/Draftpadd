@@ -25,7 +25,7 @@ class PremiumFragment : Fragment() {
         "sk_test_51MqsCESCz8rZMjh8Kwew9NTEiBpxHqEQ9xaqITnSYty7NIsPT831jc46picJ7vjMrqjD0cjy9IPqJikqOVi6i46e00Ko8jRijT"
     val testSCard = "4242424242424242"
     val testFCard = "4000000000009995"
-    val ip = "192.168.18.212:5000"
+    val ip = "192.168.18.237:5000"
     lateinit var paymentSheet: PaymentSheet
     lateinit var customerConfig: PaymentSheet.CustomerConfiguration
     var paymentIntentClientSecret = publishableKey
