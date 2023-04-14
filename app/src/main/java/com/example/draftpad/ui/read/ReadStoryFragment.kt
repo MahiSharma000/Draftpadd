@@ -98,7 +98,7 @@ class ReadStoryFragment : Fragment() {
                 startActivity(shareIntent)
             }
 
-
+//123
             imgVote.setOnClickListener {
                 if (flag == 0) {
                     imgVote.setImageResource(R.drawable.baseline_star_24)
