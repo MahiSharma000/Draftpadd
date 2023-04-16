@@ -35,6 +35,9 @@ class ReadStoryViewModel : ViewModel() {
     private val _checkLike = MutableLiveData<CheckLikeResponse>()
     val checkLike: LiveData<CheckLikeResponse> = _checkLike
 
+    private val _isPremium = MutableLiveData<CheckPremiumResponse>()
+    val isPremium: LiveData<CheckPremiumResponse> = _isPremium
+
     init {
         _status.value = ReadStoryApiStatus.LOADING
     }
@@ -66,15 +69,15 @@ class ReadStoryViewModel : ViewModel() {
     }
 
     fun updateChapter(
-        id:Int,
+        id: Int,
         bookId: Int,
         chapterTitle: String,
         chapterContent: String,
         status: Int,
         categoryid: Int,
-        likes:Int,
-        comments:Int,
-        uid:Int
+        likes: Int,
+        comments: Int,
+        uid: Int
     ) {
         Log.d("Chapter", "createNewChapter: $bookId")
         val chapter = Chapter(
@@ -113,7 +116,7 @@ class ReadStoryViewModel : ViewModel() {
         }
     }
 
-    fun deleteLikes(uid:Int, chapter_id:Int){
+    fun deleteLikes(uid: Int, chapter_id: Int) {
         viewModelScope.launch {
             _chapterStatus.value = ReadStoryApiStatus.LOADING
             _delete.value = ApiClient.retrofitService.deleteLike(uid, chapter_id)
@@ -121,7 +124,7 @@ class ReadStoryViewModel : ViewModel() {
         }
     }
 
-    fun updateLikes(uid:Int, chapter_id:Int){
+    fun updateLikes(uid: Int, chapter_id: Int) {
         viewModelScope.launch {
             _chapterStatus.value = ReadStoryApiStatus.LOADING
             _update.value = ApiClient.retrofitService.updateLike(uid, chapter_id)
@@ -129,11 +132,17 @@ class ReadStoryViewModel : ViewModel() {
         }
     }
 
-    fun checkLikes(uid:Int, chapter_id:Int){
+    fun checkLikes(uid: Int, chapter_id: Int) {
         viewModelScope.launch {
             _chapterStatus.value = ReadStoryApiStatus.LOADING
             _checkLike.value = ApiClient.retrofitService.checkLike(uid, chapter_id)
             _chapterStatus.value = ReadStoryApiStatus.DONE
+        }
+    }
+
+    fun isPremiumCustomer(uid: Int) {
+        viewModelScope.launch {
+            _isPremium.value = ApiClient.retrofitService.checkPremium(uid)
         }
     }
 }

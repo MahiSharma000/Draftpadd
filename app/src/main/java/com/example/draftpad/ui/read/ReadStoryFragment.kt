@@ -36,7 +36,7 @@ class ReadStoryFragment : Fragment() {
         _binding = FragmentReadStoryBinding.inflate(inflater)
         binding.viewModel = vm
         binding.lifecycleOwner = viewLifecycleOwner
-        showAds()
+        vm.isPremiumCustomer(Utils(requireContext()).getUser().id.toInt())
         return binding.root
     }
 
@@ -50,7 +50,13 @@ class ReadStoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        vm.isPremium.observe(viewLifecycleOwner) {
+            it.is_premium.let { isP ->
+                if (!isP) {
+                    showAds()
+                }
+            }
+        }
         var flag = 0
         val uid = Utils(requireContext()).getUser().id.toInt()
         val chapter_id = ReadStoryFragmentArgs.fromBundle(requireArguments()).chapterId
@@ -78,7 +84,9 @@ class ReadStoryFragment : Fragment() {
             imgComments.setOnClickListener {
                 val chapter_id = vm.chapterId.value!!
                 val dir =
-                    ReadStoryFragmentDirections.actionReadStoryFragmentToCommentFragment(chapter_id)
+                    ReadStoryFragmentDirections.actionReadStoryFragmentToCommentFragment(
+                        chapter_id
+                    )
                 findNavController().navigate(dir)
             }
             imgNoAd.setOnClickListener {
@@ -98,7 +106,7 @@ class ReadStoryFragment : Fragment() {
                 startActivity(shareIntent)
             }
 
-//123
+
             imgVote.setOnClickListener {
                 if (flag == 0) {
                     imgVote.setImageResource(R.drawable.baseline_star_24)

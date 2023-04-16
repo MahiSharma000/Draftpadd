@@ -197,3 +197,8 @@ data class DeleteReadLaterResponse(
     val status: String,
     val msg: String
 )
+
+data class CheckPremiumResponse(
+    val status: String,
+    val is_premium: Boolean
+)

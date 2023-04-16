@@ -275,6 +275,9 @@ interface ApiService {
         @Field("book_id") book_id: Int,
     ): DeleteReadLaterResponse
 
+    @GET("api/v1/check/preium/{id}")
+    suspend fun checkPremium(@Path("id") id: Int): CheckPremiumResponse
+
 
 }
 object ApiClient {

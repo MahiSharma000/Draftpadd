@@ -154,8 +154,4 @@ class AuthFragment : Fragment() {
 
 
     }
-
-    companion object {
-
-    }
 }
