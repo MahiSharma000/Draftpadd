@@ -34,7 +34,7 @@ class SearchFragment : Fragment() {
                 this.rvCategory.layoutManager = LinearLayoutManager(context)
                 this.rvCategory.adapter = CategoryAdapter() { category ->
                     val dir =
-                        SearchFragmentDirections.actionNavigationSearchToBooksFragment(category.id)
+                        SearchFragmentDirections.actionNavigationSearchToBooksFragment(category.name, category.id)
                     findNavController().navigate(dir)
                 }
                 (binding.rvCategory.adapter as CategoryAdapter).submitList(categories)

@@ -22,10 +22,6 @@ import com.example.draftpad.ui.search.BookAdapter
 
 class LibraryFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = LibraryFragment()
-    }
-
     private var _binding: FragmentLibraryBinding? = null
     private val binding get() = _binding!!
     private var toolbar: Toolbar? = null

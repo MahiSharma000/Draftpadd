@@ -262,6 +262,9 @@
             android:name="category"
             app:argType="integer"
             android:defaultValue="1" />
+        <argument
+            android:name="name"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/readFragment"

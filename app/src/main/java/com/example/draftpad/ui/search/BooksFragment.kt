@@ -29,6 +29,7 @@ class BooksFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val catId = BooksFragmentArgs.fromBundle(requireArguments()).category
+        binding.toolbar2.title = BooksFragmentArgs.fromBundle(requireArguments()).name
         vm.getBooks(catId)
         binding.apply {
             vm.bookList.observe(viewLifecycleOwner) { books ->
