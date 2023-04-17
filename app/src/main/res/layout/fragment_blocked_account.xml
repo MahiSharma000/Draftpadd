@@ -7,25 +7,25 @@
             name="blocked"
             type="com.example.draftpad.ui.profile.AuthorProfileViewModel" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/frameLayout23"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".setting.BlockedAccountFragment">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/blockedrv"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout23"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/profile_item"/>
+        android:layout_height="match_parent"
+        tools:context=".setting.BlockedAccountFragment">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/blockedrv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/profile_item" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

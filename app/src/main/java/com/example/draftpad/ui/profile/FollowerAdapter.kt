@@ -6,8 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.draftpad.databinding.ProfileItemBinding
-import com.example.draftpad.databinding.ProfileListItemBinding
-import com.example.draftpad.network.Follower
 import com.example.draftpad.network.UserProfile
 
 class FollowerAdapter(

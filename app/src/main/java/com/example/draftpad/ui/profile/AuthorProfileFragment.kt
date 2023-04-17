@@ -7,27 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.draftpad.R
 import com.example.draftpad.Utils
 import com.example.draftpad.databinding.FragmentAuthorProfileBinding
-import com.example.draftpad.ui.search.CategoryAdapter
+import com.example.draftpad.ui.search.BookAdapter
 
 
 class AuthorProfileFragment : Fragment() {
     private val vm: AuthorProfileViewModel by activityViewModels()
     private var _binding: FragmentAuthorProfileBinding? = null
     private val binding get() = _binding!!
-    private var toolbar: Toolbar? = null
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,9 +37,9 @@ class AuthorProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         var flag = 0
         val user_id = AuthorProfileFragmentArgs.fromBundle(requireArguments()).userId
-        Log.d("AuthorProfileFragment", "onViewCreated: $user_id")
         vm.getAuthorId(user_id)
         vm.getFollower(user_id)
+        vm.getBooks(user_id)
         vm.checkfollow(Utils(requireContext()).getUser().id.toInt(), user_id)
         try {
             if (vm.checkFollow.value!!.status == "OK") {
@@ -63,9 +56,9 @@ class AuthorProfileFragment : Fragment() {
 
         vm.followers.observe(viewLifecycleOwner) { profiles ->
             binding.apply {
-                rvfollowers.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                rvfollowers.layoutManager =
+                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 rvfollowers.adapter = FollowerAdapter() { profile ->
-                    Log.e("Follower", "$profile")
                     val dir = AuthorProfileFragmentDirections.actionAuthorProfileFragmentSelf(
                         profile.id.toString().toInt()
                     )
@@ -77,22 +70,32 @@ class AuthorProfileFragment : Fragment() {
 
         }
 
+        vm.books.observe(viewLifecycleOwner) { books ->
+            binding.apply {
+                rvBooks.layoutManager =
+                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                rvBooks.adapter = BookAdapter() {book ->
+                    val dir = AuthorProfileFragmentDirections.actionAuthorProfileFragmentToReadFragment(book.id)
+                    findNavController().navigate(dir)
+                }
+                (binding.rvBooks.adapter as BookAdapter).submitList(books)
+            }
+
+        }
+
         binding.toolbarProfile.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.block -> {
-                    if(item.title=="Block"){
-                    item.title = "Unblock"
-                    vm.blockAuthor(Utils(requireContext()).getUser().id.toInt(), user_id)
-                    Toast.makeText(context, "Blocked", Toast.LENGTH_SHORT).show()}
-                    else{
+                    if (item.title == "Block") {
+                        item.title = "Unblock"
+                        vm.blockAuthor(Utils(requireContext()).getUser().id.toInt(), user_id)
+                        Toast.makeText(context, "Blocked", Toast.LENGTH_SHORT).show()
+                    } else {
                         item.title = "Block"
                         vm.blockAuthor(Utils(requireContext()).getUser().id.toInt(), user_id)
                         Toast.makeText(context, "Unblocked", Toast.LENGTH_SHORT).show()
                     }
-
                 }
-
-
             }
             true
         }
@@ -102,8 +105,6 @@ class AuthorProfileFragment : Fragment() {
 
                 txtwork.setText(vm.author.value!!.book_written.toString())
                 txtFollower.setText(vm.author.value!!.followers.toString())
-
-
                 btnfollow.setOnClickListener {
                     if (flag == 0) {
                         vm.updateProfile(

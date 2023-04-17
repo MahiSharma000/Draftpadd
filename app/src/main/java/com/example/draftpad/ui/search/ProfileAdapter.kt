@@ -1,6 +1,5 @@
 package com.example.draftpad.ui.search
 
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,7 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.draftpad.databinding.ProfileItemBinding
 import com.example.draftpad.network.UserProfile
-
 
 class ProfileAdapter(
     val listener: (UserProfile) -> Unit
@@ -56,6 +54,5 @@ class ProfileAdapter(
         ): Boolean {
             return oldItem.user_id == newItem.user_id
         }
-
     }
 }

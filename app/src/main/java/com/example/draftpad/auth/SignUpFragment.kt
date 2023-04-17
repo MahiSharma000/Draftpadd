@@ -1,6 +1,5 @@
 package com.example.draftpad.auth
 
-import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentSignUpBinding
 import com.google.android.material.snackbar.Snackbar
-import kotlin.math.sign
 
 
 class SignUpFragment : Fragment() {
@@ -20,11 +18,6 @@ class SignUpFragment : Fragment() {
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
     private val vm: AuthSignUpViewModel by activityViewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,11 +51,11 @@ class SignUpFragment : Fragment() {
         vm.response.observe(viewLifecycleOwner) {
             if (it != null) {
                 when (it.status) {
-                    "ERROR" ->{
+                    "ERROR" -> {
                         Snackbar.make(binding.root, it.msg, Snackbar.LENGTH_SHORT)
                             .show()
                     }
-                    "OK" ->{
+                    "OK" -> {
                         binding.signUpbt.isEnabled = true
                         findNavController().navigate(R.id.action_signUpFragment_to_authFragment)
                     }

@@ -1,6 +1,5 @@
 package com.example.draftpad.ui.library
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,14 +27,14 @@ class LibraryViewModel : ViewModel() {
         _status.value = LibraryApiStatus.LOADING
     }
 
-    fun getResult( filterName: String, uid:Int) {
+    fun getResult(filterName: String, uid: Int) {
         when (filterName) {
             "Favourites" -> favourites(uid)
-           "Read Later" -> readLater(uid)
+            "Read Later" -> readLater(uid)
         }
     }
 
-    private fun readLater(userId : Int){
+    private fun readLater(userId: Int) {
         viewModelScope.launch {
             _status.value = LibraryApiStatus.LOADING
             try {
@@ -47,18 +46,15 @@ class LibraryViewModel : ViewModel() {
                         } else {
                             _status.value = LibraryApiStatus.ERROR
                         }
-
-
                     }
                 }
             } catch (e: Exception) {
-                Log.e("ReadLater", e.toString())
                 _status.value = LibraryApiStatus.ERROR
             }
         }
     }
 
-    private fun favourites(userId:Int){
+    private fun favourites(userId: Int) {
         viewModelScope.launch {
             _favStatus.value = LibraryApiStatus.LOADING
             try {
@@ -75,7 +71,6 @@ class LibraryViewModel : ViewModel() {
                     }
                 }
             } catch (e: Exception) {
-                Log.e("Favourites", e.toString())
                 _favStatus.value = LibraryApiStatus.ERROR
             }
         }

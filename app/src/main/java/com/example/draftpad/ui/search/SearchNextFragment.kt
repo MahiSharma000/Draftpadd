@@ -23,11 +23,6 @@ class SearchNextFragment : Fragment() {
     private var _binding: FragmentSearchNextBinding? = null
     private val binding get() = _binding!!
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -39,13 +34,10 @@ class SearchNextFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // if fragment is attached to the activity
-
         binding.txtsearchByName.setText(viewModel.query.value)
         binding.viewPager.adapter = SearchNextViewPagerAdapter(childFragmentManager)
         binding.tabLayout2.setupWithViewPager(binding.viewPager)
         binding.txtsearchByName.addTextChangedListener {
-            // clear the stories, profiles and reading lists
             viewModel.clearSearchResult()
             viewModel.setQuery(getName())
         }
@@ -121,7 +113,6 @@ class SearchNextFragment : Fragment() {
                                 )
                             findNavController().navigate(dir)
                         }
-                        Log.e("SearchNextFragment", books.toString())
                         (binding2.searchRv.adapter as BookAdapter).submitList(books)
                     }
                 }
@@ -135,7 +126,6 @@ class SearchNextFragment : Fragment() {
                                 )
                             findNavController().navigate(dir)
                         }
-                        Log.e("ProfileFragment", profiles.toString())
                         (binding2.searchRv.adapter as ProfileAdapter).submitList(profiles)
                     }
                 }

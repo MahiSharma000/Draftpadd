@@ -1,12 +1,10 @@
 package com.example.draftpad.ui.read
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.draftpad.network.*
-import com.example.draftpad.ui.write.WriteApiStatus
 import kotlinx.coroutines.launch
 
 enum class ReadStoryApiStatus { LOADING, ERROR, DONE }
@@ -48,7 +46,6 @@ class ReadStoryViewModel : ViewModel() {
             try {
                 _chapterId.value?.let {
                     ApiClient.retrofitService.getChapter(it).let { response ->
-                        Log.d("ReadStoryViewModel", response.toString())
                         _chapter.value = response.chapter
                         if (response.chapter != null) {
                             _status.value = ReadStoryApiStatus.DONE
@@ -58,7 +55,6 @@ class ReadStoryViewModel : ViewModel() {
                     }
                 }
             } catch (e: Exception) {
-                Log.e("ReadStoryViewModel", e.toString())
                 _status.value = ReadStoryApiStatus.ERROR
             }
         }
@@ -79,7 +75,6 @@ class ReadStoryViewModel : ViewModel() {
         comments: Int,
         uid: Int
     ) {
-        Log.d("Chapter", "createNewChapter: $bookId")
         val chapter = Chapter(
             id = id,
             book_Id = bookId,
@@ -98,7 +93,6 @@ class ReadStoryViewModel : ViewModel() {
 
 
     private fun postChapter(chapter: Chapter) {
-        Log.d("Chapter", "postChapter: ${chapter.title}")
         viewModelScope.launch {
             _chapterStatus.value = ReadStoryApiStatus.LOADING
             _chapterResponse.value = ApiClient.retrofitService.createChapter(

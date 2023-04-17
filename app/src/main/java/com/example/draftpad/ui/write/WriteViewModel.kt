@@ -1,17 +1,12 @@
 package com.example.draftpad.ui.write
 
 import android.content.Context
-import android.net.Uri
 import android.os.Build
 import android.util.Log
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.draftpad.Utils
 import com.example.draftpad.network.*
-import com.example.draftpad.ui.read.ReadApiStatus
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
@@ -49,7 +44,6 @@ class WriteViewModel : ViewModel() {
         categoryid: Int,
         userId: Int
     ) {
-        Log.d("Chapter", "createNewChapter: $bookId")
         val chapter = Chapter(
             id = 1,
             book_Id = bookId,
@@ -68,11 +62,10 @@ class WriteViewModel : ViewModel() {
 
 
     private fun postChapter(chapter: Chapter) {
-        Log.d("Chapter", "postChapter: ${chapter.title}")
         viewModelScope.launch {
             _status.value = WriteApiStatus.LOADING
             _response.value = ApiClient.retrofitService.createChapter(
-                id=0,
+                id = 0,
                 title = chapter.title,
                 book_id = chapter.book_Id,
                 content = chapter.content,
@@ -107,7 +100,7 @@ class WriteViewModel : ViewModel() {
 
     fun createnewBook(
         context: Context,
-        id :Int,
+        id: Int,
         title: String,
         description: String,
         status: Int,
@@ -142,7 +135,6 @@ class WriteViewModel : ViewModel() {
     }
 
     fun getBook() {
-        Log.d("NewStoryViewModel", _bookId.value.toString())
         viewModelScope.launch {
             _getStatus.value = WriteApiStatus.LOADING
             try {
@@ -150,11 +142,9 @@ class WriteViewModel : ViewModel() {
                     ApiClient.retrofitService.getBook(it).let { response ->
                         _book.value = response.book
                         _getStatus.value = WriteApiStatus.DONE
-                        Log.d("ReadViewModel", _book.value.toString())
                     }
                 }
             } catch (e: Exception) {
-                Log.e("ReadViewModel", e.toString())
                 _getStatus.value = WriteApiStatus.ERROR
 
             }
@@ -163,7 +153,6 @@ class WriteViewModel : ViewModel() {
 
     fun setBookId(id: Int) {
         _bookId.value = id
-        Log.d("ReadViewModel", _bookId.value.toString())
     }
 }
 

@@ -16,11 +16,6 @@ class CopyrightInfringementFragment : Fragment() {
     private val vm: ReportViewModel by activityViewModels()
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,9 +48,5 @@ class CopyrightInfringementFragment : Fragment() {
                 Toast.makeText(requireContext(), "Reported", Toast.LENGTH_SHORT).show()
             }
         }
-    }
-
-    companion object {
-
     }
 }

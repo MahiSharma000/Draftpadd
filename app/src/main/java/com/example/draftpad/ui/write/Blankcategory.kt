@@ -1,19 +1,14 @@
 package com.example.draftpad.ui.write
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentBlankcategoryBinding
-import com.example.draftpad.databinding.FragmentSelectCategoryBinding
-import com.example.draftpad.network.Book
 import com.example.draftpad.ui.search.CategoryAdapter
 import com.example.draftpad.ui.search.SearchViewModel
 
@@ -21,12 +16,6 @@ class Blankcategory : Fragment() {
     private var _binding: FragmentBlankcategoryBinding? = null
     private val binding get() = _binding!!
     private val viewModel: SearchViewModel by activityViewModels()
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,12 +46,8 @@ class Blankcategory : Fragment() {
                     findNavController().navigate(dir)
 
                 }
-                Log.e("SearchFragment", categories.toString())
                 (binding.rveditcategory.adapter as CategoryAdapter).submitList(categories)
             }
         }
-    }
-
-    companion object {
     }
 }

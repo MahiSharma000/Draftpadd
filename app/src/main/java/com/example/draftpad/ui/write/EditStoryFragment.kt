@@ -113,17 +113,14 @@ class EditStoryFragment : Fragment() {
                                 Log.e("Error", e.toString())
                             }
                         }
-                        Log.e("EditStoryFragment", books.toString())
                         (binding2.editrv.adapter as BookAdapter).submitList(books)
                     }
                 }
 
                 "drafts" -> {
-                    Log.e("EditStoryFragment", viewModel.draftbooks.value.toString())
                     viewModel.draftbooks.observe(viewLifecycleOwner) { books ->
                         binding2.editrv.layoutManager = LinearLayoutManager(context)
                         binding2.editrv.adapter = BookAdapter() { book ->
-                            Log.e("Book", book.toString())
                             try {
                                 val dir =
                                     EditStoryFragmentDirections.actionEditStoryFragmentToEditStoryDetailFragment(
@@ -137,14 +134,11 @@ class EditStoryFragment : Fragment() {
                                 Log.e("Error", e.toString())
                             }
                         }
-                        Log.e("EditStoryFragment", books.toString())
                         (binding2.editrv.adapter as BookAdapter).submitList(books)
                     }
-
                 }
             }
         }
     }
-
 }
 

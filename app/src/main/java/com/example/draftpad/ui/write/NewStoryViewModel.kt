@@ -8,13 +8,11 @@ import android.os.Build
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
-//import androidx.compose.foundation.gestures.ModifierLocalScrollableContainerProvider.value
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.draftpad.network.*
-import com.example.draftpad.ui.profile.ProfileApiStatus
 import com.example.draftpad.ui.read.ReadApiStatus
 import com.example.draftpad.ui.read.ReadStoryApiStatus
 import kotlinx.coroutines.launch
@@ -85,14 +83,12 @@ class NewStoryViewModel : ViewModel() {
     }
 
     private fun convertToString(file: File): String {
-        Log.d("File", "convertToString: ${file.absolutePath}")
         val bytes = file.readBytes()
         return Base64.encodeToString(bytes, Base64.DEFAULT)
     }
 
     @SuppressLint("Recycle")
     private fun getFileFromUri(context: Context, uri: Uri): String? {
-        // get the file path from the URI using the content resolver
         val bitmap = MediaStore.Images.Media.getBitmap(context.contentResolver, uri)
         val file = File(context.cacheDir, "profile_pic")
         file.createNewFile()
@@ -170,7 +166,6 @@ class NewStoryViewModel : ViewModel() {
     }
 
     fun getSelectedBook() {
-        Log.d("NewStoryViewModel", _bookId.value.toString())
         viewModelScope.launch {
             _getStatus.value = ReadApiStatus.LOADING
             try {
@@ -178,11 +173,9 @@ class NewStoryViewModel : ViewModel() {
                     ApiClient.retrofitService.getBook(it).let { response ->
                         _book.value = response.book
                         _getStatus.value = ReadApiStatus.DONE
-                        Log.d("ReadViewModel", _book.value.toString())
                     }
                 }
             } catch (e: Exception) {
-                Log.e("ReadViewModel", e.toString())
                 _getStatus.value = ReadApiStatus.ERROR
 
             }
@@ -192,7 +185,6 @@ class NewStoryViewModel : ViewModel() {
 
     fun setBookId(id: Int) {
         _bookId.value = id
-        Log.d("ReadViewModel", _bookId.value.toString())
     }
 
     fun updateChapter(
@@ -206,7 +198,6 @@ class NewStoryViewModel : ViewModel() {
         comments: Int,
         uid: Int
     ) {
-        Log.d("Chapter", "createNewChapter: $bookId")
         val chapter = Chapter(
             id = id,
             book_Id = bookId,
@@ -225,7 +216,6 @@ class NewStoryViewModel : ViewModel() {
 
 
     private fun postChapter(chapter: Chapter) {
-        Log.d("Chapter", "postChapter: ${chapter.title}")
         viewModelScope.launch {
             _chapterStatus.value = ReadStoryApiStatus.LOADING
             _chapterResponse.value = ApiClient.retrofitService.createChapter(
@@ -249,7 +239,6 @@ class NewStoryViewModel : ViewModel() {
             try {
                 _chapterId.value?.let {
                     ApiClient.retrofitService.getChapter(it).let { response ->
-                        Log.d("ReadStoryViewModel", response.toString())
                         _chapter.value = response.chapter
                         if (response.chapter != null) {
                             _chapterStatus.value = ReadStoryApiStatus.DONE
@@ -259,7 +248,6 @@ class NewStoryViewModel : ViewModel() {
                     }
                 }
             } catch (e: Exception) {
-                Log.e("ReadStoryViewModel", e.toString())
                 _chapterStatus.value = ReadStoryApiStatus.ERROR
             }
         }
@@ -286,11 +274,9 @@ class NewStoryViewModel : ViewModel() {
             _deleteStatus.value = NewStoryApiStatus.LOADING
             try {
                 ApiClient.retrofitService.deleteChapter(chapter).let { response ->
-                    Log.d("DeleteChapter", response.toString())
                     _deleteStatus.value = NewStoryApiStatus.DONE
                 }
             } catch (e: Exception) {
-                Log.e("DeleteChapter", e.toString())
                 _deleteStatus.value = NewStoryApiStatus.ERROR
             }
         }
@@ -299,6 +285,4 @@ class NewStoryViewModel : ViewModel() {
     fun setChapterId(id: Int) {
         _chapterId.value = id
     }
-
-
 }

@@ -1,6 +1,5 @@
 package com.example.draftpad.ui.read
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,17 +13,10 @@ import com.example.draftpad.Utils
 import com.example.draftpad.databinding.FragmentCommentBinding
 import com.google.android.material.snackbar.Snackbar
 
-
 class CommentFragment : Fragment() {
-
     private val vm: CommentViewModel by activityViewModels()
     private var _binding: FragmentCommentBinding? = null
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +42,6 @@ class CommentFragment : Fragment() {
         vm.comments.observe(viewLifecycleOwner) { comments ->
             binding.rvComment.layoutManager = LinearLayoutManager(context)
             binding.rvComment.adapter = CommentAdapter() {}
-            Log.e("CommentFragment", comments.toString())
             (binding.rvComment.adapter as CommentAdapter).submitList(comments)
         }
 
@@ -76,6 +67,5 @@ class CommentFragment : Fragment() {
                 }
             }
         }
-
     }
 }

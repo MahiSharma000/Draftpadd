@@ -112,11 +112,6 @@ data class DownloadBookResponse(
     val msg: String
 )
 
-data class ChangePasswordResponse(
-    val status: String,
-    val msg: String
-)
-
 data class BooksByMaxViewsResponse(
     val status: String,
     val books: List<Book>
@@ -201,4 +196,9 @@ data class DeleteReadLaterResponse(
 data class CheckPremiumResponse(
     val status: String,
     val is_premium: Boolean
+)
+
+data class BooksResponse(
+    val status: String,
+    val books: List<Book>
 )

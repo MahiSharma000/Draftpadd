@@ -17,7 +17,6 @@ class BookAdapter(
             binding.book = book
             binding.executePendingBindings()
         }
-
     }
 
     override fun onCreateViewHolder(
@@ -53,10 +52,5 @@ class BookAdapter(
         ): Boolean {
             return oldItem.title == newItem.title
         }
-
-        object Layout {
-            val HORIZONTAL = 1
-        }
-
     }
 }

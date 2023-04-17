@@ -18,21 +18,14 @@ import com.example.draftpad.databinding.FragmentWriteStoryBinding
 class WriteStoryFragment : Fragment() {
     private var _binding: FragmentWriteStoryBinding? = null
     private val binding get() = _binding!!
-    private var toolbar: Toolbar? = null
-    private val viewModel : WriteViewModel by activityViewModels()
-
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    private val viewModel: WriteViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_write_story, container, false)
+        _binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_write_story, container, false)
         binding.writevm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
@@ -40,86 +33,80 @@ class WriteStoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val bi=WriteStoryFragmentArgs.fromBundle(requireArguments()).bookId
+        val bi = WriteStoryFragmentArgs.fromBundle(requireArguments()).bookId
         val cat = WriteStoryFragmentArgs.fromBundle(requireArguments()).categoryId
-        binding.toolbar.inflateMenu(R.menu.write_story_menu)
+        binding.toolbar.inflateMenu(R.menu.write)
         binding.apply {
-            var status : Int
             val title = chapterTitle.text.toString()
             val content = chapterContent.text.toString()
             val bookTitle = WriteStoryFragmentArgs.fromBundle(requireArguments()).bookTitle
             val bookContent = WriteStoryFragmentArgs.fromBundle(requireArguments()).bookDescription
             toolbar.setOnMenuItemClickListener { item ->
-
-                    when (item.itemId) {
-                        R.id.action_save -> {
-                            if(checkFields() == true){
-                                AlertDialog.Builder(requireContext())
-                                    .setTitle("Error")
-                                    .setMessage("Please fill all the fields")
-                                    .setPositiveButton("OK") { dialog, which ->
-                                        dialog.dismiss()
-                                    }
-                                    .show()
-                            }
-                            else{
-                                viewModel?.createNewChapter(
-                                    bi,
-                                    title,
-                                    content,
-                                    status = 0,
-                                    cat ,
-                                    Utils(requireContext()).getUser().id.toInt(),
-                                )
-                                findNavController().navigate(R.id.action_writeStoryFragment_to_navigation_write)
-                            }
-
-                            true
+                when (item.itemId) {
+                    R.id.action_save -> {
+                        if (checkFields() == true) {
+                            AlertDialog.Builder(requireContext())
+                                .setTitle("Error")
+                                .setMessage("Please fill all the fields")
+                                .setPositiveButton("OK") { dialog, which ->
+                                    dialog.dismiss()
+                                }
+                                .show()
+                        } else {
+                            viewModel?.createNewChapter(
+                                bi,
+                                title,
+                                content,
+                                status = 0,
+                                cat,
+                                Utils(requireContext()).getUser().id.toInt(),
+                            )
+                            findNavController().navigate(R.id.action_writeStoryFragment_to_navigation_write)
                         }
-                        R.id.action_publish -> {
-                            if(checkFields()==true){
-                                AlertDialog.Builder(requireContext())
-                                    .setTitle("Error")
-                                    .setMessage("Please fill all the fields")
-                                    .setPositiveButton("OK") { dialog, which ->
-                                        dialog.dismiss()
-                                    }
-                                    .show()
-                            }
-                            else{Toast.makeText(context, "Published ${bi}", Toast.LENGTH_SHORT).show()
-                                viewModel.createNewChapter(
-                                    bi,
-                                    chapterTitle.text.toString(),
-                                    chapterContent.text.toString(),
-                                    status = 1,
-                                    cat,
-                                    Utils(requireContext()).getUser().id.toInt(),
-                                )
-                                viewModel.createnewBook(
-                                    requireContext(),
-                                    bi,
-                                    bookTitle,
-                                    bookContent,
-                                    status = 1,
-                                    Utils(requireContext()).getUser().id.toInt(),
-                                    cat
-                                )
-                                findNavController().navigate(R.id.action_writeStoryFragment_to_navigation_write)}
 
-
-                            true
-                        }
-                        R.id.action_delete -> {
-                            true
-                        }
-                        else -> false
+                        true
                     }
-
+                    R.id.action_publish -> {
+                        if (checkFields()) {
+                            AlertDialog.Builder(requireContext())
+                                .setTitle("Error")
+                                .setMessage("Please fill all the fields")
+                                .setPositiveButton("OK") { dialog, which ->
+                                    dialog.dismiss()
+                                }
+                                .show()
+                        } else {
+                            Toast.makeText(context, "Published ${bi}", Toast.LENGTH_SHORT).show()
+                            viewModel.createNewChapter(
+                                bi,
+                                chapterTitle.text.toString(),
+                                chapterContent.text.toString(),
+                                status = 1,
+                                cat,
+                                Utils(requireContext()).getUser().id.toInt(),
+                            )
+                            viewModel.createnewBook(
+                                requireContext(),
+                                bi,
+                                bookTitle,
+                                bookContent,
+                                status = 1,
+                                Utils(requireContext()).getUser().id.toInt(),
+                                cat
+                            )
+                            findNavController().navigate(R.id.action_writeStoryFragment_to_navigation_write)
+                        }
+                        true
+                    }
+                    else -> false
+                }
             }
         }
     }
+
     fun checkFields(): Boolean {
-        return binding.chapterTitle.text.toString().isEmpty() || binding.chapterContent.text.toString().isEmpty()
+        return binding.chapterTitle.text.toString()
+            .isEmpty() || binding.chapterContent.text.toString().isEmpty()
     }
 
 }

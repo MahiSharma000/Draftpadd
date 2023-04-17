@@ -6,27 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
 import com.example.draftpad.Utils
 import com.example.draftpad.databinding.FragmentEditChapterContentBinding
-import com.example.draftpad.databinding.FragmentReadStoryBinding
-import com.example.draftpad.ui.read.ReadStoryFragmentArgs
-import com.example.draftpad.ui.read.ReadStoryViewModel
 
 class EditChapterContent : Fragment() {
     private var _binding: FragmentEditChapterContentBinding? = null
     private val binding get() = _binding!!
     private val vm: NewStoryViewModel by activityViewModels()
-    private var toolbar: Toolbar? = null
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,8 +59,6 @@ class EditChapterContent : Fragment() {
                         Utils(requireContext()).getUser().id.toInt()
                     )
                     Toast.makeText(requireContext(), "Chapter Saved", Toast.LENGTH_SHORT).show()
-                    //findNavController().navigate(R.id.action_editChapterContent_to_editStoryDetailFragment2)
-
                     true
                 }
                 R.id.action_publish -> {
@@ -97,7 +84,6 @@ class EditChapterContent : Fragment() {
                     )
 
                     Toast.makeText(requireContext(), "Chapter published", Toast.LENGTH_SHORT).show()
-                    //findNavController().navigate(R.id.action_editChapterContent_to_editStoryDetailFragment2)
                     true
                 }
 

@@ -6,21 +6,16 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.provider.MediaStore
 import android.util.Base64
-import android.util.Log
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.draftpad.Utils
 import com.example.draftpad.network.ApiClient
-import com.example.draftpad.network.ChangePasswordResponse
 import com.example.draftpad.network.UserDataResponse
 import com.example.draftpad.network.UserProfile
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import java.io.File
-
 
 
 enum class ProfileApiStatus { LOADING, ERROR, DONE, NONE }
@@ -31,13 +26,9 @@ class ProfileSettingsViewModel : ViewModel() {
     val status: LiveData<ProfileApiStatus> = _status
 
     private val _getstatus = MutableLiveData<ProfileApiStatus>()
-    val getstatus: LiveData<ProfileApiStatus> = _getstatus
 
     private val _response = MutableLiveData<UserDataResponse>()
     val response: LiveData<UserDataResponse> = _response
-
-    private val _getresponse = MutableLiveData<ChangePasswordResponse>()
-    val getresponse: LiveData<ChangePasswordResponse> = _getresponse
 
     private val _user = MutableLiveData<UserProfile?>()
     val user: LiveData<UserProfile?> = _user
@@ -62,7 +53,7 @@ class ProfileSettingsViewModel : ViewModel() {
         lastName: String,
         dob: String,
         about: String,
-        phone:String,
+        phone: String,
         follower: Int,
     ) {
         try {
@@ -93,7 +84,6 @@ class ProfileSettingsViewModel : ViewModel() {
     }
 
     private fun convertToString(file: File): String {
-        Log.d("File", "convertToString: ${file.absolutePath}")
         val bytes = file.readBytes()
         return Base64.encodeToString(bytes, Base64.DEFAULT)
     }
@@ -101,7 +91,6 @@ class ProfileSettingsViewModel : ViewModel() {
 
     @SuppressLint("Recycle")
     private fun getFileFromUri(context: Context, uri: Uri): String? {
-        // get the file path from the URI using the content resolver
         val bitmap = MediaStore.Images.Media.getBitmap(context.contentResolver, uri)
         val file = File(context.cacheDir, "profile_pic")
         file.createNewFile()
@@ -122,7 +111,6 @@ class ProfileSettingsViewModel : ViewModel() {
             _getstatus.value = ProfileApiStatus.LOADING
             try {
                 ApiClient.retrofitService.getProfile(uid).let { response ->
-                    Log.d("ProfileSettingsViewModel", "getUserId: $response")
                     _user.value = response.author
                     _getstatus.value = ProfileApiStatus.DONE
                 }
@@ -130,23 +118,6 @@ class ProfileSettingsViewModel : ViewModel() {
             } catch (e: Exception) {
                 _getstatus.value = ProfileApiStatus.ERROR
                 _user.value = null
-                Log.e("ProfileSettingViewModel", "getUserId: $e")
-            }
-        }
-    }
-
-    fun changeUserPassword(userId:Int, oldPassword:String, newPassword:String){
-        viewModelScope.launch {
-            _status.value = ProfileApiStatus.LOADING
-            try {
-                ApiClient.retrofitService.changePassword(userId, oldPassword, newPassword).let { response ->
-                    Log.d("ProfileSettingsViewModel", "changePassword: ${response.msg}")
-                    _status.value = ProfileApiStatus.DONE
-                }
-
-            } catch (e: Exception) {
-                _status.value = ProfileApiStatus.ERROR
-                Log.e("ProfileSettingViewModel", "changePassword: $e")
             }
         }
     }

@@ -32,26 +32,6 @@ fun bindStatus(statusImageView: ImageView, status: SearchApiStatus?) {
     }
 }
 
-@BindingAdapter("AuthorApiStatus")
-fun bindStatus(statusImageView: ImageView, status: AuthorApiStatus?) {
-    when (status) {
-        AuthorApiStatus.ERROR -> {
-            statusImageView.visibility = View.VISIBLE
-            statusImageView.load(R.drawable.ic_connection_error)
-        }
-        AuthorApiStatus.LOADING -> {
-            statusImageView.visibility = View.VISIBLE
-            statusImageView.load(R.drawable.loading_animation)
-        }
-        AuthorApiStatus.DONE -> {
-            statusImageView.visibility = View.GONE
-        }
-        else -> {
-
-        }
-    }
-}
-
 @BindingAdapter("commentApiStatus")
 fun bindStatus(statusImageView: ImageView, status: CommentApiStatus?) {
     when (status) {
@@ -71,48 +51,6 @@ fun bindStatus(statusImageView: ImageView, status: CommentApiStatus?) {
         }
     }
 }
-
-@BindingAdapter("bookApiStatus")
-fun bindStatus(statusImageView: ImageView, status: BookApiStatus?) {
-    when (status) {
-        BookApiStatus.ERROR -> {
-            statusImageView.visibility = View.VISIBLE
-            statusImageView.load(R.drawable.ic_connection_error)
-        }
-        BookApiStatus.LOADING -> {
-            statusImageView.visibility = View.VISIBLE
-            statusImageView.load(R.drawable.loading_animation)
-        }
-        BookApiStatus.DONE -> {
-            statusImageView.visibility = View.GONE
-        }
-        else -> {
-
-        }
-    }
-}
-
-@BindingAdapter("editStoryApiStatus")
-fun bindStatus(statusImageView: ImageView, status: EditStoryApiStatus?) {
-    when (status) {
-        EditStoryApiStatus.ERROR -> {
-            statusImageView.visibility = View.VISIBLE
-            statusImageView.load(R.drawable.ic_connection_error)
-        }
-        EditStoryApiStatus.LOADING -> {
-            statusImageView.visibility = View.VISIBLE
-            statusImageView.load(R.drawable.loading_animation)
-        }
-        EditStoryApiStatus.DONE -> {
-            statusImageView.visibility = View.GONE
-        }
-        else -> {
-
-        }
-    }
-}
-
-
 
 @BindingAdapter("summary_text")
 fun bindSummaryText(textView: TextView, text: String?) {
@@ -134,11 +72,9 @@ fun summary(text: String, max: Int): String {
 @BindingAdapter("author_img")
 fun bindAuthorImage(imageView: ImageView, data: String?) {
     if (data != null) {
-        // if data is url then load
         if (data.contains("http")) {
             imageView.load(data)
         } else {
-            // convert base64 to bitmap
             val decodedString: ByteArray = Base64.decode(data, Base64.DEFAULT)
             imageView.load(decodedString)
         }

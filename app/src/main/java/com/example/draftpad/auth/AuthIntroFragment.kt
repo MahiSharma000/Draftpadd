@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 
 class AuthIntroFragment : Fragment() {
-    private var _binding:FragmentAuthIntroBinding? = null
+    private var _binding: FragmentAuthIntroBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -29,9 +29,11 @@ class AuthIntroFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             LoginBtIntro.setOnClickListener {
-                findNavController().navigate(R.id.action_authIntroFragment_to_authFragment) }
+                findNavController().navigate(R.id.action_authIntroFragment_to_authFragment)
+            }
             signUpbtintro.setOnClickListener {
-                findNavController().navigate(R.id.action_authIntroFragment_to_signUpFragment) }
+                findNavController().navigate(R.id.action_authIntroFragment_to_signUpFragment)
+            }
         }
     }
 }

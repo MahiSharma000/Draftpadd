@@ -26,8 +26,8 @@ class CommentViewModel : ViewModel() {
     private val _userstatus = MutableLiveData<AuthorApiStatus>()
     val userstatus: LiveData<AuthorApiStatus> = _userstatus
 
-    private val _updateResponse=MutableLiveData<UpdateCommentsResponse>()
-    val updateResponse:LiveData<UpdateCommentsResponse> = _updateResponse
+    private val _updateResponse = MutableLiveData<UpdateCommentsResponse>()
+    val updateResponse: LiveData<UpdateCommentsResponse> = _updateResponse
 
     private val _user = MutableLiveData<UserProfile?>()
     val user: LiveData<UserProfile?> = _user
@@ -50,7 +50,6 @@ class CommentViewModel : ViewModel() {
             try {
                 _comId.value?.let {
                     ApiClient.retrofitService.getComments(it).let { response ->
-                        Log.d("CommentViewModel", response.toString())
                         _comments.value = response.comments
                         if (response.comments.isNotEmpty()) {
                             _status.value = CommentApiStatus.DONE
@@ -61,7 +60,6 @@ class CommentViewModel : ViewModel() {
                 }
 
             } catch (e: Exception) {
-                Log.e("CommentViewModel", e.toString())
                 _status.value = CommentApiStatus.ERROR
                 _comments.value = listOf()
             }
@@ -107,12 +105,12 @@ class CommentViewModel : ViewModel() {
         }
 
     }
+
     fun getUserProfile(uid: Int) {
         viewModelScope.launch {
             _userstatus.value = AuthorApiStatus.LOADING
             try {
                 ApiClient.retrofitService.getProfile(uid).let { response ->
-                    Log.d("UserProfileViewModel", "getUserProfile: $response")
                     _user.value = response.author
                     _userstatus.value = AuthorApiStatus.DONE
                 }
@@ -120,12 +118,11 @@ class CommentViewModel : ViewModel() {
             } catch (e: Exception) {
                 _userstatus.value = AuthorApiStatus.ERROR
                 _user.value = null
-                Log.e("UserProfileViewModel", "getUserProfile: $e")
             }
         }
     }
 
-    fun updateComments(){
+    fun updateComments() {
         viewModelScope.launch {
             _status.value = CommentApiStatus.LOADING
             _updateResponse.value = ApiClient.retrofitService.updateComments(

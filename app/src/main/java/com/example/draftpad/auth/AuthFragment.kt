@@ -28,22 +28,12 @@ class AuthFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
     private val vm: LoginViewModel by activityViewModels()
-    private val sharedPrefManager: SharedPreferenceManager by lazy {
-        SharedPreferenceManager(requireContext())
-    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
 
     }
-
-    /*override fun onResume() {
-        super.onResume()
-        if (auth.currentUser != null) {
-            startActivity(Intent(activity, MainActivity::class.java))
-            activity?.finish()
-        }
-    }*/
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -95,7 +85,6 @@ class AuthFragment : Fragment() {
                                         )
                                     )
                                     loginProgress.setVisibility(View.INVISIBLE)
-                                    sharedPrefManager.setLoggedIn(true)
                                     startActivity(Intent(activity, MainActivity::class.java))
                                     activity?.finish()
 
@@ -119,9 +108,6 @@ class AuthFragment : Fragment() {
                         }
                     }
                 }
-            }
-
-            txtForgotPwd.setOnClickListener {
             }
 
             txtSignUp.setOnClickListener {
@@ -151,7 +137,5 @@ class AuthFragment : Fragment() {
                 }
             }
         }
-
-
     }
 }

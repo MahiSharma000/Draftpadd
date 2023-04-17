@@ -33,7 +33,6 @@ class CreateNewStoryFragment : Fragment() {
         const val REQUEST_IMAGE_SET = 122
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (!hasPermission()) {
@@ -222,6 +221,4 @@ class CreateNewStoryFragment : Fragment() {
     private fun getStringFromUri(uri: Uri?) {
 
     }
-
-
 }

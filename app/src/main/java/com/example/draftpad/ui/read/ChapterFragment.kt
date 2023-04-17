@@ -17,11 +17,6 @@ class ChapterFragment : Fragment() {
     private var _binding: FragmentChapterBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,10 +43,8 @@ class ChapterFragment : Fragment() {
                     ChapterFragmentDirections.actionChapterFragmentToReadStoryFragment(chapter.id)
                 findNavController().navigate(dir)
             }
-            Log.e("ChapterFragment", chapters.toString())
             (binding.rvChapter.adapter as ChapterAdapter).submitList(chapters)
             binding.rvChapter.hasFixedSize()
-
         }
     }
 }

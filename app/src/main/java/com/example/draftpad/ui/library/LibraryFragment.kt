@@ -37,7 +37,6 @@ class LibraryFragment : Fragment() {
     ): View {
         _binding = FragmentLibraryBinding.inflate(inflater, container, false)
         toolbar = binding.toolbar
-        toolbar?.inflateMenu(R.menu.library_menu)
         binding.libraryVm = vm
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root

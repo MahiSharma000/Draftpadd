@@ -5,6 +5,7 @@
     android:id="@+id/frameLayout28"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg4"
     tools:context=".ui.report.ReportFragment">
 
     <TextView
@@ -14,6 +15,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/why_are_you_reporting"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,8 +24,9 @@
         android:id="@+id/txtInappropriate"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:text="@string/inappropriate_content"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textView41"
         app:layout_constraintTop_toBottomOf="@+id/textView41" />
@@ -33,6 +37,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
         android:text="@string/copyright_infringement"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/txtInappropriate"
         app:layout_constraintTop_toBottomOf="@+id/txtInappropriate" />

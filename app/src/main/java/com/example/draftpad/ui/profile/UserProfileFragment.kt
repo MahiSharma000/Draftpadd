@@ -19,11 +19,6 @@ class UserProfileFragment : Fragment() {
     private val viewModel: AuthorProfileViewModel by activityViewModels()
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,8 +31,6 @@ class UserProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         val userId = Utils(requireContext()).getUser().id.toInt()
         viewModel.getAuthorId(userId)
 
@@ -57,7 +50,6 @@ class UserProfileFragment : Fragment() {
 
 
     }
-
     companion object {
         fun newInstance() = UserProfileFragment()
     }

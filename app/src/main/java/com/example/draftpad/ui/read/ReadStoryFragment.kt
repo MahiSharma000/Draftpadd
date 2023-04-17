@@ -42,7 +42,7 @@ class ReadStoryFragment : Fragment() {
 
     private fun showAds() {
         val adRequest = AdRequest.Builder().build()
-        val adSize = AdSize(300, 50)
+        AdSize(300, 50)
         mAdView = binding.adView
         mAdView.loadAd(adRequest)
 

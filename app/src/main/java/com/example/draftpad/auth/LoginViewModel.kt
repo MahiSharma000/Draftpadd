@@ -1,18 +1,13 @@
 package com.example.draftpad.auth
 
-import android.os.Build
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.draftpad.Utils
-import com.example.draftpad.models.LoggedUser
 import com.example.draftpad.network.ApiClient
 import com.example.draftpad.network.LoginResponse
-import com.example.draftpad.network.RegisterResponse
-import com.example.draftpad.network.User
 import kotlinx.coroutines.launch
-import java.time.LocalDateTime
+
 
 enum class LoginApiStatus { LOADING, ERROR, DONE, NONE }
 class LoginViewModel : ViewModel() {

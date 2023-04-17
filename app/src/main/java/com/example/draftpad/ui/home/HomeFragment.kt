@@ -25,7 +25,6 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private var toolbar: Toolbar? = null
     private lateinit var auth: FirebaseAuth
     private val vm: HomeViewModel by activityViewModels()
 
@@ -35,15 +34,10 @@ class HomeFragment : Fragment() {
     }
 
     override fun onCreateView(
-
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.viewmodel = vm
         binding.lifecycleOwner = viewLifecycleOwner
@@ -81,12 +75,10 @@ class HomeFragment : Fragment() {
         vm.books.observe(viewLifecycleOwner) { books ->
             binding.rvhome.layoutManager = LinearLayoutManager(context)
             binding.rvhome.adapter = BookAdapter() { book ->
-                Log.e("BooksFragment", book.toString())
                 (binding.rvhome.adapter as BookAdapter).notifyDataSetChanged()
                 val dir = HomeFragmentDirections.actionNavigationHomeToReadFragment(book.id)
                 findNavController().navigate(dir)
             }
-            Log.e("HomeFragment", books.toString())
             (binding.rvhome.adapter as BookAdapter).submitList(books)
         }
     }

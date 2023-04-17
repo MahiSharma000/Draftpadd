@@ -9,10 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentSelectCategoryBinding
 import com.example.draftpad.ui.search.CategoryAdapter
-import com.example.draftpad.ui.search.SearchFragmentDirections
 import com.example.draftpad.ui.search.SearchViewModel
 
 class SelectCategoryFragment : Fragment() {
@@ -20,11 +18,6 @@ class SelectCategoryFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: SearchViewModel by activityViewModels()
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,14 +35,16 @@ class SelectCategoryFragment : Fragment() {
             viewModel.categories.observe(viewLifecycleOwner) { categories ->
                 this.rveditcategory.layoutManager = LinearLayoutManager(context)
                 this.rveditcategory.adapter = CategoryAdapter() { category ->
-                    val dir = SelectCategoryFragmentDirections.actionSelectCategoryFragmentToCreateNewStoryFragment(category.id,category.name)
+                    val dir =
+                        SelectCategoryFragmentDirections.actionSelectCategoryFragmentToCreateNewStoryFragment(
+                            category.id,
+                            category.name
+                        )
                     findNavController().navigate(dir)
 
                 }
-                Log.e("SearchFragment", categories.toString())
                 (binding.rveditcategory.adapter as CategoryAdapter).submitList(categories)
             }
         }
     }
-
 }

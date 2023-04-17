@@ -17,13 +17,7 @@ import com.example.draftpad.databinding.FragmentAddNewChapterBinding
 class AddNewChapter : Fragment() {
     private var _binding: FragmentAddNewChapterBinding? = null
     private val binding get() = _binding!!
-    private val vm : WriteViewModel by activityViewModels()
-    private var toolbar: Toolbar? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    private val vm: WriteViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,18 +31,18 @@ class AddNewChapter : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val bi= AddNewChapterArgs.fromBundle(requireArguments()).bookId.let {
+        val bi = AddNewChapterArgs.fromBundle(requireArguments()).bookId.let {
             vm.setBookId(it)
         }
         vm.bookId.observe(viewLifecycleOwner) {
             vm.getBook()
         }
 
-        binding.toolbar.inflateMenu(R.menu.write_story_menu)
+        binding.toolbar.inflateMenu(R.menu.write)
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_save -> {
-                    if(checkFields() == true){
+                    if (checkFields() == true) {
                         AlertDialog.Builder(requireContext())
                             .setTitle("Error")
                             .setMessage("Please fill all the fields")
@@ -56,25 +50,22 @@ class AddNewChapter : Fragment() {
                                 dialog.dismiss()
                             }
                             .show()
-                    }
-                    else{
+                    } else {
                         vm.createNewChapter(
                             vm.book.value!!.id,
                             binding.newchapterTitle.text.toString(),
                             binding.newchapterContent.text.toString(),
-                        0,
+                            0,
                             vm.book.value!!.category_id,
                             Utils(requireContext()).getUser().id.toInt(),
                         )
                         Toast.makeText(requireContext(), "Chapter Saved", Toast.LENGTH_SHORT).show()
-                        //findNavController().navigate(R.id.action_addNewChapter_to_editStoryDetailFragment2)
-
                     }
 
                     true
                 }
                 R.id.action_publish -> {
-                    if(checkFields()==true){
+                    if (checkFields() == true) {
                         AlertDialog.Builder(requireContext())
                             .setTitle("Error")
                             .setMessage("Please fill all the fields")
@@ -82,8 +73,7 @@ class AddNewChapter : Fragment() {
                                 dialog.dismiss()
                             }
                             .show()
-                    }
-                    else{
+                    } else {
                         vm.createNewChapter(
                             vm.book.value!!.id,
                             binding.newchapterTitle.text.toString(),
@@ -102,16 +92,11 @@ class AddNewChapter : Fragment() {
                             Utils(requireContext()).getUser().id.toInt(),
                             vm.book.value!!.category_id,
 
-                        )
+                            )
 
-                        Toast.makeText(requireContext(), "Chapter Published", Toast.LENGTH_SHORT).show()
-                        //findNavController().navigate(R.id.action_addNewChapter_to_editStoryDetailFragment2)
+                        Toast.makeText(requireContext(), "Chapter Published", Toast.LENGTH_SHORT)
+                            .show()
                     }
-
-
-                    true
-                }
-                R.id.action_delete -> {
                     true
                 }
                 else -> false
@@ -120,11 +105,10 @@ class AddNewChapter : Fragment() {
         }
 
     }
+
     private fun checkFields(): Boolean {
-        return binding.newchapterTitle.text.toString().isEmpty() || binding.newchapterContent.text.toString().isEmpty()
+        return binding.newchapterTitle.text.toString()
+            .isEmpty() || binding.newchapterContent.text.toString().isEmpty()
     }
 
-    companion object {
-
-    }
 }

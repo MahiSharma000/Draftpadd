@@ -1,6 +1,5 @@
 package com.example.draftpad.ui.search
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +9,7 @@ import com.example.draftpad.network.Book
 import kotlinx.coroutines.launch
 
 enum class BookApiStatus { LOADING, ERROR, DONE }
-class BooksViewModel: ViewModel(){
+class BooksViewModel : ViewModel() {
 
     private val _status = MutableLiveData<BookApiStatus>()
     val status: LiveData<BookApiStatus> = _status
@@ -23,14 +22,13 @@ class BooksViewModel: ViewModel(){
 
     }
 
-    fun getBooks(catId : Int) {
+    fun getBooks(catId: Int) {
         viewModelScope.launch {
             _status.value = BookApiStatus.LOADING
             try {
-                ApiClient.retrofitService.getCategoryBooks(catId).let {response->
+                ApiClient.retrofitService.getCategoryBooks(catId).let { response ->
                     _status.value = BookApiStatus.DONE
                     _bookList.value = response.books
-                    Log.d("SearchViewModel", response.toString())
                 }
             } catch (e: Exception) {
                 _status.value = BookApiStatus.ERROR

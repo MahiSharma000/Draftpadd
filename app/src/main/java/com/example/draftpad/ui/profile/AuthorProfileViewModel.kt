@@ -26,6 +26,9 @@ class AuthorProfileViewModel : ViewModel() {
     val _author = MutableLiveData<UserProfile?>()
     val author: LiveData<UserProfile?> = _author
 
+    val _books = MutableLiveData<List<Book>>()
+    val books: LiveData<List<Book>> = _books
+
     val _blockStatus = MutableLiveData<AuthorApiStatus>()
     val blockStatus: LiveData<AuthorApiStatus> = _blockStatus
 
@@ -65,7 +68,6 @@ class AuthorProfileViewModel : ViewModel() {
             _status.value = AuthorApiStatus.LOADING
             try {
                 ApiClient.retrofitService.getProfile(uid).let { response ->
-                    Log.d("AuthorProfileViewModel", "getAuthorId: $response")
                     _author.value = response.author
                     _status.value = AuthorApiStatus.DONE
                 }
@@ -73,7 +75,6 @@ class AuthorProfileViewModel : ViewModel() {
             } catch (e: Exception) {
                 _status.value = AuthorApiStatus.ERROR
                 _author.value = null
-                Log.e("AuthorProfileViewModel", "getAuthorId: $e")
             }
         }
     }
@@ -146,7 +147,6 @@ class AuthorProfileViewModel : ViewModel() {
 
     @SuppressLint("Recycle")
     private fun getFileFromUri(context: Context, uri: Uri): String? {
-        // get the file path from the URI using the content resolver
         val bitmap = MediaStore.Images.Media.getBitmap(context.contentResolver, uri)
         val file = File(context.cacheDir, "profile_pic")
         file.createNewFile()
@@ -162,7 +162,6 @@ class AuthorProfileViewModel : ViewModel() {
             _followerStatus.value = AuthorApiStatus.LOADING
             try {
                 ApiClient.retrofitService.getFollowers(uid).let { response ->
-                    Log.d("Follower Function", "${response.followers}")
                     _followers.value = response.followers
                     _followerStatus.value = AuthorApiStatus.DONE
                 }
@@ -170,7 +169,6 @@ class AuthorProfileViewModel : ViewModel() {
             } catch (e: Exception) {
                 _followerStatus.value = AuthorApiStatus.ERROR
                 _followers.value = null
-                Log.e("Follower Function", "$e")
             }
         }
     }
@@ -180,7 +178,6 @@ class AuthorProfileViewModel : ViewModel() {
             _followerStatus.value = AuthorApiStatus.LOADING
             try {
                 ApiClient.retrofitService.checkFollower(uid, followerId).let { response ->
-                    Log.d("FollowerModel", "$response")
                     _checkFollow.value = response
                     _followerStatus.value = AuthorApiStatus.DONE
                 }
@@ -207,12 +204,10 @@ class AuthorProfileViewModel : ViewModel() {
             _blockStatus.value = AuthorApiStatus.LOADING
             try {
                 ApiClient.retrofitService.block(userId, blockedId).let { response ->
-                    Log.d("BlockUser", "$response")
                     _blockStatus.value = AuthorApiStatus.DONE
                 }
             } catch (e: Exception) {
                 _blockStatus.value = AuthorApiStatus.ERROR
-                Log.e("BlockUser", "$e")
             }
         }
     }
@@ -222,12 +217,23 @@ class AuthorProfileViewModel : ViewModel() {
             _status.value = AuthorApiStatus.LOADING
             try {
                 ApiClient.retrofitService.getBlocked(userId).let { response ->
-                    Log.d("Blocked Accounts", "${response.blocked}")
                     _blockList.value = response.blocked
                     _status.value = AuthorApiStatus.DONE
                 }
             } catch (e: Exception) {
-                Log.e("Blocked Account","$e")
+                _status.value = AuthorApiStatus.ERROR
+            }
+        }
+    }
+
+    fun getBooks(uid: Int) {
+        viewModelScope.launch {
+            try {
+                ApiClient.retrofitService.getBooksOfAuthor(uid).let { response ->
+                    _books.value = response.books
+                    _status.value = AuthorApiStatus.DONE
+                }
+            } catch (e: Exception) {
                 _status.value = AuthorApiStatus.ERROR
             }
         }

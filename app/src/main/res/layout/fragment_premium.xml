@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.premium.PremiumFragment"
-    android:background="@drawable/bg3">
+    android:background="@drawable/bg4">
 
     <ImageView
         android:id="@+id/imageView3"

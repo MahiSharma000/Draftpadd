@@ -1,13 +1,11 @@
 package com.example.draftpad.ui.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.draftpad.network.ApiClient
 import com.example.draftpad.network.Book
-import com.example.draftpad.ui.search.BookApiStatus
 import kotlinx.coroutines.launch
 
 enum class HomeApiStatus { LOADING, ERROR, DONE }
@@ -37,7 +35,6 @@ class HomeViewModel : ViewModel() {
                     }
 
             } catch (e: Exception) {
-                Log.e("HomeViewModel", "getBooks: ${e.message}")
                 _status.value = HomeApiStatus.ERROR
                 _books.value = listOf()
             }

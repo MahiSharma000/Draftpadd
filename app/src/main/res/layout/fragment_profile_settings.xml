@@ -28,6 +28,7 @@
                 android:fontFamily="@font/akaya_telivigala"
                 android:text="Profile"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,6 +64,7 @@
                 android:fontFamily="@font/akaya_telivigala"
                 android:text="Profile Picture"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/imgProfile"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -84,6 +86,7 @@
                 android:fontFamily="@font/akaya_telivigala"
                 android:text="About"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgProfile" />
 
@@ -93,6 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:text="User Name"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/textView15"
                 app:layout_constraintTop_toBottomOf="@+id/txtAbout" />
 
@@ -113,6 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="First Name"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/userName"
                 app:layout_constraintTop_toBottomOf="@+id/userName" />
 
@@ -141,6 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="Email"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/txtPhone"
                 app:layout_constraintTop_toBottomOf="@+id/txtPhone" />
 
@@ -161,6 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="Birthday"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/editTextEmail"
                 app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
@@ -171,6 +178,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="4dp"
                 android:text="LastName"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/txtFirstName"
                 app:layout_constraintTop_toBottomOf="@+id/txtFirstName" />
 
@@ -216,6 +224,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Phone Number"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/txtLastName"
                 app:layout_constraintTop_toBottomOf="@+id/txtLastName" />
 
@@ -243,16 +252,6 @@
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="@+id/textView20"
                 app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
-            <TextView
-                android:id="@+id/txtchangepwd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Change Password"
-                android:textColor="#243387"
-                app:layout_constraintStart_toStartOf="@+id/txtDob"
-                app:layout_constraintTop_toBottomOf="@+id/txtDob" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

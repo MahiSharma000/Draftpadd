@@ -141,7 +141,7 @@
             android:id="@+id/signUpbt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="55dp"
             android:background="@drawable/custom_bt"
             android:backgroundTint="@color/colorAccent"
             android:fontFamily="@font/aclonica"
@@ -151,21 +151,6 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/txtConfirmPassword"
             app:layout_constraintStart_toStartOf="@+id/txtConfirmPassword"
-            app:layout_constraintTop_toBottomOf="@+id/txtAgree" />
-
-        <CheckBox
-            android:id="@+id/txtAgree"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="101dp"
-            android:backgroundTint="@color/colorAccent"
-            android:buttonTint="@color/colorAccent"
-            android:text="Agree to terms and conditions"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/signUpbt"
-            app:layout_constraintEnd_toEndOf="@+id/txtConfirmPassword"
             app:layout_constraintTop_toBottomOf="@+id/txtConfirmPassword" />
 
         <TextView
@@ -173,30 +158,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="89dp"
-            android:layout_marginBottom="108dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/aclonica"
             android:text="Already have an account?"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@color/colorAccent"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/txtSignIn"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signUpbt" />
 
         <TextView
             android:id="@+id/txtSignIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="65dp"
-            android:layout_marginBottom="108dp"
             android:clickable="true"
             android:fontFamily="@font/aclonica"
             android:text="SIGN IN"
             android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintTop_toTopOf="@+id/textView3"
             tools:ignore="TouchTargetSizeCheck" />
 
 

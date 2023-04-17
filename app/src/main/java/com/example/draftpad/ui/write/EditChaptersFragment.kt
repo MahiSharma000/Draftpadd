@@ -9,24 +9,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.draftpad.R
-import com.example.draftpad.databinding.FragmentChapterBinding
 import com.example.draftpad.databinding.FragmentEditChaptersBinding
 import com.example.draftpad.ui.read.ChapterAdapter
-import com.example.draftpad.ui.read.ChapterFragmentDirections
 import com.example.draftpad.ui.read.ChapterViewModel
-import com.example.draftpad.ui.read.ReadStoryViewModel
 
 
 class EditChaptersFragment : Fragment() {
     private val vm: ChapterViewModel by activityViewModels()
     private var _binding: FragmentEditChaptersBinding? = null
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,7 +47,6 @@ class EditChaptersFragment : Fragment() {
                     )
                 findNavController().navigate(dir)
             }
-            Log.e("ChapterFragment", chapters.toString())
             (binding.rvEditChapters.adapter as ChapterAdapter).submitList(chapters)
             binding.rvEditChapters.hasFixedSize()
 

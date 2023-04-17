@@ -18,7 +18,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentEditStoryDetailBinding
 import com.example.draftpad.ui.profile.ProfileSettingsFragment
-import com.example.draftpad.ui.write.CreateNewStoryFragmentArgs.Companion.fromBundle
 import com.vmadalin.easypermissions.EasyPermissions
 import com.vmadalin.easypermissions.annotations.AfterPermissionGranted
 
@@ -43,7 +42,6 @@ class EditStoryDetailFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.toolbar.inflateMenu(R.menu.edit_story_detail_menu)
         val root: View = binding.root
-
         return root
     }
 
@@ -67,7 +65,6 @@ class EditStoryDetailFragment : Fragment() {
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_add -> {
-                    Log.e("EditStoryDetailFragment", bookId.toString())
                     val action =
                         EditStoryDetailFragmentDirections.actionEditStoryDetailFragmentToAddNewChapter(
                             bookId

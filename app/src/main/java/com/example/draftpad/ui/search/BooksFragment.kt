@@ -2,7 +2,6 @@ package com.example.draftpad.ui.search
 
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,22 +9,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.draftpad.R
 import com.example.draftpad.databinding.FragmentBooksBinding
-import com.example.draftpad.databinding.FragmentSearchBinding
 
 class BooksFragment : Fragment() {
-
     private var _binding: FragmentBooksBinding? = null
     private val binding get() = _binding!!
     private val vm: BooksViewModel by activityViewModels()
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +38,6 @@ class BooksFragment : Fragment() {
                         BooksFragmentDirections.actionBooksFragmentToReadFragment(book.id)
                     findNavController().navigate(dir)
                 }
-                Log.e("BooksFragment", books.toString())
                 (binding.rvBooks.adapter as BookAdapter).submitList(books)
             }
         }

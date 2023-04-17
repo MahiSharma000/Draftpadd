@@ -1,7 +1,6 @@
 package com.example.draftpad.ui.read
 
 import android.os.Build
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,7 +22,7 @@ class ReadViewModel : ViewModel() {
     private val _book = MutableLiveData<Book?>()
     val book: LiveData<Book?> = _book
 
-    private val _bookId = MutableLiveData<Int>(10)
+    private val _bookId = MutableLiveData(10)
     val bookId: LiveData<Int> = _bookId
 
     private val _deletefav = MutableLiveData<DeleteFavourite>()
@@ -42,7 +41,6 @@ class ReadViewModel : ViewModel() {
     }
 
     fun getSelectedBook() {
-        Log.d("ReadViewModel",_bookId.value.toString())
         viewModelScope.launch {
             _status.value = ReadApiStatus.LOADING
             try {
@@ -50,21 +48,16 @@ class ReadViewModel : ViewModel() {
                     ApiClient.retrofitService.getBook(it).let { response ->
                         _book.value = response.book
                         _status.value = ReadApiStatus.DONE
-                        Log.d("ReadViewModel",_book.value.toString())
                     }
                 }
             } catch (e: Exception) {
-                Log.e("ReadViewModel", e.toString())
                 _status.value = ReadApiStatus.ERROR
                 _book.value = null
             }
         }
     }
-
-
     fun setBookId(id: Int) {
         _bookId.value = id
-        Log.d("ReadViewModel",_bookId.value.toString())
     }
 
     fun downloadBook(userid: Int, bookId: Int){
@@ -116,5 +109,4 @@ class ReadViewModel : ViewModel() {
             )
         }
     }
-
 }

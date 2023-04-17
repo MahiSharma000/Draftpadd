@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
-private const val BASE_URL = "http://192.168.18.69:5000/"
+private const val BASE_URL = "http://192.168.125.124:5000/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -73,7 +73,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("api/v1/book")
     suspend fun createBook(
-        @Field("id") id :Int,
+        @Field("id") id: Int,
         @Field("title") title: String,
         @Field("cover") cover: String,
         @Field("lang") lang: String,
@@ -159,14 +159,6 @@ interface ApiService {
     @GET("api/v1/get_books/{name}")
     suspend fun getBooksByName(@Path("name") name: String): BooksByNameResponse
 
-    @FormUrlEncoded
-    @POST("api/v1/change_password")
-    suspend fun changePassword(
-        @Field("user_id") user_id: Int,
-        @Field("old_password") old_password: String,
-        @Field("new_password") new_password: String
-    ): ChangePasswordResponse
-
     @GET("api/v1/get_books_max_views")
     suspend fun getBooksByMaxViews(): BooksByMaxViewsResponse
 
@@ -197,14 +189,12 @@ interface ApiService {
         @Field("chapter_id") chapter_id: Int,
     ): DeleteLikeResponse
 
-    //update views in books
     @FormUrlEncoded
     @POST("api/v1/update_views")
     suspend fun updateViews(
         @Field("id") id: Int
     ): UpdateBookViewsResponse
 
-    //add books in read later
     @FormUrlEncoded
     @POST("api/v1/add_reading_later")
     suspend fun addReadLater(
@@ -219,25 +209,21 @@ interface ApiService {
         @Field("follower_id") follower_id: Int,
     ): CheckFollowResponse
 
-
     @GET("api/v1/get_reading_list/{id}")
     suspend fun getReadingList(@Path("id") id: Int): ReadingListResponse
 
-    //delete book
     @FormUrlEncoded
     @POST("api/v1/delete_book")
     suspend fun deleteBook(
         @Field("id") id: Int
     ): DeleteBookResponse
 
-    //delete chapter
     @FormUrlEncoded
     @POST("api/v1/delete_chapter")
     suspend fun deleteChapter(
         @Field("id") id: Int
     ): DeleteChapterResponse
 
-    //unfollow user
     @FormUrlEncoded
     @POST("api/v1/unfollow")
     suspend fun unfollow(
@@ -245,7 +231,6 @@ interface ApiService {
         @Field("follower_id") follower_id: Int,
     ): UnfollowResponse
 
-    //block user
     @FormUrlEncoded
     @POST("api/v1/block")
     suspend fun block(
@@ -253,11 +238,9 @@ interface ApiService {
         @Field("blocked_id") follower_id: Int,
     ): BlockResponse
 
-    //get list of blocked users
     @GET("api/v1/get_blocked/{id}")
     suspend fun getBlocked(@Path("id") id: Int): BlockedResponse
 
-    //get favourite books
     @GET("api/v1/get_favourite/{id}")
     suspend fun getFavourite(@Path("id") id: Int): FavouriteResponse
 
@@ -278,8 +261,12 @@ interface ApiService {
     @GET("api/v1/check/preium/{id}")
     suspend fun checkPremium(@Path("id") id: Int): CheckPremiumResponse
 
+    //get books by userId
+    @GET("api/v1/get_books_by_user/{id}")
+    suspend fun getBooksOfAuthor(@Path("id") id : Int):BooksResponse
 
 }
+
 object ApiClient {
     val retrofitService: ApiService by lazy {
         retrofit.create(ApiService::class.java)

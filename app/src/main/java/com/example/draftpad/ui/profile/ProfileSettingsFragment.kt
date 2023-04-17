@@ -12,7 +12,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.example.draftpad.R
@@ -29,7 +28,6 @@ class ProfileSettingsFragment : Fragment(), EasyPermissions.PermissionCallbacks 
     private val vm: ProfileSettingsViewModel by activityViewModels()
 
     private lateinit var utils: Utils
-
 
     companion object {
         const val REQUEST_IMAGE_GET = 122
@@ -140,11 +138,11 @@ class ProfileSettingsFragment : Fragment(), EasyPermissions.PermissionCallbacks 
         vm.response.observe(viewLifecycleOwner) {
             if (it != null) {
                 when (it.status) {
-                    "ERROR" ->{
+                    "ERROR" -> {
                         Snackbar.make(binding.root, it.msg, Snackbar.LENGTH_SHORT)
                             .show()
                     }
-                    "OK" ->{
+                    "OK" -> {
                         Snackbar.make(binding.root, it.msg, Snackbar.LENGTH_SHORT)
                             .show()
                     }
@@ -195,9 +193,6 @@ class ProfileSettingsFragment : Fragment(), EasyPermissions.PermissionCallbacks 
             }
             txtChangeImage.setOnClickListener {
                 selectImage()
-            }
-            txtchangepwd.setOnClickListener {
-                findNavController().navigate(R.id.action_profileSettingsFragment_to_changePassword)
             }
         }
     }
