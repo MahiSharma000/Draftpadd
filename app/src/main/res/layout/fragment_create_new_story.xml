@@ -82,7 +82,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorAccent"
-                android:hint="@string/story_title" />
+                android:hint="@string/story_title"
+                android:maxLength="25" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -101,7 +102,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorAccent"
-                android:hint="@string/story_description" />
+                android:hint="@string/story_description"
+                android:maxLength="100" />
         </com.google.android.material.textfield.TextInputLayout>
 
 

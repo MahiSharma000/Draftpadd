@@ -102,10 +102,11 @@
             <EditText
                 android:id="@+id/bookTitle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:ems="10"
                 android:hint="@string/book_title"
                 android:inputType="textPersonName"
+                android:maxLength="25"
                 android:padding="10dp"
                 tools:text="@string/book_title" />
 
@@ -122,11 +123,11 @@
             <EditText
                 android:id="@+id/decription"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:ems="10"
                 android:hint="Book Description"
                 android:inputType="textPersonName"
-                android:maxLines="5" />
+                android:maxLength="100" />
 
 
             <TextView

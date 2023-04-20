@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.draftpad.R
-import com.example.draftpad.databinding.FragmentAuthBinding
 import com.example.draftpad.databinding.FragmentAuthIntroBinding
-import com.google.firebase.auth.FirebaseAuth
 
 
 class AuthIntroFragment : Fragment() {

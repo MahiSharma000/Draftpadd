@@ -108,6 +108,7 @@
                 android:ems="10"
                 android:hint="user name"
                 android:inputType="textPersonName"
+                android:maxLength="16"
                 app:layout_constraintStart_toStartOf="@+id/textView16"
                 app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
@@ -128,10 +129,11 @@
                 android:layout_marginTop="2dp"
                 android:ems="10"
                 android:hint="First Name"
-                app:text="@{viewModel.user.first_name}"
                 android:inputType="textPersonName"
+                android:maxLength="16"
                 app:layout_constraintStart_toStartOf="@+id/textView17"
-                app:layout_constraintTop_toBottomOf="@+id/textView17" />
+                app:layout_constraintTop_toBottomOf="@+id/textView17"
+                app:text="@{viewModel.user.first_name}" />
 
             <TextView
                 android:id="@+id/textView18"
@@ -158,6 +160,7 @@
                 android:ems="10"
                 android:hint="user@gmail.com"
                 android:inputType="textEmailAddress"
+                android:maxLength="25"
                 app:layout_constraintStart_toStartOf="@+id/textView19"
                 app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
@@ -185,14 +188,15 @@
             <EditText
                 android:id="@+id/txtLastName"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:hint="LastName"
-                app:text = "@{viewModel.user.last_name}"
                 android:inputType="textPersonName"
+                android:maxLength="16"
                 app:layout_constraintStart_toStartOf="@+id/textView5"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                app:text="@{viewModel.user.last_name}" />
 
             <Button
                 android:id="@+id/doneBt"
@@ -208,12 +212,13 @@
             <EditText
                 android:id="@+id/txtAbout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="2dp"
                 android:ems="10"
                 android:hint="About"
                 android:inputType="textPersonName"
+                android:maxLength="100"
                 app:layout_constraintStart_toStartOf="@+id/textView15"
                 app:layout_constraintTop_toBottomOf="@+id/textView15"
                 app:text="@{viewModel.user.about}" />
@@ -231,27 +236,27 @@
             <EditText
                 android:id="@+id/txtPhone"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginTop="7dp"
                 android:ems="10"
-                android:hint="Phone Number"
-                app:text = "@{viewModel.user.phone}"
+                android:hint="0000000000"
                 android:inputType="phone"
+                android:maxLength="10"
                 app:layout_constraintStart_toStartOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/textView4"
-                tools:text="Phone Number" />
+                app:text="@{viewModel.user.phone}" />
 
             <EditText
                 android:id="@+id/txtDob"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginTop="5dp"
                 android:ems="10"
                 android:hint="01-01-2000"
-                app:text = "@{viewModel.user.dob}"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="@+id/textView20"
-                app:layout_constraintTop_toBottomOf="@+id/textView20" />
+                app:layout_constraintTop_toBottomOf="@+id/textView20"
+                app:text="@{viewModel.user.dob}" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

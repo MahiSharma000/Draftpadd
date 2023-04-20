@@ -33,18 +33,15 @@ class UserProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val userId = Utils(requireContext()).getUser().id.toInt()
         viewModel.getAuthorId(userId)
-
+        viewModel.getFollower(userId)
         binding.apply {
             viewModel.followers.observe(viewLifecycleOwner) { followers ->
-                this.followerrv.layoutManager = LinearLayoutManager(context)
-                this.followerrv.adapter = FollowerAdapter() { follower ->
-                    val dir = AuthorProfileFragmentDirections.actionAuthorProfileFragmentSelf(
-                        follower.id.toString().toInt()
-                    )
+                followerrv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                followerrv.adapter = FollowerAdapter() { follower ->
+                    val dir = UserProfileFragmentDirections.actionUserProfileFragmentToAuthorProfileFragment(follower.id)
                     findNavController().navigate(dir)
-
                 }
-
+                (binding.followerrv.adapter as FollowerAdapter).submitList(followers)
             }
         }
 

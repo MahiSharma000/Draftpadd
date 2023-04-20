@@ -110,21 +110,16 @@
         android:id="@+id/userProfileFragment"
         android:name="com.example.draftpad.ui.profile.UserProfileFragment"
         android:label="fragment_user_profile"
-        tools:layout="@layout/fragment_user_profile" />
+        tools:layout="@layout/fragment_user_profile" >
+        <action
+            android:id="@+id/action_userProfileFragment_to_authorProfileFragment"
+            app:destination="@id/authorProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileSettingsFragment"
         android:name="com.example.draftpad.ui.profile.ProfileSettingsFragment"
         android:label="fragment_profile_settings"
-        tools:layout="@layout/fragment_profile_settings" >
-        <action
-            android:id="@+id/action_profileSettingsFragment_to_changePassword"
-            app:destination="@id/changePassword" />
-    </fragment>
-    <fragment
-        android:id="@+id/notificationSettingFragment"
-        android:name="com.example.draftpad.setting.NotificationSettingFragment"
-        android:label="fragment_notification_setting"
-        tools:layout="@layout/fragment_notification_setting" />
+        tools:layout="@layout/fragment_profile_settings" />
     <fragment
         android:id="@+id/blockedAccountFragment"
         android:name="com.example.draftpad.setting.BlockedAccountFragment"
@@ -135,11 +130,6 @@
             app:destination="@id/authorProfileFragment" />
     </fragment>
     <fragment
-        android:id="@+id/mutedAccountFragment"
-        android:name="com.example.draftpad.setting.MutedAccountFragment"
-        android:label="fragment_muted_account"
-        tools:layout="@layout/fragment_muted_account" />
-    <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.draftpad.setting.SettingsFragment"
         android:label="SettingsFragment" >
@@ -149,12 +139,6 @@
         <action
             android:id="@+id/action_settingsFragment_to_blockedAccountFragment"
             app:destination="@id/blockedAccountFragment" />
-        <action
-            android:id="@+id/action_settingsFragment_to_mutedAccountFragment"
-            app:destination="@id/mutedAccountFragment" />
-        <action
-            android:id="@+id/action_settingsFragment_to_notificationSettingFragment"
-            app:destination="@id/notificationSettingFragment" />
         <action
             android:id="@+id/action_settingsFragment_to_premiumFragment"
             app:destination="@id/premiumFragment" />
@@ -390,12 +374,6 @@
             android:name="bookId"
             app:argType="integer" />
     </dialog>
-    <fragment
-        android:id="@+id/changePassword"
-        android:name="com.example.draftpad.setting.ChangePassword"
-        android:label="ChangePassword" >
-        <argument android:name="userId" />
-    </fragment>
     <fragment android:id="@+id/placeholder" />
     <fragment
         android:id="@+id/editChapterContent"

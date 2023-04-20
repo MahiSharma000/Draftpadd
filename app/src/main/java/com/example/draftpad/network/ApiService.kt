@@ -261,7 +261,7 @@ interface ApiService {
     @GET("api/v1/check/preium/{id}")
     suspend fun checkPremium(@Path("id") id: Int): CheckPremiumResponse
 
-    //get books by userId
+
     @GET("api/v1/get_books_by_user/{id}")
     suspend fun getBooksOfAuthor(@Path("id") id : Int):BooksResponse
 
