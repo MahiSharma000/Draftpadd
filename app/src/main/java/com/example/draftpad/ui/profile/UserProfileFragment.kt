@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.draftpad.Utils
 import com.example.draftpad.databinding.FragmentUserProfileBinding
+import com.example.draftpad.ui.search.BookAdapter
 
 
 class UserProfileFragment : Fragment() {
@@ -36,7 +37,7 @@ class UserProfileFragment : Fragment() {
         viewModel.getFollower(userId)
         binding.apply {
             viewModel.followers.observe(viewLifecycleOwner) { followers ->
-                followerrv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                followerrv.layoutManager = LinearLayoutManager(context)
                 followerrv.adapter = FollowerAdapter() { follower ->
                     val dir = UserProfileFragmentDirections.actionUserProfileFragmentToAuthorProfileFragment(follower.id)
                     findNavController().navigate(dir)

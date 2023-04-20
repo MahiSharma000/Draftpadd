@@ -7,14 +7,15 @@
             name="userProfilevm"
             type="com.example.draftpad.ui.profile.AuthorProfileViewModel" />
     </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout9"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.profile.UserProfileFragment">
-
-        <androidx.appcompat.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -103,12 +104,14 @@
             android:layout_marginStart="2dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="2dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView46"
             tools:listitem="@layout/profile_item" />
 
 
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>
